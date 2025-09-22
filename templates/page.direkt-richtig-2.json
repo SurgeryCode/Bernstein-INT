@@ -1,0 +1,364 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_4M8qU3": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_YViazD": {
+          "type": "slide",
+          "settings": {
+            "badge": "",
+            "badge_text_color": "#000000",
+            "badge_background_color": "#ffffff",
+            "badge_padding": 22,
+            "subtitle": "Dein Bad. Direkt richtig.",
+            "title": "Deine Vorteile bei uns",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/davis_desktop_1920x840_de.webp",
+            "image_tablet": "shopify://shop_images/davis_tablet_1024x720_de.webp",
+            "image_mobile": "shopify://shop_images/davis_mobile_640x980_de.webp",
+            "alignment_desktop": "left",
+            "alignment_tablet": "left",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 20,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_YViazD"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 22,
+        "slide_height_mobile": 520,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "heading_subheading_kpknWk": {
+      "type": "heading-subheading",
+      "disabled": true,
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "content_Lz6NaP": {
+      "type": "content",
+      "disabled": true,
+      "name": "Content",
+      "settings": {
+        "heading": "Wer sind wir und was macht uns aus?",
+        "text": "<p>Wir sind Bernstein. Bei uns dreht sich alles darum, euren Badtraum wahrwerden zu lassen.</p><p>In den folgenden Videos erfahrt ihr, warum uns unsere Kunden vertrauen und was uns von anderen unterscheidet. Entdeckt mit Tarek, wie wir nicht nur hochwertige, stilvolle Designs zu erschwinglichen Preisen realisieren können, sondern auch, wie ihr unsere Produkte erleben könnt und welche Services wir euch bieten. Denn bei uns seid ihr genau an der richtigen Adresse. Lasst euch inspirieren und entdeckt, warum „Dein Bad. Direkt richtig.“ bei uns mehr als nur ein Versprechen ist!</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "heading_subheading_hUC9NY": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Wer wir sind und was uns auszeichnet",
+        "heading_tag": "2",
+        "heading_width": 48,
+        "alignment": "center",
+        "description": "<p>Wir sind Bernstein. Bei uns dreht sich alles darum, euren Badtraum wahr werden zu lassen. In den folgenden Videos erfahrt ihr, warum uns unsere Kunden vertrauen und was uns von anderen unterscheidet. Entdeckt mit Tarek, wie wir nicht nur hochwertige, stilvolle Designs zu erschwinglichen Preisen realisieren können, sondern auch, wie ihr unsere Produkte erleben könnt und welche Services wir euch bieten. Denn bei uns seid ihr genau an der richtigen Adresse. Lasst euch inspirieren und entdeckt, warum „Dein Bad. Direkt richtig.“ bei uns mehr als nur ein Versprechen ist!</p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_dyp9pK": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "custom_html_mUewPL": {
+      "type": "custom-html",
+      "disabled": true,
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<center> In den folgenden Videos erfahrt ihr, warum uns unsere Kunden vertrauen und was uns von anderen unterscheidet. Entdeckt mit Tarek, wie wir nicht nur hochwertige, stilvolle Designs zu erschwinglichen Preisen realisieren können. Sondern erfahrt auch, wie ihr unsere Produkte erleben könnt und welche Services wir euch bieten. Denn bei uns seid ihr genau an der richtigen Adresse. Lasst euch inspirieren und entdeckt, warum „Dein Bad. Direkt richtig.“ bei uns mehr als nur ein Versprechen ist!\n</center>"
+      }
+    },
+    "173807521949938685": {
+      "type": "apps",
+      "settings": {}
+    },
+    "intro_e6LJTJ": {
+      "type": "intro",
+      "disabled": true,
+      "name": "Intro",
+      "settings": {
+        "banner": "shopify://shop_images/1971x647_1.jpg",
+        "banner_mobile": "shopify://shop_images/760x529.webp",
+        "banner_size": "normal",
+        "heading": "",
+        "text": "<p><strong>Wir sind Bernstein.</strong></p><p>Hier dreht sich alles darum, Euren Badtraum wahr werden zu lassen. In unseren Videos erfahrt ihr, warum unsere Kunden uns vertrauen und was uns von anderen unterscheidet. Entdeckt mit Tarek, wie wir nicht nur hochwertige, stilvolle Designs zu erschwinglichen Preisen realisieren können. Sondern erfahrt auch, wie ihr unsere Produkte erleben könnt und welche Services wir euch bieten. Denn bei uns seid ihr genau an der richtigen Adresse. Lasst euch inspirieren und entdeckt, warum „Dein Bad. Direkt richtig.“ bei uns mehr als nur ein Versprechen ist!<br/><br/></p>",
+        "text_2": "",
+        "text_width": "normal",
+        "button_url": "",
+        "button_text": "",
+        "button_target": false
+      }
+    },
+    "custom_html_bRcBED": {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<!-- Container für Videos und Texte -->\n<div style=\"display: flex; flex-wrap: wrap; justify-content: center; max-width: 1516px; margin: 0 auto; padding: 40px; gap: 40px;\">\n\n  <!-- Video 1 -->\n  <div style=\"flex: 1 1 300px; max-width: 380px; text-align: center;\">\n    <iframe src=\"https://www.youtube-nocookie.com/embed/AB7-LOWpYmk?si=FBOSKATu8scu_rag\" title=\"YouTube video player\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen loading=\"lazy\" style=\"width: 100%; height: 260px; border: none;\"></iframe>\n    <h2 style=\"font-size: 18px; margin: 15px 0 8px;\">KEINE KOMPLIZIERTEN STRUKTUREN<br>UND KEIN LARIFARI</h2>\n    <p style=\"font-size: 15px; line-height: 1.5; margin: 0;\">Wir designen unsere Produkte In-House, direkt in unserem Headquarter bei Frankfurt und verkaufen sie ohne Zwischenhändler. Das ist unser Geheimnis hinter den unschlagbaren Preisen.</p>\n  </div>\n\n  <!-- Video 2 -->\n  <div style=\"flex: 1 1 300px; max-width: 380px; text-align: center;\">\n    <iframe src=\"https://www.youtube.com/embed/AWwobh7wPGE\" title=\"Bernstein: So wird euer Traumbad Realität\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen loading=\"lazy\" style=\"width: 100%; height: 260px; border: none;\"></iframe>\n    <h2 style=\"font-size: 18px; margin: 15px 0 8px;\">SO WIRD EUER TRAUMBAD<br>REALITÄT</h2>\n    <p style=\"font-size: 15px; line-height: 1.5; margin: 0;\">Wir sind für euch da, damit euer Badtraum Wirklichkeit wird. Unser telefonischer Service hilft euch dabei, eure Badplanung ganz einfach umzusetzen. Ruft uns an, schreibt uns oder besucht uns in einem unserer Showrooms vor Ort – wir unterstützen euch gerne bei jedem Schritt.</p>\n  </div>\n\n  <!-- Video 3 -->\n  <div style=\"flex: 1 1 300px; max-width: 380px; text-align: center;\">\n    <iframe src=\"https://www.youtube.com/embed/XK-wP84J15Q\" title=\"Bernstein: Wir bringen das haptische Erlebnis in den E-Commerce\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen loading=\"lazy\" style=\"width: 100%; height: 260px; border: none;\"></iframe>\n    <h2 style=\"font-size: 18px; margin: 15px 0 8px;\">WIR BRINGEN DAS HAPTISCHE ERLEBNIS<br>IN DEN E-COMMERCE</h2>\n    <p style=\"font-size: 15px; line-height: 1.5; margin: 0;\">Bei uns kannst du dich auch vor Ort beraten lassen. Wir bieten dir Beratung von Angesicht zu Angesicht und ermöglichen dir, unsere Produkte vor dem Kauf direkt zu begutachten. Wir helfen dir weiter, damit Du ans Ziel kommst: Dein Bad. Direkt richtig.</p>\n  </div>\n\n</div>"
+      }
+    },
+    "custom_html_ABzJmc": {
+      "type": "custom-html",
+      "disabled": true,
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<!-- Sektion 1 (Video links) -->\n<div style=\"display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;max-width:1200px;margin:0 auto 20px;padding:10px;gap:10px;\">\n  <div style=\"flex:1 1 500px;min-width:300px;padding:10px;box-sizing:border-box;\">\n    <iframe src=\"https://www.youtube-nocookie.com/embed/AB7-LOWpYmk?si=FBOSKATu8scu_rag\" title=\"YouTube video player\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen loading=\"lazy\" style=\"width:100%;height:260px;border:none;\"></iframe>\n  </div>\n  <div style=\"flex:1 1 500px;min-width:300px;padding:10px;box-sizing:border-box;\">\n    <h2 style=\"font-size:20px;margin-bottom:8px;\">KEINE KOMPLIZIERTEN STRUKTUREN UND KEIN LARIFARI</h2>\n    <p style=\"font-size:15px;line-height:1.5;margin:0;\">Wir designen unsere Produkte In-House, direkt in unserem Headquarter bei Frankfurt und verkaufen sie ohne Zwischenhändler. Das ist unser Geheimnis hinter den unschlagbaren Preisen.</p>\n  </div>\n</div>\n\n<!-- Sektion 2 (Text links, Video rechts) -->\n<div style=\"display:flex;flex-wrap:wrap;flex-direction:row-reverse;justify-content:center;align-items:flex-start;max-width:1200px;margin:0 auto 20px;padding:10px;gap:10px;\">\n  <div style=\"flex:1 1 500px;min-width:300px;padding:10px;box-sizing:border-box;\">\n    <iframe src=\"https://www.youtube.com/embed/AWwobh7wPGE\" title=\"Bernstein: So wird euer Traumbad Realität\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen loading=\"lazy\" style=\"width:100%;height:260px;border:none;\"></iframe>\n  </div>\n  <div style=\"flex:1 1 500px;min-width:300px;padding:10px;box-sizing:border-box;\">\n    <h2 style=\"font-size:20px;margin-bottom:8px;\">SO WIRD EUER TRAUMBAD REALITÄT</h2>\n    <p style=\"font-size:15px;line-height:1.5;margin:0;\">Wir sind für euch da, damit euer Badtraum Wirklichkeit wird. Unser telefonischer Service hilft euch dabei, eure Badplanung ganz einfach umzusetzen. Ruft uns an, schreibt uns oder besucht uns in einem unserer Showrooms vor Ort – wir unterstützen euch gerne bei jedem Schritt.</p>\n  </div>\n</div>\n\n<!-- Sektion 3 (Video links) -->\n<div style=\"display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;max-width:1200px;margin:0 auto 20px;padding:10px;gap:10px;\">\n  <div style=\"flex:1 1 500px;min-width:300px;padding:10px;box-sizing:border-box;\">\n    <iframe src=\"https://www.youtube.com/embed/XK-wP84J15Q\" title=\"Bernstein: Wir bringen das haptische Erlebnis in den E-Commerce\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen loading=\"lazy\" style=\"width:100%;height:260px;border:none;\"></iframe>\n  </div>\n  <div style=\"flex:1 1 500px;min-width:300px;padding:10px;box-sizing:border-box;\">\n    <h2 style=\"font-size:20px;margin-bottom:8px;\">WIR BRINGEN DAS HAPTISCHE ERLEBNIS IN DEN E-COMMERCE</h2>\n    <p style=\"font-size:15px;line-height:1.5;margin:0;\">Bei uns kannst du dich auch vor Ort beraten lassen. Wir bieten dir Beratung von Angesicht zu Angesicht und ermöglichen dir, unsere Produkte vor dem Kauf direkt zu begutachten. Wir helfen dir weiter, damit Du ans Ziel kommst: Dein Bad. Direkt richtig.</p>\n  </div>\n</div>"
+      }
+    },
+    "heading_subheading_WFpJUE": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "layout": "column",
+        "heading": "Dein Bad. Direkt richtig.",
+        "heading_tag": "3",
+        "heading_width": 40,
+        "alignment": "center",
+        "description": "<p>Wie du siehst, haben wir uns dieser Mission verschrieben – und das schon in mehr als 10 Ländern! Dahinter steckt nicht nur, dass wir eine Direct-to-Consumer-Brand sind, sondern auch eine kleine Bernstein-Familie, die täglich alles dafür tut, für jeden unserer Kunden die perfekte Bad-Lösung zu finden. </p><p>Klicke hier, um noch mehr über uns und unsere Mission zu erfahren: </p><p><a href=\"https://www.youtube.com/watch?v=q5n3vY-KalQ\" target=\"_blank\" title=\"https://www.youtube.com/watch?v=q5n3vY-KalQ\">Bernstein - Dein Bad. Direkt richtig</a>.</p><p></p><p>Falls Du Fragen zu unseren Produkten oder deiner Bestellung hast, erreichst Du uns von Montag bis Freitag zwischen 9:00 und 18:00 Uhr telefonisch unter: </p><p>+49 (0)6145 598830.</p><p>Wir freuen uns auch, dich in einem unserer Showrooms begrüßen zu dürfen! Du kannst entweder einfach vorbei schauen oder einen exklusiven Slot mit einem Verkaufsberater über folgenden Link vereinbaren: <a href=\"https://app.cituro.com/booking/showrooms#step=1\" title=\"https://app.cituro.com/booking/showrooms#step=1\">Jetzt Termin online buchen</a></p><p>Dein Team Bernstein<br/><br/></p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "Erfahre mehr über uns",
+        "button_link": "shopify://pages/ueber-uns",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "content_FrqKkc": {
+      "type": "content",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "text": "<h3>Dein Bad. Direkt richtig.<br/></h3><p>Wie du siehst, haben wir uns der Mission verschrieben, „<em>Dein Bad. Direkt richtig.</em>“ zu machen – und das schon in mehr als 10 Ländern! Dahinter steckt nicht nur, dass wir eine Direct-to-Consumer-Brand sind, sondern auch eine kleine Bernstein-Familie, die täglich alles dafür tut, für jeden unserer Kunden die perfekte Bad-Lösung zu finden. </p><p>Klicke hier, um noch mehr über uns und unsere Mission zu erfahren: <a href=\"https://www.youtube.com/watch?v=q5n3vY-KalQ\" target=\"_blank\"><strong>Bernstein - Dein Bad. Direkt richtig.</strong></a></p><p>Falls Du Fragen zu unseren Produkten oder deiner Bestellung hast, erreichst Du uns von Montag bis Freitag zwischen 9:00 und 18:00 Uhr telefonisch unter: +49 (0)6145 598830.</p><p>Wir freuen uns auch, dich in einem unserer Showrooms begrüßen zu dürfen! Du kannst entweder einfach vorbei schauen oder einen exklusiven Slot mit einem Verkaufsberater über folgenden Link vereinbaren: <a href=\"https://app.cituro.com/booking/showrooms#step=1\" target=\"_blank\"><strong>Jetzt Termin buchen</strong></a></p><p><em>Dein Team Bernstein</em></p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "collection_carousel_AhNFyT": {
+      "type": "collection-carousel",
+      "blocks": {
+        "text_MaVM8b": {
+          "type": "text",
+          "settings": {
+            "heading": "Unsere beliebtesten Kategorien",
+            "link_url": "https://bernstein-badshop.de/collections/bestsellers",
+            "color": "blue"
+          }
+        },
+        "collection_thtBb8": {
+          "type": "collection",
+          "settings": {
+            "title": "Duschen",
+            "description": "",
+            "link_url": "shopify://collections/duschen",
+            "image_alter": "shopify://shop_images/Kategorie_Duschen_e6decc1c-fb3c-40d9-a32a-5938a4fb4cac.jpg"
+          }
+        },
+        "collection_iEQQ9U": {
+          "type": "collection",
+          "settings": {
+            "title": "Möbel",
+            "description": "",
+            "link_url": "shopify://collections/badmoebel",
+            "image_alter": "shopify://shop_images/Kategorie_Moebel_984ec744-246a-412b-a6f0-3183d35dffd4.jpg"
+          }
+        },
+        "collection_KMYKww": {
+          "type": "collection",
+          "settings": {
+            "title": "WCs",
+            "description": "",
+            "link_url": "shopify://collections/toiletten",
+            "image_alter": "shopify://shop_images/Kategorie_WC_f31f1c6f-336e-4008-a628-2c4d8359a800.jpg"
+          }
+        },
+        "collection_i6W9hz": {
+          "type": "collection",
+          "settings": {
+            "title": "Badewannen",
+            "description": "",
+            "link_url": "shopify://collections/badewannen",
+            "image_alter": "shopify://shop_images/Kategorie-02.jpg"
+          }
+        },
+        "collection_hB8BR6": {
+          "type": "collection",
+          "settings": {
+            "title": "Waschbecken",
+            "description": "",
+            "link_url": "shopify://collections/waschbecken",
+            "image_alter": "shopify://shop_images/Kategorie_Zeichenflaeche_1.jpg"
+          }
+        },
+        "collection_FqDQYx": {
+          "type": "collection",
+          "settings": {
+            "title": "Badarmaturen",
+            "description": "",
+            "link_url": "shopify://collections/badarmaturen",
+            "image_alter": "shopify://shop_images/Kategorie_Badarmaturen_a19e8002-527a-49b1-9ed2-75d8531f0f8f.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "text_MaVM8b",
+        "collection_thtBb8",
+        "collection_iEQQ9U",
+        "collection_KMYKww",
+        "collection_i6W9hz",
+        "collection_hB8BR6",
+        "collection_FqDQYx"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_text": "",
+        "heading_position": "heading",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    },
+    "inspirations_bMzDGW": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_jCQp6H": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-4wt4cdw5"
+          }
+        },
+        "manual_9Ytbjd": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-tn7rsuhe"
+          }
+        },
+        "manual_gpXbTP": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        },
+        "auto_r8LcUd": {
+          "type": "auto",
+          "settings": {
+            "source": "from-bernstein"
+          }
+        }
+      },
+      "block_order": [
+        "manual_jCQp6H",
+        "manual_9Ytbjd",
+        "manual_gpXbTP",
+        "auto_r8LcUd"
+      ],
+      "settings": {
+        "heading": "Inspirationen unserer Kunden",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://pages/inspirationen",
+        "link_title": "Galerie ansehen",
+        "layout": "1-1-1"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_4M8qU3",
+    "heading_subheading_kpknWk",
+    "content_Lz6NaP",
+    "heading_subheading_hUC9NY",
+    "heading_subheading_dyp9pK",
+    "custom_html_mUewPL",
+    "173807521949938685",
+    "intro_e6LJTJ",
+    "custom_html_bRcBED",
+    "custom_html_ABzJmc",
+    "heading_subheading_WFpJUE",
+    "content_FrqKkc",
+    "collection_carousel_AhNFyT",
+    "inspirations_bMzDGW"
+  ]
+}

@@ -1,0 +1,1 @@
+.section--numbers{margin-top:64px;margin-bottom:64px}.numbers__heading{margin-bottom:32px}.numbers{display:-ms-grid;display:grid;-ms-grid-columns:1fr 1fr;grid-template-columns:1fr 1fr}.numbers__number{font-size:3rem;font-weight:700;color:var(--color-black)}

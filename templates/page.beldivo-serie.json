@@ -1,0 +1,334 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_ccypmA": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_3tbY8c": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>NEU </p>",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#46b810",
+            "badge_padding": 22,
+            "subtitle": "Ästhetik triff auf Funktion",
+            "title": "BELDIVO SERIE",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_LP_Hero_Beldivo_1.jpg",
+            "image_tablet": "shopify://shop_images/Tablet_LP_Hero_Beldivo_1.jpg",
+            "image_mobile": "shopify://shop_images/Mobile_LP_Hero_Beldivo_1.jpg",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 20,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_3tbY8c"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 24,
+        "slide_height_mobile": 400,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "heading_subheading_gLpUQQ": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "BELDIVO Badmöbel",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "<p><strong>BELDIVO</strong> vereint höchste Funktionalität mit wohnlichem Charme. Minimalistische Formensprache, raffiniertes Stauraumkonzept und eine Farbwelt, die Emotionen weckt.</p>",
+        "subheading_width": 40,
+        "sub_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_links_Q7LKrM": {
+      "type": "product-links",
+      "name": "Product links",
+      "settings": {
+        "product_list": [
+          "beldivo-1",
+          "beldivo"
+        ]
+      }
+    },
+    "heading_subheading_R3DRCt": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "column",
+        "heading": "Integriertes Duravit Waschbecken",
+        "heading_tag": "3",
+        "heading_width": 43,
+        "alignment": "center",
+        "description": "<p>Unsere BELDIVO Waschtischunterschränke sind mit einem integriertem Duravit Waschbecken ausgestattet. Beste Qualität mit Ästhetik vereint. Dazu passen unsere BELDIVO Hochschränke, um Dein neues Bad zu vervollständigen.</p>",
+        "subheading_width": 46,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_list_element_WqqfAV": {
+      "type": "product-list-element",
+      "name": "Product List Element",
+      "settings": {
+        "products": [
+          "duravit-waschbecken-mit-waschtischunterschrank-beldivo-60-cm",
+          "duravit-waschbecken-mit-waschtischunterschrank-beldivo-80-cm",
+          "duravit-waschbecken-mit-waschtischunterschrank-beldivo-100-cm",
+          "duravit-waschbecken-mit-waschtischunterschrank-beldivo-120-cm",
+          "badezimmer-hochschrank-beldivo-42-x-170-cm",
+          "badezimmer-hochschrank-beldivo-60-x-170-cm",
+          "badezimmer-seitenschrank-beldivo-42-x-95-cm",
+          "duravit-waschbecken-mit-waschtischunterschrank-beldivo-50-cm-1",
+          "duravit-waschbecken-mit-waschtischunterschrank-beldivo-50-cm"
+        ],
+        "collection": "",
+        "url_products": "",
+        "products_limit": 12
+      }
+    },
+    "heading_subheading_4xHeEj": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "column",
+        "heading": "Passende Badspiegel",
+        "heading_tag": "3",
+        "heading_width": 41,
+        "alignment": "center",
+        "description": "<p>Mit Touchless Sensor für Ambiente-Licht und integrierter Spiegelheizung. Nie mehr beschlagene Spiegel. Welche Größe passt in Dein Bad?</p>",
+        "subheading_width": 42,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_list_element_GDwXxY": {
+      "type": "product-list-element",
+      "name": "Product List Element",
+      "settings": {
+        "products": [
+          "led-badspiegel-beldivo-rund-60-cm",
+          "led-badspiegel-beldivo-rund-80-cm",
+          "led-badspiegel-beldivo-rund-100-cm",
+          "led-badspiegel-beldivo-rund-120-cm"
+        ],
+        "collection": "",
+        "url_products": "",
+        "products_limit": 12
+      }
+    },
+    "heading_subheading_MJif3a": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "Weitere Badezimmerspiegel",
+        "button_link": "shopify://collections/badezimmerspiegel",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_3irFVP": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 12,
+        "layout": "column",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_dk7cap": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Waschtischarmaturen",
+        "heading_tag": "3",
+        "heading_width": 36,
+        "alignment": "center",
+        "description": "<p>Diese Armaturen passen zu unserer BELDIVO Serie </p>",
+        "subheading_width": 42,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_JPHHBV": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_caFyxp": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "waschtischarmatur-vireo",
+              "duravit-manhattan-einhebel-waschtischarmatur-m-1",
+              "waschtischarmatur-lavoa-1",
+              "duravit-manhattan-einhebel-waschtischarmatur-m-minusflow",
+              "duravit-tulum-by-starck-waschtischarmatur-14-cm-farbe-und-ablaufgarnitur-wahlbar"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_caFyxp"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "",
+        "heading_tag": "2",
+        "link_url": "shopify://collections/waschtischarmaturen",
+        "link_title": "Alle Armaturen"
+      }
+    },
+    "heading_subheading_tDme6G": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Stilvolle Bad Accessoires",
+        "heading_tag": "3",
+        "heading_width": 42,
+        "alignment": "center",
+        "description": "<p>Runde Dein Badezimmer mit hochwertigen Bad Accessoires ab, die zu Deinem Stil passen</p>",
+        "subheading_width": 42,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_HTzRBh": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_w7DJ9c": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "handtuchhalter-hh40",
+              "zahnputzbecher-ola",
+              "handtuchhalter-ola",
+              "seifenspender-ola",
+              "handtuchhalter-ola-1",
+              "handtuchstaender-ola-1",
+              "papierrollenhalter-ola-mit-ablage-1",
+              "duravit-d-code-buerstengarnitur",
+              "toilettenpapierhalter-g501-edelstahl",
+              "einhaengekorb-ola",
+              "duravit-starck-t-buerstengarnitur-1"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_w7DJ9c"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "",
+        "heading_tag": "2",
+        "link_url": "shopify://collections/badaccessoires",
+        "link_title": "Alle ansehen"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_ccypmA",
+    "heading_subheading_gLpUQQ",
+    "product_links_Q7LKrM",
+    "heading_subheading_R3DRCt",
+    "product_list_element_WqqfAV",
+    "heading_subheading_4xHeEj",
+    "product_list_element_GDwXxY",
+    "heading_subheading_MJif3a",
+    "heading_subheading_3irFVP",
+    "heading_subheading_dk7cap",
+    "product_carousel_JPHHBV",
+    "heading_subheading_tDme6G",
+    "product_carousel_HTzRBh"
+  ]
+}

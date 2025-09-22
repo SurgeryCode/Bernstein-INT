@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="{{ 'section-tabs-lp.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  {{ 'section-tabs-lp.css' | asset_url | stylesheet_tag }}
+</noscript>
+
+<div class="inspiration-tabs">
+  <h1 class="inspiration-title inspiration-title__mobile container">{{ page.title }}</h1>
+  <div class="tabs container">
+    <h1 class="inspiration-title inspiration-title__desktop">{{ page.title }}</h1>
+    <div class="tab-link__wrapper">
+      {% for block in section.blocks %}
+          <a 
+            href="{{ block.settings.url }}" 
+            class="tab-link {% if block.settings.url == request.path %} active {% endif %}"
+          >
+            <span>{{ block.settings.label }}</span>
+          </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Inspiration Tabs",
+  "settings": [
+
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab Label"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inspiration tab",
+      "blocks": [
+        {
+          "type": "tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

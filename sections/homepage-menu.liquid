@@ -1,0 +1,148 @@
+{{ 'section-homepage-menu.css' | asset_url | stylesheet_tag }}
+<noscript>{{ 'section-homepage-menu.css' | asset_url | stylesheet_tag }}</noscript>
+<div class="homepage-menu__wrapper">
+    <div class="homepage-menu__top">
+      {% for link in linklists.categories.links %}
+        <div 
+          class="homepage-menu__top-item {% if forloop.first %}active{% endif %}" 
+          data-handle="parent-{{ forloop.index }}">
+          {{ link.title }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="homepage-menu__bottom-container">
+      <div class="homepage-menu__bottom">
+      {% for link in linklists.categories.links %}
+        <div class="homepage-menu__bottom-group" id="parent-{{ forloop.index }}" style="{% unless forloop.first %}display:none;{% endunless %}">
+          {% if link.links.size > 0 %}
+            {% for child in link.links %}
+              <a href="{{ child.url }}" class="homepage-menu__bottom-item">
+                {% if child.object.metafields.custom.homepage_menu_image %}
+                  <img src="{{ child.object.metafields.custom.homepage_menu_image | img_url: '200x200' }}" alt="{{ child.title }}">
+                {% endif %}
+                <span>{{ child.title }}</span>
+              </a>
+            {% endfor %}
+            {% else %}
+                <a href="{{ link.url }}" class="homepage-menu__bottom-item">
+                    {% if link.object.metafields.custom.homepage_menu_image %}
+                      <img src="{{ link.object.metafields.custom.homepage_menu_image | img_url: '200x200' }}" alt="{{ link.title }}">
+                    {% endif %}
+                    <span>{{ link.title }}</span>
+                  </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+      </div>
+
+      <div class="container">
+        <div class="homepage-menu__bottom homepage-menu__bottom-desktop swiper">
+          <div class="swiper-wrapper">
+            {% for link in linklists.categories.links %}
+              <div class="swiper-slide">
+                <a href="{{ link.url }}?view=all" class="homepage-menu__bottom-item">
+                  {% if link.object.metafields.custom.homepage_menu_image %}
+                    <img src="{{ link.object.metafields.custom.homepage_menu_image | img_url: '200x200' }}" alt="{{ link.title }}">
+                  {% endif %}
+                  <span>{{ link.title }}</span>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+      
+          <div class="homepage-menu__arrows">
+            <button 
+              class="arrow arrow--left prev-button"
+              title="{{ 'accessibility.prev_slide' | t }}"
+              aria-label="{{ 'accessibility.prev_slide' | t }}">
+              {%- render 'svg-icon', name: 'chevron-left' -%}
+            </button>
+            <button 
+              class="arrow arrow--right next-button"
+              title="{{ 'accessibility.next_slide' | t }}"
+              aria-label="{{ 'accessibility.next_slide' | t }}">
+              {%- render 'svg-icon', name: 'chevron-right' -%}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="homepage-menu-gradients">
+        <span class="grad-left"></span>
+        <span class="grad-right"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      const topItems = document.querySelectorAll(".homepage-menu__top-item");
+      const bottomGroups = document.querySelectorAll(".homepage-menu__bottom-group");
+      const bottomWrapper = document.querySelector(".homepage-menu__bottom");
+      const bottomWrapperDesktop = document.querySelector(".homepage-menu__bottom-desktop");
+      const bottomContainer = document.querySelector(".homepage-menu__bottom-container");
+    
+      topItems.forEach(item => {
+        item.addEventListener("click", function(){
+          topItems.forEach(el => el.classList.remove("active"));
+          this.classList.add("active");
+    
+          bottomGroups.forEach(group => group.style.display = "none");
+    
+          const targetId = this.getAttribute("data-handle");
+          document.getElementById(targetId).style.display = "flex";
+    
+          bottomWrapper.scrollTo({ left: 0, behavior: "instant" || "auto" });
+      
+          checkScroll();
+        });
+      });
+  
+      const containers = [bottomWrapper].filter(Boolean);
+      const checkScroll = (container) => {
+        const scrollLeft = Math.round(container.scrollLeft);
+        const scrollWidth = Math.round(container.scrollWidth);
+        const clientWidth = Math.round(container.clientWidth);
+      
+        const hasLeft = scrollLeft > 2;
+        const hasRight = scrollLeft + clientWidth < scrollWidth - 2;
+      
+        bottomContainer.classList.toggle('has-left', hasLeft);
+        bottomContainer.classList.toggle('has-right', hasRight);
+      };
+      
+      containers.forEach(container => {
+        container.addEventListener('scroll', () => checkScroll(container), { passive: true });
+      });
+      
+      containers.forEach(container => checkScroll(container));
+      window.addEventListener('resize', () => containers.forEach(container => checkScroll(container)));
+      
+      const swiper = new Swiper(".homepage-menu__bottom-desktop", {
+        slidesPerView: 6,
+        spaceBetween: 16,
+        freeMode: true,
+        grabCursor: true,
+        watchSlidesProgress: true,
+        navigation: {
+          nextEl: ".next-button",
+          prevEl: ".prev-button"
+        }
+      });
+  
+    });
+    </script>
+  
+  {% schema %}
+  {
+    "name": "Homepage menu",
+    "tag": "section",
+    "class": "section section--homepage-menu",
+    "settings": [
+    ],
+    "presets": [
+      {
+        "name": "Homepage menu"
+      }
+    ]
+  }
+  {% endschema %}

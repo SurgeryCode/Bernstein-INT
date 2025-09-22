@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="{{ 'section-heading-subheading.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-newsletter.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-heading-subheading.css' | asset_url | stylesheet_tag }}
+    {{ 'section-newsletter.css' | asset_url | stylesheet_tag }}
+</noscript>
+
+<div class="container">
+    {%- if section.settings.heading != blank or section.settings.text != blank -%}
+        <div class="heading-section__heading-wrapper">
+            {%- if section.settings.heading != blank -%}
+                <h3 class="f-48 heading-section__heading--title heading-section__heading--title--center">{{ section.settings.heading }}</h3>
+            {% endif %}
+            {%- if section.settings.text != blank -%}
+                <div class="richtext heading-section__heading--description heading-section__heading--description--center">
+                    {{ section.settings.text }}
+                </div>
+            {%- endif -%}
+        </div>
+    {%- endif -%}
+
+    {%- if section.settings.embed_code != blank -%}
+        <div class="form">
+            {{ section.settings.embed_code }}
+        </div>
+    {%- else -%}
+        {%- render 'newsletter-form', dark: true -%}
+    {%- endif -%}
+
+    {%- if section.settings.legal_notice != blank -%}
+        <div class="newsletter__notice richtext f-14">
+            <p>{{ section.settings.legal_notice }}</p>
+        </div>
+    {%- endif -%}
+</div>
+
+<style>
+    #shopify-section-{{ section.id }} .heading-section__heading-wrapper {
+        flex-direction: column;
+        gap: 1rem;
+    }
+</style>
+
+{% schema %}
+{
+    "name": "Newsletter Form",
+    "tag": "section",
+    "class": "section section--newsletter newsletter",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+        },
+        {
+            "type": "textarea",
+            "id": "embed_code",
+            "label": "Embed code",
+            "info": "If empty, the default sign up form will appear"
+        },
+        {
+            "type": "inline_richtext",
+            "id": "legal_notice",
+            "label": "Legal notice"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Newsletter Form"
+        }
+    ]
+}
+{% endschema %}

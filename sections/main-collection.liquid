@@ -1,0 +1,146 @@
+<link rel="stylesheet" href="{{ 'rSlider.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'rSlider.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'collection.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-item.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'comparison-toolbar.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'dropdown.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'rSlider.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'range-slider.js' | asset_url }}" defer="defer"></script>
+
+{%- render 'breadcrumbs' -%}
+
+{%- liquid
+  assign hero_banner = false 
+
+  for entry in shop.metaobjects['collection_hero_banner'].values
+    assign collections = entry.collections.value | map: 'id'
+    if collections contains collection.id
+      assign hero_banner = entry
+    endif
+  endfor
+
+  unless hero_banner  
+    for entry in shop.metaobjects['collection_hero_banner'].values
+      if entry.show_on_all_collections
+        assign hero_banner = entry
+      endif
+    endfor
+  endunless
+
+-%}
+
+{%- liquid 
+  assign allow_compare = true
+  assign ppp = 32
+  assign banner = false 
+  assign banner_index = 8
+
+  if collection.metafields.custom.disable_comparison or collection.handle == 'all'
+    assign allow_compare = false
+  endif
+
+  for entry in shop.metaobjects['collection_banner'].values
+    assign collections = entry.collections.value | map: 'id'
+    if collections contains collection.id
+      assign banner = entry
+    endif
+  endfor
+
+  unless banner  
+    for entry in shop.metaobjects['collection_banner'].values
+      if entry.show_on_all_collections
+        assign banner = entry
+      endif
+    endfor
+  endunless
+
+  if banner.size == 'half'
+    assign ppp = 30
+    assign banner_index = 10
+  endif
+
+  if banner.size == 'quarter'
+    assign ppp = 31
+    assign banner_index = 10
+  endif
+-%}
+
+<collection-section class="listing {% unless allow_compare %}listing--no-compare{% endunless %}" data-base-url="{{ collection.url }}">
+  <div class="container"> 
+    <div class="listing__header"> 
+      <h1 class="f-48">{{ collection.title  }}</h1>
+    </div>
+
+    {% render 'collection-link-list' %}
+
+    {%- if hero_banner -%}
+      {%- render 'collection-hero-banner', banner: hero_banner -%}
+    {%- endif -%}
+    
+    {%- render 'collection-filters' -%}
+    {%- if allow_compare -%}
+      {%- render 'comparison-toolbar' -%}
+    {%- endif -%}
+    {%- render 'collection-toolbar', enable_toggle_images: section.settings.enable_toggle_images -%}
+
+    {%- paginate collection.products by ppp -%}
+      <div class="listing__content">
+        {%- if collection.products.size > 0 -%}
+          <div class="listing__grid listing__grid--vertical">
+            {%- for product in products -%}
+              {%- render 'product-item', product: product, compare: allow_compare -%}
+              {%- if forloop.index == banner_index -%}
+                {%- render 'collection-banner', data: banner -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <div class="listing__empty">
+            <div class="richtext center">
+              <p>{{ 'collection.no_results_html' | t }}</p>
+              <a href="{{ collection.url }}" class="button button--large" data-reset-filters>
+                  <span>{{ 'collection.filters.reset' | t }}</span>
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+      {%- render 'pagination', paginate: paginate, container_class: 'collection' -%}    
+    {% endpaginate %}
+  </div>  
+</collection-section> 
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "tag": "section",
+  "class": "section section--collection margin margin--first",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_toggle_images",
+      "label": "Enable toggle images",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_group",
+      "name": "Filter group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+        },
+        {
+          "type": "textarea",
+          "id": "labels",
+          "label": "Product color option names",
+          "info": "Enter all filter names that should be grouped (in German, comma separated)"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

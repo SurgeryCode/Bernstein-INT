@@ -1,0 +1,274 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_ccypmA": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_3tbY8c": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>RATGEBER</p>",
+            "badge_text_color": "#111111",
+            "badge_background_color": "#ffffff",
+            "badge_padding": 22,
+            "subtitle": "Welche Dusche passt zu Dir?",
+            "title": "Duschkabine vs. Walk-In",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_LP_Hero_Duschkabinen_1.jpg",
+            "image_tablet": "shopify://shop_images/Tablet_LP_Hero_Duschkabinen_1.jpg",
+            "image_mobile": "shopify://shop_images/Mobile_LP_Hero_Duschkabinen_1.jpg",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 30,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_3tbY8c"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 24,
+        "slide_height_mobile": 400,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "heading_subheading_R3DRCt": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 4,
+        "layout": "column",
+        "heading": "Duschkabine: Der Klassiker mit Komfort",
+        "heading_tag": "3",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "<p><strong>\"Türe auf, Türe zu – fertig!\" </strong>Duschkabinen sind praktisch, platzsparend und halten Spritzwasser zuverlässig im Zaum. Perfekt für kleinere Bäder oder wenn’s schnell gehen muss. </p><p>Vorteile: ✔ Einfach sauber zu halten ✔ Verschiedene Türarten (Schiebe, Dreh, Falttür) ✔ Ideal für enge Grundrisse</p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "collection_carousel_UHzAfh": {
+      "type": "collection-carousel",
+      "blocks": {
+        "text_A87Ndt": {
+          "type": "text",
+          "settings": {
+            "heading": "Duschkabine nach Form finden",
+            "link_url": "shopify://collections/duschkabinen",
+            "color": "gray"
+          }
+        },
+        "collection_FbJyi9": {
+          "type": "collection",
+          "settings": {
+            "title": "Eckduschen",
+            "description": "",
+            "link_url": "shopify://collections/eckduschen",
+            "image_alter": "shopify://shop_images/NT607-Eckdusche-chrom-img-1_0fd9ede5-b9f0-4fab-8187-13efb6727882.jpg"
+          }
+        },
+        "collection_gpXggn": {
+          "type": "collection",
+          "settings": {
+            "title": "Rundduschen",
+            "description": "",
+            "link_url": "shopify://collections/rundduschen",
+            "image_alter": "shopify://shop_images/img1-front_980x_47da5d5b-7c18-491e-9f0d-be5a78b9d623.webp"
+          }
+        },
+        "collection_XQKN6Q": {
+          "type": "collection",
+          "settings": {
+            "title": "Fünfeckduschen",
+            "description": "",
+            "link_url": "shopify://collections/fuenfeckduschen",
+            "image_alter": "shopify://shop_images/img3-view-from-above_980x_69ed69aa-f688-4f5b-8177-e9fb18d68a7f.webp"
+          }
+        },
+        "collection_km6Gwh": {
+          "type": "collection",
+          "settings": {
+            "title": "U-Form",
+            "description": "",
+            "link_url": "shopify://collections/duschkabinen-u-form",
+            "image_alter": "shopify://shop_images/img3-view-from-above_980x_3d8a5047-814e-491e-aad0-c9491785b9cb.webp"
+          }
+        }
+      },
+      "block_order": [
+        "text_A87Ndt",
+        "collection_FbJyi9",
+        "collection_gpXggn",
+        "collection_XQKN6Q",
+        "collection_km6Gwh"
+      ],
+      "name": "Collection Carousel",
+      "settings": {
+        "heading": "",
+        "heading_text": "",
+        "heading_position": "heading",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    },
+    "product_carousel_br8Vfz": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_YfQgkt": {
+          "type": "category",
+          "settings": {
+            "title": "Beliebte Duschkabinen für Dich",
+            "products": [],
+            "collection": "duschkabinen"
+          }
+        }
+      },
+      "block_order": [
+        "category_YfQgkt"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Beliebte Duschkabinen für Dich",
+        "heading_tag": "3",
+        "link_url": "shopify://collections/duschkabinen",
+        "link_title": "Mehr ansehen"
+      }
+    },
+    "heading_subheading_dk7cap": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 12,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Walk-In Dusche: Offenes Duscherlebnis",
+        "heading_tag": "3",
+        "heading_width": 36,
+        "alignment": "center",
+        "description": "<p><strong>\"Freier Eintritt, freies Gefühl!\" </strong>Walk-In Duschen sind modern, barrierearm und bringen Hotel-Feeling nach Hause. Keine Tür, keine Schwelle – einfach reinschreiten und genießen.  </p><p>Vorteile: ✔ Minimalistisches Design ✔ Barrierefrei & zukunftssicher ✔ Großzügiges Raumgefühl</p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_JPHHBV": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_caFyxp": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "walk-in-duschen"
+          }
+        }
+      },
+      "block_order": [
+        "category_caFyxp"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Beliebte Walk-In Duschen für Dich",
+        "heading_tag": "3",
+        "link_url": "shopify://collections/walk-in-duschen",
+        "link_title": "Mehr ansehen"
+      }
+    },
+    "heading_subheading_HFPD4Q": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 12,
+        "padding_bottom": 48,
+        "layout": "column",
+        "heading": "Fazit: Was passt zu Dir?",
+        "heading_tag": "3",
+        "heading_width": 44,
+        "alignment": "center",
+        "description": "<p>Egal ob <strong>klassische Kabine</strong> oder <strong>stylischer Walk-In</strong> – die richtige Dusche macht dein Bad zu deinem Lieblingsplatz. Am Ende zählt nur eins: Dein Wohlfühlfaktor! Wenn du Wert auf einfache Pflege und Funktion legst, ist vermutlich eine <strong>Duschkabine </strong>für dich das Beste. Wenn du minimalistisches Styling und Bewegungsfreiheit liebst, ist eine <strong>Walk-In Dusche</strong> perfekt für Dich.</p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_VPPJPB": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_KhnbEG": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "duscharmaturen"
+          }
+        }
+      },
+      "block_order": [
+        "category_KhnbEG"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Passende Duscharmaturen",
+        "heading_tag": "3",
+        "link_url": "shopify://collections/duscharmaturen",
+        "link_title": "Mehr ansehen"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_ccypmA",
+    "heading_subheading_R3DRCt",
+    "collection_carousel_UHzAfh",
+    "product_carousel_br8Vfz",
+    "heading_subheading_dk7cap",
+    "product_carousel_JPHHBV",
+    "heading_subheading_HFPD4Q",
+    "product_carousel_VPPJPB"
+  ]
+}

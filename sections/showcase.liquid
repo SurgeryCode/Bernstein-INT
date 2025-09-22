@@ -1,0 +1,222 @@
+<link rel="stylesheet" href="{{ 'section-showcase.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-showcase.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'video-player.js' | asset_url }}" defer="defer"></script>
+
+<div class="container">
+    <div class="showcase__content">
+        {%- for block in section.blocks -%}
+            {%- if block.type == 'description' -%}
+                <div class="showcase__description">
+                    {%- if block.settings.heading != blank -%}
+                        <h{{ block.settings.heading_tag }} class="f-48">{{ block.settings.heading | newline_to_br }}</h{{ block.settings.heading_tag }}>
+                    {%- endif -%}
+                    {%- if block.settings.text != blank -%}
+                        <div class="richtext richtext--gray">
+                            <p>{{ block.settings.text }}</p>
+                        </div>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+
+            {%- if block.type == 'icon' -%}
+                <div class="showcase__icon">
+                    {%- if block.settings.icon != blank -%}
+                        <div class="showcase__icon-image">
+                            <img 
+                                src="{{ block.settings.icon | img_url: 'master' }}" 
+                                width="32"
+                                height="32"
+                                alt="{{ block.settings.icon.alt }}"
+                                loading="lazy">
+                        </div>
+                    {%- endif -%}
+                    {{ block.settings.title }}
+                </div>
+            {%- endif -%}
+
+            {%- if block.type == 'link' -%}
+                <div class="showcase__link">
+                    {%- if block.settings.appearance == 'button' -%}
+                        <a href="{{ block.settings.url }}" class="button button--large button--outline">{{ block.settings.title }}</a>
+                    {%- else -%}
+                        <a href="{{ block.settings.url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                            <span>{{ block.settings.title }}</span>
+                        </a>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</div>
+
+<div class="showcase__media">
+    {%- if section.settings.video != blank -%}
+        {%- liquid 
+            assign autoplay = true
+            assign poster = false
+            assign poster_mobile = false
+
+            if section.settings.image != blank
+                assign autoplay = false
+                assign poster = section.settings.image
+                assign poster_mobile = section.settings.image_mobile
+            endif
+        -%}
+        {%- render 'video', 
+            video: section.settings.video, 
+            class: 'cover',
+            autoplay: autoplay,
+            muted: true,
+            loop: true,
+            custom_controls: true,
+            poster: poster,
+            poster_mobile: poster_mobile
+        -%}
+    {%- else -%}
+        {%- if section.settings.image != blank -%}
+            {%- render 'image', 
+                image: section.settings.image, 
+                image_mobile: section.settings.image_mobile, 
+                sizes: '380:440,767:767,1200:1200,1600:1600,1601:1920',
+                class: 'cover'
+            -%}
+        {%- endif -%}
+    {%- endif -%}
+</div>
+
+{% schema %}
+{
+    "name": "Showcase",
+    "tag": "section", 
+    "class": "section section--showcase showcase margin",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image (desktop/default)"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Image (mobile)"
+        },
+        {
+            "type": "header",
+            "content": "Video"
+        },
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "description",
+            "name": "Description",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "heading",
+                    "label": "Heading"
+                },
+                {
+                    "type": "select",
+                    "id": "heading_tag",
+                    "label": "Heading tag",
+                    "default": "2",
+                    "options": [
+                        {
+                            "value": "1",
+                            "label": "H1"
+                        },
+                        {
+                            "value": "2",
+                            "label": "H2" 
+                        },
+                        {
+                            "value": "3",
+                            "label": "H3"
+                        },
+                        {
+                            "value": "4",
+                            "label": "H4"
+                        }
+                    ]
+                },
+                {
+                    "type": "inline_richtext",
+                    "id": "text",
+                    "label": "Description"
+                }
+            ]
+        },
+        {
+            "type": "icon",
+            "name": "Icon",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Icon"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Caption"
+                }
+            ]
+        },
+        {
+            "type": "link",
+            "name": "Link",
+            "settings": [
+                {
+                    "type": "select",
+                    "id": "appearance",
+                    "label": "Appearance",
+                    "default": "button",
+                    "options": [
+                        {
+                            "value": "button",
+                            "label": "Button"
+                        },
+                        {
+                            "value": "link",
+                            "label": "Link" 
+                        }
+                    ]
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "URL"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Label"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Showcase",
+            "blocks": [
+                {
+                    "type": "description"
+                },
+                {
+                    "type": "link"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

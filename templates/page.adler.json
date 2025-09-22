@@ -1,0 +1,172 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_ecKpxP": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_mwqhJG": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>Offizieller Partner</p>",
+            "badge_text_color": "#000000",
+            "badge_background_color": "#ffffff",
+            "badge_padding": 22,
+            "subtitle": "Gemeinsam stark",
+            "title": "Bernstein & die Adler Mannheim",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_LP_Adler_1.jpg",
+            "image_tablet": "shopify://shop_images/Tablet_LP_Hero_Adler_1.jpg",
+            "image_mobile": "shopify://shop_images/Mobile_LP_Hero_Adler_1.jpg",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 20,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_mwqhJG"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 22,
+        "slide_height_mobile": 370,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "custom_html_d79aMM": {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<div style=\"display: flex; justify-content: center; margin: 20px 0;\">\n  <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/Logo_Bernstein_x_Adler.jpg?v=1756799650\" alt=\"Bernstein x Adler\" style=\"max-width: 50%; height: auto; display: block;\">\n</div>"
+      }
+    },
+    "heading_subheading_zV3M77": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 44,
+        "layout": "column",
+        "heading": "Offizieller Partner der Adler Mannheim",
+        "heading_tag": "3",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "<p>Als Bernstein stehen wir für Leidenschaft, Präzision und den festen Willen, aus jeder Idee das Beste zu machen. Werte, die wir nicht nur in unseren Produkten leben, sondern auch im Sport wiederfinden – besonders bei den <strong>Adlern Mannheim.</strong></p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_NFipMb": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "<p>Eishockey ist ein Spiel voller Tempo, Teamgeist und Entschlossenheit. Genau wie in unserem täglichen Handeln sind es diese Eigenschaften, die den Unterschied machen. Deshalb sind wir stolzer Partner der Adler Mannheim – einem Club, der wie kein anderer für Leidenschaft, Zusammenhalt und Spitzenleistung steht.</p><p>Die Adler sind nicht nur eine Mannschaft. Sie sind ein Symbol für die Region, ein Aushängeschild für Mannheim und weit darüber hinaus. Mit ihrer treuen Fangemeinde und ihrer beeindruckenden Vereinsgeschichte zeigen sie, wie Tradition und Zukunft miteinander verschmelzen.</p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "quote_carousel_Tj3PiW": {
+      "type": "quote-carousel",
+      "blocks": {
+        "item_QwXaTf": {
+          "type": "item",
+          "settings": {
+            "quote": "Mehr als 10.000 Anhänger pilgern Woche für Woche in die SAP Arena und sorgen bei den Heimspielen für eine prächtige Stimmung. Höhepunkte der Vereinsgeschichte waren zweifelsohne die acht deutschen Meisterschaften, die Mannschaft und Fans in den Jahren 1980, 1997, 1998, 1999, 2001, 2007, 2015 und 2019 gemeinsam feiern konnten.",
+            "author": "Adler Mannheim",
+            "author_image": "shopify://shop_images/Adler_Quote.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_QwXaTf"
+      ],
+      "name": "Quote Carousel",
+      "settings": {}
+    },
+    "heading_subheading_hDxgqK": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "layout": "column",
+        "heading": "Gemeinsam sind wir mehr als Partner – wir sind ein Team.",
+        "heading_tag": "4",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "<p>Wir stehen Seite an Seite mit den Adlern, weil uns dieselben Werte antreiben: Leidenschaft für das, was wir tun. Teamgeist, der uns stärker macht. Und der Anspruch, immer unser Bestes zu geben. Gemeinsam sind wir mehr als Partner – wir sind ein Team. <strong>Mit unserer Partnerschaft wollen wir die Werte, die uns verbinden, sichtbar machen. Wir sind überzeugt: Starke Marken brauchen starke Partner. Und die Adler Mannheim sind genau das.</strong></p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "images_zdVVAp": {
+      "type": "images",
+      "name": "Images",
+      "settings": {
+        "background": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_ecKpxP",
+    "custom_html_d79aMM",
+    "heading_subheading_zV3M77",
+    "heading_subheading_NFipMb",
+    "quote_carousel_Tj3PiW",
+    "heading_subheading_hDxgqK",
+    "images_zdVVAp"
+  ]
+}

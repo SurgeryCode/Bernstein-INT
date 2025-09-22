@@ -1,0 +1,29 @@
+{%- if address.address1 and address.city -%}
+    <div class="account-box__col account-box__col--1-2 ">
+        <p class="account-box__address">
+            {%- if customer.tags contains 'B2B' and customer.metafields.wholesale.vat_id.value != blank -%}
+                <strong>{{ 'b2b.form.ust_id' | t }}: {{ customer.metafields.wholesale.vat_id.value }}</strong><br>
+            {%- endif -%}
+            {%- if customer.tags contains 'B2B' and customer.metafields.wholesale.company_name.value != blank -%}
+                {{ customer.metafields.wholesale.company_name.value }}<br>
+            {%- endif -%}
+            {{ address.first_name }} {{ address.last_name }}<br>
+            {{ address.address1 }}<br>
+            {%- if address.address2 != null -%}
+                {{ address.address2 }}<br>
+            {%- endif -%}
+            {{ address.phone }}<br>
+            {{ address.zip }} {{ address.city }}<br>
+            {{ address.country }}
+        </p>
+        <div class="account-box__edit-btn-hld">
+            <a class="account-box__edit-btn" data-address-id="{{ address.id }}" href="{{ routes.account_addresses_url }}?edit_address={{ address.id }}">
+                {% render 'svg-icon', name: 'edit' %}
+                <span>{{ 'customer.addresses.edit' | t }}</span>
+            </a>
+            {% if address == customer.default_address %}
+                <span class="account-box__default-item label label--gray">{{ 'customer.addresses.default' | t }}</span>
+            {% endif %}
+        </div>
+    </div>
+{%- endif -%}

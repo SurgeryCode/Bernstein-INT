@@ -1,0 +1,169 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "filestore_3fDgeX": {
+      "type": "filestore",
+      "blocks": {
+        "main_category_UYFk7A": {
+          "type": "main_category",
+          "settings": {
+            "name": "Badewannen",
+            "icon": "shopify://shop_images/icon-bathtub.svg",
+            "main_key": "bathtub"
+          }
+        },
+        "sub_category_TiRFQx": {
+          "type": "sub_category",
+          "settings": {
+            "name": "Freistehende Badewannen",
+            "image": "shopify://shop_images/Freistehende-badewanne-modul.jpg",
+            "main_key": "bathtub",
+            "sub_key": "freestanding"
+          }
+        },
+        "sub_category_rkbAzc": {
+          "type": "sub_category",
+          "settings": {
+            "name": "Badewannenaufsätze",
+            "image": "shopify://shop_images/img1-front_fac71809-c7ac-48a3-9e66-fc006238548e.jpg",
+            "main_key": "bathtub",
+            "sub_key": "accessories"
+          }
+        },
+        "main_category_rwcePU": {
+          "type": "main_category",
+          "settings": {
+            "name": "Möbel",
+            "icon": "shopify://shop_images/icon-furniture.svg",
+            "main_key": "furniture"
+          }
+        },
+        "sub_category_Jmmziy": {
+          "type": "sub_category",
+          "settings": {
+            "name": "Unterschrank-Befestigungssysteme",
+            "image": "shopify://shop_images/unterschrank-luna1600-w-img1.jpg",
+            "main_key": "furniture",
+            "sub_key": "fixing-systems"
+          }
+        },
+        "sub_category_3tT6YV": {
+          "type": "sub_category",
+          "settings": {
+            "name": "Badmöbelsets",
+            "image": "shopify://shop_images/badmoebel-set-t900-weiss-img-01.jpg",
+            "main_key": "furniture",
+            "sub_key": "furniture-sets"
+          }
+        },
+        "sub_category_TndENT": {
+          "type": "sub_category",
+          "settings": {
+            "name": "Badspiegel",
+            "image": "shopify://shop_images/Badspiegel-NT8144-40x60-Warm-Light-Img2.jpg",
+            "main_key": "furniture",
+            "sub_key": "mirrors"
+          }
+        },
+        "main_category_Hr3VBQ": {
+          "type": "main_category",
+          "settings": {
+            "name": "Duschen",
+            "icon": "shopify://shop_images/icon-shower.svg",
+            "main_key": "shower"
+          }
+        },
+        "main_category_NnYGYK": {
+          "type": "main_category",
+          "settings": {
+            "name": "Badarmaturen",
+            "icon": "shopify://shop_images/icon-armature.svg",
+            "main_key": "armature"
+          }
+        },
+        "main_category_gQfkEg": {
+          "type": "main_category",
+          "settings": {
+            "name": "Waschbecken",
+            "icon": "shopify://shop_images/icon-washbasin.svg",
+            "main_key": "washbasin"
+          }
+        },
+        "main_category_fN3PUw": {
+          "type": "main_category",
+          "settings": {
+            "name": "WCs",
+            "icon": "shopify://shop_images/icon-toilet.svg",
+            "main_key": "toilet"
+          }
+        },
+        "sub_category_MNkmBB": {
+          "type": "sub_category",
+          "settings": {
+            "name": "Dusch-WC",
+            "image": "shopify://shop_images/Dusch-WC-ProPlus-img-1_31eef5fe-049e-48b4-bc5b-ae9cc739c6f6.jpg",
+            "main_key": "toilet",
+            "sub_key": "shower-toilet"
+          }
+        },
+        "sub_category_zMqcCm": {
+          "type": "sub_category",
+          "settings": {
+            "name": "Montage-Video",
+            "image": "shopify://shop_images/Dusch-WC-640-Pro-Img4.jpg",
+            "main_key": "toilet",
+            "sub_key": "montage"
+          }
+        },
+        "main_category_tWmGJd": {
+          "type": "main_category",
+          "settings": {
+            "name": "Heizungen",
+            "icon": "shopify://shop_images/icon-heating.svg",
+            "main_key": "heating"
+          }
+        },
+        "main_category_Xci46N": {
+          "type": "main_category",
+          "settings": {
+            "name": "Zubehör",
+            "icon": "shopify://shop_images/icon-other.svg",
+            "main_key": "other"
+          }
+        }
+      },
+      "block_order": [
+        "main_category_UYFk7A",
+        "sub_category_TiRFQx",
+        "sub_category_rkbAzc",
+        "main_category_rwcePU",
+        "sub_category_Jmmziy",
+        "sub_category_3tT6YV",
+        "sub_category_TndENT",
+        "main_category_Hr3VBQ",
+        "main_category_NnYGYK",
+        "main_category_gQfkEg",
+        "main_category_fN3PUw",
+        "sub_category_MNkmBB",
+        "sub_category_zMqcCm",
+        "main_category_tWmGJd",
+        "main_category_Xci46N"
+      ],
+      "settings": {
+        "heading": "Montage- und Bedienungsanleitungen",
+        "title": "Alle Dateien"
+      }
+    }
+  },
+  "order": [
+    "filestore_3fDgeX"
+  ]
+}

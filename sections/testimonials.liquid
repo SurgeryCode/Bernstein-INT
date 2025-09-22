@@ -1,0 +1,168 @@
+{%- assign exclude = section.settings.disable_langs | downcase | remove: ' ' | split: ',' -%}
+
+{%- unless exclude contains request.locale.iso_code -%}
+    <link rel="stylesheet" href="{{ 'section-testimonials.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'section-testimonials.css' | asset_url | stylesheet_tag }}</noscript>
+    <script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'testimonials-carousel.js' | asset_url }}" defer="defer"></script>
+
+    <div class="testimonials testimonials--{{ section.settings.background }} padding">
+        <div class="container">
+            {%- if section.settings.heading != blank -%}
+                <div class="heading">
+                    <div class="heading__text">
+                        <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                        {%- if section.settings.heading_text != blank -%}
+                            <div class="richtext richtext--gray">
+                                <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                            </div>
+                        {%- endif -%}
+                    </div>
+                    {%- if section.settings.link_title -%}
+                        <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                            <span>{{ section.settings.link_title }}</span>
+                        </a>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+
+            <testimonials-carousel>
+                <div class="swiper">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {%- for block in section.blocks -%}
+                                <div class="swiper-slide">
+                                    {%- render 'svg-icon', name: 'quotation-mark' -%}
+                                    <p>{{ block.settings.content | newline_to_br }}</p>
+                                    <div class="testimonials__author">
+                                        <div class="testimonials__author-image">
+                                            {%- render 'image', 
+                                                image: block.settings.image,
+                                                sizes: '1199:140,1200:200',
+                                                class: 'cover,background'
+                                            -%}
+                                        </div>
+                                        <strong class="f-24 w-bold">{{ block.settings.title }}</strong>
+                                    </div>
+                                </div>
+                            {%- endfor -%}
+                        </div>
+                    </div>
+                    <div class="product-carousel__arrows">
+                        <button 
+                            class="arrow arrow--left"
+                            title="{{ 'accessibility.prev_slide' | t }}"
+                            aria-label="{{ 'accessibility.prev_slide' | t }}">
+                            {%- render 'svg-icon', name: 'chevron-left' -%}
+                        </button>
+                        <button 
+                            class="arrow arrow--right"
+                            title="{{ 'accessibility.next_slide' | t }}"
+                            aria-label="{{ 'accessibility.next_slide' | t }}">
+                            {%- render 'svg-icon', name: 'chevron-right' -%}
+                        </button>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </testimonials-carousel>
+        </div>
+    </div>
+{%- endunless -%}
+
+{% schema %}
+{ 
+    "name": "Testimonials",
+    "tag": "section", 
+    "class": "section section--testimonials",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "select",
+            "id": "heading_tag",
+            "label": "Heading tag",
+            "default": "2",
+            "options": [
+                {
+                    "value": "1",
+                    "label": "H1"
+                },
+                {
+                    "value": "2",
+                    "label": "H2" 
+                },
+                {
+                    "value": "3",
+                    "label": "H3"
+                },
+                {
+                    "value": "4",
+                    "label": "H4"
+                }
+            ]
+        },
+        {
+            "type": "textarea",
+            "id": "heading_text",
+            "label": "Text"
+        },
+        {
+            "type": "select",
+            "id": "background",
+            "label": "Background",
+            "default": "gray",
+            "options": [
+                {
+                    "value": "white",
+                    "label": "White"
+                },
+                {
+                    "value": "gray",
+                    "label": "Gray" 
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "id": "disable_langs",
+            "label": "Disable for languages",
+            "info": "Language ISO codes (comma separated)"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "testimony",
+            "name": "Testimony",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "content",
+                    "label": "Text"
+                },
+                {
+                    "type": "header",
+                    "content": "Author"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Name"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Testimonials"
+        }
+    ]
+}
+{% endschema %}

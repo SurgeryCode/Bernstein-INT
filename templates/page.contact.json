@@ -1,0 +1,74 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "intro_EcjjnL": {
+      "type": "intro",
+      "settings": {
+        "banner_size": "normal",
+        "heading": "Kontakt",
+        "text": "<p>Wir freuen uns darauf, von Ihnen zu hören! Egal, ob Sie Fragen haben, Unterstützung benötigen oder einfach nur Feedback geben möchten, unser Team steht Ihnen gerne zur Verfügung.</p><p><strong>Zum passenden Formular:</strong></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820447348753\" target=\"_blank\">Vor dem Kauf</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820543806353\" target=\"_blank\">Kundenkonto & Login</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820560278033\" target=\"_blank\">Bestelländerung, Stornierung</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820645341713\" target=\"_blank\">Dokumente</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820693950993\" target=\"_blank\">Versand & Lieferung</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820656708369\" target=\"_blank\">Zahlung</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820671358737\" target=\"_blank\">Problem mit Artikeln</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820687177105\" target=\"_blank\">Retour (Widerruf)</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820703433361\" target=\"_blank\">Verschleißteile, Ersatzteile & Zubehör</a></p>",
+        "text_2": "",
+        "text_width": "tight",
+        "button_url": "",
+        "button_text": "",
+        "button_target": false
+      }
+    },
+    "content_YPW3nq": {
+      "type": "content",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "text": "<p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820447348753\" target=\"_blank\">Vor dem Kauf</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820543806353\" target=\"_blank\">Kundenkonto & Login</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820560278033\" target=\"_blank\">Bestelländerung, Stornierung</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820645341713\" target=\"_blank\">Dokumente</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820693950993\" target=\"_blank\">Versand & Lieferung</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820656708369\" target=\"_blank\">Zahlung</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820671358737\" target=\"_blank\">Problem mit Artikeln</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820687177105\" target=\"_blank\">Retour (Widerruf)</a></p><p><a href=\"https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820703433361\" target=\"_blank\">Verschleißteile, Ersatzteile & Zubehör</a></p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "custom_html_g8d49p": {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<!-- Start of bernstein Zendesk Widget script -->\n<script id=\"ze-snippet\" src=\"https://static.zdassets.com/ekr/snippet.js?key=5419f630-80e3-4290-b454-c18a37304b1c\"> </script>\n<!-- End of bernstein Zendesk Widget script -->"
+      }
+    },
+    "main": {
+      "type": "main-contact",
+      "settings": {
+        "email": "",
+        "phone": "",
+        "text": "<p>NEXTREND - GmbH wird vertreten durch die Geschäftsführer: </p><p>Dennis Greuling, Yannick Hügle</p>",
+        "form_subject": "Vor dem Kauf, \nKundenkonto & Login, \nBestelländerung, Stornierung, \nDokumente, \nVersand & Lieferung, Zahlung, \nProblem mit Artikeln,\nRetour (Widerruf), \nVerschleißteile Ersatzteile & Zubehör",
+        "form_consent": "<p>Ich stimme der Verarbeitung meiner personenbezogenen Daten im Zusammenhang mit der Beantwortung der Anfrage zu. Ich habe die <a href=\"/policies/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\">Datenschutzerklärung</a> gelesen und akzeptiere sie.</p>"
+      }
+    },
+    "banner_YaRFEc": {
+      "type": "banner",
+      "settings": {
+        "content": "<h2>Werden Sie Bernstein-Partner</h2><p>Erleben Sie, wie wir Ihre Projekte mit Leidenschaft und Fachwissen unterstützen. Als Bernstein-Partner profitieren Sie von:</p><ul><li><strong>Umfassendem Produktsortiment:</strong> </li><li><strong>Fachkundige Beratung:</strong> </li><li><strong>Individuelle Lösungen</strong></li><li><strong>Exzellenter Service</strong></li></ul><p>Kontaktieren Sie uns noch heute und erfahren Sie mehr darüber, wie eine Partnerschaft mit Bernstein Ihr Geschäft voranbringen kann.</p>",
+        "button_url": "/account/register",
+        "button_label": "Erstellen sie ein Profi Account",
+        "link_url": "https://ch.bernstein.shop/pages/b2b",
+        "link_label": "",
+        "image": "shopify://shop_images/b2b-banner-desktop.webp",
+        "image_mobile": "shopify://shop_images/b2b-banner-mobile.webp"
+      }
+    }
+  },
+  "order": [
+    "intro_EcjjnL",
+    "content_YPW3nq",
+    "custom_html_g8d49p",
+    "main",
+    "banner_YaRFEc"
+  ]
+}

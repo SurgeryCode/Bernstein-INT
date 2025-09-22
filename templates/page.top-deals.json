@@ -1,0 +1,312 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_ApbLdB": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_LJrQbp": {
+          "type": "slide",
+          "settings": {
+            "subtitle": "Bis zu 30% reduziert",
+            "title": "Top Deals",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Teaser_desk_top-deas_3.png",
+            "image_mobile": "shopify://shop_images/top_deals_mob_neu_1.jpg",
+            "alignment_desktop": "left",
+            "alignment_tablet": "left",
+            "alignment_mobile": "left",
+            "v_alignment_mobile": "bottom",
+            "overlay": 0,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_LJrQbp"
+      ],
+      "settings": {
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "content_WdJ9nh": {
+      "type": "content",
+      "custom_css": [],
+      "settings": {
+        "heading": "Bis zu -30% im Sale",
+        "text": "<p>Ausgewählte Highlights mit bis zu 30 % Rabatt.  Schnell sein lohnt sich. Nur solange der Vorrat reicht.</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "product_carousel_8LCLYd": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_6pxVj6": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "duravit-manhattan-einhebel-wannenmischer-unterputz",
+              "duravit-manhattan-einhebel-wannenmischer",
+              "duravit-manhattan-einhebel-waschtischarmatur-xl",
+              "duravit-manhattan-einhebel-brausemischer-unterputz-1",
+              "duravit-manhattan-einhebel-wannenmischer-1",
+              "duravit-manhattan-einhebel-brausemischer-unterputz",
+              "duravit-durasystem-betaetigungsplatte-beta-120-fuer-wc",
+              "duravit-manhattan-einhebel-waschtischarmatur-s"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_6pxVj6"
+      ],
+      "settings": {
+        "heading": "Duravit im Sale",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/search?filter.v.m.custom.sale=10+%25&filter.v.m.custom.sale=15+%25&filter.v.m.custom.sale=30+%25&page=1&view=all&q=duravit&type=product",
+        "link_title": "Mehr Duravit Produkte"
+      }
+    },
+    "content_with_image_66C8Ng": {
+      "type": "content-with-image",
+      "settings": {
+        "heading": "DUSCH-WC PRO+ 1102 Weiß",
+        "content": "<p><strong>Intelligente Funktionen für ein Maximum an Körperpflege und Hygiene. Duschfunktion, Warmlufttrockner, Nachtlicht, 180°-Vortex-Spülung und vieles mehr. </strong></p>",
+        "image": "shopify://shop_images/Group_25_1.png",
+        "background": "gray",
+        "layout": "reverse",
+        "button_url": "https://bernstein-badshop.de/products/bernstein-dusch-wc-pro-1102",
+        "button_label": "Zum Dusch-WC Pro+ 1102",
+        "button_target": false
+      }
+    },
+    "product_carousel_R48dBP": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_dbaPYh": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "badspiegel-8232-rund",
+              "sideboard-tlb-150",
+              "spiegelschrank-varo-mit-led-beleuchtung-1",
+              "waschtischunterschrank-tlb-170-48",
+              "waschtischunterschrank-lavoa-40-cm",
+              "waschtischunterschrank-fiona-160-cm",
+              "waschtischunterschrank-treasure-1500",
+              "badmoebel-set-laurance-1200",
+              "duravit-vellora-konsolenwaschtischunterbau-120-cm"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_dbaPYh"
+      ],
+      "settings": {
+        "heading": "Badmöbel",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/collections/sale?filter.p.m.filter.coll=Badm%C3%B6bel&filter.p.m.filter.coll=Badm%C3%B6bel+Zubeh%C3%B6r&page=1&view=all",
+        "link_title": "Mehr Badmöbel"
+      }
+    },
+    "product_carousel_zH6yCh": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_9hrQX3": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "sensor-waschtischarmatur-3002s-chrom-mit-dual-sensor-technologie",
+              "duschsaeule-thermostat-4011-pro-schwarz",
+              "duschsystem-duschsaeule-8921b-basic-mit-sedal-thermostat",
+              "waschtischarmatur-tim",
+              "design-wasserfall-waschtischarmatur-nt7320",
+              "duravit-manhattan-einhebel-waschtischarmatur-xl",
+              "duravit-manhattan-einhebel-waschtischarmatur"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_9hrQX3"
+      ],
+      "settings": {
+        "heading": "Armaturen",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/collections/sale?filter.p.m.filter.coll=Armaturen&filter.p.m.filter.coll=Badewannenarmaturen&page=1&view=all",
+        "link_title": "Mehr Armaturen"
+      }
+    },
+    "product_carousel_9xW8Xw": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_qUMKUK": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "spuelrandloses-wand-haenge-wc-nano-nt2039",
+              "spuelrandloses-wc-1088r",
+              "spuelrandloses-wand-haenge-wc-vireo-inkl-soft-close-deckel",
+              "bernstein-dusch-wc-pro-1102",
+              "toilettenpapierhalter-g501-edelstahl",
+              "duravit-durasystem-betaetigungsplatte-beta-100-fuer-wc",
+              "wand-haenge-wc-b-8030r",
+              "wc-sparpaket-3-wc-nt2039-und-soft-close-sitz"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_qUMKUK"
+      ],
+      "settings": {
+        "heading": "WCs & Zubehör",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/collections/sale?filter.p.m.filter.coll=WCs&page=1&view=all",
+        "link_title": "Mehr WCs & Zubehör"
+      }
+    },
+    "product_carousel_WHcznC": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_M7TMXa": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "raumsparbadewanne-nora",
+              "halb-freistehende-raumsparbadewanne-nora-corner-acryl-1",
+              "duravit-durapecos-rechteck-badewanne-fuer-einbau",
+              "freistehende-raumsparbadewanne-nova-corner-acryl",
+              "freistehende-badewanne-lena-acryl",
+              "freistehende-badewanne-lena-corner-acryl-1",
+              "freistehende-badewanne-vela-mineralguss"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_M7TMXa"
+      ],
+      "settings": {
+        "heading": "Badewannen",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/collections/sale?filter.p.m.filter.coll=Badewannen&page=1&view=all",
+        "link_title": "Mehr Badewannen"
+      }
+    },
+    "contact_person_fRJgCU": {
+      "type": "contact-person",
+      "settings": {
+        "name": "",
+        "heading": "",
+        "text": "",
+        "button_url": "shopify://collections/sale",
+        "button_text": "Alle Produkte im SALE",
+        "button_target": false
+      }
+    },
+    "contact_person_DMQHVx": {
+      "type": "contact-person",
+      "disabled": true,
+      "settings": {
+        "portrait": "shopify://shop_images/Telefonberatung_image.png",
+        "name": "",
+        "heading": "Deine persönliche Beratung – kostenlos.",
+        "text": "Lass Dich von unseren Experten zu Deinem Badvorhaben beraten. Telefonisch oder vor Ort in unseren Showrooms. Wir freuen uns auf Dich.",
+        "button_url": "https://bernstein-badshop.de/pages/showrooms",
+        "button_text": "Beratungstermin vereinbaren",
+        "button_target": true
+      }
+    },
+    "brand_adventages_XnU33E": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_tKmReT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-returns.svg",
+            "title": "30 Tage Rückgaberecht"
+          }
+        },
+        "item_3kyWnT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design_6b550dbd-cb39-41b6-967c-2072b87898a3.svg",
+            "title": "Direkt vom Hersteller"
+          }
+        },
+        "item_TRXfxx": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-delivery.svg",
+            "title": "Schnelle Lieferung"
+          }
+        }
+      },
+      "block_order": [
+        "item_tKmReT",
+        "item_3kyWnT",
+        "item_TRXfxx"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_tag": "3"
+      }
+    }
+  },
+  "order": [
+    "slideshow_ApbLdB",
+    "main",
+    "content_WdJ9nh",
+    "product_carousel_8LCLYd",
+    "content_with_image_66C8Ng",
+    "product_carousel_R48dBP",
+    "product_carousel_zH6yCh",
+    "product_carousel_9xW8Xw",
+    "product_carousel_WHcznC",
+    "contact_person_fRJgCU",
+    "contact_person_DMQHVx",
+    "brand_adventages_XnU33E"
+  ]
+}

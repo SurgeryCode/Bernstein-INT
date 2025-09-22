@@ -1,0 +1,247 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+ <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/e7a3f954921af.js" data-cmp-host="c.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="0"></script>
+     <!--Event Listener for dataLayer Events from Custom Tracking Pixel-->
+    <script>
+     (function () {
+         'use strict';
+         
+         function handleCustomPixelEvent(event) {
+             if (event.data && event.data.event_name === "gtm_custom_pixel_event" && event.data.json) {
+                 try {
+                     var eventData = JSON.parse(event.data.json);
+ 
+                     // If ecommerce data exists, clear previous ecommerce data
+                     if (eventData.ecommerce && Object.keys(eventData.ecommerce).length > 0) {
+                         window.dataLayer.push({ecommerce: null});
+                     }
+ 
+                     window.dataLayer.push(eventData);
+                 } catch (error) {
+                     console.error("Error parsing dataLayer JSON:", error);
+                 }
+             }
+         }
+ 
+         // Ensure the event listener is added only once
+         if (!window.__customPixelListenerAttached) {
+             window.addEventListener('message', handleCustomPixelEvent);
+             window.__customPixelListenerAttached = true;
+         }
+     })();
+    </script>
+
+  {% if request.path == "/pages/direkt-richtig-gespart"
+    or request.path contains "/search"
+    or request.path == "/pages/kundeninformation-probleme-artikelbilder" %}
+    <meta name="robots" content="noindex, nofollow">
+  {% elsif request.path contains "/pages/inspiration/" %}
+    <meta name="robots" content="noindex, follow">
+  {% else %}
+    <meta name="robots" content="index, follow">
+  {% endif %}
+
+  
+  {%- render 'product-vendor-replace' -%}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <meta name="theme-color" content="#111111">
+  <link rel="canonical" href="{{ canonical_url }}"> 
+ 
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <title>{{ page_title }} {%- if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif -%} {%- if current_page != 1 %} &ndash; {{ 'pagination.page' | t: number: current_page }}{% endif -%} {%- if request.host contains 'bernstein-badshop.at' -%}| Bernstein Österreich{%- else -%}{%- unless page_title contains "Bernstein" or page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}{%- endif -%}</title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }} {%- if request.host contains 'bernstein-badshop.at' -%} | Bernstein Österreich{%- endif -%}">
+  {% endif %}
+    
+    <link rel="icon" type="image/png" href="{{ 'favicon-16x16.png' | asset_url }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ 'favicon-32x32.png' | asset_url }}" sizes="32x32">
+
+    {%- render 'meta-tags' -%}
+    {%- render 'variables-css' -%} 
+    {%- render 'variables-js' -%}
+
+    
+{% include 'gwa-hreflang' %}{{ content_for_header }}
+
+    <style>
+      {%- render 'critical.css' -%}
+    </style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    {%- if customer -%}
+      {%- if request.path contains '/account/register' or template.suffix == 'b2b' -%}
+        {%- unless template contains 'customers/register.thank-you' -%}
+          <script>
+              if(!localStorage.getItem('bernstein-ragistration-complete')){
+                window.location.href = '/account/register?view=thank-you';
+              }
+          </script>
+        {%- endunless -%}
+      {%- endif -%}
+      {%- unless request.path contains '/account/register' or template contains 'customers/register.thank-you' or template.suffix == 'b2b' -%}
+          <script>
+            localStorage.setItem('bernstein-ragistration-complete', '1');
+          </script>
+      {%- endunless -%}
+    {%- endif -%}
+    <script> 
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if(Shopify.designMode) { 
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+
+      window.addEventListener("scroll", () => {
+        if(window.lockScroll) return;
+
+        if(document.documentElement.scrollTop >= window.lastScroll)
+          window.scrollDirection = 'down';
+        else
+          window.scrollDirection = 'up';
+        
+        window.lastScroll = document.documentElement.scrollTop;
+      });
+    </script> 
+  
+    <!-- Begin eTrusted bootstrap tag -->
+    <script src="https://integrations.etrusted.com/applications/widget.js/v2" async defer></script>
+    <!-- End eTrusted bootstrap tag -->
+
+    <script src="{{ 'breadcrumbs.js' | asset_url }}" defer="defer"></script> 
+{% if request.host == "bernstein-badshop.at" %}
+  <meta name="google-site-verification" content="LO0FDQGc6iUCZEzz8oO_qOsK2qpJkJBgu_AzTNgZYa0" />
+  <meta name="google-site-verification" content="TTa7QS2bpH-19qwPeh3h2u1zx5ecROZRED5pjBeEhM4" />
+{% endif %}
+
+<meta name="p:domain_verify" content="538fd34c513a73bf7d772d48ff44b13b" />
+<script src="https://cdn.ablyft.com/s/17762529.js"></script>
+    {{ content_for_header }}
+
+<script type="text/javascript">(function () {
+    var c = document.createElement("script");
+    c.type = "text/javascript";
+    c.id = "trbo_plugin_code_main";
+    c.async=1;
+    c.src = document.location.protocol + "//static.trbo.com/plugin/trbo_14642_a889f90ad3b51c48e696865268c105df.js";
+    if (!document.getElementById("trbo_plugin_code_main")) {
+        var b = document.getElementsByTagName("script")[0];
+        b.parentNode.insertBefore(c, b);
+    }
+})();
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TDHJT5WJ');</script>
+    {%- if template contains 'product' -%}
+      <script src="https://www.paypal.com/sdk/js?client-id=AXKMGm1lfQNEjjk-H4InJmkPV-2cW-cbevysbbrJonXHQz1-C0FbRoc62mkVVIMBcYgj1DmKDNxZkq-R&currency=EUR&components=messages,buttons"></script>
+    {%- endif -%}
+  </head> 
+
+  {%- liquid 
+    assign badges_control = 'hide-badges'
+    if template contains 'cart' or template contains 'page.inspirations'
+      assign badges_control = 'start-with-badges'
+    endif
+    if template contains 'collection'
+      assign badges_control = 'no-badges'
+    endif
+  -%}
+  <body class="{{ badges_control }}"> 
+     {% render 'wishlist-app' %}
+ <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDHJT5WJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  
+
+    {%- section 'header' -%}
+
+    <main id="MainContent" class="main main--{{ template.suffix }}" role="main" tabindex="-1"> 
+      {%- if request.path contains '/policies/' -%}
+        {%- section 'main-policies' -%}
+      {%- else -%}
+        {{ content_for_layout }}
+      {%- endif -%}
+
+      {%- section 'footer' -%}
+    </main>
+
+    {%- section 'account-drawer' -%}
+    {%- render 'text-drawer' -%}
+
+    {%- if template contains 'collection' -%} 
+      {%- render 'collection-drawer-filters' -%}
+    {%- endif -%}
+    {%- if template contains 'search' -%} 
+      {%- render 'search-drawer-filters' -%}
+    {%- endif -%}
+    {%- if template contains 'product' -%} 
+      {%- render 'product-drawer-variants' -%}
+      {%- render 'product-drawer-configurator' -%}
+      {%- render 'product-installation-accessories' -%}
+      {%- render 'product-drawer-upsell' -%}
+      {%- render 'product-gallery-expanded' -%}
+    {%- endif -%}
+    {% comment %} {% if template contains 'wishlist' %}
+      {% assign wishlist_handles = "duravit-vellora-waschtischunterschrank-160-cm,raumsparbadewanne-nora,duschkabine-eckdusche-nano-8mm-echtglas-nt416" | split: "," %}
+      {% for handle in wishlist_handles %}
+        {% assign wishlist_product = all_products[handle] %}
+      
+        {%- render 'product-drawer-variants', product: wishlist_product -%}
+        {%- render 'product-drawer-configurator', product: wishlist_product -%}
+        {%- render 'product-installation-accessories', product: wishlist_product -%}
+        {%- render 'product-drawer-upsell', product: wishlist_product -%}
+      {% endfor %}
+    {% endif %} {% endcomment %}
+    {%- if template contains 'page.product-comparison' -%}
+      {%- render 'product-gallery-expanded' -%}
+    {%- endif -%}
+    {%- if template contains 'page.inspirations' -%} 
+      {%- render 'inspirations-drawer-filters' -%}
+      {%- render 'inspirations-drawer-details' -%}
+    {%- endif -%}
+    {%- if template contains 'filestore' -%} 
+      {%- render 'filestore-drawer-filters' -%}
+    {%- endif -%}
+
+    {%- if settings.trusted_shops_id != blank -%} 
+      {%- if settings.show_trusted_shops_badge -%}
+        <script async 
+          data-desktop-y-offset="-35" 
+          data-mobile-y-offset="5" 
+          data-desktop-disable-reviews="false" 
+          data-desktop-enable-custom="false" 
+          data-desktop-position="left" 
+          data-desktop-custom-width="156"  
+          data-desktop-enable-fadeout="false" 
+          data-disable-mobile="false" 
+          data-disable-trustbadge="false" 
+          data-mobile-custom-width="156" 
+          data-mobile-disable-reviews="false" 
+          data-mobile-enable-custom="false" 
+          data-mobile-position="left"  
+          data-mobile-enable-topbar="false" 
+          data-mobile-enable-fadeout="false"
+          data-color-scheme="light"
+          charset="UTF-8"  
+          src="//widgets.trustedshops.com/js/{{ settings.trusted_shops_id }}.js"> 
+        </script>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- section 'abandoned-cart-bubble' -%} 
+
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'just-validate.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'form-validate.js' | asset_url }}" defer="defer"></script>
+</body>
+</html>

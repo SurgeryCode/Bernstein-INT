@@ -1,0 +1,54 @@
+{%- layout none -%}
+
+{%- if search.results_count > 0 -%}
+    {%- for product in search.results -%}
+        {%- capture specification -%}
+            {%- for variant in product.variants -%}
+                {%- if variant.metafields.custom['specification'] != blank -%}
+                    {{ variant.metafields.custom['specification'] }}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endcapture -%}
+        
+        <div class="comparison__item-product"> 
+            <div class="swiper-slide" data-sku="{{ product.variants[0].sku }}"> 
+                {%- render 'product-item', product: product, compared: true -%}
+                <div>
+                    <div class="comparison__link">
+                        <button class="text-link text-link--reverse f-14 upper spaced w-medium" data-gallery-load="{{ product.variants[0].sku }}">
+                            <span>{{ 'product.view_all_images' | t }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="comparison__item-details">
+            <div class="swiper-slide" data-sku="{{ product.variants[0].sku }}">
+                <div class="comparison__table f-14 gray">
+                    {%- comment -%}
+                    <div class="comparison__table-item">
+                        <p class="w-medium">{{ 'compare.details.reviews' | t }}</p>
+                        {%- render 'product-rate', product: product -%}
+                    </div>
+                    {%- endcomment -%}
+                    <div class="comparison__table-item">
+                        <p class="w-medium">{{ 'compare.details.status' | t }}</p>
+                        {%- if product.available -%}
+                            <span class="status status--small status--success">{{ 'product.in_stock_html' | t }}</span>
+                        {%- else -%}
+                            <span class="status status--small status--warn">{{ 'product.out_of_stock_html' | t }}</span>
+                        {%- endif -%}
+                    </div>
+
+                    {%- for variant in product.variants -%}
+                        {%- if variant.metafields.custom.specification != blank -%}
+                            {{ variant.metafields.custom.specification }}
+                            {%- break -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
+                <a href="{{ product.url }}" class="button button--large">{{ 'accessibility.go_to_product' | t }}</a>
+            </div>
+        </div>
+    {%- endfor -%}
+{%- endif -%}

@@ -1,0 +1,685 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "accessibility": {
+    "return_home": "Zur Startseite zurückkehren",
+    "back": "Zurück",
+    "back_top": "Zurück nach oben",
+    "back_to": "Zurück zu {{ title }}",
+    "back_to_categories": "Zurück zur Kategorie",
+    "continue_shopping": "Mit dem Einkaufen fortfahren",
+    "return_pdp": "Zurück zur Produktseite",
+    "go_to_product": "Zur Produktseite",
+    "view_cart": "Warenkorb",
+    "open": "Öffnen",
+    "open_menu": "Menü öffnen",
+    "close": "Schließen",
+    "close_menu": "Menü schließen",
+    "remove": "Entfernen",
+    "search": "Suchen",
+    "account": "Konto",
+    "cart": "Warenkorb",
+    "help": "Help Center",
+    "lang_currency": "Sprache",
+    "prev_slide": "Previous slide",
+    "next_slide": "Next slide",
+    "view_more": "Mehr anzeigen",
+    "view_all": "Kategorie Entdecken",
+    "discover": "Entdecken",
+    "read_more": "Mehr lesen",
+    "read_less": "Weniger lesen",
+    "show_product": "Produkt anzeigen",
+    "hide_product": "Produkt ausblenden",
+    "show_all": "Alle anzeigen",
+    "load_more": "Mehr laden",
+    "play": "Video abspielen",
+    "code_copied": "Code kopiert",
+    "showrooms": "Showrooms",
+    "wishlist": "Wunschliste"
+  },
+  "countdown": {
+    "day_one": "Tag",
+    "day_few": "Tage",
+    "day_many": "Tage",
+    "hour_one": "Stunde",
+    "hour_few": "Stunden",
+    "hour_many": "Stunden",
+    "minute_one": "Minute",
+    "minute_few": "Minuten",
+    "minute_many": "Minuten",
+    "second_one": "Sekunde",
+    "second_few": "Sekunden",
+    "second_many": "Sekunden"
+  },
+  "lowest_price_30_days": "Niedrigster Preis in den letzten 30 Tagen:",
+  "search": {
+    "placeholder": "Finde Dein Produkt...",
+    "heading_html": "Suchergebnisse für ”<span data-search-terms>{{ terms }}</span>”",
+    "results_html": "<span data-search-count>{{ count }}</span> Treffer",
+    "no_results_html": "Keine Suchergebnisse für <span class='w-medium' data-search-terms>”{{ terms }}”</span>. <br>Bitte versuche es erneut, mit anderen Wörtern zu suchen.",
+    "products": "Produkte",
+    "articles": "Beiträge",
+    "pages": "Seiten",
+    "view_all_html": "Alle <span data-search-results>{{ count }}</span> Produkte anzeigen"
+  },
+  "newsletter": {
+    "email": "Gib hier Deine E-Mail ein",
+    "submit": "Abonnieren",
+    "success": "Vielen Dank. Wir haben Dir einen Bestätigungslink an Deine E-Mail-Adresse gesendet."
+  },
+  "form": {
+    "required": "Dieses Feld ist erforderlich",
+    "invalid_email": "Email ist nicht richtig formatiert",
+    "invalid_phone": "Telefonnummer ist nicht richtig formatiert",
+    "invalid_tax_id": "USt-IdNr. muss 11 Zeichen lang sein",
+    "invalid_name": "Nur Buchstaben (A-Z) sind erlaubt",
+    "message_sent": "Danke für Deine Nachricht. Wir werden uns so schnell wie möglich mit Dir in Verbindung setzen."
+  },
+  "social_media": {
+    "title": "Folge uns",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "linkedin": "Linkedin",
+    "youtube": "YouTube",
+    "pinterest": "Pinterest"
+  },
+  "payments": {
+    "title": "Zahlungsarten"
+  },
+  "breadcrumbs": {
+    "home": "Startseite",
+    "products": "Produkte",
+    "search": "Suchergebnisse"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "go_to_cart": "Zum Warenkorb",
+    "added": "Produkt zum Warenkorb hinzugefügt",
+    "summary": "Zusammenfassung",
+    "checkout": "Weiter zur Kasse",
+    "subtotal": "Wert der Produkte",
+    "discount": "Rabatt",
+    "delivery_cost": "Versandkosten",
+    "total": "Zwischensumme",
+    "delivery_cost_information": "Die Versandkosten werden im Checkout angezeigt, nachdem Du Deine Adresse eingegeben hast.",
+    "tax_included": "Preis inkl. MwSt",
+    "tax_excluded": "Preis exkl. MwSt"
+  },
+  "collection": {
+    "all": "Alle",
+    "show_collection_html": "Zeige <br>alle {{ name }}",
+    "products_count_one": "{{ count }} Produkt",
+    "products_count_more": "{{ count }} Produkte",
+    "no_results_html": "Es wurden keine Produkte gefunden, die den Suchkriterien entsprechen.<br> Versuche die Anzahl der Filter zu reduzieren.",
+    "view": {
+      "title": "Zeig mir",
+      "outside": "Außen",
+      "inside": "Innen"
+    },
+    "filter_sort": "Filter und sortieren",
+    "filter": "Filter",
+    "sort": {
+      "title": "Sortieren",
+      "best-selling": "Am beliebtesten",
+      "price-ascending": "Niedrigster Preis",
+      "price-descending": "Höchster Preis",
+      "created-ascending": "Älteste zuerst",
+      "created-descending": "Neuheiten",
+      "rating": "Beste Kundenrezensionen"
+    },
+    "filters": {
+      "quick": "Schnellfilter",
+      "submit": "Übernehmen",
+      "submit_html": "Zeige <span data-filters-count='Produkt,Produkte,Produkte'>Produkte</span>",
+      "reset": "Filter zurücksetzen",
+      "dimmensions": "Maße",
+      "einbauart-waschtische": "Einbauart Waschtische",
+      "awendungsbereich": "Anwendungsbereich",
+      "breite": "Breite",
+      "farbe": "Farbe",
+      "serie-badmobel": "Serie Badmöbel",
+      "set-bestandteile": "Set Bestandteile"
+    }
+  },
+  "product": {
+    "sku": "Produktnummer: {{ sku }}",
+    "regular_price": "Bruttopreis",
+    "net_price": "Nettopreis",
+    "tax_included_html": "Preis inkl. MwSt. und zzgl. <a href=\"#versandkosten\" class=\"text-link\"><span>Versand</span></a>",
+    "tax_excluded_html": "Preis zzgl. MwSt. und zzgl. <a href=\"#versandkosten\" class=\"text-link\"><span>Versand</span></a>",
+    "in_stock_html": "<span>Auf Lager</span>",
+    "in_stock_low_html": "<span>Auf Lager: <em class='gray'>{{ count }} übrig</em></span>",
+    "out_of_stock_html": "<span>Ausverkauft</span>",
+    "add_to_cart": "In den Warenkorb",
+    "remove_from_cart": "Löschen",
+    "show_more_options": "Weitere Optionen anzeigen",
+    "dimmensions": "Abmessungen",
+    "color_and_dimmensions": "{{ color }} und Abmessungen",
+    "view_all_images": "Alle Bilder ansehen",
+    "pay_in_3": "Zahle in 3 zinslosen Raten à {{ price }}",
+    "preorder": {
+      "default": "Dieser Artikel befindet sich im Zulauf, jetzt vorbestellen",
+      "with_date": "Versandfertig ab {{ date }}, jetzt vorbestellen",
+      "early": "Anfang",
+      "mid": "Mitte",
+      "end": "Ende",
+      "01": "Januar",
+      "02": "Februar",
+      "03": "März",
+      "04": "April",
+      "05": "Mai",
+      "06": "Juni",
+      "07": "Juli",
+      "08": "August",
+      "09": "September",
+      "10": "Oktober",
+      "11": "November",
+      "12": "Dezember"
+    },
+    "unit_price": "{{ price }}/Stück",
+    "lowest_price": "Niedrigster Preis in den letzten 30 Tagen: {{ price }}",
+    "availability_info": "Diese Variante ist derzeit nicht verfügbar. Bitte wählen Sie eine andere Option.",
+    "download": {
+      "montage": "Montageanleitung",
+      "elektrohinweis": "Elektrohinweis",
+      "bedienung": "Bedienungsanleitung",
+      "pflege": "Pflegeanleitung",
+      "anleitung_sonstiges": "Anleitung Sonstiges",
+      "gpsrDatei": "GPSR"
+    },
+    "safety_instructions": "Sicherheitshinweise"
+  },
+  "upsell": {
+    "heading": "Wird oft zusammen gekauft",
+    "heading_installation": "Empfohlenes Zubehör ",
+    "message_installation": "Für eine reibungslose und effiziente Benutzung empfehlen wir unser hochwertiges Zubehör.",
+    "products": "Weitere Produkte",
+    "warranty": "Garantie",
+    "warranty_cta": "Garantieverlängerung",
+    "details": "Einzelheiten",
+    "specification": "Spezifikationen"
+  },
+  "configurator": {
+    "change": "Ändern"
+  },
+  "blog": {
+    "all": "Alle",
+    "back": "Zurück zu allen Beiträgen",
+    "read": "Weiterlesen",
+    "thx": "Danke fürs Lesen",
+    "tags": {
+      "badezimmernischen": "Badezimmernischen",
+      "badezimmers": "Badezimmers",
+      "badezimmertrends": "Badezimmertrends",
+      "designtrends-badezimmer": "Designtrends Badezimmer",
+      "neuheit-bad": "Neuheit Bad",
+      "tipps": "Tipps",
+      "trend-badezimmer": "Trend Badezimmer",
+      "unsere-produkte": "Unsere Produkte",
+      "von-unseren-partnern": "Von unseren Partnern",
+      "wandnischen": "Wandnischen",
+      "waschbecken": "Waschbecken",
+      "empfehlungen": "Empfehlungen",
+      "trends": "Trends",
+      "pflege": "Pflege",
+      "montage-installation": "Montage & Installation",
+      "news": "News",
+      "wmwelt": "Umwelt"
+    }
+  },
+  "dates": {
+    "months": {
+      "01": "Januar",
+      "02": "Februar",
+      "03": "März",
+      "04": "April",
+      "05": "Mai",
+      "06": "Juni",
+      "07": "Juli",
+      "08": "August",
+      "09": "September",
+      "10": "Oktober",
+      "11": "November",
+      "12": "Dezember"
+    },
+    "months_short": {
+      "01": "Jan.",
+      "02": "Feb.",
+      "03": "März",
+      "04": "Apr.",
+      "05": "Mai",
+      "06": "Juni",
+      "07": "Juli",
+      "08": "Aug.",
+      "09": "Sep.",
+      "10": "Okt.",
+      "11": "Nov.",
+      "12": "Dez."
+    }
+  },
+  "delivery": {
+    "title": "Lieferung",
+    "prefix": "ca. ",
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    },
+    "months": {
+      "january": "Januar",
+      "february": "Februar",
+      "march": "März",
+      "april": "April",
+      "may": "Mai",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "August",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Dezember"
+    }
+  },
+  "quantity": {
+    "label": "Menge",
+    "input_label": "Menge für {{ product }}",
+    "increase": "Menge erhöhen für {{ product }}",
+    "decrease": "Menge verringern für {{ product }}",
+    "limit": "Nur noch {{ number }} Stück verfügbar",
+    "unavailable": "Das Produkt ist entweder nicht verfügbar oder bereits in deinem Warenkorb"
+  },
+  "reviews": {
+    "all": "Alle",
+    "verified": "Verifiziert",
+    "based_on_html": "Basierend auf <span data-total-reviews-count>0</span> Meinungen",
+    "empty": "Es gibt noch keine Bewertungen mit einer solchen Bewertung."
+  },
+  "pagination": {
+    "page": "Seite {{ number }}",
+    "previous": "Vorherige Seite",
+    "next": "Nächste Seite"
+  },
+  "compare": {
+    "subtext_enabled_html": "Vergleich von <span data-compare-count>0</span> Produkten",
+    "subtext_disabled_html": "Keine Produkte zum Vergleich",
+    "button": "Produkte Vergleichen",
+    "button_short": "Vergleichen",
+    "checkbox": "Vergleichen",
+    "close_bar": "Vergleichsleiste schließen",
+    "count_html": "<span data-compare-count>0</span> ausgewählt",
+    "details": {
+      "heading": "Produktdetails",
+      "subtext": "Abmessungen und Installationsdetails",
+      "color": "Farbe",
+      "reviews": "Kundenbewertungen",
+      "status": "Status"
+    }
+  },
+  "inspirations": {
+    "filter": "Filter",
+    "empty_html": "Es wurden keine Inspirationen gefunden, die den Suchkriterien entsprechen.<br> Versuche, die Anzahl der Filter zu reduzieren.",
+    "author": "Inspiration hinzugefügt von {{ name }}",
+    "more": "Mehr aus {{ name }}",
+    "more_short": "Mehr Inspirationen",
+    "buy": "Kaufe diesen Look",
+    "share": "Teile deine Inspiration",
+    "share_short": "Aktie",
+    "copied": "Kopiert",
+    "categories": {
+      "badmobel": "Badmöbel",
+      "waschbecken": "Waschbecken",
+      "badarmatur": "Badarmatur",
+      "spiegel": "Spiegel",
+      "badewanne": "Badewanne",
+      "modernes-badezimmer": "Modernes Badezimmer",
+      "minimalistisches-design": "Minimalistisches Design",
+      "wc": "WC",
+      "dusche": "Dusche"
+    }
+  },
+  "showrooms": {
+    "address": "Anschrift",
+    "opening_hours": "Öffnungszeiten"
+  },
+  "map": {
+    "zoom_in": "Vergrößern",
+    "zoom_out": "Verkleinern",
+    "directions": "Navigieren"
+  },
+  "careers": {
+    "results_html": "<span>{{ count }}</span> Stellenangebote",
+    "no_results_html": "Zurzeit haben wir keine Arbeitsangebote. Schau bald wieder vorbei.",
+    "details": "Zeige Details",
+    "department": "Abteilung",
+    "location": "Standort"
+  },
+  "customer": {
+    "account": {
+      "hello": "Hallo,",
+      "overview": "Überblick",
+      "profile": "Dein Profil",
+      "addresses": "Adressen",
+      "orders": "Bestellungen",
+      "subscriptions": "Abonnements",
+      "b2b": "B2B-Partnerschaft",
+      "faq": "Help center (FAQ)",
+      "title": "Konto",
+      "details": "Kontodetails",
+      "view_addresses": "Adressen anzeigen",
+      "return": "Zurück zu Kontodetails",
+      "account_type": {
+        "label": "Ich bestelle als",
+        "b2c": "Privatperson",
+        "b2b": "Firma"
+      },
+      "gender": {
+        "label": "Anrede",
+        "female": "Frau",
+        "male": "Herr",
+        "unspecified": "Keine Angabe"
+      }
+    },
+    "account_fallback": "Konto",
+    "activate_account": {
+      "title": "Konto aktivieren",
+      "subtext": "Erstelle ein Passwort, um Dein Konto zu aktiveren.",
+      "password": "Passwort",
+      "password_confirm": "Passwort wiederholen",
+      "submit": "Aktivieren",
+      "cancel": "Einladung ablehnen"
+    },
+    "addresses": {
+      "title": "Adressen",
+      "default": "Standard",
+      "add_new": "Eine neue Lieferadresse hinzufügen",
+      "edit_address": "Adresse bearbeiten",
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "company": "Unternehmen",
+      "address1": "Adresse 1",
+      "address2": "Adresse 2",
+      "city": "Ort",
+      "country": "Land/Region",
+      "province": "Bundesland/Provinz",
+      "zip": "PLZ",
+      "phone": "Telefonnummer",
+      "set_default": "Als Standard-Adresse festlegen",
+      "add": "Adresse hinzufügen",
+      "update": "Änderungen speichern",
+      "cancel": "Abbrechen",
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "delete_confirm": "Bist du sicher, dass du diese Adresse löschen möchtest?",
+      "back_to_addresses": "Zurück zu Adressen",
+      "form_edit": "Adresse bearbeiten",
+      "form_new": "Neue Adresse hinzufügen"
+    },
+    "log_in": "Anmelden",
+    "log_out": "Ausloggen",
+    "login_page": {
+      "cancel": "Zurück",
+      "create_account": "Konto erstellen",
+      "email": "E-Mail-Adresse",
+      "forgot_password": "Ich habe mein Passwort vergessen",
+      "guest_continue": "Fortfahren",
+      "guest_title": "Als Gast fortsetzen",
+      "password": "Passwort",
+      "title": "Anmeldung",
+      "sign_in": "Anmelden",
+      "submit": "Senden",
+      "alternate_provider_separator": "oder"
+    },
+    "orders": {
+      "title": "Bestellhistorie",
+      "order_number": "Bestellung",
+      "order_number_link": "Bestellnummer: {{ number }}",
+      "from": "von:",
+      "date": "Datum",
+      "payment_status": "Zahlungsstatus",
+      "payment_method": "Bezahlverfahren",
+      "fulfillment_status": "Fulfillmentstatus",
+      "total": "Gesamtsumme",
+      "none": "Du hast noch keine Bestellungen aufgegeben.",
+      "date_expanded": "Datum der Bestellung",
+      "expand": "Details der Bestellung",
+      "collapse": "Weniger anzeigen",
+      "shipping_method": "Versandart",
+      "shipping_cost": "Versandkosten"
+    },
+    "recover_password": {
+      "title": "Passwort wiederherstellen",
+      "subtext_html": "Wir senden Dir eine Bestätigungs-E-Mail. Klicke auf den<br> Link in dieser E-Mail, um das Passwort zu ändern.",
+      "success": "Wir haben Dir eine E-Mail mit einem Link zum Aktualisieren Deines Passworts geschickt."
+    },
+    "register": {
+      "title": "Ein Konto erstellen",
+      "name": "Name",
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "company": "Name der Firma",
+      "department": "Abteilung",
+      "tax_id": "USt-IdNr.",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "password_confirmation": "Passwort wiederholen",
+      "password_confirmation_error": "Passwörter sollten gleich sein",
+      "birthdate": "Geburtsdatum",
+      "submit": "Ein Konto erstellen",
+      "birthday_day": "Tag",
+      "birthday_month": "Monat",
+      "birthday_year": "Jahr",
+      "address_title": "Deine Adresse",
+      "address": "Adresse",
+      "address_secondary": "Fortsetzung der Adresse (optional)",
+      "shipping_address_title": "Lieferadresse",
+      "zip": "PLZ",
+      "city": "Stadt",
+      "country": "Land",
+      "phone": "Telefonnummer",
+      "newsletter": "Für den Newsletter anmelden (optional)",
+      "different_shipping_address": "Liefer- und Rechnungsadresse stimmen nicht überein",
+      "birthday": {
+        "day": "Tag",
+        "month": "Monat",
+        "year": "Jahr",
+        "day_error": "Wähle einen Tag aus",
+        "month_error": "Wähle einen Monat aus",
+        "year_error": "Wähle ein Jahr aus",
+        "invalid": "Das eingegebene Datum ist falsch"
+      },
+      "have_account": "Bist du schon Kunde?"
+    },
+    "vies": {
+      "incorrect_vat": "Ungültiges Mehrwertsteuernummer-Format",
+      "inactive_vat": "Umsatzsteuer-Nummer in VIES inaktiv",
+      "connection_error": "Verbindungsfehler mit VIES API",
+      "checking": "Überprüfen..."
+    },
+    "thank_you": {
+      "heading": "Danke schön",
+      "text": "Dein Konto wurde erstellt. Du kannst jetzt zu Deinem Konto gehen.",
+      "button": "Zu \"Mein Konto\""
+    },
+    "reset_password": {
+      "title": "Passwort für Konto zurücksetzen",
+      "subtext": "Neues Passwort eingeben",
+      "password": "Passwort",
+      "password_confirm": "Passwort wiederholen",
+      "submit": "Passwort zurücksetzen"
+    },
+    "password_info_html": "Passwörter müssen eine Mindestlänge von 8 Zeichen haben. <br>Das Passwort muss mindestens einen Groß- und einen Kleinbuchstaben enthalten.",
+    "required_info_html": "Die mit <span class='asterisk'>*</span> gekennzeichneten Felder sind Pflichtfelder",
+    "order": {
+      "title": "Bestellung {{ name }}",
+      "date_html": "Aufgegeben am {{ date }}",
+      "cancelled_html": "Bestellung storniert am {{ date }}",
+      "cancelled_reason": "Grund: {{ reason }}",
+      "billing_address": "Rechnungsadresse",
+      "payment_status": "Zahlungsstatus",
+      "shipping_address": "Lieferadresse",
+      "fulfillment_status": "Fulfillmentstatus",
+      "discount": "Rabatt",
+      "shipping": "Versandkosten",
+      "tax": "Steuer",
+      "product": "Produkt",
+      "sku": "SKU",
+      "price": "Preis",
+      "quantity": "Menge",
+      "total": "Gesamtsumme",
+      "fulfilled_at_html": "Ausgeführt am {{ date }}",
+      "track_shipment": "Sendung nachverfolgen",
+      "tracking_url": "Tracking-Link",
+      "tracking_company": "Versanddienstleister",
+      "tracking_number": "Trackingnummer",
+      "subtotal": "Zwischensumme",
+      "total_duties": "Zollgebühren",
+      "total_refunded": "Zurückerstattet",
+      "return_info": "Möchtest Du ein Produkt zurückgeben? Dafür hast Du ab Lieferung 30 Tage Zeit",
+      "return_btn": "Rücksendeanfrage stellen",
+      "status": {
+        "paid": "Zahlung ausstehend",
+        "in_preparation": "Vorbereitung der Bestellung",
+        "sent": "Bestellung gesendet"
+      }
+    },
+    "is_b2b_html": "Du bist Teil des B2B-Partnerprogramms",
+    "is_b2b": "Als B2B-Konto registriert"
+  },
+  "countries": {
+    "germany": "Deutschland",
+    "austria": "Österreich",
+    "switzerland": "Schweiz",
+    "france": "Frankreich",
+    "netherlands": "Niederlande",
+    "italy": "Italien",
+    "poland": "Polen"
+  },
+  "filestore": {
+    "filters": "Filter",
+    "file_categories": "Dateikategorien",
+    "find_file": "Dateisuche",
+    "type_all": "Alle Dateien",
+    "type_montage": "Montage",
+    "type_schematics": "Maßzeichnungen",
+    "type_images": "Bilddatenbank",
+    "type_certificate": "Zertifikate",
+    "type_marketing": "Marketing-Materialien",
+    "no_results": "Mit den aktuellen Filtern wurden keine Ergebnisse gefunden. Versuche die Suchkriterien anzupassen.",
+    "clear_filters": "Klare Filter"
+  },
+  "contact": {
+    "form": {
+      "title": "Kontaktformular",
+      "name": "Name und Nachname",
+      "email": "E-Mail-Adresse",
+      "order": "Bestellnummer",
+      "subject": "Thema",
+      "message": "Deine Nachricht",
+      "submit": "Nachricht senden"
+    }
+  },
+  "b2b": {
+    "form": {
+      "name": "Name und Nachname",
+      "email": "E-Mail-Adresse",
+      "company": "Name der Firma",
+      "ust_id": "Umsatzsteuer-Identifikationsnummer",
+      "naf": "NAF APE Code (optional)",
+      "message": "Deine Nachricht",
+      "submit": "Nachricht senden"
+    }
+  },
+  "attachments": {
+    "title": "Anhänge",
+    "select": "Datei wählen"
+  },
+  "account": {
+    "logout": "Abmelden",
+    "login": {
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "forgot_password": "Ich habe mein Passwort vergessen",
+      "button": "Anmelden"
+    },
+    "register": {
+      "button": "Ein Konto erstellen"
+    },
+    "new_account_html": "Neuer Kunde? <a href='/account/register'>Ein Konto erstellen</a>",
+    "welcome": "Hallo {{ name }}!",
+    "b2c_heading": "Einzelne Kunden",
+    "b2b_heading": "Geschäftskunden",
+    "menu": {
+      "my_account": "Mein Konto",
+      "orders": "Bestellungen",
+      "faq": "Help Center (FAQ)",
+      "b2b": "B2B-Partnerschaft"
+    },
+    "newsletter": {
+      "title": "Abonnements",
+      "text1": "Ja, ich möchte den kostenlosen Newsletter von Bernstein Badshop abonnieren. (Ich kann mich jederzeit abmelden.)",
+      "text2": "Erhalte außerdem Updates, Zugang zu exklusiven Angeboten und mehr."
+    }
+  },
+  "policies": {
+    "privacy_policy": "Datenschutzerklärung",
+    "terms_of_service": "Geschäftsbedingungen",
+    "refund_policy": "Rückgaberecht",
+    "shipping_policy": "Versand"
+  },
+  "shopify": {
+    "checkout": {
+      "customer_account": {
+        "sign_in_link_label": "Anmelden oder Konto erstellen"
+      },
+      "general": {
+        "pay_now_button_label": "Zahlungspflichtig bestellen",
+        "complete_purchase_button_label": "Zahlungspflichtig bestellen"
+      },
+      "clipboard": {
+        "copied": "Kopiert"
+      }
+    },
+    "errors": {
+      "reset_password_html": "Diese E-Mail Adresse ist bereits vergeben. Wenn es sich um dein Benutzerkonto handelt kannst du <a href=\"/account/login#recover\">ein neues Passwort anfordern</a>"
+    }
+  },
+  "customer_accounts": {
+    "orders": {
+      "order_list": {
+        "carousel": {
+          "next": "Nächste"
+        },
+        "order_status_message": {
+          "list_view": {
+            "view_order_for_details": "Siehe Bestellung für weitere Details"
+          }
+        }
+      },
+      "let_us_know": "Lass es uns wissen",
+      "contact_us": "Kontaktiere uns"
+    }
+  },
+  "bundle": {
+    "add_to_cart": "Alles in den Warenkorb"
+  },
+  "wishlist": {
+    "remove": "Von der Wunschliste entfernen",
+    "share": "Wunschliste teilen",
+    "page_title": "Wunschliste",
+    "empty_page": "Klicke auf das Herz, um ein Produkt Deiner Wunschliste hinzuzufügen. Deine Favoriten werden nicht angezeigt? Dann melde Dich mit Deinem Konto an.",
+    "page_title_empty": "Deine Wunschliste ist leer",
+    "button_href_empty": "/pages/inspirationen",
+    "button_label_empty": "JETZT INSPIRIEREN LASSEN"
+  }
+}

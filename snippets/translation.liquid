@@ -1,0 +1,9 @@
+{%- capture translated -%}
+    {%- assign handle = value | handleize -%}
+    {{ key | append: '.' | append: handle | t }}
+{%- endcapture -%}
+{%- if translated contains 'Translation missing' %}
+    {{- value -}}
+{%- else -%}
+    {{- translated -}}
+{%- endif -%}

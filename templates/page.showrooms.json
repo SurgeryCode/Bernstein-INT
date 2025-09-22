@@ -1,0 +1,131 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "intro_Rw3zYN": {
+      "type": "intro",
+      "settings": {
+        "banner_size": "normal",
+        "heading": "Showrooms",
+        "text": "<p>Willkommen bei Bernstein! Überzeuge Dich selbst von unseren Produkten in unseren deutschlandweiten Showrooms.<br/>Wir sind der Meinung, dass man Produkte vor dem Kauf auch erleben darf. Nutze die Gelegenheit, unsere Badartikel und Badewannen live zu sehen und auszuprobieren.<br/><br/>Vereinbare jetzt Deinen persönlichen Beratungstermin – wir freuen uns darauf, Dich in unseren Showrooms zu begrüßen.</p>",
+        "text_2": "",
+        "text_width": "normal",
+        "button_url": "https://app.cituro.com/booking/showrooms#step=1",
+        "button_text": "Beratungstermin vereinbaren",
+        "button_target": true
+      }
+    },
+    "showrooms_7f3qyc": {
+      "type": "showrooms",
+      "blocks": {
+        "item_GKK33w": {
+          "type": "item",
+          "settings": {
+            "title": "Showroom Stuttgart",
+            "image": "shopify://shop_images/Showroom_New_Stuttgart.jpg",
+            "address": "SchwabenGalerie\nSchwabenplatz 5\n70563 Stuttgart\n\nEmail: stuttgart@bernstein-badshop.de",
+            "opening_hours": "Mo.-Fr.: 10:00 - 18:00 Uhr\nSa.: 9:30 - 16:00 Uhr",
+            "geo_lat": "48.730848251742216",
+            "geo_lng": "9.109264653230966",
+            "directions_url": "https://www.google.pl/maps/place/Bernstein+Badshop+-+Showroom+Stuttgart/@48.7306897,9.1085065,19z/data=!3m1!5s0x4799dc50bfaba827:0x7edf0a3adc3a2b4c!4m14!1m7!3m6!1s0x4799dc50be53879f:0x51b5707efb92987f!2sSchwabenGalerie!8m2!3d48.7304925!4d9.1083434!16s%2Fg%2F1hc0ybf8l!3m5!1s0x4799ddf0654ec793:0xbae427cf762af283!8m2!3d48.7308481!4d9.1092644!16s%2Fg%2F11lh5n_32w?entry=ttu",
+            "button_url": "https://app.cituro.com/booking/showrooms#step=1",
+            "button_text": "Beratungstermin vereinbaren",
+            "button_target": true
+          }
+        },
+        "item_jpxaiz": {
+          "type": "item",
+          "settings": {
+            "title": "Showroom Viernheim",
+            "image": "shopify://shop_images/Showrooms_Bilder_Zeichenflaeche_1.jpg",
+            "address": "Bürgermeister-Neff-Straße 5\n68519 Viernheim\n\nEmail: viernheim@bernstein-badshop.de",
+            "opening_hours": "Bitte vereinbaren Sie einen individuellen Beratungstermin.",
+            "geo_lat": "49.52821001644277",
+            "geo_lng": "8.57198959877448",
+            "directions_url": "https://www.google.pl/maps/place/B%C3%BCrgermeister-Neff-Stra%C3%9Fe+5,+68519+Viernheim,+Germany/@49.5282132,8.5710933,18z/data=!3m1!4b1!4m6!3m5!1s0x4797cfe615bda161:0xc163224ec7c51fd3!8m2!3d49.528212!4d8.5719893!16s%2Fg%2F11b8v5tmm4?entry=ttu",
+            "button_url": "https://app.cituro.com/booking/showrooms#step=1",
+            "button_text": "Beratungstermin vereinbaren",
+            "button_target": true
+          }
+        },
+        "item_8YGFxi": {
+          "type": "item",
+          "settings": {
+            "title": "Showroom Schönefeld",
+            "image": "shopify://shop_images/Showroom-New-08.jpg",
+            "address": "Zeppelinstraße 1\n12529 Schönefeld\n\nEmail: berlin@bernstein-badshop.de",
+            "opening_hours": "Mo.-Fr.: 10:00 - 18:00 Uhr\nSa.: 09:30 - 16:00 Uhr",
+            "geo_lat": "52.366769104676685",
+            "geo_lng": "13.56020988887243",
+            "directions_url": "https://www.google.pl/maps/place/Zeppelinstra%C3%9Fe+1,+12529+Sch%C3%B6nefeld,+Germany/@52.3667753,13.5594891,18z/data=!3m1!4b1!4m6!3m5!1s0x47a847448553cbcb:0x9d043b487729dcc2!8m2!3d52.3667744!4d13.5602071!16s%2Fg%2F11c2hy9_3c?entry=ttu",
+            "button_url": "https://app.cituro.com/booking/showrooms#step=1",
+            "button_text": "Beratungstermin vereinbaren",
+            "button_target": true
+          }
+        },
+        "item_j8AUDM": {
+          "type": "item",
+          "settings": {
+            "title": "Showroom Frankfurt am Main",
+            "image": "shopify://shop_images/Showrooms_Bilder-04.jpg",
+            "address": "Hanauer Landstraße 553-555\n60386 Frankfurt a. M.\n\nEmail: frankfurt@bernstein-badshop.de",
+            "opening_hours": "Mo.-Fr.: 10:00 - 18:00 Uhr\nSa.: 9:30 - 16:00 Uhr",
+            "geo_lat": "50.132667007710495",
+            "geo_lng": "8.765708050053252",
+            "directions_url": "https://www.google.pl/maps/place/Bernstein+Badshop+-+Showroom+Frankfurt/@50.1326709,8.763133,17z/data=!3m1!4b1!4m6!3m5!1s0x47bd0f9a5a121d33:0x8450868c7d7fd9a0!8m2!3d50.1326675!4d8.7657079!16s%2Fg%2F11j31_19sc?entry=ttu",
+            "button_url": "https://app.cituro.com/booking/showrooms#step=1",
+            "button_text": "Beratungstermin vereinbaren",
+            "button_target": true
+          }
+        },
+        "item_APgLDz": {
+          "type": "item",
+          "settings": {
+            "title": "Showroom Metz - in Partnerschaft mit Gedik Mat",
+            "image": "shopify://shop_images/Showroom-FR.jpg",
+            "address": "6 rue Haute Seille\n57000 Metz\nFrance\n\nEmail: support@bernstein-badshop.de",
+            "opening_hours": "Mo.-Sa.: 10:00 - 18:30 Uhr",
+            "geo_lat": "49.1174557",
+            "geo_lng": "6.1799842",
+            "directions_url": "https://www.google.pl/maps/place/6+Rue+Haute+Seille,+57000+Metz,+Frankreich/@49.1172896,6.1800254,21z/data=!4m6!3m5!1s0x4794dc1dbc15d107:0xec016089dd8d1e80!8m2!3d49.1174557!4d6.1799842!16s%2Fg%2F11wp82jh_6?entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D",
+            "button_url": "",
+            "button_text": "",
+            "button_target": false
+          }
+        }
+      },
+      "block_order": [
+        "item_GKK33w",
+        "item_jpxaiz",
+        "item_8YGFxi",
+        "item_j8AUDM",
+        "item_APgLDz"
+      ],
+      "settings": {
+        "heading": "Unsere Showrooms"
+      }
+    },
+    "content_idbP63": {
+      "type": "content",
+      "settings": {
+        "heading": "Virtuelle Tour",
+        "text": "<p>Bei Bernstein haben wir es uns zur Aufgabe gemacht, Dein Badezimmererlebnis neu zu definieren.</p>",
+        "embed": "<iframe src=\"https://www.google.com/maps/embed?pb=!4v1589214009659!6m8!1m7!1sCAoSLEFGMVFpcE5HM29MVFRwZWhtNXFjMkdmclJvUHJ0NmVuSm1UTW1NbVJqYjV2!2m2!1d50.132800218336!2d8.7659211524968!3f18.664449078410225!4f4.065255151088465!5f0.7820865974627469\" width=\"800\" height=\"600\" frameborder=\"0\" style=\"border: 0px;\" allowfullscreen=\"\" aria-hidden=\"false\" tabindex=\"0\" data-cmp-ab=\"1\" class=\"cmplazyload entered loaded\" data-cmp-src=\"https://www.google.com/maps/embed?pb=!4v1589214009659!6m8!1m7!1sCAoSLEFGMVFpcE5HM29MVFRwZWhtNXFjMkdmclJvUHJ0NmVuSm1UTW1NbVJqYjV2!2m2!1d50.132800218336!2d8.7659211524968!3f18.664449078410225!4f4.065255151088465!5f0.7820865974627469\" data-cmp-info=\"11\" data-cmp-vendor=\"s1104\" data-ll-status=\"loaded\" data-cmp-done=\"1\" data-cmp-activated=\"1\"></iframe>",
+        "embed_aspect_ratio_desktop": "1420/730",
+        "embed_aspect_ratio_mobile": "375/240"
+      }
+    }
+  },
+  "order": [
+    "intro_Rw3zYN",
+    "showrooms_7f3qyc",
+    "content_idbP63"
+  ]
+}

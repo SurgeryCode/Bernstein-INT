@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "custom_html_rNEmAT": {
+      "type": "custom-html",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<form method=\"post\" action=\"\/account\/activate\" accept-charset=\"UTF-8\">\n<input type=\"hidden\" name=\"form_type\" value=\"activate_customer_password\"><input type=\"hidden\" name=\"utf8\" value=\"✓\">\n\n\n  <div class=\"password\">\n    <label for=\"password\">Password<\/label>\n    <input type=\"password\" name=\"customer[password]\">\n  <\/div>\n\n  <div class=\"password_confirm\">\n    <label for=\"password_confirmation\">Password Confirmation<\/label>\n    <input type=\"password\" name=\"customer[password_confirmation]\">\n  <\/div>\n\n  <div class=\"submit\">\n    <input type=\"submit\" value=\"Activate account\">\n    <span>or<\/span>\n    <input type=\"submit\" name=\"decline\" value=\"Decline invitation\">\n  <\/div>\n<\/form>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_html_rNEmAT"
+  ]
+}

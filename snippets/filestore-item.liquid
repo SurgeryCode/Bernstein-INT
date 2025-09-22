@@ -1,0 +1,85 @@
+{%- liquid
+    assign file_url = item.file | file_url
+    assign file_extension = file_url | split: '.' | last | split: '?' | first
+    assign icon = 'file-pdf'
+    assign is_video = false
+    if file_extension == 'mp4' or file_extension == 'mov'
+        assign icon = 'file-video'
+        assign is_video = true
+    endif
+    if item.yt_embed_code != blank
+        assign yt_code = item.yt_embed_code
+        assign file_extension = 'YouTube'
+        assign icon = 'file-video'
+    endif
+-%}
+{%- if yt_code != nil -%}
+    <button class="filestore-item js-filestore-item" aria-hidden="false" data-main-category="{{ main_category }}" data-sub-category="{{ item.category }}" data-type="{{ item.type }}" data-search="{{ item.title | downcase }}" data-modal-trigger>
+        <div class="filestore-item__top">
+            <span class="filestore-item__type">{{ file_extension }}</span>
+            <span class="filestore-item__icon">
+                {%- render 'svg-icon', name: 'modal' -%}
+            </span>
+        </div>
+        <div class="filestore-item__body">
+            {%- if item.thumb != blank -%} 
+                <img src="{{ item.thumb | image_url: width: 184, height: 120 }}" alt="{{ item.name }}" class="filestore-item__thumb" width="184" height="120" loading="lazy">
+            {%- else -%}
+                {% render 'svg-icon', name: icon %}
+            {%- endif -%}
+        </div>
+        <div class="filestore-item__footer">
+            <span class="filestore-item__name">{{ item.name | newline_to_br }}</span>
+        </div>
+        <div class="visually-hidden" data-modal-content>
+            <iframe width="{{ 560 | times: 1.5 }}" height="{{ 315 | times: 1.5 }}" src="{{ yt_code }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </button>
+{%- elsif is_video == true -%}
+    <button class="filestore-item js-filestore-item" aria-hidden="false" data-main-category="{{ main_category }}" data-sub-category="{{ item.category }}" data-type="{{ item.type }}" data-search="{{ item.title | downcase }}" data-modal-trigger>
+        <div class="filestore-item__top">
+            <span class="filestore-item__type">{{ file_extension }}</span>
+            <span class="filestore-item__icon">
+                {%- render 'svg-icon', name: 'modal' -%}
+            </span>
+        </div>
+        <div class="filestore-item__body">
+            {%- if item.thumb != blank -%} 
+                <img src="{{ item.thumb | image_url: width: 184, height: 120 }}" alt="{{ item.name }}" class="filestore-item__thumb" width="184" height="120" loading="lazy">
+            {%- else -%}
+                {% render 'svg-icon', name: icon %}
+            {%- endif -%}
+        </div>
+        <div class="filestore-item__footer">
+            <span class="filestore-item__name">{{ item.name | newline_to_br }}</span>
+        </div>   
+        <div class="visually-hidden" data-modal-content>
+            <video 
+                class="media"
+                playsinline="playsinline" 
+                controls
+                preload="metadata">
+                <source src="{{ file_url }}" type="video/mp4">
+            </video>
+        </div>
+    </button>
+{%- else -%}
+    <a class="filestore-item js-filestore-item" aria-hidden="false" data-main-category="{{ main_category }}" data-sub-category="{{ item.category }}" data-type="{{ item.type }}" data-search="{{ item.title | downcase }}" href="{{ file_url }}" target="_blank">
+        <div class="filestore-item__top">
+            <span class="filestore-item__type">{{ file_extension }}</span>
+            <span class="filestore-item__download">
+                {%- render 'svg-icon', name: 'download' -%}
+            </span>
+        </div>
+        <div class="filestore-item__body">
+            {%- if item.thumb != blank -%} 
+                <img src="{{ item.thumb | image_url: width: 184, height: 120 }}" alt="{{ item.name }}" class="filestore-item__thumb" width="184" height="120" loading="lazy">
+            {%- else -%}
+                {% render 'svg-icon', name: icon %}
+            {%- endif -%}
+        </div>
+        <div class="filestore-item__footer">
+            <span class="filestore-item__name">{{ item.name | newline_to_br }}</span>
+        </div>
+    </a>
+{%- endif -%}

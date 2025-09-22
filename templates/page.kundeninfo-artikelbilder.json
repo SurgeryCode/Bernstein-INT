@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "heading_subheading_LATUyi": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 16,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "content_XtraUQ": {
+      "type": "content",
+      "name": "Content",
+      "settings": {
+        "heading": "Technische Probleme bei der Anzeige<br>von Produktbildern",
+        "text": "<p>Liebe Kundin, lieber Kunde,</p><p>aktuell gibt es ein technisches Problem in unserem Onlineshop, durch das viele Artikelbilder nicht korrekt angezeigt werden 😥. Wir wissen, wie wichtig aussagekräftige Produktfotos für Deine Kaufentscheidung sind – und arbeiten deshalb mit Hochdruck an einer Lösung 💪.</p><p>Bitte entschuldige die Unannehmlichkeiten. Unser Team ist bereits dabei, das Problem so schnell wie möglich zu beheben. In der Zwischenzeit stehen wir Dir natürlich gerne für Fragen zu einzelnen Artikeln oder bei der Produktauswahl zur Verfügung.</p><p>Vielen Dank für Dein Verständnis und Deine Geduld! 🖤</p><p>Dein Team von BERNSTEIN Badshop</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "contact_person_xhtwgN": {
+      "type": "contact-person",
+      "name": "Contact Person",
+      "settings": {
+        "portrait": "shopify://shop_images/Customer_Service_Portrait.jpg",
+        "name": "",
+        "heading": "Wir sind für Dich da.",
+        "text": "Telefonisch unter +49 614 55 98 830 oder per E-Mail – kontaktiere uns gern, wenn wir Dir helfen können.",
+        "button_url": "shopify://pages/kontakt",
+        "button_text": "Kundenservice",
+        "button_target": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "heading_subheading_LATUyi",
+    "content_XtraUQ",
+    "contact_person_xhtwgN"
+  ]
+}

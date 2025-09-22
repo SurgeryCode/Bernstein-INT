@@ -1,0 +1,239 @@
+<link rel="stylesheet" href="{{ 'section-teaser-element.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-teaser-element.css' | asset_url | stylesheet_tag }}
+</noscript>
+
+<div class="container">
+  <div class="teaser-element  {% if section.settings.teaser_style == "plain" %} teaser-element__plain {% endif %}">
+      {%- for block in section.blocks -%}
+          {%- liquid 
+              assign title_tag = block.settings.title_tag
+          -%}
+          <div class="teaser-element__wrapper teaser-element__wrapper--{{ forloop.index0 }}">
+          <a href="{{ block.settings.button_url }}">
+
+              {%- if block.settings.title != blank or block.settings.subtitle != blank or block.settings.button_label != blank -%}
+                      <div class="teaser-element__content">
+                          {% if block.settings.badge != blank %}
+                              {%- style -%}
+                              #shopify-section-{{ section.id }} .teaser-element__wrapper--{{ forloop.index0 }} .teaser-element__badge span {
+                                  color: {{ block.settings.badge_text_color }};
+                                  background-color: {{ block.settings.badge_background_color }};
+                              }
+                              {% endstyle %}
+                              <p class="teaser-element__badge">
+                                <span>{{ block.settings.badge }}</span>
+                              </p>
+                          {% endif %}
+                          {%- if block.settings.subtitle != blank -%}
+                              <p class="f-14 w-bold">{{ block.settings.subtitle }}</p> 
+                          {%- endif -%}
+                          {%- if block.settings.title != blank -%}
+                              <{{ title_tag }} class="f-24 w-bold">{{ block.settings.title | newline_to_br }}</{{ title_tag }}>
+                          {%- endif -%}
+                          {%- if block.settings.button_label != blank -%}
+                              <span class="button button--large button--white">{{ block.settings.button_label }}</span>
+                          {%- endif -%}
+                      </div>
+              {%- endif -%}
+
+              {%- liquid 
+              assign desktop = block.settings.image
+              assign tablet = desktop
+              assign mobile = desktop
+
+              if block.settings.image_tablet != nil and block.settings.image_mobile != nil
+                  assign tablet = block.settings.image_tablet
+                  assign mobile = block.settings.image_mobile
+              endif
+
+              if block.settings.image_tablet != nil and block.settings.image_mobile == nil
+                  assign tablet = block.settings.image_tablet
+                  assign mobile = tablet
+              endif
+
+              if block.settings.image_tablet == nil and block.settings.image_mobile != nil
+                  assign mobile = block.settings.image_mobile
+              endif
+              -%}
+              {%- if desktop != nil -%}
+              <picture class="media media--image media--cover media--background">
+                  <source srcset="{{ mobile | img_url: '576x' }}" media="(max-width: 575px)">
+                  <source srcset="{{ tablet | img_url: '1024x' }}" media="(min-width: 576px) and (max-width: 1023px)">
+                  <source srcset="{{ desktop | img_url: '1920x' }}" media="(min-width: 1024px)">
+                  <img 
+                  src="{{ desktop | img_url: first }}"  
+                  width="{{ desktop.width }}" 
+                  height="{{ desktop.height }}" 
+                  alt="{{ desktop.alt | strip_html | escape }}"
+                  loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}"
+                  {% if forloop.index == 1 %}fetchpriority="high"{% endif %}>
+              </picture>
+              {%- endif -%}
+
+              <div class="teaser-element__overlay" style="opacity: {{ block.settings.overlay | times: 0.01 }};"></div>  
+          </a>
+      </div>
+      {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  const listOfTeaser = document.querySelectorAll(".teaser-element__wrapper").length;
+  const teaserListWrapper = document.querySelector(".teaser-element");
+
+  if (listOfTeaser == 2) {
+    teaserListWrapper.classList.add("teaser-element__two-items")
+  } else {
+    teaserListWrapper.classList.remove("teaser-element__two-items")
+  }
+</script>
+
+{% schema %} 
+{
+  "name": "Teaser element",
+  "tag": "section",
+  "class": "section margin--small",
+  "settings": [
+    {
+      "type": "select",
+      "id": "teaser_style",
+      "label": "Teaser style",
+      "default": "overlay",
+      "options": [
+        {
+          "label": "Plain image",
+          "value": "plain"
+        },
+        {
+          "label": "Overlay image",
+          "value": "overlay"
+        }
+      ]
+    },
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge title"
+        },
+        {
+          "id": "badge_text_color",
+          "type": "color",
+          "label": "Badge Text Color",
+          "default": "#000000"
+        },
+        {
+          "id": "badge_background_color",
+          "type": "color",
+          "label": "Badge Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub-title"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "title_tag",
+          "label": "Title tag",
+          "default": "p",
+          "options": [
+              {
+                  "value": "h1",
+                  "label": "H1"
+              },
+              {
+                  "value": "h2",
+                  "label": "H2" 
+              },
+              {
+                  "value": "h3",
+                  "label": "H3"
+              },
+              {
+                  "value": "h4",
+                  "label": "H4"
+              },
+              {
+                  "value": "p",
+                  "label": "none"
+              }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Label"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop - required",
+          "info": "At least 1920px wide"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_tablet",
+          "label": "Tablet",
+          "info": "At least 1024px wide"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile",
+          "info": "At least 640px wide"
+        },
+        { 
+          "type": "header",
+          "content": "Transparent overlay"
+        },
+        {
+          "type": "range",
+          "id": "overlay",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Transparency",
+          "default": 0
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Teaser element",
+      "blocks": [
+        {
+          "type": "tile"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

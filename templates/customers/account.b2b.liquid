@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="{{ 'component-attachments.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-form.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-contact.css' | asset_url | stylesheet_tag }}
+    {{ 'component-form.css' | asset_url | stylesheet_tag }}
+    {{ 'component-attachments.css' | asset_url | stylesheet_tag }}
+  </noscript>
+<script src="{{ 'attachments-upload.js' | asset_url }}" defer="defer"></script>
+
+<div class="container">
+    <div class="account-hld">
+        <div class="account-left">
+            {% render 'account-main-box' %}
+            {% render 'account-nav', active_item: 'b2b' %}
+        </div>
+        <div class="account-right">
+            <h1 class="account-title">{{ 'customer.account.b2b' | t }}</h1>
+            <div class="account-content">
+                {% section 'account-b2b' %}
+            </div>
+        </div>
+    </div>
+</div>

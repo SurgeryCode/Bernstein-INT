@@ -1,0 +1,815 @@
+<link rel="stylesheet" href="{{ 'section-megamenu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-tabs.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-account-dropdown.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-markets.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'perfect-scrollbar.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  {{ 'perfect-scrollbar.css' | asset_url | stylesheet_tag }}
+  {{ 'component-tabs.css' | asset_url | stylesheet_tag }}
+  {{ 'component-account-dropdown.css' | asset_url | stylesheet_tag }}
+  {{ 'component-markets.css' | asset_url | stylesheet_tag }}
+  {{ 'section-megamenu.css' | asset_url | stylesheet_tag }}
+  {{ 'section-predictive-search.css' | asset_url | stylesheet_tag }}
+</noscript>
+
+<script src="{{ 'perfect-scrollbar.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'megamenu.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'tabs.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+	assign menu_main = section.settings.menu_main | default: 'main-menu'
+  assign megamenus = 'menu_1,menu_2,menu_3' | split: ','
+  assign message_background_color = '#0057ff'
+  assign message_text_color = '#ffffff' 
+  assign active_tab_id = false
+
+  for block in section.blocks
+    if block.type == 'megamenu'
+      for menu in megamenus
+        for link in linklists[block.settings[menu]].links
+          if link.active or link.child_active
+            assign active_tab_id = link.handle 
+          endif
+        endfor
+      endfor
+    endif
+  endfor
+
+  for block in section.blocks
+    if block.type == 'megamenu'
+      for menu in megamenus
+        for link in linklists[block.settings[menu]].links
+          unless active_tab_id
+            if link.links.size > 0
+              assign active_tab_id = link.handle 
+            endif
+          endunless
+        endfor
+      endfor
+    endif
+  endfor
+-%}
+
+{%- capture messages -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'message' -%}
+      {%- assign message_background_color = block.settings.color_background -%}
+      {%- assign message_text_color = block.settings.color_text -%}
+      {%- if block.settings.title != blank or block.settings.button_label != blank -%}
+        <div class="swiper-slide">
+          <p class="w-medium">{{ block.settings.title }}</p>
+          {%- if block.settings.button_label != blank and block.settings.button_url != blank -%}
+            <a href="{{ block.settings.button_url }}" class="header__message-button w-medium" tabindex="1">{{ block.settings.button_label }}</a>
+          {%- endif -%}
+          {%- if block.settings.discount_code != blank -%}
+            <button class="header__message-button w-medium" data-copy-clipboard="{{ block.settings.discount_code }}" data-message="{{ 'accessibility.code_copied' | t }}" tabindex="1">{{ block.settings.discount_code }}</button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+    {%- if block.type == 'reviews' -%}
+      {%- assign message_background_color = block.settings.color_background -%}
+      {%- assign message_text_color = block.settings.color_text -%}
+      <div class="swiper-slide">
+        <etrusted-widget data-etrusted-widget-id="wdg-6a919455-9c17-437f-9640-dcc561a7116e"></etrusted-widget>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+<header-section class="header {% if template == 'index' %}header--transparent{% endif %}">
+  {%- if messages != blank -%}
+    <div class="header__message f-12 swiper" data-delay="{{ section.settings.delay | times: 1000 }}">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          {{- messages -}}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="header__main">
+    <div class="header__bar">
+      <div class="container container--wide">
+        <button 
+          class="header__burger"
+          title="{{ 'accessibility.open_menu' | t }}" 
+          aria-label="{{ 'accessibility.open_menu' | t }}" 
+          aria-controls="megamenu" 
+          aria-expanded="false"
+          tabindex="2">
+            {%- render 'svg-icon', name: 'menu' -%}
+            {%- render 'svg-icon', name: 'close' -%}
+            {{ link.title }}
+        </button>
+        <a 
+          href="{{ routes.root_url }}" 
+          class="header__logo" 
+          title="{{ 'accessibility.return_home' | t }}" 
+          aria-label="{{ 'accessibility.return_home' | t }}"
+          tabindex="3">
+            {%- render 'brand-logo', name: 'bernstein' -%}
+        </a>
+
+        <div class="header__toolbar">
+          {%- if settings.showrooms_page != blank -%}
+            <a href="{{ settings.showrooms_page.url }}"
+              class="header__icon header__icon--pin"
+              title=""
+              aria-label=""
+              tabindex="5">
+                {%- render 'svg-icon', name: 'pin' -%}
+            </a>
+          {%- endif -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'help' -%} 
+              <div class="header__dropdown header__dropdown--{{ block.type }}">
+                <button
+                  class="header__icon header__icon--phone"
+                  aria-label="{{ 'accessibility.help' | t }}"
+                  aria-controls="dropdown-help"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  tabindex="6">
+                    {%- render 'svg-icon', name: 'help' -%}
+                </button>
+                <div class="header__dropdown-content" id="dropdown-help">
+                  <div class="header__dropdown-inner">
+                    {%- if block.settings.phone != blank -%}
+                      <a href="tel:{{ block.settings.phone | remove: ' ' }}" class="text-link w-medium">
+                        {%- render 'svg-icon', name: 'phone' -%}
+                        <span>{{ block.settings.phone }}</span>
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.description != blank -%}
+                      <div class="richtext richtext--gray f-14">
+                        <p>{{ block.settings.description }}</p>
+                      </div>
+                    {%- endif -%}
+                    {%- if block.settings.link_1_label != blank -%}
+                      <a href="{{ block.settings.link_1_url }}" target="_blank" class="text-link w-medium">
+                        {%- render 'svg-icon', name: 'email' -%}
+                        <span>{{ block.settings.link_1_label }}</span>
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.link_2_label != blank -%}
+                      <a href="{{ block.settings.link_2_url }}{{ request.locale.iso_code }}" target="_blank" rel="noopener noreferrer" class="text-link w-medium">
+                        {%- render 'svg-icon', name: 'help' -%}
+                        <span>{{ block.settings.link_2_label }}</span>
+                      </a>
+                    {%- endif -%}
+                    {%- if block.settings.link_3_label != blank -%}
+                      <a href="{{ block.settings.link_3_url }}" target="_blank" class="text-link w-medium">
+                        {%- render 'svg-icon', name: 'calendar' -%}
+                        <span>{{ block.settings.link_3_label }}</span>
+                      </a>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+          <div class="header__dropdown header__dropdown--account">
+            {%- if customer -%}
+              <button
+                class="header__icon header__icon--account"
+                title="{{ 'accessibility.account' | t }}"
+                aria-label="{{ 'accessibility.account' | t }}"
+                aria-controls="dropdown-account"
+                aria-expanded="false"
+                aria-haspopup="true"
+                tabindex="7">
+                  {%- render 'svg-icon', name: 'user' -%}
+              </button>
+              <div class="header__dropdown-content" id="dropdown-account">
+                <div class="header__dropdown-inner">
+                  {%- render 'account-dropdown' -%}
+                </div>
+              </div>
+            {%- else -%}
+              <button
+                class="header__icon header__icon--account"
+                title="{{ 'accessibility.account' | t }}"
+                aria-label="{{ 'accessibility.account' | t }}"
+                aria-controls="drawer-account"
+                aria-expanded="false" 
+                tabindex="7">
+                  {%- render 'svg-icon', name: 'user' -%}
+              </button>
+            {%- endif -%}
+          </div>
+          {% if settings.enable-wishlist %}
+            <a href="/pages/wunschliste"
+              class="header__icon header__icon--heart"
+              title="{{ 'accessibility.wishlist' | t }}"
+              aria-label="{{ 'accessibility.wishlist' | t }}"
+              tabindex="8">
+                {%- render 'svg-icon', name: 'header-heart' -%}
+                <span 
+                  data-wishlist-count 
+                  class="count f-11 w-medium">
+                </span>
+            </a>
+          {%- endif -%}
+          <a 
+            href="{{ routes.cart_url }}"
+            class="header__icon header__icon--cart {% if cart.item_count < 1 %}header__icon--empty{% endif %}"
+            title="{{ 'accessibility.cart' | t }}"
+            aria-label="{{ 'accessibility.cart' | t }}"
+            tabindex="8">
+              {%- render 'svg-icon', name: 'cart-empty' -%}
+              {%- render 'svg-icon', name: 'cart' -%}
+              <span 
+                data-cart-count 
+                class="count f-11 w-medium" 
+                {% if cart.item_count < 1 %}style="display:none;"{% endif %}>
+                  {{ cart.item_count }}
+              </span>
+            </a>
+          <div class="header__markets">
+            {%- render 'market-switcher', tabindex: 9, modifier: 'bottom' -%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="header__search" autocomplete="off">
+      {%- render 'svg-icon', name: 'search' -%}
+      <input 
+        type="search" 
+        id="search"
+        name="q" 
+        placeholder="{{ 'search.placeholder' | t }}"
+        class="f-14 w-medium"
+        tabindex="4">
+      <input 
+        type="hidden" 
+        name="type"
+        value="product">
+    </form>
+
+    <nav class="header__menu w-medium">
+      <div class="container container--wide">
+          <ul class="header__menu-list">
+            {%- for link in linklists[menu_main].links -%}
+              <li>
+                {%- if link.type == 'collections_link' -%}
+                  <button 
+                    title="{{ 'accessibility.open_menu' | t }}" 
+                    aria-label="{{ 'accessibility.open_menu' | t }}" 
+                    aria-controls="megamenu" 
+                    aria-expanded="false"
+                    class="button button--small button--animated">
+                      {%- render 'svg-icon', name: 'menu' -%}
+                      {%- render 'svg-icon', name: 'close' -%}
+                      <span>
+                        <em data-expanded="false">{{ link.title }}</em>
+                        <em data-expanded="true">{{ 'accessibility.close' | t }}</em>
+                      </span>
+                  </button>
+                {%- else -%}
+                  {%- liquid 
+                    assign url = link.url
+                    if url contains '#old_site_url'
+                       assign url = settings.old_site_url
+                    endif
+                  -%}
+                  <a href="{{ url }}" class="text-link text-link--strong">
+                    <span>{{ link.title }}</span>
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'dropdown' -%} 
+              <div class="header__dropdown header__dropdown--menu">
+                <button 
+                  class="dropdown__button"
+                  aria-controls="dropdown-{{ block.settings.title | handleize }}" 
+                  aria-haspopup="true"
+                  aria-expanded="false">
+                    {{ block.settings.title }}
+                    {%- render 'svg-icon', name: 'chevron-down' -%}
+                </button>
+                <div class="header__dropdown-content" id="dropdown-{{ block.settings.title | handleize }}">
+                  <div class="header__dropdown-inner">
+                    <ul>
+                      {%- for link in linklists[block.settings.menu].links -%}
+                        <li>
+                            <a href="{{ link.url }}" class="text-link">
+                              <span>{{ link.title }}</span>
+                            </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+      </div>
+    </nav>
+  </div>
+
+  <mega-menu class="megamenu">
+    <div class="container">
+      <tabs-section class="megamenu__grid tabs">
+          <div class="megamenu__sidebar">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'megamenu' -%}
+                {%- if block.settings.title != blank -%}
+                  <p class="f-14 w-medium gray">{{ block.settings.title }}</p>  
+                {%- endif -%}
+                {%- for menu in megamenus -%}
+                  {%- if linklists[block.settings[menu]].links.size > 0 -%}
+                    <nav>
+                      <ul {% if forloop.first %}class="megamenu__sidebar-buttons"{% endif %}>
+                        {%- for link in linklists[block.settings[menu]].links -%}
+                          <li>
+                            {%- if link.type == 'collection_link' -%}
+                              {%- assign icon = link.object.metafields.custom.icon | handleize -%}
+                              {%- if link.links.size > 0 -%}
+                                <button 
+                                  aria-controls="megamenu-{{ link.handle }}"
+                                  aria-expanded="{% if link.handle == active_tab_id %}true{% else %}false{% endif %}"
+                                  class="text-link {% if forloop.parentloop.first %}text-link--desktop{% endif %} w-medium {% if link.handle == active_tab_id %}active{% endif %}">
+                                    {%- render 'svg-collection', name: icon -%}
+                                    {{ link.title }}
+                                </button>
+                                {%- if forloop.parentloop.first -%}
+                                  <button 
+                                    aria-controls="megamenu-{{ link.handle }}"
+                                    aria-expanded="false"
+                                    class="button button--outline button--small upper">
+                                      {{ link.title }}
+                                  </button>
+                                {%- endif -%}
+                              {%- else -%}
+                                <a 
+                                  href="{{ link.url }}" 
+                                  class="text-link {% if forloop.parentloop.first %}text-link--desktop{% endif %} w-medium {% if link.handle == active_tab_id %}active{% endif %}">
+                                    {%- render 'svg-collection', name: icon -%}
+                                    {{ link.title }}
+                                </a>
+                                {%- if forloop.parentloop.first -%}
+                                  <a 
+                                    href="{{ link.url }}" 
+                                    class="button button--outline button--small upper">
+                                      {{ link.title }}
+                                  </a>
+                                {%- endif -%}
+                              {%- endif -%}
+                            {%- else -%}
+                              <a href="{{ link.url }}">{{ link.title }}</a>
+                            {%- endif -%}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </nav>
+                  {%- endif -%}
+                {%- endfor -%}  
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          <div class="megamenu__content">
+            <div class="megamenu__content-inner">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'megamenu' -%}
+                  {%- for menu in megamenus -%}
+                    {%- for link in linklists[block.settings[menu]].links -%}
+                      {%- if link.links.size > 0 -%}
+                        <div class="tabs__content {% if link.handle == active_tab_id %}tabs__content--active tabs__content--visible{% endif %}" id="megamenu-{{ link.handle }}">
+                          <button class="megamenu__back megamenu__back--categories text-link f-14 w-medium gray">
+                              {%- render 'svg-icon', name: 'arrow-left' -%}
+                              <span>{{ 'accessibility.back_to_categories' | t }}</span>
+                          </button>
+                          <p class="f-24 w-bold">{{ link.title }}</p>
+                          <div class="megamenu__items">
+                            {%- for sublink in link.links -%}
+                              {%- if sublink.links.size > 0 -%}
+                              <button 
+                                aria-controls="megamenu-{{ sublink.handle }}"
+                                aria-expanded="false"
+                                class="megamenu__item text-link">
+                              {%- else -%}
+                              <a href="{{ sublink.url }}" class="megamenu__item text-link">
+                              {%- endif -%}
+                                <div class="megamenu__item-image">
+                                  {%- if sublink.object.image != blank -%}
+                                    {%- render 'image', 
+                                        image: sublink.object.image, 
+                                        sizes: '575:90,576:300',
+                                        class: 'cover,background'
+                                    -%}
+                                  {%- endif -%}
+                                </div>
+                                <div class="megamenu__item-title">
+                                  <span class="f-14 w-medium">{{ sublink.title }}</span>
+                                  {%- if sublink.links.size > 0 -%}
+                                    {%- render 'svg-icon', name: 'arrow-right' -%}
+                                  {%- endif -%}
+                                </div>
+                              {%- if sublink.links.size > 0 -%}
+                              </button>
+                              {%- else -%}
+                              </a>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </div>
+                          <div class="megamenu__button">
+                            <a href="{{ link.url }}" class="button button--large button--outline">{{ 'accessibility.view_all' | t }}</a>
+                          </div>
+                        </div>
+
+                        {%- for sublink in link.links -%}
+                          <div class="tabs__content {% if sublink.handle == active_tab_id %}tabs__content--active tabs__content--visible{% endif %}" id="megamenu-{{ sublink.handle }}">
+                            <button
+                              class="megamenu__back text-link f-14 w-medium gray"
+                              aria-controls="megamenu-{{ link.handle }}">
+                                {%- render 'svg-icon', name: 'arrow-left' -%}
+                                <span>{{ 'accessibility.back_to' | t: title: link.title }}</span>
+                            </button>
+                            <p class="f-24 w-bold">{{ sublink.title }}</p>
+                            <div class="megamenu__items">
+                              {%- for subsublink in sublink.links -%}
+                                {%- if subsublink.sublink.size > 0 -%}
+                                <button 
+                                  aria-controls="megamenu-{{ subsublink.handle }}"
+                                  aria-expanded="false"
+                                  class="megamenu__item text-link">
+                                {%- else -%}
+                                <a href="{{ subsublink.url }}" class="megamenu__item text-link">
+                                {%- endif -%}
+                                  <div class="megamenu__item-image">
+                                    {%- if subsublink.object.image != blank -%}
+                                      {%- render 'image', 
+                                          image: subsublink.object.image, 
+                                          sizes: '575:90,576:300',
+                                          class: 'cover,background'
+                                      -%}
+                                    {%- endif -%}
+                                  </div>
+                                  <div class="megamenu__item-title">
+                                    <span class="f-14 w-medium">{{ subsublink.title }}</span>
+                                  </div>
+                                {%- if subsublink.links.size > 0 -%}
+                                </button>
+                                {%- else -%}
+                                </a>
+                                {%- endif -%}
+                              {%- endfor -%}
+                            </div>
+                            <div class="megamenu__button">
+                              <a href="{{ sublink.url }}" class="button button--large button--outline">{{ 'accessibility.view_all' | t }}</a>
+                            </div>
+                          </div>
+                        {%- endfor -%}
+
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+
+          <div class="megamenu__cards">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'card' -%}
+                <div class="megamenu__card megamenu__card--{{ block.settings.type }}">
+                  <div class="megamenu__card-caption">
+                    {%- if block.settings.heading != blank -%}
+                      <p class="f-32 w-medium">{{ block.settings.heading }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.description != blank -%}
+                      <div class="richtext">
+                        <p class="f-18">{{ block.settings.description }}</p>
+                      </div>
+                    {%- endif -%}
+                    {%- if block.settings.button_label != blank -%}
+                      <a href="{{ block.settings.button_url }}" class="button button--smaller button--white">{{ block.settings.button_label }}</a>
+                    {%- endif -%}
+                  </div>
+                  {%- if block.settings.image != blank -%}
+                    {%- render 'image', 
+                        image: block.settings.image, 
+                        sizes: '379:340,380:460',
+                        class: 'cover,background'
+                    -%}
+                  {%- endif -%}
+                </div> 
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+      </tabs-section>
+    </div>
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'megamenu' -%}
+        {%- if linklists[block.settings['menu_additional']].links.size > 0 -%}
+          <div class="megamenu__footer">
+            <div class="container">
+              <ul class="megamenu__footer-list">
+                {%- for link in linklists[block.settings['menu_additional']].links -%}
+                  <li>
+                    {%- if link.title contains '|MARKETS|' -%}
+                      {%- render 'market-switcher', title: link.title, modifier: 'top-right' -%}
+                    {%- else -%}
+                      <a href="{{ link.url }}" class="w-medium">{{ link.title }}</a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </mega-menu>
+
+  {%- render 'predictive-search' -%}
+</header-section>
+
+<style>
+  #shopify-section-{{ section.id }} .header__message {
+    background: {{ message_background_color }};
+    color: {{ message_text_color }};
+  }
+
+  #shopify-section-{{ section.id }} .header__message-button {
+    background: {{ message_text_color }};
+    color: {{ message_background_color }};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu_desktop",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "unit": "sec",
+      "label": "Delay between messages",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Message"
+        },
+        {
+          "type": "text",
+          "id": "discount_code",
+          "label": "Discount Code",
+          "info": "with copy to clipboard feature"
+        },
+        {
+          "type": "header",
+          "content": "Button Link"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Label"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "color_background",
+          "label": "Background",
+          "default": "#0057ff"
+        },
+        {
+          "type": "color",
+          "id": "color_text",
+          "label": "Text",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    { 
+      "type": "reviews",
+      "name": "Shop Reviews",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Colors"
+        }, 
+        {
+          "type": "color",
+          "id": "color_background",
+          "label": "Background",
+          "default": "#0057ff"
+        },
+        {
+          "type": "color",
+          "id": "color_text",
+          "label": "Text",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    { 
+      "type": "account",
+      "name": "Account",
+      "limit": 1,
+      "settings": [
+
+      ]
+    },
+    {
+      "type": "help",
+      "name": "Help",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone number"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Link 1"
+        },
+        {
+          "type": "url",
+          "id": "link_1_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "link_1_label",
+          "label": "Label"
+        },
+        {
+          "type": "header",
+          "content": "Link 2"
+        },
+        {
+          "type": "url",
+          "id": "link_2_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "link_2_label",
+          "label": "Label"
+        },
+        {
+          "type": "header",
+          "content": "Link 3"
+        },
+        {
+          "type": "url",
+          "id": "link_3_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "link_3_label",
+          "label": "Label"
+        }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "name": "Dropdown",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "megamenu",
+      "name": "Megamenu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_1",
+          "label": "Menu 1"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_2",
+          "label": "Menu 2"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_3",
+          "label": "Menu 3"
+        },
+        {
+          "type": "link_list",
+          "id": "menu_additional",
+          "label": "Additional Menu (mobile only)"
+        }
+      ]
+    },
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "type",
+          "label": "Type",
+          "default": "simple",
+          "options": [
+              {
+                "value": "simple",
+                "label": "Simple"
+              },
+              {
+                "value": "decorated",
+                "label": "Decorated" 
+              }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Label"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Background Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

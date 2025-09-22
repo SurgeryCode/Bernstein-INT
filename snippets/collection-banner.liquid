@@ -1,0 +1,98 @@
+{%- if data -%}
+    {%- liquid
+        assign text_on_image = data.text_on_image.value | default: false
+        assign plain_image = data.plain_image.value | default: false
+        if plain_image
+            assign text_on_image = false
+        endif
+        assign overlay = data.overlay.value | default: false
+        assign bgr_color = data.background_color | default: 'var(--color-gray-ultra-light)'
+        assign overlay_color = data.background_color | default: 'var(--color-black)'
+        assign overlay_opacity = data.overlay_opacity | default: '60' | times: 0.01
+        assign text_color = data.text_color | default: 'var(--color-black)'
+        assign text_light_color = data.text_color | default: 'var(--color-white)'
+        assign media_fit = 'cover,background'
+
+        if plain_image
+            assign media_fit = 'cover'
+        endif
+
+        if text_on_image
+            unless data.media != blank
+                assign text_light_color = data.text_color | default: 'var(--color-black)'
+            endunless
+        endif
+
+        assign link = false
+        if data.link_to_collection != blank
+            assign link = data.link_to_collection.value.url
+        endif
+        if data.link_to_page != blank
+            assign link = data.link_to_page.value.url
+        endif
+
+        assign size = data.size
+        if banner_size
+            assign size = banner_size
+        endif
+
+        assign media_mobile = data.media_mobile | default: data.media
+    -%}
+    <div 
+        class="listing__banner listing__banner--{{ size }} {% if overlay %}listing__banner--overlay{% endif %} {% if text_on_image %}listing__banner--text-on-img{% endif %} {% if plain_image %}listing__banner--plain-img{% endif %}"
+        id="banner-{{ data.system.handle }}"
+    >
+        {%- if data.media != blank -%}
+            <div class="listing__banner-media">
+                    {%- if data.media.value.sources != null -%}
+                        {%- render 'video', 
+                            video: data.media.value,
+                            video_tablet: data.media.value,
+                            video_mobile: media_mobile.value,
+                            class: media_fit,
+                            autoplay: true,
+                            muted: true,
+                            loop: true 
+                        -%}
+                    {%- else -%}
+                        {%- render 'image', 
+                            image: data.media.value, 
+                            image_mobile: media_mobile.value,
+                            sizes: '576:700,1199:1200,1200:1600',
+                            class: media_fit
+                        -%}
+                    {%- endif -%}
+            </div>
+        {%- endif -%}
+        
+        {%- unless plain_image -%}
+            {%- if data.title != blank or data.description != blank or data.button_label != blank -%}
+                <div class="listing__banner-content">
+                    {%- if size == 'full' -%}
+                        <h2 class="f-48 w-bold">{{ data.title }}</h2>
+                    {%- else -%}
+                        <h2 class="f-32 w-bold">{{ data.title }}</h2>
+                    {%- endif -%}
+                    {%- if data.description != blank -%}
+                        <div class="richtext">
+                            <p>{{ data.description | newline_to_br }}</p>
+                        </div>
+                    {%- endif -%}
+                    {%- if data.button_label != blank and link -%}
+                        <a href="{{ link }}" class="button button--outline button--large">{{ data.button_label }}</a>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+        {%- endunless -%}
+    </div>
+
+    <style>
+        #banner-{{ data.system.handle }} {
+            --banner-bgr-color: {{ bgr_color }}; 
+            --banner-overlay-color: {{ overlay_color }}; 
+            --banner-overlay-opacity: {{ overlay_opacity }}; 
+            --banner-text-color: {{ text_color }}; 
+            --banner-text-light-color: {{ text_light_color }};
+        }
+    </style>
+{%- endif -%}

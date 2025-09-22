@@ -1,0 +1,76 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "settings": {
+        "empty_heading": "Dein Warenkorb ist leer.",
+        "empty_text": "Lust auf ein wenig Shopping-Inspiration?",
+        "empty_button_url": "shopify://pages/inspirationen",
+        "empty_button_label": "JETZT INSPIRIEREN LASSEN",
+        "pay_in_three": "",
+        "sichere_zalung": "100% sichere Zahlung"
+      }
+    },
+    "cart_recommendations_jR6k8i": {
+      "type": "cart-recommendations",
+      "settings": {
+        "heading": "Weitere Empfehlungen",
+        "heading_tag": "2"
+      }
+    },
+    "cart_features_AthByw": {
+      "type": "cart-features",
+      "blocks": {
+        "feature_qGnhGF": {
+          "type": "feature",
+          "settings": {
+            "icon": "delivery",
+            "title": "Schneller Versand"
+          }
+        },
+        "feature_NEMfQW": {
+          "type": "feature",
+          "settings": {
+            "icon": "design",
+            "title": "Eigenproduktion"
+          }
+        },
+        "feature_K738A6": {
+          "type": "feature",
+          "settings": {
+            "icon": "returns",
+            "title": "30 Tage Rückgaberecht"
+          }
+        },
+        "feature_4wje8P": {
+          "type": "feature",
+          "settings": {
+            "icon": "warranty",
+            "title": "Sichere Zahlung"
+          }
+        }
+      },
+      "block_order": [
+        "feature_qGnhGF",
+        "feature_NEMfQW",
+        "feature_K738A6",
+        "feature_4wje8P"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "cart_recommendations_jR6k8i",
+    "cart_features_AthByw"
+  ]
+}

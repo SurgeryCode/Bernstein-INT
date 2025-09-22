@@ -1,0 +1,159 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_RYr9JQ": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_dTVVTp": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>BIS ZU -10% RABATT</p>",
+            "badge_text_color": "#712514",
+            "badge_background_color": "#fdc6b9",
+            "badge_padding": 22,
+            "subtitle": "Newsletter Abonnent werden & Rabatt sichern",
+            "title": "PRIVATE SALE",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "2025-08-29 23:59:59",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/shopify_hero_banner_desktop_1920x840_d8b57039-81a4-45bf-ab4a-af3331bf81b8.webp",
+            "image_tablet": "shopify://shop_images/shopify_hero_banner_tablet_1024x720_e8b337e1-8d42-4e67-afc0-68607e9af9ca.webp",
+            "image_mobile": "shopify://shop_images/shopify_hero_banner_mobile_640x980_63a9c8b4-25ef-4acc-8fbb-18977e345564.webp",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 0,
+            "drawer_show_notice": true,
+            "drawer_heading": "Private Sale",
+            "drawer_text": "<p>Für alle Newsletter Abonnenten gibt es einen Rabatt von bis zu -10%. Ab einem Warenkorbwert von 499€ erhältst Du 5% Rabatt, ab einem Warenkorbwert von 999€ erhältst Du 10% Rabatt. Nicht auf bereits reduzierte Produkte. Nicht mit anderen Aktionen kombinierbar. Laufzeit: bis zum 29.08.2025. Nur für Newsletter Abonnenten.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "slide_dTVVTp"
+      ],
+      "disabled": true,
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 21,
+        "slide_height_mobile": 430,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "heading_subheading_dKy7b6": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "column",
+        "heading": "✉️ 🛀 Melde Dich zum Newsletter an und protifitere von exklusiven Vorteilen",
+        "heading_tag": "3",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "<p>Bleibe auf dem Laufenden und erhalte exklusive Angebote, Rabattaktionen und Trends. Wir stärken unsere Community! </p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "newsletter_EEk7pJ": {
+      "type": "newsletter",
+      "name": "Newsletter Form",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "embed_code": "<div class=\"klaviyo-form-R6AuQx\"></div>",
+        "legal_notice": ""
+      }
+    },
+    "heading_subheading_DEk7pJ": {
+      "type": "heading-subheading",
+      "disabled": true,
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 0,
+        "layout": "row",
+        "heading": "So einfach geht's:",
+        "heading_tag": "4",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "custom_html_iCRp9L": {
+      "type": "custom-html",
+      "disabled": true,
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<!-- Google Fonts: Jost -->\n<link href=\"https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap\" rel=\"stylesheet\">\n\n<style>\n  .newsletter-steps {\n    max-width: 800px;\n    margin: 0 auto;\n    padding: 40px 20px;\n    font-family: 'Jost', sans-serif;\n  }\n\n  .step {\n    display: flex;\n    align-items: center; /* Vertikal mittig ausrichten */\n    gap: 20px;\n    margin-bottom: 40px;\n  }\n\n  .step-number {\n    width: 48px;\n    height: 48px;\n    background-color: #111111;\n    color: #ffffff;\n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 600;\n    font-size: 18px;\n    flex-shrink: 0;\n  }\n\n  .step-text {\n    font-size: 16px;\n    line-height: 1.5;\n    flex: 1;\n  }\n\n  @media (max-width: 600px) {\n    .step {\n      flex-direction: row;\n      align-items: flex-start;\n    }\n\n    .step-number {\n      margin-top: 4px;\n    }\n  }\n</style>\n\n<div class=\"newsletter-steps\">\n  <div class=\"step\">\n    <div class=\"step-number\">1</div>\n    <div class=\"step-text\">Melde Dich zum Newsletter an und bestätige die erste E-Mail.</div>\n  </div>\n\n  <div class=\"step\">\n    <div class=\"step-number\">2</div>\n    <div class=\"step-text\">Nach der Bestätigung erhältst Du in einer neuen E-Mail Deinen Rabattcode.</div>\n  </div>\n\n  <div class=\"step\">\n    <div class=\"step-number\">3</div>\n    <div class=\"step-text\">\n      Ab einem Warenkorbwert von 499 € sparst Du 5 % auf Deine gesamte Bestellung. Ab einem Warenkorbwert von 999 € sogar 10 %. Viel Spaß!\n    </div>\n  </div>\n</div>"
+      }
+    },
+    "heading_subheading_VTBFNB": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 40,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_RYr9JQ",
+    "heading_subheading_dKy7b6",
+    "newsletter_EEk7pJ",
+    "heading_subheading_DEk7pJ",
+    "custom_html_iCRp9L",
+    "heading_subheading_VTBFNB"
+  ]
+}

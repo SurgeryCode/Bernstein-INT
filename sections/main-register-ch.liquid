@@ -1,0 +1,635 @@
+{{ 'section-main-register.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'customer-registration.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'custom-b2b-registration.js' | asset_url }}" defer="defer"></script>
+
+<div class="container">
+    <div class="customer customer--register">
+        <h1 class="customer__heading f-48">{{ 'customer.register.title' | t }}</h1>
+
+        <customer-registration data-b2b-countries="{{ settings.b2b_countries }}">
+            <form-validate>
+                {%- form 'create_customer', class: 'customer-form customer-form--register' -%}
+                    {%- if form.errors -%}
+                        <div class="form-errors">
+                            {%- for field in form.errors -%}
+                                <p>{{ form.errors.messages[field] }}</p>
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+
+                    <input type="hidden" name="return_to" value="/account/register">
+
+                    <fieldset class="fieldset fieldset--account-type">
+                        <legend>{{ 'customer.account.account_type.label' | t }} <span class="asterisk">*</span></legend>
+
+                        <div class="fieldset__item fieldset__item--radio">
+                            <input type="radio" id="account-type-private" name="customer-type" value="private" checked required>
+                            <label for="account-type-private">{{ 'customer.account.account_type.b2c' | t }}</label>
+                        </div>
+
+                        <div class="fieldset__item fieldset__item--radio">
+                            <input type="radio" id="account-type-company" name="customer-type" value="company">
+                            <label for="account-type-company">{{ 'customer.account.account_type.b2b' | t }}</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="RegisterForm-GenderGroup" class="fieldset fieldset--gender" radio-required>
+                        <legend>{{ 'customer.account.gender.label' | t }} <span class="asterisk">*</span></legend>
+
+                        <div class="fieldset__item fieldset__item--radio">
+                            <input type="radio" id="gender-female" name="customer[note][gender]" value="female" required>
+                            <label for="gender-female">{{ 'customer.account.gender.female' | t }}</label>
+                        </div>
+
+                        <div class="fieldset__item fieldset__item--radio">
+                            <input type="radio" id="gender-male" name="customer[note][gender]" value="male">
+                            <label for="gender-male">{{ 'customer.account.gender.male' | t }}</label>
+                        </div>
+
+                        <div class="fieldset__item fieldset__item--radio">
+                            <input type="radio" id="gender-unspecified" name="customer[note][gender]" value="unspecified">
+                            <label for="gender-unspecified">{{ 'customer.account.gender.unspecified' | t }}</label>
+                        </div>
+                    </fieldset>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <input
+                                type="text"
+                                name="customer[first_name]"
+                                id="RegisterForm-FirstName"
+                                {% if form.first_name %}
+                                value="{{ form.first_name }}"
+                                {% endif %}
+                                placeholder="{{ 'customer.register.first_name' | t }}"
+                                aria-required="true"
+                                required
+                            >
+                            <label for="RegisterForm-FirstName">
+                                <span>{{ 'customer.register.first_name' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <input
+                                type="text"
+                                name="customer[last_name]"
+                                id="RegisterForm-LastName"
+                                {% if form.last_name %}
+                                value="{{ form.last_name }}"
+                                {% endif %}
+                                placeholder="{{ 'customer.register.last_name' | t }}"
+                                aria-required="true"
+                                required
+                            >
+                            <label for="RegisterForm-LastName">
+                                <span>{{ 'customer.register.last_name' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row field-row--company">
+                        <div class="field field--1-1">
+                            {%- render 'vat-validation' -%}
+                        </div>
+                    </div>
+
+                    <div class="field-row field-row--company">
+                        <div class="field field--1-1">
+                            <input
+                                type="text"
+                                name="customer[note][company]"
+                                id="RegisterForm-Company"
+                                placeholder="{{ 'customer.register.company' | t }}"
+                                conditional-required="account-type-company"
+                                required
+                            >
+                            <label for="RegisterForm-Company">
+                                <span>{{ 'customer.register.company' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row field-row--company">
+                        <div class="field field--1-1">
+                            <input
+                                type="text"
+                                name="customer[note][department]"
+                                id="RegisterForm-Department"
+                                placeholder="{{ 'customer.register.department' | t }}"
+                            >
+                            <label for="RegisterForm-Department">
+                                <span>{{ 'customer.register.department' | t }}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <input
+                                type="email"
+                                name="customer[email]"
+                                id="RegisterForm-email"
+                                {% if form.email %}
+                                value="{{ form.email }}"
+                                {% endif %}
+                                spellcheck="false"
+                                autocapitalize="off"
+                                aria-required="true"
+                                {% if form.errors contains 'email' %}
+                                aria-invalid="true"
+                                {% endif %}
+                                placeholder="{{ 'customer.register.email' | t }}"
+                                required
+                            >
+                            <label for="RegisterForm-email">
+                                <span>{{ 'customer.register.email' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <input
+                                type="password"
+                                name="customer[password]"
+                                id="RegisterForm-password"
+                                {% if form.errors contains 'password' %}
+                                aria-invalid="true"
+                                {% endif %}
+                                placeholder="{{ 'customer.register.password' | t }}"
+                                aria-required="true"
+                                required
+                            >
+                            <label for="RegisterForm-password">
+                                <span>{{ 'customer.register.password' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                            <button 
+                                type="button"
+                                class="button-show-password"
+                                data-show-password
+                                aria-expanded="false">
+                                    {%- render 'svg-icon', name: 'eye' -%}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field-row field-row--small">
+                        <div class="field field--1-1 field--password-info">
+                            <p>{{ 'customer.password_info_html' | t }}</p>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <input
+                                type="password"
+                                name="customer[password_confirmation]"
+                                id="RegisterForm-password-confirmation"
+                                {% if form.errors contains 'password-confirmation' %}
+                                aria-invalid="true"
+                                {% endif %}
+                                placeholder="{{ 'customer.register.password_confirmation' | t }}"
+                                aria-required="true"
+                                required
+                                data-match-error-message="{{ 'customer.register.password_confirmation_error' | t }}"
+                            >
+                            <label for="RegisterForm-password-confirmation">
+                                <span>{{ 'customer.register.password_confirmation' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                            <button 
+                                type="button"
+                                class="button-show-password"
+                                data-show-password
+                                aria-expanded="false">
+                                    {%- render 'svg-icon', name: 'eye' -%}
+                            </button>
+                        </div>
+                    </div>
+
+                    <fieldset class="fieldset fieldset--birthday" id="RegisterForm-Birthday">
+                        <legend>{{ 'customer.register.birthdate' | t }}</legend>
+
+                        <div class="fieldset__date">
+                            <div class="fieldset__item fieldset__item--select fieldset__item--select-day">
+                                <div class="select-hld">
+                                    <select
+                                        name="birthday-day" 
+                                        id="RegisterForm-birthday-day"
+                                        data-error-message="{{ 'customer.register.birthday.day_error' | t }}"
+                                    >
+                                        <option value="" selected>{{ 'customer.register.birthday.day' | t }}</option>
+                                        {%- for i in (1..31) -%}
+                                            {% assign value = i | prepend: '00' | slice: -2, 2 %}
+                                            <option value="{{ value }}">{{ value }}</option>
+                                        {%- endfor -%}
+                                    </select>
+                                    <div class="chevron">
+                                        {% render 'svg-icon', name: 'chevron-down' %}
+                                    </div>
+                                    <label for="RegisterForm-birthday-day">
+                                        <span>{{ 'customer.register.birthday.day' | t }}</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="fieldset__item fieldset__item--select fieldset__item--select-month">
+                                <div class="select-hld">
+                                    <select
+                                        name="birthday-month"
+                                        id="RegisterForm-birthday-month" 
+                                        data-error-message="{{ 'customer.register.birthday.month_error' | t }}"
+                                    >
+                                        <option value="" selected>{{ 'customer.register.birthday.month' | t }}</option>
+                                        {%- for i in (1..12) -%}
+                                            {% assign value = i | prepend: '00' | slice: -2, 2 %}
+                                            <option value="{{ value }}">{{ 'dates.months_short.' | append: value | t }}</option>
+                                        {%- endfor -%}
+                                    </select>
+                                    <div class="chevron">
+                                        {% render 'svg-icon', name: 'chevron-down' %}
+                                    </div>
+                                    <label for="RegisterForm-birthday-month">
+                                        <span>{{ 'customer.register.birthday.month' | t }}</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="fieldset__item fieldset__item--select fieldset__item--select-year">
+                                <div class="select-hld">
+                                    <select
+                                        name="birthday-year"
+                                        id="RegisterForm-birthday-year" 
+                                        data-error-message="{{ 'customer.register.birthday.year_error' | t }}"
+                                    >
+                                        <option value="" selected>{{ 'customer.register.birthday.year' | t }}</option>
+                                        {%- liquid
+                                            assign current_year = 'now' | date: '%Y' | minus: 12
+                                            assign years = (1900..current_year) | reverse
+                                        -%}
+                                        {%- for i in years -%}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {%- endfor -%}
+                                    </select>
+                                    <div class="chevron">
+                                        {% render 'svg-icon', name: 'chevron-down' %}
+                                    </div>
+                                    <label for="RegisterForm-birthday-year">
+                                        <span>{{ 'customer.register.birthday.year' | t }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <input type="hidden" name="customer[note][birthday]" value="" data-input-birthday data-error-message="{{ 'customer.register.birthday.invalid' | t }}">
+                    </fieldset>
+
+
+                    <span class="customer-form__heading">{{ 'customer.register.address_title' | t }}</span>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <input
+                                type="text"
+                                name="address1-0"
+                                id="RegisterForm-address"
+                                spellcheck="false"
+                                autocapitalize="off"
+                                aria-required="true"
+                                placeholder="{{ 'customer.register.address' | t }}"
+                                required
+                            >
+                            <label for="RegisterForm-address">
+                                <span>{{ 'customer.register.address' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <input
+                                type="text"
+                                name="address2-0"
+                                id="RegisterForm-address-secondary"
+                                spellcheck="false"
+                                autocapitalize="off"
+                                placeholder="{{ 'customer.register.address_secondary' | t }}"
+                            >
+                            <label for="RegisterForm-address">
+                                <span>{{ 'customer.register.address_secondary' | t }}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-4">
+                            <input
+                                type="text"
+                                name="zip-0"
+                                id="RegisterForm-zip"
+                                spellcheck="false"
+                                autocapitalize="off"
+                                aria-required="true"
+                                placeholder="{{ 'customer.register.zip' | t }}"
+                                required
+                            >
+                            <label for="RegisterForm-zip">
+                                <span>{{ 'customer.register.zip' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                        <div class="field field--3-4">
+                            <input
+                                type="text"
+                                name="city-0"
+                                id="RegisterForm-city"
+                                spellcheck="false"
+                                autocapitalize="off"
+                                aria-required="true"
+                                placeholder="{{ 'customer.register.city' | t }}"
+                                required
+                            >
+                            <label for="RegisterForm-city">
+                                <span>{{ 'customer.register.city' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <div class="select-hld">
+                                <select
+                                    name="country-0"
+                                    id="RegisterForm-country"
+                                    required
+                                >
+                                    <option value="" disabled selected >{{ 'customer.register.country' | t }}</option>
+                                    {{ all_country_option_tags | remove: '<option value="---" data-provinces="[]">---</option>' }}
+                                </select>
+                                <div class="chevron">
+                                    {% render 'svg-icon', name: 'chevron-down' %}
+                                </div>
+                                <label for="RegisterForm-country">
+                                    <span>{{ 'customer.register.country' | t }}</span>
+                                    <span class="asterisk">*</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-2">
+                            <input
+                                type="tel"
+                                name="phone-0"
+                                id="RegisterForm-phone"
+                                spellcheck="false"
+                                autocapitalize="off"
+                                aria-required="true"
+                                placeholder="{{ 'customer.register.phone' | t }}"
+                                required
+                            >
+                            <label for="RegisterForm-phone">
+                                <span>{{ 'customer.register.phone' | t }}</span>
+                                <span class="asterisk">*</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1 field--required-info">
+                            <p>{{ 'customer.required_info_html' | t }}</p>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <div class="checkbox-hld checkbox-hld--different-address">
+                                <input
+                                    type="checkbox"
+                                    id="RegisterForm-different-shipping-address"
+                                    class="visually-hidden"
+                                >
+                                <label for="RegisterForm-different-shipping-address">
+                                    {% render 'svg-icon', name: 'check-mark' %}
+                                    {{ 'customer.register.different_shipping_address' | t }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="customer-form__shipping-address">
+                        <span class="customer-form__heading">{{ 'customer.register.shipping_address_title' | t }}</span>
+
+                        <div class="field-row">
+                            <div class="field field--1-1">
+                                <input
+                                    type="text"
+                                    name="first_name-1" 
+                                    id="RegisterForm-shipping-FirstName"
+                                    placeholder="{{ 'customer.register.first_name' | t }}"
+                                    conditional-required="RegisterForm-different-shipping-address"
+                                >
+                                <label for="RegisterForm-shipping-FirstName">
+                                    <span>{{ 'customer.register.first_name' | t }}</span>
+                                    <span class="asterisk">*</span>
+                                </label>
+                            </div>
+                        </div>
+    
+                        <div class="field-row">
+                            <div class="field field--1-1">
+                                <input
+                                    type="text"
+                                    name="last_name-1" 
+                                    id="RegisterForm-shipping-LastName"
+                                    placeholder="{{ 'customer.register.last_name' | t }}"
+                                    conditional-required="RegisterForm-different-shipping-address"
+                                >
+                                <label for="RegisterForm-shipping-LastName">
+                                    <span>{{ 'customer.register.last_name' | t }}</span>
+                                    <span class="asterisk">*</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="field-row">
+                            <div class="field field--1-1">
+                                <input
+                                    type="text"
+                                    name="address1-1"
+                                    id="RegisterForm-shipping-address"
+                                    value=""
+                                    spellcheck="false"
+                                    autocapitalize="off"
+                                    placeholder="{{ 'customer.register.address' | t }}"
+                                    conditional-required="RegisterForm-different-shipping-address"
+                                >
+                                <label for="RegisterForm-shipping-address">
+                                    <span>{{ 'customer.register.address' | t }}</span>
+                                    <span class="asterisk">*</span>
+                                </label>
+                            </div>
+                        </div>
+        
+                        <div class="field-row">
+                            <div class="field field--1-1">
+                                <input
+                                    type="text"
+                                    name="address2-1"
+                                    id="RegisterForm-shipping-address-secondary"
+                                    value=""
+                                    spellcheck="false"
+                                    autocapitalize="off"
+                                    placeholder="{{ 'customer.register.address_secondary' | t }}"
+                                >
+                                <label for="RegisterForm-shipping-address-secondary">
+                                    <span>{{ 'customer.register.address_secondary' | t }}</span>
+                                </label>
+                            </div>
+                        </div>
+        
+                        <div class="field-row">
+                            <div class="field field--1-4">
+                                <input
+                                    type="text"
+                                    name="zip-1"
+                                    id="RegisterForm-shipping-zip"
+                                    value=""
+                                    spellcheck="false"
+                                    autocapitalize="off"
+                                    placeholder="{{ 'customer.register.zip' | t }}"
+                                    conditional-required="RegisterForm-different-shipping-address"
+                                >
+                                <label for="RegisterForm-shipping-zip">
+                                    <span>{{ 'customer.register.zip' | t }}</span>
+                                    <span class="asterisk">*</span>
+                                </label>
+                            </div>
+                            <div class="field field--3-4">
+                                <input
+                                    type="text"
+                                    name="city-1"
+                                    id="RegisterForm-shipping-city"
+                                    value=""
+                                    spellcheck="false"
+                                    autocapitalize="off"
+                                    placeholder="{{ 'customer.register.city' | t }}" 
+                                    conditional-required="RegisterForm-different-shipping-address"
+                                >
+                                <label for="RegisterForm-shipping-city">
+                                    <span>{{ 'customer.register.city' | t }}</span>
+                                    <span class="asterisk">*</span>
+                                </label>
+                            </div>
+                        </div>
+        
+                        <div class="field-row">
+                            <div class="field field--1-1">
+                                <div class="select-hld">
+                                    <select
+                                        name="country-1"
+                                        id="RegisterForm-shipping-country"
+                                        conditional-required="RegisterForm-different-shipping-address"
+                                    >
+                                        <option value="" disabled selected>{{ 'customer.register.country' | t }}</option>
+                                        {{ all_country_option_tags | remove: '<option value="---" data-provinces="[]">---</option>' }}
+                                    </select>
+                                    <div class="chevron">
+                                        {% render 'svg-icon', name: 'chevron-down' %}
+                                    </div>
+                                    <label for="RegisterForm-shipping-country">
+                                        <span>{{ 'customer.register.country' | t }}</span>
+                                        <span class="asterisk">*</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field-row">
+                            <div class="field field--1-2">
+                                <input
+                                    type="tel"
+                                    name="phone-1"
+                                    id="RegisterForm-shipping-phone"
+                                    spellcheck="false"
+                                    autocapitalize="off"
+                                    aria-required="true"
+                                    placeholder="{{ 'customer.register.phone' | t }}"
+                                    conditional-required="RegisterForm-different-shipping-address"
+                                >
+                                <label for="RegisterForm-shipping-phone">
+                                    <span>{{ 'customer.register.phone' | t }}</span>
+                                    <span class="asterisk">*</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field field--1-1">
+                            <div class="checkbox-hld checkbox-hld--newsletter">
+                                <input type="hidden" name="customer[accepts_marketing]" value="false" />
+                                <input
+                                    type="checkbox"
+                                    name="customer[accepts_marketing]"
+                                    id="RegisterForm-newsletter"
+                                    class="visually-hidden"
+                                >
+                                <label for="RegisterForm-newsletter">
+                                    {% render 'svg-icon', name: 'check-mark' %}
+                                    {{ 'customer.register.newsletter' | t }}
+                                </label>
+                                {%- if settings.forms_newsletter_info != blank -%}
+                                    <div class="form-newsletter-info">
+                                        {{ settings.forms_newsletter_info }}
+                                    </div>
+                                {%- endif -%}
+                            </div>
+                        </div>
+                    </div>
+
+                    {%- if settings.forms_privacy_info != blank -%}
+                        <div class="field-row field-row--privacy">
+                            <div class="field field--1-1 field--privacy-info">
+                                {{ settings.forms_privacy_info }}
+                                {{ settings.forms_privacy_content }}
+                            </div>
+                        </div>
+                    {%- endif -%}
+
+                    <div class="customer-form__submit-hld">
+                        <button class="button button--xlarge" type="submit">{{ 'customer.register.submit' | t }}</button>
+                    </div>
+
+                    <div class="customer-form__link-hld">
+                        <p>{{ 'customer.register.have_account' | t }}&nbsp;</p>
+                        <a href="{{ routes.account_login_url }}" class="customer-form__link text-link text-link--reverse f-14 w-medium upper spaced">
+                            <span>{{ 'account.login.button' | t }}</span>
+                        </a>
+                    </div>
+                {%- endform -%}
+            </form-validate>
+        </customer-registration>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Register CH",
+    "tag": "section",
+    "class": "section section--register",
+    "settings": []
+}
+{% endschema %}

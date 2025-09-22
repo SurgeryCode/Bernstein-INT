@@ -1,0 +1,19 @@
+{%- liquid
+  assign price = price
+  if customer.tags contains 'b2b' or customer.tags contains 'B2B'
+    assign price = price | divided_by: 1.19 | round: 2
+
+    unless remove_extra_discount
+      assign discount = customer.metafields.wholesale.discount.value
+      if discount
+        assign calculated_discount = 100.0 | minus: discount | divided_by: 100
+        assign price = price | times: calculated_discount | round: 2
+      endif
+    endunless
+  endif
+-%}
+{%- if format == 'currency' -%}
+  {{ price | money_with_currency }}
+{%- else -%}
+  {{ price | money }}
+{%- endif -%}

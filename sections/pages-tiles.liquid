@@ -1,0 +1,74 @@
+<script src="{{ 'countdown-timer.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'pages-tiles.js' | asset_url }}" defer="defer"></script>
+<link rel="stylesheet" href="{{ 'section-page-tile.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  {{ 'section-page-tile.css' | asset_url | stylesheet_tag }}
+</noscript>
+<div class="container">
+    <div class="page-preview-tile__wrapper">
+        {% for block in section.blocks %}
+        {% assign is_full = forloop.index | modulo: 3 %}
+            <page-preview-tile 
+                class="tile--{{ block.settings.style_variant }} {% if is_full == 0 %}tile--full{% endif %}"
+                page-url="{{ block.settings.page_handle }}" 
+                block-id="{{ block.id }}">
+                <a href="{{ block.settings.page_handle }}">
+                    <img src="" class="tile_background" id="tile_{{ block.id }}" loading="lazy">
+                    <div class="tile_badge" id="badge_{{ block.id }}"></div>
+                    <div class="tile_title" id="title_{{ block.id }}"></div>
+                    <div class="tile_subtitle" id="subtitle_{{ block.id }}"></div>
+                    <div class="tile_bottom-wrapper">
+                        <span href="{{ block.settings.page_handle }}" class="button button--outline">ENTDECKEN</span>
+                        <div class="tile_counter" id="counter_{{ block.id }}"></div>
+                    </div>
+                </a>
+            </page-preview-tile>
+        {% endfor %}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Pages tiles",
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        {
+          "type": "url",
+          "id": "page_handle",
+          "label": "Page"
+        },
+        {
+            "type": "select",
+            "id": "style_variant",
+            "label": "Select content outside or inside the box",
+            "default": "outside",
+            "options": [
+                {
+                    "label": "Outside",
+                    "value": "outside"
+                },
+                {
+                    "label": "Inside",
+                    "value": "inside"
+                }
+            ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pages tiles",
+      "blocks": [
+        {
+          "type": "tile"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

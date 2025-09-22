@@ -1,0 +1,112 @@
+{{ 'component-collection-link-list.css' | asset_url | stylesheet_tag: preload: true }}
+{% assign current_path = request.path %}
+{% assign rendered = false %}
+<div class="link-list__container">
+{% for level1 in linklists.collectionlevellinks.links %}
+  {% if level1.url == current_path %}
+    <div class="link-list collection-menu-swiper">
+            <div class="link-list__wrapper">
+                {% for level2 in level1.links %}
+                <div class="link-list__item">
+                    <a href="{{ level2.url }}">{{ level2.title }}</a>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+    <div class="collection-menu-gradients">
+      <span class="grad-left"></span>
+      <span class="grad-right"></span>
+    </div>
+  {% else %}
+    {% for level2 in level1.links %}
+      {% if level2.url == current_path %}
+        {% if level2.links.size > 0 and rendered == false %}
+          {% assign rendered = true %}
+          <div class="link-list collection-menu-swiper">
+                <div class="link-list__wrapper">
+                {% for level3 in level2.links %}
+                    <div class="link-list__item">
+                    <a href="{{ level3.url }}">{{ level3.title }}</a>
+                    </div>
+                {% endfor %}
+                </div>
+          </div>
+          <div class="collection-menu-gradients">
+            <span class="grad-left"></span>
+            <span class="grad-right"></span>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const containers = document.querySelectorAll('.collection-menu-swiper');
+  
+    containers.forEach(container => {
+      const checkScroll = () => {
+        const scrollLeft = Math.round(container.scrollLeft);
+        const scrollWidth = Math.round(container.scrollWidth);
+        const clientWidth = Math.round(container.clientWidth);
+  
+        const hasLeft = scrollLeft > 2;
+        const hasRight = scrollLeft + clientWidth < scrollWidth - 2;
+  
+        container.classList.toggle('has-left', hasLeft);
+        container.classList.toggle('has-right', hasRight);
+      };
+  
+      container.addEventListener('scroll', checkScroll, { passive: true });
+      window.addEventListener('resize', checkScroll);
+      checkScroll();
+  
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+  
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        container.classList.add('active');
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        e.preventDefault();
+      });
+  
+      container.addEventListener('mouseleave', () => {
+        isDown = false;
+        container.classList.remove('active');
+      });
+  
+      container.addEventListener('mouseup', () => {
+        isDown = false;
+        container.classList.remove('active');
+      });
+  
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+  
+      let touchStartX = 0;
+      let touchScrollLeft = 0;
+  
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].pageX - container.offsetLeft;
+        touchScrollLeft = container.scrollLeft;
+      }, { passive: true });
+  
+      container.addEventListener('touchmove', (e) => {
+        const x = e.touches[0].pageX - container.offsetLeft;
+        const walk = (x - touchStartX) * 2;
+        container.scrollLeft = touchScrollLeft - walk;
+      }, { passive: true });
+    });
+  });
+  
+  
+  </script>

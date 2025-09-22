@@ -1,0 +1,334 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_rTJFd7": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_diYdXw": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>-20% SALE </p>",
+            "badge_text_color": "#c7204f",
+            "badge_background_color": "#ffffff",
+            "badge_padding": 22,
+            "subtitle": "Sommerfinale",
+            "title": "LETZTE CHANCE",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "2025-09-03 23:59:59",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Sommerfinale_Desktop_final.webp",
+            "image_tablet": "shopify://shop_images/Sommerfinale_tablet_final.webp",
+            "image_mobile": "shopify://shop_images/Sommer-finale_Mob_final.webp",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 0,
+            "drawer_show_notice": true,
+            "drawer_heading": "SOMMERFINALE",
+            "drawer_text": "<p>Bis zu -20% Rabatt auf ausgewählte Produkte. Aktion läuft bis 03.09.2025. Nicht mit anderen Rabatten kombinierbar. Nur solange der Vorrat reicht. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "slide_diYdXw"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 24,
+        "slide_height_mobile": 430,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "product_carousel_JwNWa7": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_i8whcU": {
+          "type": "category",
+          "settings": {
+            "title": "Beliebt im Sale",
+            "products": [
+              "walk-in-10mm-nano-klarglas-ex102",
+              "wandnische-weiss-aus-mineralguss-ba2513",
+              "aufsatzwaschbecken-nt2430",
+              "bernstein-spuelrandloses-wand-haenge-wc-nt2039",
+              "duschtasse-duschwanne-rechteckig-140x90cm-inkl-ablaufgarnitur",
+              "duravit-duracielo-aufsatzwaschbecken-1",
+              "aufsatzwaschbecken-nt3155"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_i8whcU"
+      ],
+      "settings": {
+        "heading": "Beliebt im Sale %",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": "MEHR ANSEHEN"
+      }
+    },
+    "teaser_element_fYYMMe": {
+      "type": "teaser-element",
+      "blocks": {
+        "tile_qjEYXX": {
+          "type": "tile",
+          "settings": {
+            "badge": "LETZTE CHANCE",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#d64b56",
+            "subtitle": "",
+            "title": "Waschbecken",
+            "title_tag": "p",
+            "button_url": "https://bernstein-badshop.de/collections/sale?sort_by=best-selling&filter.p.m.filter.coll=Waschbecken&page=1&view=all",
+            "button_label": "Alle ansehen",
+            "image": "shopify://shop_images/3er_Teaser_Sale_Waschbecken.jpg",
+            "overlay": 0
+          }
+        },
+        "tile_XJ7DXX": {
+          "type": "tile",
+          "settings": {
+            "badge": "BIS ZU -20%",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#d64b56",
+            "subtitle": "",
+            "title": "Duschen & Zubehör",
+            "title_tag": "p",
+            "button_url": "https://bernstein-badshop.de/collections/sale?sort_by=best-selling&filter.p.m.filter.coll=Duscharmaturen&filter.p.m.filter.coll=Duschen&filter.p.m.filter.coll=Duschk%C3%B6pfe&filter.p.m.filter.coll=Duschstangen&filter.p.m.filter.coll=Duschsysteme&filter.p.m.filter.coll=Wandnischen&page=1&view=all",
+            "button_label": "Alle ansehen",
+            "image": "shopify://shop_images/3er_Teaser_Sale_Duschen.jpg",
+            "overlay": 0
+          }
+        },
+        "tile_qAYJMM": {
+          "type": "tile",
+          "settings": {
+            "badge": "SPAREN LOHNT SICH",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#d64b56",
+            "subtitle": "",
+            "title": "Badewannen & Co.",
+            "title_tag": "p",
+            "button_url": "https://bernstein-badshop.de/collections/sale?sort_by=best-selling&filter.p.m.filter.coll=Badewannen&filter.p.m.filter.coll=Badewannenarmaturen&page=1&view=all",
+            "button_label": "Alle ansehen",
+            "image": "shopify://shop_images/3er_Teaser_Sale_Badewannen.jpg",
+            "overlay": 0
+          }
+        }
+      },
+      "block_order": [
+        "tile_qjEYXX",
+        "tile_XJ7DXX",
+        "tile_qAYJMM"
+      ],
+      "name": "Teaser element",
+      "settings": {
+        "teaser_style": "plain"
+      }
+    },
+    "heading_subheading_EUq9Yf": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 80,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "ALLE SALE PRODUKTE",
+        "button_link": "shopify://collections/sale",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "teaser_element_Q3DKyW": {
+      "type": "teaser-element",
+      "blocks": {
+        "tile_FrHN6K": {
+          "type": "tile",
+          "settings": {
+            "badge": "SUMMER SALE",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#f22c00",
+            "subtitle": "",
+            "title": "Badewannen",
+            "title_tag": "p",
+            "button_url": "https://bernstein-badshop.de/collections/sale?filter.p.m.filter.coll=Badewannen&page=1&view=all",
+            "button_label": "Alle ansehen",
+            "image": "shopify://shop_images/Sale_-_Badewanne.jpg",
+            "overlay": 0
+          }
+        },
+        "tile_z7gPRU": {
+          "type": "tile",
+          "settings": {
+            "badge": "SUMMER SALE",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#f22c00",
+            "subtitle": "",
+            "title": "WCs",
+            "title_tag": "p",
+            "button_url": "https://bernstein-badshop.de/collections/sale?filter.p.m.filter.coll=Dusch-WCs&filter.p.m.filter.coll=WCs&page=1&view=all",
+            "button_label": "Alle ansehen",
+            "image": "shopify://shop_images/Sale_-WC.jpg",
+            "overlay": 0
+          }
+        },
+        "tile_3YNiG7": {
+          "type": "tile",
+          "settings": {
+            "badge": "SUMMER SALE",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#f22c00",
+            "subtitle": "",
+            "title": "Duschen",
+            "title_tag": "p",
+            "button_url": "https://bernstein-badshop.de/collections/sale?filter.p.m.filter.coll=Duschen&filter.p.m.filter.coll=Duschk%C3%B6pfe&filter.p.m.filter.coll=Duschrinnen&filter.p.m.filter.coll=Duschsysteme&filter.p.m.filter.coll=Duschwannen&page=1&view=all",
+            "button_label": "Alle ansehen",
+            "image": "shopify://shop_images/Sale_-_Duschen.jpg",
+            "overlay": 0
+          }
+        }
+      },
+      "block_order": [
+        "tile_FrHN6K",
+        "tile_z7gPRU",
+        "tile_3YNiG7"
+      ],
+      "disabled": true,
+      "name": "Teaser element",
+      "settings": {
+        "teaser_style": "plain"
+      }
+    },
+    "heading_subheading_zrhNMN": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 92,
+        "padding_bottom": 16,
+        "layout": "row",
+        "heading": "Weitere Produkte im Sale %",
+        "heading_tag": "3",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_list_element_LF6hHW": {
+      "type": "product-list-element",
+      "name": "Product List Element",
+      "settings": {
+        "products": [],
+        "collection": "sale",
+        "url_products": "",
+        "products_limit": 32
+      }
+    },
+    "heading_subheading_b4KYEh": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "ALLE SALE PRODUKTE",
+        "button_link": "shopify://collections/sale",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_7j9kbC": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "contact_person_DMQHVx": {
+      "type": "contact-person",
+      "disabled": true,
+      "settings": {
+        "portrait": "shopify://shop_images/Telefonberatung_image.png",
+        "name": "",
+        "heading": "Deine persönliche Beratung – kostenlos.",
+        "text": "Lass Dich von unseren Experten zu Deinem Badvorhaben beraten. Telefonisch oder vor Ort in unseren Showrooms. Wir freuen uns auf Dich.",
+        "button_url": "https://bernstein-badshop.de/pages/showrooms",
+        "button_text": "Beratungstermin vereinbaren",
+        "button_target": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_rTJFd7",
+    "product_carousel_JwNWa7",
+    "teaser_element_fYYMMe",
+    "heading_subheading_EUq9Yf",
+    "teaser_element_Q3DKyW",
+    "heading_subheading_zrhNMN",
+    "product_list_element_LF6hHW",
+    "heading_subheading_b4KYEh",
+    "heading_subheading_7j9kbC",
+    "contact_person_DMQHVx"
+  ]
+}

@@ -1,0 +1,175 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "b2b_intro_ihyNEj": {
+      "type": "b2b-intro",
+      "blocks": {
+        "item_6HCK4t": {
+          "type": "item",
+          "settings": {
+            "text": "Installateure, Fliesengewerbe, Renovierungsbetriebe",
+            "icon": "shopify://shop_images/icon-design_6b550dbd-cb39-41b6-967c-2072b87898a3.svg"
+          }
+        },
+        "item_Niijhg": {
+          "type": "item",
+          "settings": {
+            "text": "Showrooms, Händler, Fachgeschäfte, Vertriebspartner online oder im retail",
+            "icon": "shopify://shop_images/icon-discount.svg"
+          }
+        },
+        "item_DkXMAf": {
+          "type": "item",
+          "settings": {
+            "text": "Hotels, Baugewerbe, Immobilienprofis, Projektgeschäfte",
+            "icon": "shopify://shop_images/icon-home.svg"
+          }
+        }
+      },
+      "block_order": [
+        "item_6HCK4t",
+        "item_Niijhg",
+        "item_DkXMAf"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/b2b-intro.jpg",
+        "heading_main": "Von Bernstein direkt für Dich!",
+        "text_main": "Herzlich willkommen bei Bernstein, wo wir nicht nur Produkte verkaufen, sondern eine Vision leben: Aufbrechen und neu denken, um das Bad neu zu definieren. Bei uns findest Du nicht nur eine breite Auswahl an hochwertigen Badezimmerlösungen, sondern auch den Geist der Innovation und des Designs\n\nWerde jetzt Bernstein – Partner  und erlebe, wie wir Deine Projekte mit Leidenschaft und Fachwissen unterstützen.",
+        "button_text": "Jetzt Partner werden",
+        "button_link": "",
+        "scroll_to_selector": ".section--b2b-how-it-works",
+        "heading_aside": "Exklusiv für:"
+      }
+    },
+    "b2b_perks_j9Pyeq": {
+      "type": "b2b-perks",
+      "blocks": {
+        "item_cCbdd6": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-sale.svg",
+            "title": "Exklusive Angebote",
+            "text": "Entdecke unsere exklusiven Angebote. Als Bernstein –Partner findest Du innovative Ideen, exzellentes Design und dauerhafte Qualität zum besten Preis."
+          }
+        },
+        "item_37cpw9": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-profile.svg",
+            "title": "Persönliche Fachberatung",
+            "text": "Unsere Experten stehen Dir für eine individuelle Beratung zur Verfügung. Gemeinsam finden wir die optimalen Lösungen für Ihre Projekte und unterstützen Dich bei jedem Schritt."
+          }
+        },
+        "item_PAFcKW": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-cart.svg",
+            "title": "Individuelles Angebot",
+            "text": "Wir erstellen Dir maßgeschneiderte Angebote, die genau auf Deine Bedürfnisse und Anforderungen zugeschnitten sind. Sprich uns an, und wir finden gemeinsam die beste Lösung für Dein Projekt."
+          }
+        }
+      },
+      "block_order": [
+        "item_cCbdd6",
+        "item_37cpw9",
+        "item_PAFcKW"
+      ],
+      "settings": {}
+    },
+    "b2b_form_VJX8XW": {
+      "type": "b2b-form",
+      "settings": {
+        "form_title": "Erstelle Dein B2B-Konto",
+        "form_title_b2b": "Einen Antrag auf Aufnahme in das Pro-Programm stellen",
+        "how_it_works_title": "So wirst Du Bernstein – Partner",
+        "how_it_works_text_1": "Fülle das Formular aus und sende es ab.",
+        "how_it_works_text_2": "Unser Team wird Deine Anfrage prüfen und sich innerhalb von 2 Werktagen mit Dir in Verbindung setzen.",
+        "how_it_works_text_3": "Nach der Genehmigung Deines Partner – Kontos erhältst Du eine E-Mail mit Informationen zu den verfügbaren Vorteilen.",
+        "how_it_works_text_4": "Gebe Deine Bestellung bei Deinem persönlichen Berater auf."
+      }
+    },
+    "filestore_links_ih7zdW": {
+      "type": "filestore-links",
+      "blocks": {
+        "item_yqriP7": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-montage.svg",
+            "title": "Montage",
+            "url": "/pages/dateispeicher?type=montage"
+          }
+        },
+        "item_WHhewQ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design_6b550dbd-cb39-41b6-967c-2072b87898a3.svg",
+            "title": "Maßzeichnungen",
+            "url": "/pages/dateispeicher?type=schematics"
+          }
+        },
+        "item_LLVmKR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-image.svg",
+            "title": "Bilddatenbank",
+            "url": "/pages/dateispeicher?type=images"
+          }
+        },
+        "item_9NMEKH": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-cerftificate.svg",
+            "title": "Zertifikate",
+            "url": "/pages/dateispeicher?type=certificate"
+          }
+        },
+        "item_heG6Uw": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-marketing.svg",
+            "title": "Marketing-Materialien",
+            "url": "/pages/dateispeicher?type=marketing"
+          }
+        }
+      },
+      "block_order": [
+        "item_yqriP7",
+        "item_WHhewQ",
+        "item_LLVmKR",
+        "item_9NMEKH",
+        "item_heG6Uw"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Besuche unseren Dateispeicher",
+        "link_url": "shopify://pages/bedienungsanleitungen",
+        "link_text": "Gehe zum Dateispeicher"
+      }
+    },
+    "collapsible_text_rE6TB7": {
+      "type": "collapsible-text",
+      "disabled": true,
+      "settings": {
+        "content": "<h2>Bernstein SEO</h2><p>Bei Bernstein streben wir danach, Dein Badezimmererlebnis neu zu definieren. Wir achten auf Qualität und Innovation und bieten eine Reihe hochwertiger Badmöbel, Armaturen und Badaccessoires, an, die Form und Funktionalität vereinen. Unsere Mission ist es, Dein Badezimmer in eine Oase des Komforts und Stils zu verwandeln. Entdecke unsere sorgfältig gefertigten Designs und wähle Perfektion für Deinen Raum.</p>",
+        "alignment": "left",
+        "lines_desktop": 5,
+        "lines_mobile": 5
+      }
+    }
+  },
+  "order": [
+    "b2b_intro_ihyNEj",
+    "b2b_perks_j9Pyeq",
+    "b2b_form_VJX8XW",
+    "filestore_links_ih7zdW",
+    "collapsible_text_rE6TB7"
+  ]
+}

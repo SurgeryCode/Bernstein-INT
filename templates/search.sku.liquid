@@ -1,0 +1,23 @@
+{%- layout none -%}
+
+{%- if search.results_count > 0 -%}
+    {%- for product in search.results -%}
+        <div class="product-item product-item--small">
+            <div class="product-item__image">
+                <a href="{{ product.url }}" aria-label="{{ product.title }}">
+                    {%- render 'image', 
+                        image: product.featured_image, 
+                        sizes: '80:340,380:100',
+                        class: 'cover'
+                    -%}
+                </a>
+            </div>
+            <a href="{{ product.url }}" class="f-14 w-medium text-link" title="{{ product.title }}">
+                <span>{{ product.title }}</span>
+            </a>
+            <a href="{{ product.url }}" class="product-item__arrow">
+                {%- render 'svg-icon', name: 'chevron-right' -%}
+            </a>
+        </div>
+    {%- endfor -%}
+{%- endif -%}

@@ -1,0 +1,49 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "intro_88YxHB": {
+      "type": "intro",
+      "settings": {
+        "banner": "shopify://shop_images/pexels-fauxels-3184292_1.jpg",
+        "banner_size": "full",
+        "heading": "Karriere",
+        "text": "<p>Werde Teil der Bernstein Familie und finde heraus, wie bei uns  der Vertrieb einer ganzen Branche neu gedacht wird. Ganz im Sinne unseres Claims: Deine Karriere. Direkt richtig.</p>",
+        "text_2": "",
+        "text_width": "normal",
+        "button_url": "",
+        "button_text": "",
+        "button_target": false
+      }
+    },
+    "work_with_us_cQYxxy": {
+      "type": "work-with-us",
+      "settings": {
+        "heading": "Warum es sich lohnt, <br>bei Bernstein zu arbeiten?",
+        "content": "<p>Beständig, einzigartig und vielseitig wie Bernstein – das sind wir. Bei uns findest Du ein dynamisches und kreatives Umfeld, in dem Deine Ideen wachsen können. Werde Teil unseres Teams und arbeite gemeinsam mit uns an spannenden und innovativen Produkten im Badbereich.</p><ul><li>30 Urlaubstage</li><li>Fahrtkostenzuschuss</li><li>Zusätzlicher Beitrag zur betrieblichen Altersvorsorge</li></ul>",
+        "button_url": "shopify://pages/ueber-uns",
+        "button_label": "MEHR ÜBER BERNSTEIN",
+        "button_target": false,
+        "image": "shopify://shop_images/Bernstein_Team_Karriere.jpg"
+      }
+    },
+    "main": {
+      "type": "careers",
+      "settings": {
+        "heading": "Offene Positionen"
+      }
+    }
+  },
+  "order": [
+    "intro_88YxHB",
+    "work_with_us_cQYxxy",
+    "main"
+  ]
+}

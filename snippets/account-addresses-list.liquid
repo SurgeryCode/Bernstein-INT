@@ -1,0 +1,17 @@
+<div class="account-box account-box--addresses {% if separate_on_desktop == true %}account-box--addresses-separate-on-desktop{% endif %}">
+    {% unless no_title == true %}
+        <span class="account-box__title f-24 w-bold">{{ 'customer.account.addresses' | t }}</span>
+    {% endunless %}
+    <div class="account-box__row">
+        {%- for address in customer.addresses -%}
+            {% if address == customer.default_address %}
+                {% render 'account-addresses-list-item', address: address %}
+            {% endif %}
+        {%- endfor -%}
+        {%- for address in customer.addresses -%}
+            {% unless address == customer.default_address %}
+                {% render 'account-addresses-list-item', address: address %}
+            {% endunless %}
+        {%- endfor -%}
+    </div>
+</div>

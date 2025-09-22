@@ -1,0 +1,271 @@
+<div class="container">
+    <div class="account-hld">
+        <div class="account-left">
+            {% render 'account-main-box' %}
+            {% render 'account-nav', active_item: 'orders' %}
+        </div>
+        <div class="account-right">
+            <h1 class="account-title">{{ 'customer.account.orders' | t }}</h1>
+            <div class="account-content">
+                {%- if customer.orders.size > 0 -%}
+                    {%- for order in customer.orders -%}
+                        <div class="account-order">
+                            <div class="account-order__status">
+                                <ol class="f-14 w-medium">
+                                    {%- if order.financial_status == 'voided' -%}
+                                        <li class="active">
+                                            <span>{{ order.financial_status_label }}</span>
+                                        </li>
+                                    {%- else -%}
+                                        <li class="{% if order.financial_status == 'paid' or order.financial_status == 'partially_paid' or order.financial_status == 'refunded' or order.financial_status == 'refunded' %}active{% endif %}">
+                                            <span>{{ 'customer.order.status.paid' | t }}</span>
+                                        </li>
+                                        <li class="separator">
+                                            <svg width="27" height="49" viewBox="0 0 27 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m1.469 1 24 23.5-24 23.5" stroke="#C5C5C5" stroke-linecap="square"/></svg>
+                                        </li>
+                                        <li class="{% if order.financial_status == 'paid' or order.financial_status == 'partially_paid' or order.financial_status == 'refunded' or order.financial_status == 'refunded' %}active{% endif %}">
+                                            {%- render 'svg-icon', name: 'package' -%}
+                                            <span>{{ 'customer.order.status.in_preparation' | t }}</span>
+                                        </li>
+                                        <li class="separator">
+                                            <svg width="27" height="49" viewBox="0 0 27 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m1.469 1 24 23.5-24 23.5" stroke="#C5C5C5" stroke-linecap="square"/></svg>
+                                        </li>
+                                        <li class="{% if order.fulfillment_status == 'fulfilled' or order.fulfillment_status == 'partial' or order.fulfillment_status == 'complete' %}active{% endif %}">
+                                            {%- render 'svg-icon', name: 'delivery' -%}
+                                            <span>{{ 'customer.order.status.sent' | t }}</span>
+                                        </li>
+                                        {%- if order.financial_status == 'refunded' or order.financial_status == 'refunded' -%}
+                                            <li class="separator">
+                                                <svg width="27" height="49" viewBox="0 0 27 49" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m1.469 1 24 23.5-24 23.5" stroke="#C5C5C5" stroke-linecap="square"/></svg>
+                                            </li>
+                                            <li class="active">
+                                                {%- render 'svg-icon', name: 'returns' -%}
+                                                <span>{{ order.financial_status_label }}</span>
+                                            </li>
+                                        {%- endif -%}
+                                    {%- endif -%}
+                                </ol>
+                            </div>
+
+                            <div class="account-order__body">
+                                <div class="account-order__name">
+                                    {%- if order.financial_status == 'voided' -%}
+                                        <del>{{ 'customer.orders.order_number_link' | t: number: order.name }}</del>
+                                    {%- else -%}
+                                        <span>{{ 'customer.orders.order_number_link' | t: number: order.name }}</span>
+                                    {%- endif -%}
+                                </div>
+
+                                <span class="account-order__date">{{ 'customer.orders.from' | t }} {{ order.created_at | time_tag: format: 'date' }}</span>
+
+                                <div class="account-order__items">
+                                    {%- for line_item in order.line_items -%}
+                                        <div class="account-order__item" data-sku="{{ line_item.sku }}">
+                                            <div class="account-order__item-image">
+                                                {%- liquid 
+                                                    assign classes = 'cover'
+                                                    if line_item.product.metafields.custom.image_fit == 'contain'
+                                                        assign classes = 'contain'
+                                                    endif
+                                                -%}
+                                                {%- render 'image', 
+                                                    image: line_item.image, 
+                                                    sizes: '1199:60,1200:80',
+                                                    class: classes
+                                                -%}
+                                            </div>
+
+                                            <div class="account-order__item-body">
+                                                <div class="account-order__item-title-hld">
+                                                    {%- if line_item.url != blank -%}
+                                                        <a class="account-order__item-title w-medium" href="{{ line_item.url }}">{{ line_item.title }}</a>
+                                                    {%- else -%}
+                                                        <span class="account-order__item-title w-medium">{{ line_item.title }}</span>
+                                                    {%- endif -%}
+        
+                                                    {%- capture properties -%}
+                                                        {%- unless line_item.product.has_only_default_variant -%}
+                                                            {%- for option in line_item.options_with_values -%}
+                                                                <li class="f-12 w-medium"><span>{{ option.name }}:</span> <span class="gray">{{ option.value }}</span></li>
+                                                            {%- endfor -%}
+                                                        {%- endunless -%}
+        
+                                                        {%- for property in line_item.properties -%}
+                                                                {%- liquid 
+                                                                    assign first_character_in_key = property.first | truncate: 1, '' 
+                                                                    assign prop_visible = true
+                                                                    if selected_warranty.name == property.last and selected_warranty.priceMod == 0
+                                                                        assign prop_visible = false
+                                                                    endif
+                                                                -%}
+                                                                {%- if prop_visible -%}
+                                                                    {%- unless property.last == blank or first_character_in_key == '_' -%}
+                                                                        <li class="f-12 w-medium"><span>{{ property.first }}:</span> <span class="gray">{{ property.last }}</span></li>
+                                                                    {%- endunless -%}
+                                                                {%- endif -%}
+                                                        {%- endfor -%}
+                                                    {%- endcapture -%}
+                                                    {%- if properties != blank -%}
+                                                        <ul class="account-order__item-properties">
+                                                            {{ properties }}   
+                                                        </ul>
+                                                    {%- endif -%}
+                                                </div>
+    
+                                                {%- capture item_price -%}
+                                                    {%- if line_item.original_price != line_item.final_price or line_item.unit_price_measurement -%}
+                                                        {%- if line_item.original_price != line_item.final_price -%}
+                                                            <s>{{ line_item.original_price | money }}</s>
+                                                            {{ line_item.final_price | money }}
+                                                        {%- else -%}
+                                                            {{ line_item.original_price | money }}
+                                                        {%- endif -%}
+                                                    {%- else -%}
+                                                        {{ line_item.final_price | money }}
+                                                    {%- endif -%}
+                                                {%- endcapture -%}
+                                                <div class="account-order__item-price-hld">
+                                                    <span class="account-order__item-price w-medium gray">{{ line_item.quantity }} x {{ item_price }}</span>
+                                                    <span class="account-order__item-price-total w-bold">{{ line_item.final_line_price | money }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {%- endfor -%}
+                                </div>
+                            </div>
+
+                            <div class="account-order__cost">
+                                <div class="account-order__cost-line">
+                                    <span>{{ 'customer.order.subtotal' | t }}</span>
+                                    <span class="w-medium">{{ order.line_items_subtotal_price | money }}</span>
+                                </div>
+
+                                {%- if order.cart_level_discount_applications != blank -%}
+                                    {%- for discount_application in order.cart_level_discount_applications -%}
+                                        <div class="account-order__cost-line account-order__cost-line--discount">
+                                            <span>{{- discount_application.title -}}</span>
+                                            <span class="w-medium">{% render 'svg-icon', name: 'discount' %} -{{ discount_application.total_allocated_amount | money }}</span>
+                                        </div>
+                                    {%- endfor -%}
+                                {%- endif -%}
+
+                                {%- for tax_line in order.tax_lines -%}
+                                    <div class="account-order__cost-line">
+                                        <span>{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span>
+                                        <span class="w-medium">{{ tax_line.price | money }}</span>
+                                    </div>
+                                {%- endfor -%}
+
+                                {%- for shipping_method in order.shipping_methods -%}
+                                    <div class="account-order__cost-line">
+                                        <span>{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</span>
+                                        <span class="w-medium">{{ shipping_method.price | money }}</span>
+                                    </div>
+                                {%- endfor -%}
+
+                                {%- if order.total_duties -%}
+                                    <div class="account-order__cost-line">
+                                        <span>{{ 'customer.order.total_duties' | t }}</span>
+                                        <span class="w-medium">{{ order.total_duties | money }}</span>
+                                    </div>
+                                {%- endif -%}
+
+                                {%- if order.total_refunded_amount > 0 -%}
+                                    <div class="account-order__cost-line">
+                                        <span>{{ 'customer.order.total_refunded' | t }}</span>
+                                        <span class="w-medium">-{{ order.total_refunded_amount | money_with_currency }}</span>
+                                    </div>
+                                {%- endif -%}
+
+                                <div class="account-order__cost-total">
+                                    <span class="w-medium">{{ 'customer.orders.total' | t }}</span>
+                                    <span class="w-bold">{{ order.total_net_amount | money_with_currency }}</span>
+                                </div>
+                            </div>
+                            <div class="account-order__bottom-hld">
+                                <div class="account-order__bottom-btn-hld">
+                                    <input type="checkbox" class="visually-hidden" id="order-checkbox-{{ order.id }}">
+                                    <label class="account-order__bottom-btn f-14 w-medium upper spaced" for="order-checkbox-{{ order.id }}">
+                                        {% render 'svg-icon', name: 'chevron-down' %}
+                                        <span data-text-initial>{{ 'customer.orders.expand' | t }}</span>
+                                        <span data-text-active>{{ 'customer.orders.collapse' | t }}</span>
+                                    </label>
+                                </div>
+                                <div class="account-order__details-hld">
+                                    <div class="account-order__details">
+                                        <div class="account-order__details-col">
+                                            <span class="account-order__details-label f-14 w-medium gray">{{ 'customer.orders.date_expanded' | t }}</span>
+                                            <span class="account-order__details-value">{{ order.created_at | date: '%d.%m.%Y' }}</span>
+
+                                            {%- capture payments -%}
+                                                {%- for transaction in order.transactions -%}
+                                                    {%- if transaction.gateway contains 'paypal' -%}PayPal
+                                                    {%- elsif transaction.gateway contains 'shopify_payments' -%}
+                                                        {{- transaction.payment_details.credit_card_company -}}
+                                                    {%- else -%}
+                                                        {%- if transaction.gateway_display_name.size > 2 -%}
+                                                            {{- transaction.gateway_display_name -}}
+                                                        {%- else -%}
+                                                            {{- transaction.gateway -}}
+                                                        {%- endif -%}
+                                                    {%- endif -%}
+                                                    {%- unless forloop.last -%},{%- endunless -%}
+                                                {%- endfor -%}
+                                            {%- endcapture -%}
+                                            {%- if payments != blank -%}
+                                                {%- assign payments = payments | split: ',' | uniq -%}
+                                                <span class="account-order__details-label f-14 w-medium gray">{{ 'customer.orders.payment_method' | t }}</span>
+                                                <span class="account-order__details-value">
+                                                    {{- payments | join: ', ' -}}
+                                                </span>
+                                            {%- endif -%}
+
+                                            {%- if order.shipping_methods.size > 0 -%}
+                                                <span class="account-order__details-label f-14 w-medium gray">{{ 'customer.orders.shipping_method' | t }}</span>
+                                                <span class="account-order__details-value">
+                                                    {{ order.shipping_methods | map: 'title' | join: ', ' }}
+                                                </span>
+                                            {%- endif -%}
+
+                                            <span class="account-order__details-label f-14 w-medium gray">{{ 'customer.orders.shipping_cost' | t }}</span>
+                                            <span class="account-order__details-value">{{ order.shipping_price | money }}</span>
+                                        </div>
+
+                                        <div class="account-order__details-col">
+                                            <span class="account-order__details-label f-14 w-medium gray">{{ 'customer.order.shipping_address' | t }}</span>
+                                            <div class="account-order__details-value">
+                                                {{ order.shipping_address | format_address }}
+                                            </div>
+                                        </div>
+
+                                        <div class="account-order__details-col">
+                                            <span class="account-order__details-label f-14 w-medium gray">{{ 'customer.order.billing_address' | t }}</span>
+                                            <div class="account-order__details-value">
+                                                {{ order.billing_address | format_address }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="account-order__return-hld">
+                                        <span class="account-order__return-info">
+                                            {% render 'svg-icon', name: 'info' %}
+                                            <span class="f-14 w-medium gray">{{ 'customer.order.return_info' | t }}</span>
+                                        </span>
+                                        <a class="account-order__return-btn text-link text-link--reverse f-14 w-medium upper spaced" href="https://support.bernstein-badshop.de/hc/de/requests/new?ticket_form_id=20820687177105">
+                                            <span>{{ 'customer.order.return_btn' | t }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {%- endfor -%}
+                {%- else -%}
+                    <div class="account-content__text richtext richtext--gray">
+                        <p>{{ 'customer.orders.none' | t }}</p>
+                    </div>
+                {%- endif -%}
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

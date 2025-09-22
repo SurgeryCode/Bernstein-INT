@@ -1,0 +1,18 @@
+  <div class="wishlist-wrapper">
+  <div class="wishlist-title">
+    <h2 class="title f-48">{{ "wishlist.page_title" | t }}</h2>
+  </div>
+  <div class="empty-page">
+    {% render 'svg-icon', name: 'broken-heart' %}
+    <h3 class="title-empty f-32">{{ "wishlist.page_title_empty" | t }}</h3>
+    <p class="wishlist-empty w-medium gray">{{ "wishlist.empty_page" | t }}</p>
+    <a href="{{ 'wishlist.button_href_empty' | t }}" class="button button--large">{{ 'wishlist.button_label_empty' | t }}</a>
+  </div>
+  <div class="js-wishlistBlock">
+    <!-- Wishlist items will be displayed here -->
+  </div>
+
+  {% render 'wishlist-share-button' %}
+</div>
+  
+  

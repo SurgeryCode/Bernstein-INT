@@ -1,0 +1,208 @@
+{%- liquid 
+    assign url = product.url
+    assign on_sale = false
+    assign images = ''
+    assign images_count = 0
+
+    unless product.has_only_default_variant
+        for variant in product.variants
+            if variant.compare_at_price > variant.price
+                assign on_sale = variant
+                assign url = on_sale.url
+                break
+            endif
+        endfor
+    endunless
+
+    for image in product.images
+        if on_sale
+            if image.alt contains on_sale.sku
+                assign images = images | append: image.id | append: ','
+                assign images_count = images_count | plus: 1
+            endif
+        else
+            assign images = images | append: image.id | append: ','
+            assign images_count = images_count | plus: 1
+        endif
+
+        if images_count >= 2
+            break
+        endif
+    endfor
+    
+    if images_count < 2
+        assign images = product.images[0].id | append: images
+    endif
+
+    assign subtitle = ''
+    for variant in product.variants
+        if variant.metafields.custom.subtitle != blank
+            assign subtitle = subtitle | append: variant.metafields.custom.subtitle | append: '||'
+        endif
+    endfor
+    assign subtitle = subtitle | split: '||' | uniq
+-%}
+<product-item 
+    class="product-item" 
+    data-product-id="{{ product.id }}"
+    data-product-title="{{ product.title }}">
+    {%- if compare -%}
+        {% comment %} Mobile compare disbaled in css {% endcomment %}
+        <div class="product-item__compare">
+            <label for="compare-{{ product.id }}" class="checkbox f-12 w-medium gray">
+                <input type="checkbox" id="compare-{{ product.id }}" value="{{ product.variants[0].sku }}">
+                {%- render 'svg-icon', name: 'checkbox' -%}
+                <span>{{ 'compare.checkbox' | t }}</span>
+            </label>            
+        </div>
+    {%- endif -%}
+
+    <div class="product-item__image">
+        {% if settings.enable-wishlist %}
+            {%- render 'product-wishlist', class: "product-item-wishlist", product: product -%}
+        {% endif %}
+        {%- if compared -%}
+            <button class="product-item__remove" data-compare-remove="{{ product.variants[0].sku }}">
+                {%- render 'svg-icon', name: 'close' -%}
+            </button>
+        {%- else -%}
+            {%- render 'product-badges', product: product -%} 
+        {%- endif -%}
+
+        <a href="{{ url }}" aria-label="{{ product.title }}">
+            {%- assign is_first = true -%}
+            {%- for image in product.images -%}
+                {%- if images contains image.id -%}
+                    {%- liquid 
+                        assign classes = 'cover,background,alter'
+                        if product.metafields.custom.image_fit == 'contain'
+                            assign classes = 'contain,background,alter'
+                        endif
+
+                        if is_first
+                            assign is_first = false
+                            assign classes = 'cover,background'
+                            if product.metafields.custom.image_fit == 'contain'
+                                assign classes = 'contain,background'
+                            endif
+                        endif
+                    -%}
+                    {%- render 'image', 
+                        image: image, 
+                        sizes: '379:480,380:560',
+                        class: classes
+                    -%}
+                {%- endif -%}
+            {%- endfor -%}
+        </a>
+    </div>
+    <h3>
+        <a href="{{ url }}" class="text-link w-bold">
+            <span>{{ product.title }}</span>
+        </a>
+    </h3>
+
+    <a href="{{ url }}">
+        {% if request.path contains "collection" %}
+            <p class="f-14 gray product-item__desktop-subtitle">{{ subtitle[0] }}</p>
+            <p class="f-14 gray product-item__mobile-subtitle">{{ subtitle[0] | truncate: 25 }}</p>
+        {% else %}
+            <p class="f-14 gray">{{ subtitle[0] }}</p>
+        {% endif %}
+    </a>
+
+    <div class="product-item__info">
+        {%- if variant_picker -%}
+            {%- if product.has_only_default_variant -%}
+                <input 
+                    type="hidden" 
+                    data-bundle-component="{{ product.selected_or_first_available_variant.price }}" 
+                    value="{{ product.selected_or_first_available_variant.id }}">
+            {%- else -%}
+                <dropdown-select class="dropdown">
+                    <button
+                        class="dropdown__button button button--small button--gray"
+                        aria-expanded="false"
+                        data-dropdown-button>
+                            <span>{{ product.selected_or_first_available_variant.title }}</span>
+                            {%- render 'svg-icon', name: 'chevron-down' -%}
+                            {%- render 'svg-icon', name: 'close' -%}
+                        </button>
+                    <div class="dropdown__content" data-dropdown-content>
+                        <div class="dropdown__content-inner">
+                            <ul>
+                                {%- for variant in product.variants -%}
+                                    {%- if variant.available -%}
+                                        <li>
+                                            <label for="bundle-{{ product.id }}-{{ forloop.index }}" class="checkbox checkbox--simple w-medium">
+                                                <input 
+                                                    type="radio"
+                                                    data-bundle-component="{{ variant.price }}"
+                                                    value="{{ variant.id }}" 
+                                                    name="bundle-{{ product.id }}"
+                                                    id="bundle-{{ product.id }}-{{ forloop.index }}" 
+                                                    data-title="{{ variant.title }}"
+                                                    {% if variant.id == product.selected_or_first_available_variant.id %}checked{% endif %}>
+                                                        <span>{{ variant.title }}</span>
+                                            </label>   
+                                        </li>
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            </ul>
+                        </div>
+                    </div>
+                </dropdown-select>
+            {%- endif -%}
+            {%- for variant in product.variants -%}
+                <a href="{{ url }}">
+                    {%- render 'product-price', product: product, variant: variant -%}
+                </a>
+            {%- endfor -%}
+        {%- else -%}
+            <a href="{{ url }}">
+                {%- if on_sale -%}
+                    {%- if on_sale == product.selected_or_first_available_variant -%}
+                        {%- render 'product-price', product: product, variant: on_sale -%}
+                    {%- else -%}
+                        {%- render 'product-price', product: product, variant: on_sale, force_selected: true -%}
+                    {%- endif -%}
+                {%- else -%}
+                    {%- render 'product-price', product: product -%}
+                {%- endif -%}
+            </a>
+        {%- endif -%}
+        
+        {%- unless compared -%}
+            <a href="{{ url }}">
+                {%- if on_sale -%}
+                    {%- render 'product-rate', product: product, variant: on_sale -%}
+                {%- else -%}
+                    {%- render 'product-rate', product: product -%}
+                {%- endif -%}
+            </a>
+        {%- endunless -%}
+
+        {%- unless variant_picker -%}
+            <div class="product-item__colors">
+                {%- render 'product-item-colors', product: product, pdp: false, limit: 3 -%}
+            </div>
+        {%- endunless -%}
+    </div>
+
+    {%- if add_to_cart -%}
+        <a
+            href="{{ product.url }}"
+            class="product-item__atc"
+            data-action="add-to-cart"
+            {% if on_sale %}
+                data-variant-id="{{ on_sale.id }}"
+            {%- else -%}
+                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            {%- endif -%}
+            title="{{ 'product.add_to_cart' | t }}"
+            aria-label="{{ 'product.add_to_cart' | t }}">
+                {%- render 'svg-icon', name: 'cart-add' -%}
+                {%- render 'svg-icon', name: 'check' -%}
+        </a>
+    {%- endif -%}
+</product-item>

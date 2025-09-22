@@ -1,0 +1,31 @@
+<button id="share-button" class="button button--large button--outline">{{ 'wishlist.share' | t }}</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('share-button');
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+
+    {% comment %} Make button visible by removing comments below {% endcomment %}
+    {% comment %} if (wishlist.length === 0) {
+      button.style.display = 'none';
+    } else {
+      button.style.display = 'block';
+    } {% endcomment %}
+    button.style.display = 'none';
+
+    button.addEventListener('click', () => {
+      const wishlistRaw = localStorage.getItem('wishlist');
+
+      const encoded = encodeURIComponent(utf8ToBase64(wishlistRaw));
+      const shareUrl = `${window.location.origin}${window.location.pathname}?wishlist=${encoded}`;
+
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        alert("Copied to clipboard!");
+      });
+    });
+  });
+
+  function utf8ToBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+</script>

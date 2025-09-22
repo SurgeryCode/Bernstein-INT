@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="{{ 'section-inspirations.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-image-bullet.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-inspiration.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-product-links.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-inspirations.css' | asset_url | stylesheet_tag }}
+    {{ 'section-inspiration.css' | asset_url | stylesheet_tag }}
+    {{ 'component-image-bullet.css' | asset_url | stylesheet_tag }}
+    {{ 'section-product-links.css' }}
+</noscript>
+<script src="{{ 'inspirations.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'image-bullet.js' | asset_url }}" defer="defer"></script>
+
+<div class="container">
+    <inspirations-section class="product-links">
+        {%- for item in section.settings.product_list -%}
+            <div 
+                class="inspirations__grid-item" 
+            >
+                {%- render 'inspiration-item', item: item, original_aspect_ratio: true -%}
+            </div>
+        {%- endfor -%}
+    </inspirations-section>
+</div>
+
+<script>
+    const grid = document.querySelector('.product-links');
+    const count = grid.querySelectorAll('.inspirations__grid-item').length;
+
+    if (count === 1) {
+        grid.style.gridTemplateColumns = '1fr';
+    } else if (count === 2) {
+        grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    } else {
+        grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    }
+</script>
+
+{% schema %}
+{
+    "name": "Product list",
+    "tag": "section",
+    "class": "section margin margin--small",
+    "settings": [
+        {
+            "type": "metaobject_list",
+            "id": "product_list",
+            "label": "Product list",
+            "metaobject_type": "imagelinks",
+            "limit": 3
+        }
+    ],
+  "presets": [
+    {
+      "name": "Product links"
+    }
+  ]
+}
+{% endschema %}

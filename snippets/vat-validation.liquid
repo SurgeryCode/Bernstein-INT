@@ -1,0 +1,22 @@
+<script src="{{ 'vat-validation.js' | asset_url }}" async></script>
+<vat-validation data-translations='{
+  "incorrect_vat": "{{ 'customer.vies.incorrect_vat' | t }}",
+  "inactive_vat": "{{ 'customer.vies.inactive_vat' | t }}",
+  "connection_error": "{{ 'customer.vies.connection_error' | t }}",
+  "checking": "{{ 'customer.vies.checking' | t }}"
+}'>
+  <input
+    type="text"
+    name="customer[note][ust_id]"
+    id="RegisterForm-TaxId"
+    placeholder="{{ 'customer.register.tax_id' | t }}"
+    conditional-required="account-type-company"
+    required
+  >
+  <label for="RegisterForm-TaxId">
+    <span>{{ 'customer.register.tax_id' | t }}</span>
+    <span class="asterisk">*</span>
+  </label>
+  <div class="label-error just-validate-error-label" id="vat-result"></div>
+  <input type="hidden" id="RegisterForm-Tags" name="customer[tags]" value=""/>
+</vat-validation>

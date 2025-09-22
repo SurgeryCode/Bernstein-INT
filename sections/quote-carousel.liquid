@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="{{ 'section-quote-carousel.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-quote-carousel.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quote-carousel.js' | asset_url }}" defer="defer"></script>
+
+{%- if section.blocks.size > 0 -%}
+    <div class="container">
+        <div class="quote-carousel-hld">
+            <quote-carousel class="quote-carousel">
+                <div class="swiper">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {%- for item in section.blocks -%}
+                                <div class="swiper-slide">
+                                    <div class="quote-carousel__item">
+                                        {%- if item.settings.author_image != blank -%}
+                                            <div class="quote-carousel__image">
+                                                <img src="{{ item.settings.author_image | image_url: width: 215, height: 215 }}" alt="{{ item.settings.author }}" width="215" height="215" loading="lazy">
+                                            </div>
+                                        {%- endif -%}
+                                        <div class="quote-carousel__text-hld">
+                                            {%- if item.settings.quote != blank -%}
+                                                <p class="quote-carousel__quote">{{ item.settings.quote }}</p>
+                                            {%- endif -%}
+                                            {%- if item.settings.author != blank -%}
+                                                <span class="quote-carousel__author">{{ item.settings.author }}</span>
+                                            {%- endif -%}
+                                        </div>
+                                    </div>
+                                </div>
+                            {%- endfor -%}
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar quote-carousel__scrollbar"></div>
+                </div>
+                <div class="quote-carousel__arrows">
+                    <button 
+                        class="arrow arrow--large arrow--left"
+                        title="{{ 'accessibility.prev_slide' | t }}"
+                        aria-label="{{ 'accessibility.prev_slide' | t }}">
+                        {%- render 'svg-icon', name: 'chevron-left' -%}
+                    </button>
+                    <button 
+                        class="arrow arrow--large arrow--right"
+                        title="{{ 'accessibility.next_slide' | t }}"
+                        aria-label="{{ 'accessibility.next_slide' | t }}">
+                        {%- render 'svg-icon', name: 'chevron-right' -%}
+                    </button>
+                </div>
+            </quote-carousel>
+        </div>
+    </div>
+{%- endif -%}
+
+{% schema %}
+{
+    "name": "Quote Carousel",
+    "tag": "section",
+    "class": "section section--quote-carousel",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Quote",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "quote",
+                    "label": "Quote"
+                },
+                {
+                    "type": "textarea",
+                    "id": "author",
+                    "label": "Author"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "author_image",
+                    "label": "Portrait"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Quote Carousel"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="{{ 'section-inspirations.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-image-bullet.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-inspiration.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-inspirations.css' | asset_url | stylesheet_tag }}
+    {{ 'section-inspiration.css' | asset_url | stylesheet_tag }}
+    {{ 'component-image-bullet.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'inspirations.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'image-bullet.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'share-buttons.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid 
+    assign categories = ''
+    assign total = 0
+
+    paginate shop.metaobjects.inspiration.values by 999
+        for entry in shop.metaobjects.inspiration.values
+            for cat in entry.categories.value
+                unless categories contains cat
+                    assign categories = categories | append: cat | append: ';'
+                endunless
+            endfor
+            assign total = total | plus: 1
+        endfor
+    endpaginate
+
+    assign categories = categories | split: ';'
+-%}
+
+<inspirations-section class="inspirations">
+    <div class="container">
+        <div class="heading">
+            <div class="heading__text">
+                {% comment %} <h1 class="f-48">{{ page.title }}</h1> {% endcomment %}
+                {%- if page.description != blank -%}
+                    <div class="richtext richtext--gray">
+                        {{ page.description }}
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+
+        <nav class="chips"> 
+            <ul>
+                {%- for item in categories -%}
+                    {%- assign handle = item | handleize -%}
+                    <li>
+                        <label for="filter-{{ handle }}" class="checkbox checkbox--chip">
+                            <input type="checkbox" name="filters" value="{{ item }}" id="filter-{{ handle }}">
+                            <span class="button button--small button--outline">
+                                {%- render 'translation', key: 'inspirations.categories', value: handle -%}
+                            </span>
+                        </label>
+                    </li>
+                {%- endfor -%}
+                <li>
+                    <button type="reset" class="text-link text-link--reverse f-14 w-medium upper spaced" data-reset-filters>
+                        <span>{{ 'collection.filters.reset' | t }}</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        {%- paginate shop.metaobjects.inspiration.values by 999 -%}
+            <div class="inspirations__grid inspirations__grid--loading">
+                {%- for item in shop.metaobjects.inspiration.values -%}
+                    <div 
+                        class="inspirations__grid-item" 
+                        data-category="{{ item.categories.value | join: ';' }}">
+                            {%- render 'inspiration-item', item: item, original_aspect_ratio: true -%}
+                    </div>
+                {%- endfor -%}
+            </div>
+
+            {%- if total > 5 -%}
+            {% comment %}
+                <div class="inspirations__load-more">
+                    <button class="button button--large button--outline">
+                        {{- 'accessibility.load_more' | t -}}
+                    </button>
+                </div>
+                {% endcomment %}
+            {%- endif -%}
+
+            <div class="inspirations__empty {% unless shop.metaobjects.inspiration.values %}inspirations__empty--show{% endunless %} center">
+                <p>{{ 'inspirations.empty_html' | t }}</p>
+            </div>
+        {%- endpaginate -%}
+
+        <div class="filters__button">
+            <button
+                class="button button--large"
+                aria-controls="drawer-inspirations-filters">
+                {% render 'svg-icon', name: 'filter' %} {{ 'inspirations.filter' | t }}
+                </button>
+        </div>
+    </div>
+</inspirations-section>
+
+{% schema %}
+{
+  "name": "Main Inspirations",
+  "tag": "section",
+  "class": "section section--inspirations margin margin--large margin--first",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="{{ 'section-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-drawer.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'drawer.js' | asset_url }}" defer="defer"></script>
+
+<drawer-section class="drawer" id="drawer-product-upsell" tabindex="-1">
+    <div class="drawer__content">
+        <button 
+            title="{{ 'accessibility.close' | t }}" 
+            aria-label="{{ 'accessibility.close' | t }}"
+            class="drawer__close"
+            data-drawer-close>
+                {%- render 'svg-icon', name: 'close' -%}
+        </button>
+
+        <div class="drawer__header drawer__header--blue">
+            <span class="f-24 w-bold">{{ 'cart.added' | t }}</span>
+            
+            <div class="drawer__product">
+                {%- liquid 
+                    assign classes = 'cover'
+                    if product.metafields.custom.image_fit == 'contain'
+                        assign classes = 'contain'
+                    endif
+                -%}
+                {%- if product.has_only_default_variant -%}
+                    <div class="drawer__product-image selected">
+                        {%- render 'image', 
+                            image: product.featured_image, 
+                            sizes: '767:80,768:160',
+                            class: classes
+                        -%}
+                    </div>
+                {%- else -%}
+                    {%- for variant in product.variants -%}
+                        <div 
+                            class="drawer__product-image {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}"
+                            data-variant-detail="{{ variant.id }}">
+                                {%- if variant.image -%}
+                                    {%- render 'image', 
+                                        image: variant.image, 
+                                        sizes: '767:80,768:160',
+                                        class: classes
+                                    -%}
+                                {%- else -%}
+                                    {%- render 'image', 
+                                        image: product.featured_image, 
+                                        sizes: '767:80,768:160',
+                                        class: classes
+                                    -%}
+                                {%- endif -%}
+                        </div>
+                    {%- endfor -%}
+                {%- endif -%}
+                <div class="drawer__product-content">
+                    <p class="w-medium"> 
+                        <span data-added-quantity></span> {{ product.title }}
+                    </p>
+                    <div class="price selected">
+                        <div class="price__main">
+                            <span class="f-16 w-bold" data-added-price></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer__scroll">
+            <div class="drawer__scroll-inner drawer__scroll-inner--padding">
+            {%- liquid 
+                assign accesories = false
+                assign warranty_json = false
+                assign warranty_metaobject = false
+
+                for variant in product.variants
+                    for option in variant.metafields.custom.warranty_json.value
+                        assign warranty_json = option
+                        assign warranty_metaobject = shop.metaobjects.warranty[option.id]
+                    endfor
+                endfor
+
+                for variant in product.variants
+                    if variant.metafields.custom.ProductAssembly != blank
+                        assign accesories = true
+                        break
+                    endif                                        
+                endfor   
+            -%}
+
+            {%- if accesories or warranty_metaobject -%}
+                <p class="drawer__title f-24 w-bold">{{ 'upsell.heading' | t }}</p>
+
+                {%- if warranty_metaobject -%}
+                    <upsell-list 
+                        class="upsell upsell--loaded" 
+                        data-type="warranty">
+                            <p class="upsell__title f-14 w-medium gray">{{ 'upsell.warranty' | t }}</p>
+                            {%- render 'upsell-warranty', data: warranty_metaobject, json: warranty_json -%}
+                    </upsell-list> 
+                {%- endif -%}
+
+                {%- for variant in product.variants -%}
+                    {%- if variant.metafields.custom.ProductAssembly != blank -%}
+                        <upsell-list 
+                            class="upsell {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}" 
+                            data-variant-detail="{{ variant.id }}" 
+                            data-sku="{{ variant.metafields.custom.ProductAssembly | remove: variant.sku }}"
+                            data-type="item">
+                                <p class="upsell__title f-14 w-medium gray">{{ 'upsell.heading_installation' | t }}</p>
+                        </upsell-list> 
+                    {%- endif -%}
+                {%- endfor -%}   
+            {%- endif -%} 
+            </div>
+        </div>
+
+        <div class="drawer__buttons drawer__buttons--border">
+            <a 
+                href="{{ routes.cart_url }}"
+                class="button button--large">
+                    {{ 'cart.go_to_cart' | t }}
+            </a>
+            
+            <button class="text-link text-link--reverse f-14 w-medium upper spaced" data-drawer-close>
+                <span>{{ 'accessibility.continue_shopping' | t }}</span>
+            </button>
+        </div>
+    </div>
+</drawer-section>

@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="{{ 'section-bundle.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-dropdown.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-bundle.css' | asset_url | stylesheet_tag }}
+    {{ 'component-dropdown.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'dropdown.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-item.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-bundle.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid 
+    assign show = false
+    assign skus = ''
+    for variant in product.variants
+        if variant.metafields.custom.topempfehlung != blank
+            assign skus = skus | append: variant.metafields.custom.topempfehlung | append: ','
+        endif
+    endfor
+    assign skus = skus | split: ',' | uniq
+
+    if skus.size > 0
+        assign show = true
+    endif
+-%}
+
+{%- if show -%}
+<div class="container">
+    {%- if section.settings.heading != blank -%}
+        <div class="heading">
+            <div class="heading__text">
+                <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                {%- if section.settings.heading_text != blank -%}
+                    <div class="richtext richtext--gray">
+                        <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    {%- endif -%}
+    
+    <product-bundle class="bundle__grid {% if skus.size < 2 %}bundle__grid--spaced{% endif %}" data-sku="{{ skus | join: ',' }}">
+        <div class="bundle__components {% if skus.size < 2 %}bundle__components--spaced{% endif %}">
+            <div class="bundle__components-item">
+                {%- render 'product-item', product: product, add_to_cart: false, variant_picker: true -%}
+            </div>
+        </div>
+        <div class="bundle__summary">
+            <div class="w-bold f-32" data-bundle-total></div>
+            <button 
+                type="button" 
+                data-bundle-submit
+                class="button button--large">
+                    {{ 'bundle.add_to_cart' | t }}
+            </button>
+        </div>
+    </product-bundle> 
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Bundle",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "class": "section section--product-bundle bundle padding",
+  "settings": [
+    {
+        "type": "textarea", 
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1" 
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Bundle"
+    }
+  ]
+}
+{% endschema %}

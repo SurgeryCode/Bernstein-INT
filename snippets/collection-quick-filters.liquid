@@ -1,0 +1,43 @@
+{%- capture quick_filters -%}
+    {%- unless collection.metafields.custom.disable_quick_filters -%}
+        {%- for filter in collection.filters -%}
+            {%- if filter.label == 'Tags' -%}
+                {%- for filter_value in filter.values -%}
+                    {%- for entry in shop.metaobjects['quick_filter'].values -%}
+                        {%- if entry.related_tag == filter_value.value -%}
+                            <label for="filter-{{ filter.param_name }}-{{ forloop.index }}" class="checkbox checkbox--image f-12 w-medium">
+                                <input 
+                                    type="checkbox"
+                                    name="{{ filter_value.param_name }}"
+                                    value="{{ filter_value.value }}"
+                                    id="filter-{{ filter.param_name }}-{{ forloop.index }}"
+                                    {% if filter_value.active -%}checked{%- endif %}>
+                                {%- render 'svg-icon', name: 'checkbox' -%}
+                                <span>{{ entry.title }}</span>
+                                <div class="checkbox__image">
+                                    {%- if entry.image != blank -%}
+                                        <img 
+                                            src="{{ entry.image | img_url: '180x' }}" 
+                                            width="90"
+                                            height="56"
+                                            alt="{{ entry.title }}"
+                                            loading="lazy">
+                                    {%- endif -%}
+                                </div>
+                            </label>
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endunless -%}
+{%- endcapture -%}
+
+{%- if quick_filters != blank -%}
+    <div class="filters__quick">
+        <p class="w-medium">{{ 'collection.filters.quick' | t }}</p>
+        <div class="filters__quick-grid">
+            {{ quick_filters }}
+        </div>
+    </div>
+{%- endif -%}

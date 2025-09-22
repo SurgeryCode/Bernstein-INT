@@ -1,0 +1,18 @@
+<comparison-toolbar class="comparison-toolbar">    
+    <div class="comparison-toolbar__inner">
+        <button type="reset" class="comparison-toolbar__button w-medium">
+            {%- render 'svg-icon', name: 'close' -%}
+            <span>{{ 'compare.count_html' | t: count: 0 }}</span>
+            <span>{{ 'compare.close_bar' | t }}</span>
+        </button>
+    
+        <div class="comparison-toolbar__content">
+            <div class="comparison-toolbar__images"></div>
+            <a href="{{ settings.comparison_page.url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ 'compare.button' | t }}</span>
+                <span>{{ 'compare.button_short' | t }}</span>
+                {%- render 'svg-icon', name: 'arrow-right' -%}
+            </a>
+        </div>
+    </div>
+</comparison-toolbar>

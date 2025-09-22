@@ -1,0 +1,73 @@
+{%- if original_aspect_ratio -%}
+<div 
+    class="inspirations__item {% if original_aspect_ratio %}inspirations__item--original{% endif %}"
+    data-handle="{{ item.system.handle }}"> 
+{%- else -%}
+<div class="inspirations__item">
+{%- endif -%}
+
+    {%- render 'image', 
+        image: item.image, 
+        sizes: '379:400,991:600,992:1200',
+        class: 'cover'
+    -%}
+    {%- for i in (1..5) -%}
+        {%- liquid
+            assign key_product = 'bullet_' | append: i | append: '_product'
+            assign key_x = 'bullet_' | append: i | append: '_x'
+            assign key_y = 'bullet_' | append: i | append: '_y' 
+
+            assign product = item[key_product].value
+            assign x = item[key_x].value
+            assign y = item[key_y].value 
+            assign position_x = 'right'
+            assign position_y = 'top'
+            assign percent = x | times: 0.01
+            assign max_w = 'calc(var(--box-width) - ' | append: 'calc(var(--box-width) * ' | append: percent | append: '))'
+
+            if y < 30
+                assign position_y = 'bottom'
+            endif
+
+            if x > 50
+                assign position_x = 'left'
+                assign max_w = 'calc(var(--box-width) * ' | append: percent | append: ')'
+            endif
+        -%}
+        {%- if product != blank -%} 
+            <image-bullet class="image-bullet" style="top:{{ y }}%; left:{{ x }}%">
+                <button 
+                    class="image-bullet__dot"
+                    aria-label="{{ 'accessibility.show_product' | t }}"
+                    aria-expanded="false">
+                        {%- render 'svg-icon', name: 'point' -%}
+                </button>
+                <div 
+                    class="image-bullet__caption image-bullet__caption--{{ position_y }}-{{ position_x }}" 
+                    style="top:{{ y }}%; left:{{ x }}%; max-width: calc({{ max_w }} + 24px);">
+                        <div class="image-bullet__caption-product">
+                            <a href="{{ product.url }}" class="image-bullet__caption-image">
+                                <img 
+                                    src="{{ product.featured_image | img_url: '100x' }}" 
+                                    width="60"
+                                    height="60"
+                                    alt="{{ product.featured_image.alt }}"
+                                    loading="lazy">
+                            </a>
+                            <div>
+                                <a href="{{ product.url }}" class="f-14 w-medium text-link" title="{{ product.title }}">
+                                    <span>{{ product.title }}</span>
+                                </a>
+                                <p class="image-bullet__caption-price f-14 w-medium gray">
+                                    {{ product.price | money }}
+                                </p>
+                            </div>
+                        </div>
+                        <a href="{{ product.url }}" class="image-bullet__caption-arrow">
+                            {%- render 'svg-icon', name: 'chevron-right' -%}
+                        </a>
+                </div> 
+            </image-bullet>
+        {%- endif -%}
+    {%- endfor -%}
+</div>

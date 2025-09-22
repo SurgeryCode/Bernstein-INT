@@ -1,0 +1,212 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_ccypmA": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_3tbY8c": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>NEU </p>",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#46b810",
+            "badge_padding": 22,
+            "subtitle": "Arctic Badmöbel Serie",
+            "title": "Badmöbel – inspiriert von der Arktis",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_LP_Hero_Arctic.jpg",
+            "image_tablet": "shopify://shop_images/Tablet_LP_Hero_Arctic.jpg",
+            "image_mobile": "shopify://shop_images/Mobile_LP_Hero_Arctic.jpg",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 30,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_3tbY8c"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 24,
+        "slide_height_mobile": 400,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "heading_subheading_gLpUQQ": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "Inspiriert von der Arktis – mit nordischer Seele.",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "left",
+        "description": "<p>Inspiriert von der Ästhetik der Arktis steht diese Serie für Eleganz, kompromisslose Funktionalität und Ruhe. Reduziert, ruhig und ikonisch.</p>",
+        "subheading_width": 40,
+        "sub_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_links_Q7LKrM": {
+      "type": "product-links",
+      "name": "Product links",
+      "settings": {
+        "product_list": [
+          "arctic-1",
+          "arctic-2"
+        ]
+      }
+    },
+    "heading_subheading_R3DRCt": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "column",
+        "heading": "Einzigartige Oberfläche",
+        "heading_tag": "3",
+        "heading_width": 42,
+        "alignment": "center",
+        "description": "<p>Die samtmatte Softtouch-Oberfläche ist nicht nur in seinem minimalistischem Design ein Hingucker, sondern auch funktional – die Oberfläche reduziert Fingerabdrücke und sorgt für eine dauerhaft für eine perfekte Optik. Und das Beste: die Serie ist gefertigt aus nachhaltig gewonnenen Holzwerkstoffen.</p>",
+        "subheading_width": 46,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_list_element_WqqfAV": {
+      "type": "product-list-element",
+      "name": "Product List Element",
+      "settings": {
+        "products": [],
+        "collection": "",
+        "url_products": "https://bernstein-badshop.de/search?q=artic&type=product",
+        "products_limit": 20
+      }
+    },
+    "heading_subheading_3irFVP": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 12,
+        "layout": "column",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_dk7cap": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Unser Tipp: Unterputzarmaturen",
+        "heading_tag": "3",
+        "heading_width": 36,
+        "alignment": "center",
+        "description": "<p>Unterputzarmaturen eigenen sich hervorragend um den minimalistischen Stil zu vollenden. </p>",
+        "subheading_width": 42,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_JPHHBV": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_caFyxp": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "unterputz-badarmatur-9908g-gunmetal",
+              "unterputz-armatur-badarmatur-wandarmatur-9908b",
+              "design-waschtischarmatur-xelo-zur-wandmontage",
+              "waschtischarmatur-xx0539b",
+              "duravit-wave-einhebel-waschtischmischer-unterputz",
+              "unterputz-armatur-badarmatur-wandarmatur-xx0539c",
+              "duravit-tulum-by-starck-waschtischmischer",
+              "unterputz-armatur-badarmatur-wandarmatur-9908c"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_caFyxp"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_ccypmA",
+    "heading_subheading_gLpUQQ",
+    "product_links_Q7LKrM",
+    "heading_subheading_R3DRCt",
+    "product_list_element_WqqfAV",
+    "heading_subheading_3irFVP",
+    "heading_subheading_dk7cap",
+    "product_carousel_JPHHBV"
+  ]
+}

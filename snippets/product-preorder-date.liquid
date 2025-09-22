@@ -1,0 +1,36 @@
+{%- if variant.metafields.custom.delivery_date != blank -%}
+    {%- liquid 
+        assign is_future = false
+        assign now = "now" | date: "%s" | minus: 0
+        assign future = variant.metafields.custom.delivery_date | date: "%s" | minus: 0
+
+        if future > now 
+            assign is_future = true
+            assign date = future | plus: 604800
+            assign day = date | date: "%e" | minus: 0
+            assign prefix_key = ''
+            assign month_key = date | date: "%m"
+            
+            if day < 11
+                assign prefix_key = 'early'
+            endif
+            if day >= 11 and day < 22
+                assign prefix_key = 'mid'
+            endif
+            if day >=22 
+                assign prefix_key = 'end'
+            endif
+
+            assign prefix = 'product.preorder.' | append: prefix_key | t
+            assign month = 'product.preorder.' | append: month_key | t
+            assign text =  prefix | append: ' ' | append: month
+        endif
+    -%}
+    {%- if is_future -%}
+        <span class="status status--danger">{{ 'product.preorder.with_date' | t: date: text }}</span>
+    {% else %}
+        <span class="status status--danger">{{ 'product.preorder.default' | t }}</span>
+    {%- endif -%}
+{%- else -%}
+    <span class="status status--danger">{{ 'product.preorder.default' | t }}</span>
+{%- endif -%}

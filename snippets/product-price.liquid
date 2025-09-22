@@ -1,0 +1,60 @@
+{%- liquid
+  if variant
+    assign target = variant
+  else
+    assign target = product.selected_or_first_available_variant
+  endif
+
+  assign price = target.price
+  assign compare_at_price = target.compare_at_price
+  assign lowest_price = target.metafields.custom.omnibus | default: nil
+-%}
+ 
+<product-price 
+  class="price {% if target.id == product.selected_or_first_available_variant.id or force_selected %}selected{% endif %}" 
+  data-price="{{ price }}"  
+  data-product="{{ product.id }}" 
+  data-compare-price="{{ compare_at_price }}" 
+  data-variant-detail="{{ target.id }}">
+  <div class="price__main">
+    {%- if customer.tags contains 'b2b' or customer.tags contains 'B2B' -%}
+      <div class="price__regular">
+        <span class="f-12 w-medium gray">{{ 'product.regular_price' | t }}: {{ price | money }}</span>
+        {%- if compare_at_price > price -%}
+          <del class="f-11 gray">{{ compare_at_price | money }}</del>
+        {%- endif -%}
+      </div>
+    {%- elsif target.metafields.custom.uvp.value != blank -%}
+      <div class="price__regular">
+        <span class="f-12 w-medium gray">{{ 'product.regular_price' | t }}: {{ target.metafields.custom.uvp.value | times: 100 | money }}</span>
+      </div>
+    {%- endif -%}
+    {%- if compare_at_price > price -%}
+      <span class="f-24 w-bold red">
+        {%- render 'price', price: price -%}
+      </span>
+      <span style="display: inline-flex; align-items: baseline; gap: 4px;">
+        <del class="f-12 w-medium gray">
+          {%- render 'price', price: compare_at_price -%}
+        </del>
+      </span>
+    {%- else -%}
+      <span class="f-24 w-bold">
+        {%- render 'price', price: price -%}
+      </span>
+    {%- endif -%}
+    
+    {%- if compare_at_price > price and lowest_price -%}
+      {%- assign lowest_price_format = lowest_price | times: 100 | money -%}
+      <p class="price__lowest f-11 w-medium gray">{{ 'product.lowest_price' | t: price: lowest_price_format  }}</p>
+{%- endif -%}
+
+    {%- if extended -%}
+      {%- if customer.tags contains 'b2b' or customer.tags contains 'B2B' -%}
+        <p class="f-11 w-medium gray">{{ 'product.tax_excluded_html' | t }}</p>
+      {%- else -%}
+        <p class="f-11 w-medium gray">{{ 'product.tax_included_html' | t }}</p>
+      {%- endif -%}  
+    {%- endif -%}
+  </div>
+</product-price>

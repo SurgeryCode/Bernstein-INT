@@ -1,0 +1,48 @@
+{%- liquid 
+	if request.path contains 'policies/privacy-policy'
+		assign title = 'policies.privacy_policy' | t
+		assign content = shop.privacy_policy
+	endif
+
+	if request.path contains '/policies/terms-of-service'
+		assign title = 'policies.terms_of_service' | t
+		assign content = shop.terms_of_service
+	endif
+
+	if request.path contains '/policies/refund-policy'
+		assign title = 'policies.refund_policy' | t
+		assign content = shop.refund_policy
+	endif
+
+	if request.path contains '/policies/shipping-policy'
+		assign title = 'policies.shipping_policy' | t
+		assign content = shop.shipping_policy
+	endif
+-%}
+
+{%- render 'breadcrumbs' -%}
+
+{%- unless content contains '<h1' -%}
+	<div class="container">
+		<div class="heading">
+			<div class="heading__text">
+				<h1 class="f-48">{{ title }}</h1>          
+			</div>
+		</div>
+	</div>
+{%- endunless -%}
+
+<div class="container container--text">
+	<div class="richtext richtext--table-border">
+		{{ content }}
+	</div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Policies",
+  "tag": "section",
+  "class": "section section--page margin margin--large margin--first",
+  "settings": []
+}
+{% endschema %}

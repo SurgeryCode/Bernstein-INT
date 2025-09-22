@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="{{ 'section-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-drawer.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'drawer.js' | asset_url }}" defer="defer"></script>
+
+<drawer-section class="drawer" id="drawer-filestore-filters" tabindex="-1">
+    <div class="drawer__content">
+        <button 
+            title="{{ 'accessibility.close' | t }}" 
+            aria-label="{{ 'accessibility.close' | t }}"
+            class="drawer__close"
+            data-drawer-close>
+                {%- render 'svg-icon', name: 'close' -%}
+        </button>
+
+        <div class="drawer__header">
+            <span class="f-24 w-bold">{{ 'filestore.file_categories' | t }}</span>
+        </div>
+
+        <div class="drawer__scroll filters">
+            <div class="drawer__scroll-inner drawer__scroll-inner--offset">           
+                
+            </div>
+        </div>
+
+        <div class="drawer__buttons drawer__buttons--border">
+            <a href="{{ page.url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ 'filestore.clear_filters' | t }}</span>
+            </a>
+        </div>
+    </div>
+</drawer-section>

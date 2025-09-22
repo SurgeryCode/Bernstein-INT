@@ -1,0 +1,81 @@
+<div class="container">
+    {%- if section.settings.heading != blank -%}
+        <h2 class="f-48 content__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}        
+        <div class="content__text">
+            <div class="richtext richtext--gray">
+                {{ section.settings.text }}
+            </div>
+        </div>
+    {%- endif -%}
+    {%- if section.settings.embed != blank -%}
+        <div class="content__embed">
+            {{ section.settings.embed }}
+        </div>
+    {%- endif -%}
+</div>
+
+
+{%- if section.settings.embed_aspect_ratio_desktop or section.settings.embed_aspect_ratio_mobile -%}
+    <style>
+        .content__embed {
+            {%- if section.settings.embed_aspect_ratio_desktop -%}
+                --aspect-ratio-desktop: {{ section.settings.embed_aspect_ratio_desktop }};
+            {%- endif -%}
+            {%- if section.settings.embed_aspect_ratio_mobile -%}
+                --aspect-ratio-mobile: {{ section.settings.embed_aspect_ratio_mobile }};
+            {%- endif -%}
+        }
+    </style>
+{%- endif -%}
+
+{% schema %}
+{
+    "name": "Content",
+    "tag": "section",
+    "class": "section section--content",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Section title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Section content</p>"
+        },
+        {
+            "type": "header",
+            "content": "Embed"
+        },
+        {
+            "type": "html",
+            "id": "embed",
+            "label": "Embed"
+        },
+        {
+            "type": "text",
+            "id": "embed_aspect_ratio_desktop",
+            "label": "Aspect ratio - desktop.",
+            "info": "For example: 16/9",
+            "default": "16/9"
+        },
+        {
+            "type": "text",
+            "id": "embed_aspect_ratio_mobile",
+            "label": "Aspect ratio - desktop.",
+            "info": "For example: 4/3",
+            "default": "4/3"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Content"
+        }
+    ]
+}
+{% endschema %}

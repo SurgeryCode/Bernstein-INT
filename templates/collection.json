@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "filter_group_VPeCDe": {
+          "type": "filter_group",
+          "settings": {
+            "title": "Type",
+            "labels": "Type,Type of fitting,Type of glass,Type of profile,Type of installation,Type de montage"
+          }
+        },
+        "filter_group_XWKWEr": {
+          "type": "filter_group",
+          "settings": {
+            "title": "Dimensionen",
+            "labels": "Glasstärke,Tiefe,Breite,Höhe, Größe,Länge"
+          }
+        },
+        "filter_group_eHiVKe": {
+          "type": "filter_group",
+          "settings": {
+            "title": "Farbe",
+            "labels": "Profilfarbe,Farbe,Farbe Badmöbel,Farbe Waschbecken,Lichtfarbe"
+          }
+        },
+        "filter_group_fd9VPy": {
+          "type": "filter_group",
+          "settings": {
+            "title": "Material",
+            "labels": "Material,Profilmaterial"
+          }
+        },
+        "filter_group_aebwKt": {
+          "type": "filter_group",
+          "settings": {
+            "title": "Product line",
+            "labels": "Product line,Furniture product line,Shower product line"
+          }
+        },
+        "filter_group_BjXUgL": {
+          "type": "filter_group",
+          "settings": {
+            "title": "Serie",
+            "labels": "Serie,Serie Badmöbel, Serie Duschkabine"
+          }
+        }
+      },
+      "block_order": [
+        "filter_group_VPeCDe",
+        "filter_group_XWKWEr",
+        "filter_group_eHiVKe",
+        "filter_group_fd9VPy",
+        "filter_group_aebwKt",
+        "filter_group_BjXUgL"
+      ],
+      "settings": {
+        "enable_toggle_images": false
+      }
+    },
+    "images_ygcnUe": {
+      "type": "images",
+      "blocks": {
+        "collection_showcase_CmBULt": {
+          "type": "collection_showcase",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection_showcase_CmBULt"
+      ],
+      "settings": {
+        "background": false
+      }
+    },
+    "product_carousel_79EdcF": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_eNWkx9": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "bestsellers"
+          }
+        }
+      },
+      "block_order": [
+        "category_eNWkx9"
+      ],
+      "settings": {
+        "heading": "Für Dich empfohlen",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    },
+    "collapsible_text_collection_4ExBPh": {
+      "type": "collapsible-text-collection",
+      "settings": {
+        "alignment": "left",
+        "lines_desktop": 10,
+        "lines_mobile": 10
+      }
+    }
+  },
+  "order": [
+    "main",
+    "images_ygcnUe",
+    "product_carousel_79EdcF",
+    "collapsible_text_collection_4ExBPh"
+  ]
+}

@@ -1,0 +1,196 @@
+{%- liquid 
+    assign last_handle = '' 
+    assign path = ''    
+
+    if template contains 'pages' or template contains 'blog' or template contains 'article'
+        assign first_label = 'breadcrumbs.home' | t
+    endif
+
+    if template contains 'collection' 
+        assign last_handle = collection.handle
+        assign first_label = 'breadcrumbs.products' | t
+    endif
+
+    if template contains 'product'
+        assign found = false
+        assign colls = product.collections | map: 'handle'
+        assign first_label = 'breadcrumbs.products' | t
+
+        for link in linklists[settings.menu_categories].links
+            unless found
+                if colls contains link.object.handle
+                    assign last_handle = link.object.handle
+                    assign found = true
+                endif
+                for sublink in link.links
+                    if colls contains sublink.object.handle
+                        assign last_handle = sublink.object.handle
+                        assign found = true
+                    endif
+                    for subsublink in sublink.links
+                        if colls contains subsublink.object.handle
+                            assign last_handle = subsublink.object.handle
+                            assign found = true
+                        endif
+                    endfor
+                endfor
+            endunless
+        endfor
+    endif
+    
+    assign found = false
+    for link in linklists[settings.menu_categories].links
+        unless found
+            if link.object.handle == last_handle
+                assign path = link.object.handle
+                assign found = true
+            endif
+
+            for sublink in link.links
+                if sublink.object.handle == last_handle
+                    assign path = link.object.handle | append: ',' | append: sublink.object.handle
+                    assign found = true
+                endif
+
+                for subsublink in sublink.links
+                    if subsublink.object.handle == last_handle
+                        assign path = link.object.handle | append: ',' | append: sublink.object.handle | append: ',' | append: subsublink.object.handle
+                        assign found = true
+                    endif
+                endfor
+            endfor 
+        endunless
+    endfor 
+
+    assign path = path | split: ','
+-%}
+
+
+<breadcrumbs-menu>
+    <nav class="breadcrumbs">
+        <div class="container container--wide">
+            <ul class="w-medium gray">
+                <li class="breadcrumbs__item">
+                    {%- if template contains 'product' or template contains 'collection' or template contains 'search' -%}
+                        {%- liquid 
+                            assign url = '/collections/all' 
+                            if routes.root_url != '/'
+                                assign url = routes.root_url | append: '/collections/all' 
+                            endif
+                        -%}
+                        <a href="{{ url }}" class="text-link">
+                            {%- render 'svg-icon', name: 'home' -%}
+                            <span>{{ 'breadcrumbs.products' | t }}</span>
+                        </a>
+                    {%- else -%}
+                        <a href="{{ routes.root_url }}" class="text-link">
+                            {%- render 'svg-icon', name: 'home' -%}
+                            <span>{{ 'breadcrumbs.home' | t }}</span>
+                        </a>
+                    {%- endif -%}
+                    {%- render 'svg-icon', name: 'arrow-right' -%}
+                </li>
+                
+                {%- if template contains 'collection' or template contains 'product' -%}                
+                    {%- for step in path -%}
+                        {%- assign coll = collections[step] -%}
+                        <li class="breadcrumbs__item">
+                            <a href="{{ coll.url }}" class="text-link">
+                                <span>{{ coll.title }}</span>
+                            </a>
+                            {%- render 'svg-icon', name: 'arrow-right' -%}
+                        </li>
+                    {%- endfor -%}
+                {%- endif -%}
+
+                {%- if template contains 'collection' and collection.url != '/collections/all' and path.size == 0 -%}
+                   <li class="breadcrumbs__item">
+                      <a href="{{ collection.url }}" class="text-link">
+                          {%- if collection.url == '/collections/duravit' -%}
+                            <span>Duravit</span>
+                          {%- else -%}
+                            <span>{{ collection.title }}</span>
+                          {%- endif -%}
+                      </a>
+                      {%- render 'svg-icon', name: 'arrow-right' -%}
+                    </li>
+                {%- endif -%}
+
+                {%- if template contains 'page' -%}
+                    <li class="breadcrumbs__item">
+                        <a href="{{ page.url }}" class="text-link">
+                            <span>{{ page.title }}</span>
+                        </a>
+                        {%- render 'svg-icon', name: 'arrow-right' -%}
+                    </li>
+                {%- endif -%}
+
+                {%- if template contains 'blog' or template contains 'article' -%}
+                    <li class="breadcrumbs__item">
+                        <a href="{{ blog.url }}" class="text-link">
+                            <span>{{ blog.title }}</span>
+                        </a>
+                        {%- render 'svg-icon', name: 'arrow-right' -%}
+                    </li>
+                    {%- if current_tags -%}
+                        {%- assign handle = current_tags[0] | handleize -%}
+                        {%- assign translation = 'blog.tags.' | append: handle | t -%}
+                        <li class="breadcrumbs__item">
+                            <a href="{{ blog.url }}/tagged/{{ current_tags[0] | handleize }}" class="text-link">
+                                <span>
+                                    {%- if translation.size > 0 -%}
+                                        {{ translation }}
+                                    {%- else -%}
+                                        {{ current_tags[0] }}
+                                    {%- endif -%}
+                                </span>
+                            </a>
+                            {%- render 'svg-icon', name: 'arrow-right' -%}
+                        </li>
+                    {%- endif -%}
+                {%- endif -%}
+
+                {%- if template contains 'metaobject/inspiration' -%}
+                    <li class="breadcrumbs__item">
+                        <a href="{{ settings.inspirations_page.url }}" class="text-link">
+                            <span>{{ settings.inspirations_page.title }}</span>
+                        </a>
+                    </li>
+                {%- endif -%}
+
+                {%- if template contains 'search' -%}
+                    <li class="breadcrumbs__item">
+                        <a href="{{ request.url }}" class="text-link">
+                            <span>{{ 'breadcrumbs.search' | t }}</span>
+                        </a>
+                    </li>
+                {%- endif -%}
+
+                {%- if request.path contains 'policies' -%}
+                    {%- liquid 
+                        if request.path contains 'policies/privacy-policy'
+                            assign title = 'policies.privacy_policy' | t
+                        endif
+                    
+                        if request.path contains '/policies/terms-of-service'
+                            assign title = 'policies.terms_of_service' | t
+                        endif
+                    
+                        if request.path contains '/policies/refund-policy'
+                            assign title = 'policies.refund_policy' | t
+                        endif
+                    
+                        if request.path contains '/policies/shipping-policy'
+                            assign title = 'policies.shipping_policy' | t
+                        endif
+                    -%}
+                    <li class="breadcrumbs__item">
+                        <a href="{{ request.url }}" class="text-link">
+                            <span>{{ title }}</span>
+                        </a>
+                    </li>
+                {%- endif -%}
+            </ul>
+        </div>
+    </nav>
+</breadcrumbs-menu>

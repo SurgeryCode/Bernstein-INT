@@ -1,0 +1,31 @@
+<quantity-field class="quantity">
+    <button
+        type="button" 
+        class="quantity__button quantity__button--decrease"
+        aria-label="{{ 'quantity.decrease' | t: product: product.title }}" 
+        title="{{ 'quantity.decrease' | t: product: product.title }}">
+            {%- render 'svg-icon', name: 'minus' -%}
+    </button>
+    <input 
+        type="number"  
+        name="quantity" 
+        min="{% if min %}{{ min }}{% else %}0{% endif %}"  
+        max="{% if max %}{{ max }}{% else %}999{% endif %}" 
+        value="{% if value %}{{ value }}{% else %}1{% endif %}"
+        step="1" 
+        autocomplete="off">
+    <button
+        type="button" 
+        class="quantity__button quantity__button--increase"
+        aria-label="{{ 'quantity.increase' | t: product: product.title }}" 
+        title="{{ 'quantity.increase' | t: product: product.title }}">
+            {%- render 'svg-icon', name: 'plus' -%}
+    </button>
+    {% if max %}
+        {%- if max < 1 -%}
+            <p class="label-error">{{ 'quantity.unavailable' | t }}</p>
+        {%- else -%}
+            <p class="label-error">{{ 'quantity.limit' | t: number: max }}</p>
+        {%- endif -%}
+    {% endif %}
+</quantity-field>

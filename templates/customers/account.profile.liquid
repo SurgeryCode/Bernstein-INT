@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="account-hld">
+        <div class="account-left">
+            {% render 'account-main-box' %}
+            {% render 'account-nav', active_item: 'profile' %}
+        </div>
+        <div class="account-right">
+            <h1 class="account-title">{{ 'customer.account.profile' | t }}</h1>
+            <div class="account-content">
+                {% section 'account-profile' %}
+            </div>
+        </div>
+    </div>
+</div>

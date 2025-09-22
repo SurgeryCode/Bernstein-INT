@@ -1,0 +1,247 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "heading_subheading_mP7a76": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 68,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "🛁 📸 <br> Dein Foto. Unser Produkt. Dein Gutschein.",
+        "heading_tag": "1",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 50,
+        "sub_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "content_with_image_QGbDnd": {
+      "type": "content-with-image",
+      "disabled": true,
+      "name": "Content With Image",
+      "settings": {
+        "heading": "",
+        "content": "<p>Du hast Bernstein-Badartikel in Deinem Bad? Dann schick uns doch ein paar Fotos davon!<br/><br/>Als Dankeschön gibt es für die veröffentlichten Bilder einen <br/><strong>25€-Shop-Gutschein!*</strong><br/><br/>Bitte sende Deine Bilder an:<strong><br/>kundenbilder@bernstein-badshop.de</strong>.<br/>*ein Gutschein pro Kunde!</p>",
+        "background": "gray",
+        "layout": "normal",
+        "button_url": "",
+        "button_label": "",
+        "button_target": false
+      }
+    },
+    "heading_subheading_WQTrnj": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Du hast Produkte von uns in Deinem Bad?",
+        "heading_tag": "3",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "<p>Dann schick uns doch ein paar Fotos davon. </p><p><strong>Als Dankeschön gibt es für die veröffentlichten Bilder einen <br/>25€-Shop-Gutschein (ein Gutschein pro Kunde)</strong><br/></p><p>Bitte sende Deine Bilder an:<strong><br/></strong>kundenbilder@bernstein-badshop.de.<br/></p><p></p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_DJLGgr": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 100,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "E-mail senden",
+        "button_link": "mailto:kundenbilder@bernstein-badshop.de",
+        "button_style": "filled",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_K4aFGU": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "filestore_links_ih7zdW": {
+      "type": "filestore-links",
+      "blocks": {
+        "item_yqriP7": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-montage.svg",
+            "title": "Montage",
+            "url": "/pages/dateispeicher?type=montage"
+          }
+        },
+        "item_WHhewQ": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design_6b550dbd-cb39-41b6-967c-2072b87898a3.svg",
+            "title": "Maßzeichnungen",
+            "url": "/pages/dateispeicher?type=schematics"
+          }
+        },
+        "item_LLVmKR": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-image.svg",
+            "title": "Bilddatenbank",
+            "url": "/pages/dateispeicher?type=images"
+          }
+        },
+        "item_9NMEKH": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-cerftificate.svg",
+            "title": "Zertifikate",
+            "url": "/pages/dateispeicher?type=certificate"
+          }
+        },
+        "item_heG6Uw": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-marketing.svg",
+            "title": "Marketing-Materialien",
+            "url": "/pages/dateispeicher?type=marketing"
+          }
+        }
+      },
+      "block_order": [
+        "item_yqriP7",
+        "item_WHhewQ",
+        "item_LLVmKR",
+        "item_9NMEKH",
+        "item_heG6Uw"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Besuche unseren Dateispeicher",
+        "link_url": "shopify://pages/bedienungsanleitungen",
+        "link_text": "Gehe zum Dateispeicher"
+      }
+    },
+    "collapsible_text_rE6TB7": {
+      "type": "collapsible-text",
+      "disabled": true,
+      "settings": {
+        "content": "<h2>Bernstein SEO</h2><p>Bei Bernstein ist es unser Ziel, Dein Badezimmererlebnis völlig neu zu gestalten.<br/>Wir legen großen Wert auf Qualität und Innovation und präsentieren Dir eine Auswahl an hochwertigen Armaturen, die Design und Funktion perfekt miteinander verbinden. Unsere Mission ist es, Dein Badezimmer in eine stilvolle Wohlfühloase zu verwandeln.<br/><br/>Entdecke unsere mit Sorgfalt entwickelten Designs und entscheide Dich für Perfektion in Deinem Zuhause.</p>",
+        "alignment": "left",
+        "lines_desktop": 5,
+        "lines_mobile": 5
+      }
+    },
+    "content_ajh6BG": {
+      "type": "content",
+      "custom_css": [
+        "h2 {font-size: 24px;}"
+      ],
+      "settings": {
+        "heading": "Welche Bilder werden veröffentlicht?",
+        "text": "<p>Auf dem Bild sollte mindestens ein Bernstein-Produkt zu sehen sein.<br/><br/>Bernstein-Badshop behält sich das Recht vor, nur Bilder zu veröffentlichen, die eine hohe Auflösung aufweisen (Breite mind. 1500px). Eingesendete Fotos werden von uns ggf. überarbeitet und aufbereitet.</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "content_QT4GKH": {
+      "type": "content",
+      "custom_css": [
+        "h2 {font-size: 24px;}"
+      ],
+      "settings": {
+        "heading": "Was passiert mit den Rechten an Deinem Bild?",
+        "text": "<p>Nach Einsendung Deiner Fotos bekommst Du von uns eine Einverständniserklärung zur Fotoveröffentlichung, mit der Du Bernstein-Badshop (Nextrend GmbH) das Recht einräumst, Dein(e) Bild(er) kommerziell zu nutzen. Dies gilt sowohl für unsere Internetauftritte, soziale Netzwerke, andere Online-Medien sowie Druckmedien. Nur nach Vorliegen der von Dir unterschriebenen Einverständniserklärung kann ein Bild veröffentlicht werden.</p><p>Diese Erklärung gegenüber der Nextrend GmbH ist jederzeit widerrufbar.</p><p>Wir behalten uns vor, die eingesendeten Fotos auch über einen längeren Zeitraum hinweg zu speichern - auch dann, wenn sie zunächst nicht von uns veröffentlicht werden.</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "content_rB8PxG": {
+      "type": "content",
+      "custom_css": [
+        "h2 {font-size: 24px;}"
+      ],
+      "settings": {
+        "heading": "Wann bekommst Du Deinen Shop-Gutschein?",
+        "text": "<p>Nach Einsenden Deines Bildes (Deiner Bilder) prüfen wir, ob die Bilder genutzt werden können (Format, Auflösung) und senden Dir die Einverständniserklärung zur Unterschrift. Erst wenn uns eine unterschriebene Einverständniserklärung vorliegt, dürfen wir die Bilder veröffentlichen. Erst dann werden Dir die Gutschein-Daten per E-Mail mitgeteilt. Eine Benachrichtigung unsererseits zwecks Online-Stellung des Bildmaterials erfolgt nicht. Nextrend GmbH behält sich vor, zu entscheiden, wann und wie das Bildmaterial verwendet wird.</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "heading_subheading_W8XzQz": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    }
+  },
+  "order": [
+    "heading_subheading_mP7a76",
+    "content_with_image_QGbDnd",
+    "heading_subheading_WQTrnj",
+    "heading_subheading_DJLGgr",
+    "heading_subheading_K4aFGU",
+    "filestore_links_ih7zdW",
+    "collapsible_text_rE6TB7",
+    "content_ajh6BG",
+    "content_QT4GKH",
+    "content_rB8PxG",
+    "heading_subheading_W8XzQz"
+  ]
+}

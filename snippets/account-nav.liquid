@@ -1,0 +1,36 @@
+<div class="account-nav">
+    <ul>
+        <li>
+            <a href="{{ routes.account_url }}" {% if active_item == 'main' %}class="active"{% endif %}>
+                <span>{{ 'customer.account.overview' | t }}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ routes.account_addresses_url }}" {% if active_item == 'addresses' %}class="active"{% endif %}>
+                <span>{{ 'customer.account.addresses' | t }}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ routes.account_url }}?view=orders" {% if active_item == 'orders' %}class="active"{% endif %}>
+                <span>{{ 'customer.account.orders' | t }}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ routes.account_url }}?view=subscriptions" {% if active_item == 'subscriptions' %}class="active"{% endif %}>
+                <span>{{ 'customer.account.subscriptions' | t }}</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ routes.account_url }}?view=b2b" {% if active_item == 'b2b' %}class="active"{% endif %}>
+                <span>{{ 'customer.account.b2b' | t }}</span>
+            </a>
+        </li>
+        {%- if settings.faq_page.url != blank -%}
+            <li>
+                <a href="{{ settings.faq_page.url }}">
+                    <span>{{ 'customer.account.faq' | t }}</span>
+                </a>
+            </li>
+        {%- endif -%}
+    </ul>
+</div>

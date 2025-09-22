@@ -1,0 +1,206 @@
+{%- liquid 
+    assign sort_options = 'best-selling,price-ascending,price-descending,created-descending,created-ascending' | split: ','
+    assign groups = ''
+    assign merged_groups = ''
+
+    for block in section.blocks
+        assign groups = groups | append: block.settings.title | append: ','
+        assign title = block.settings.title | lstrip | rstrip
+        assign merged_groups = merged_groups | append: title | append: ','
+    endfor
+
+    assign groups = groups | split: ',' | uniq
+    assign merged_groups = merged_groups | split: ',' | uniq
+-%}
+
+<div class="filters">
+    <div class="filters__main">
+        <dropdown-select class="filters__dropdown">
+            <button
+                class="filters__dropdown-button button button--small button--gray"
+                aria-expanded="false"
+                data-dropdown-button>
+                    {{ 'collection.sort.title' | t }}
+                    {%- render 'svg-icon', name: 'chevron-down' -%}
+                    {%- render 'svg-icon', name: 'close' -%}
+                </button>
+            <div class="filters__dropdown-content" data-dropdown-content>
+                <div class="filters__dropdown-content-inner">
+                    <ul>
+                        {%- for option in sort_options -%}
+                            <li>
+                                <label for="sort-{{ option }}" class="checkbox w-medium">
+                                    <input 
+                                        type="radio"
+                                        name="sort_by"
+                                        value="{{ option }}"
+                                        id="sort-{{ option }}"
+                                        {% if search.sort_by == option -%}checked{%- endif %}>
+                                            {%- render 'svg-icon', name: 'radio' -%}
+                                            <span>{{ 'collection.sort.' | append: option | t }}</span>
+                                </label>   
+                            </li>
+                        {%- endfor -%}
+                    </ul>
+                </div>
+            </div>
+        </dropdown-select>
+
+        {%- for label in groups -%}
+            {%- capture dropdown_content -%}
+                {%- if merged_groups contains label -%}
+                    {%- for block in section.blocks -%}
+                        {%- if label == block.settings.title -%}
+                            {%- assign parts = block.settings.labels | split: ',' -%}  
+                                {%- for part in parts -%}
+                                    {%- assign p = part | lstrip | rstrip -%}
+                                    {%- capture content -%}
+                                        {%- for filter in search.filters -%}
+                                            {%- if filter.label == 'Tags' -%}
+                                                {%- for item in filter.values -%}
+                                                    {%- if item.value contains p -%}
+                                                        {%- assign tag = item.value | split: '::' -%}
+                                                        <li>
+                                                            <label for="filter-{{ p | handleize }}-{{ tag[1] | handleize }}" class="checkbox w-medium">
+                                                                <input 
+                                                                    type="checkbox"
+                                                                    name="filter.p.tag"
+                                                                    value="{{ item.value }}"
+                                                                    id="filter-{{ p | handleize }}-{{ tag[1] | handleize }}"
+                                                                    {% if filter_value.active -%}checked{%- endif %}>
+                                                                        {%- render 'svg-icon', name: 'checkbox' -%}
+                                                                        <span>{%- render 'translation', key: 'collection.filters', value: tag[1] -%}</span>
+                                                            </label>
+                                                        </li>
+                                                    {%- endif -%}
+                                                {%- endfor -%}
+                                            {%- endif -%}
+                                        {%- endfor -%}
+                                    {%- endcapture -%}
+                                    {%- if content != blank -%}
+                                        <p class="w-medium">
+                                            {%- render 'translation', key: 'collection.filters', value: p -%}
+                                        </p>
+                                        <ul>
+                                            {{- content -}}
+                                        </ul>
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            {%- break -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- else -%}
+                    <ul>
+                    {%- for filter in search.filters -%}
+                        {%- if filter.label == 'Tags' -%}
+                            {%- for item in filter.values -%}
+                                {%- if item.value contains label -%}
+                                    {%- assign tag = item.value | split: '::' -%}
+                                    <li>
+                                        <label for="filter-{{ label | handleize }}-{{ tag[1] | handleize }}" class="checkbox w-medium">
+                                            <input 
+                                                type="checkbox"
+                                                name="filter.p.tag"
+                                                value="{{ item.value }}"
+                                                id="filter-{{ label | handleize }}-{{ tag[1] | handleize }}"
+                                                {% if filter_value.active -%}checked{%- endif %}>
+                                                    {%- render 'svg-icon', name: 'checkbox' -%}
+                                                    <span>{%- render 'translation', key: 'collection.filters', value: tag[1] -%}</span>
+                                        </label>
+                                    </li>
+                                {%- endif -%}
+                            {%- endfor -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                    </ul>
+                {%- endif -%}
+            {%- endcapture -%}
+
+            {%- if dropdown_content != blank -%}
+                <dropdown-select class="filters__dropdown">
+                    <button
+                        class="filters__dropdown-button button button--small button--gray"
+                        aria-expanded="false"
+                        data-dropdown-button>
+                            {%- render 'translation', key: 'collection.filters', value: label -%}
+                            {%- render 'svg-icon', name: 'chevron-down' -%}
+                            {%- render 'svg-icon', name: 'close' -%}
+                        </button>
+                    <div class="filters__dropdown-content" data-dropdown-content>
+                        <div class="filters__dropdown-content-inner">
+                            {{- dropdown_content -}}
+                        </div>
+                    </div>
+                </dropdown-select>                
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- for filter in search.filters -%}
+            {%- unless filter.label == 'Tags' or filter.param_name contains 'filter.coll' -%}
+                <dropdown-select class="filters__dropdown">
+                    <button
+                        class="filters__dropdown-button button button--small button--gray"
+                        aria-expanded="false"
+                        data-dropdown-button>
+                            {{ filter.label }}
+                            {%- render 'svg-icon', name: 'chevron-down' -%}
+                            {%- render 'svg-icon', name: 'close' -%}
+                        </button>
+                    <div class="filters__dropdown-content" data-dropdown-content>
+                        <div class="filters__dropdown-content-inner">
+                            {%- if filter.type == 'list' -%}
+                                <ul>
+                                    {%- for filter_value in filter.values -%}
+                                        <label for="filter-{{ filter.param_name }}-{{ forloop.index }}" class="checkbox w-medium">
+                                            <input 
+                                                type="checkbox"
+                                                name="{{ filter_value.param_name }}"
+                                                value="{{ filter_value.value }}"
+                                                id="filter-{{ filter.param_name }}-{{ forloop.index }}"
+                                                {% if filter_value.active -%}checked{%- endif %}>
+                                                    {%- render 'svg-icon', name: 'checkbox' -%}
+                                                    <span>{{ filter_value.label }}</span>
+                                        </label>
+                                    {%- endfor -%}
+                                </ul>
+                            {%- endif -%}
+                            {%- if filter.type == 'price_range' -%}
+                                {%- assign range = filter.range_max | amount_no_decimals | divided_by: 100 -%}
+                                <range-slider class="filters__range">
+                                    <p class="w-medium">{{ filter.label }} ({{ cart.currency.symbol }})</p>
+                                    <div class="filters__range-grid">
+                                        <input 
+                                            type="number" 
+                                            name="{{ filter.min_value.param_name }}" 
+                                            placeholder="0" 
+                                            data-from-input
+                                            {% if filter.min_value.value %}value="{{ filter.min_value.value | divided_by: 100 }}"{% endif %}> 
+                                        <input 
+                                            type="number" 
+                                            name="{{ filter.max_value.param_name }}" 
+                                            placeholder="{{ range }}" 
+                                            data-to-input
+                                            {% if filter.max_value.value %}value="{{ filter.max_value.value | divided_by: 100 }}"{% endif %}>
+                                    </div>
+                                    <input 
+                                        type="hidden"
+                                        data-range
+                                        data-min="0"
+                                        data-max="{{ range }}">
+                                </range-slider>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                </dropdown-select>
+            {%- endunless -%}
+        {%- endfor -%}
+    </div> 
+
+    <div class="filters__button">
+        <button
+            class="button button--large"
+            aria-controls="drawer-search-filters">
+            {% render 'svg-icon', name: 'filter' %} {{ 'inspirations.filter' | t }}
+            </button>
+    </div>
+</div>

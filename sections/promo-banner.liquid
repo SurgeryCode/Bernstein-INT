@@ -1,0 +1,170 @@
+{%- capture content -%}
+    {%- for block in section.blocks -%}
+        {%- if block.type == 'custom' -%}
+            {%- if block.settings.image != blank or block.settings.video != blank -%}
+                <div class="promo-banner__media">
+                    {%- if block.settings.video != blank -%}
+                        {%- render 'video', 
+                            video: block.settings.video, 
+                            class: 'cover,background',
+                            autoplay: true,
+                            muted: true,
+                            loop: true 
+                        -%}
+                    {%- else -%}
+                        {%- if block.settings.image != blank -%}
+                            {%- render 'image', 
+                                image: block.settings.image,
+                                sizes: '378:420,768:800,1399:1200,1400:1600',
+                                class: 'cover,background'
+                            -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+            <div class="promo-banner__content">
+                {%- if block.settings.title != blank -%}
+                    <h2 class="f-48">{{ block.settings.title }}</h2>
+                {%- endif -%}
+                {%- if block.settings.description != blank -%}
+                    <div class="richtext richtext--gray">
+                        <p>{{ block.settings.description }}</p>
+                    </div>
+                {%- endif -%}
+                {%- if block.settings.button_label != blank -%}
+                    <a href="{{ block.settings.button_url }}" class="button button--outline button--large">{{ block.settings.button_label }}</a>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+
+        {%- if block.type == 'manual' -%}
+            {%- assign data = shop.metaobjects['collection_banner'][block.settings.title] -%}
+            {%- if data -%}
+                {%- liquid
+                    assign link = false
+                    if data.link_to_collection != blank
+                        assign link = data.link_to_collection.value.url
+                    endif
+                    if data.link_to_page != blank
+                        assign link = data.link_to_page.value.url
+                    endif
+                -%}
+                {%- if data.media != blank -%}
+                    <div class="promo-banner__media">
+                        {%- if data.media.value.sources != null -%}
+                            {%- render 'video', 
+                                video: data.media.value,
+                                class: 'cover,background',
+                                autoplay: true,
+                                muted: true,
+                                loop: true 
+                            -%}
+                        {%- else -%}
+                            {%- render 'image', 
+                                image: data.media.value, 
+                                sizes: '378:420,768:800,1399:1200,1400:1600',
+                                class: 'cover,background'
+                            -%}
+                        {%- endif -%}
+                    </div>
+                {%- endif -%}
+                <div class="promo-banner__content">
+                    <h2 class="f-48">{{ data.title }}</h2>
+                    {%- if data.description != blank -%}
+                        <div class="richtext richtext--gray">
+                            <p>{{ data.description | newline_to_br }}</p>
+                        </div>
+                    {%- endif -%}
+                    {%- if data.button_label != blank and link -%}
+                        <a href="{{ link }}" class="button button--outline button--large">{{ data.button_label }}</a>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+{%- if content != blank -%}
+    <link rel="stylesheet" href="{{ 'section-promo-banner.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'section-promo-banner.css' | asset_url | stylesheet_tag }}</noscript>
+
+    <section class="promo-banner margin">
+        {{ content }}
+    </section>
+{%- endif -%}    
+
+{% schema %}
+{
+  "name": "Promo Banner",
+  "tag": "div",
+  "class": "section section--promo-banner",
+  "max_blocks": 1,
+  "blocks": [
+    {
+        "type": "custom",
+        "name": "Custom",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "inline_richtext",
+                "id": "description",
+                "label": "Description"
+            },
+            {
+                "type": "header",
+                "content": "Button"
+            },
+            {
+                "type": "url",
+                "id": "button_url",
+                "label": "URL"
+            },
+            {
+                "type": "text",
+                "id": "button_label",
+                "label": "Label"
+            },
+            {
+                "type": "header",
+                "content": "Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "header",
+                "content": "Video"
+            },
+            {
+                "type": "video",
+                "id": "video",
+                "label": "Video"
+            }
+        ]
+    },
+    {
+        "type": "manual",
+        "name": "Selected",
+        "settings": [ 
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Handle (the entry’s identifier)",
+                "info": "Navigate to Content > Metaobjects > Promo Banner, find the entry and click on it. You can find the handle at the very bottom."
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Banner"
+    }
+  ]
+}
+{% endschema %}

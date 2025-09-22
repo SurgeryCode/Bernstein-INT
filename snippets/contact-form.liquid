@@ -1,0 +1,154 @@
+<script src="{{ 'contact-form.js' | asset_url }}" defer="defer"></script> 
+{%- liquid 
+  assign timestamp = 'now' | date: "%s"
+  assign hash = timestamp | plus: 0 | times: 7893
+  assign hash = hash | append: '3f7a8e9b6c1d2e3f4a5b6c7d8e9f0a1b' | sha256
+-%}
+
+<form-validate>
+  <contact-form>
+    <form 
+      action="https://zendesk.bernstein.store/api/tickets" 
+      method="post" 
+      class="form form--ajax customer-form customer-form--register" 
+      enctype="multipart/form-data" 
+      accept-charset="UTF-8" 
+      novalidate="novalidate"
+      data-time="{{ timestamp }}"
+      data-hash="{{ hash }}">
+        <div class="field-row">
+          <div class="field field--1-1">
+              <input
+                  type="text"
+                  name="name"
+                  id="Form-Name" 
+                  {% if customer %}
+                  value="{{ customer.name }}" 
+                  readonly
+                  {% endif %}
+                  placeholder="{{ 'contact.form.name' | t }}"
+                  aria-required="true"
+                  required
+              >
+              <label for="Form-Name">
+                  <span>{{ 'contact.form.name' | t }}</span>
+                  <span class="asterisk">*</span>
+              </label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field field--1-1">
+              <input
+                  type="email"
+                  name="email"
+                  id="Form-Email"
+                  {% if customer %}
+                  value="{{ customer.email }}" 
+                  readonly
+                  {% endif %}
+                  placeholder="{{ 'contact.form.email' | t }}"
+                  aria-required="true"
+                  required
+              >
+              <label for="Form-Email">
+                  <span>{{ 'contact.form.email' | t }}</span>
+                  <span class="asterisk">*</span>
+              </label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field field--1-1">
+              <input
+                  type="text"
+                  name="order_number"
+                  id="Form-OrderNumber"
+                  data-message-append="{{ 'contact.form.order' | t }}" 
+                  placeholder="{{ 'contact.form.order' | t }}"
+              >
+              <label for="Form-OrderNumber">
+                  <span>{{ 'contact.form.order' | t }}</span>
+              </label>
+          </div>
+        </div>
+        {%- assign subjects = section.settings.form_subject | split: ',' -%}
+        {%- if subjects.size > 0 -%}
+          <div class="field-row">
+            <div class="field field--1-1">
+                <div class="select-hld">
+                    <select
+                        name="subject"
+                        id="Form-Subject"
+                        required
+                    >
+                        <option value="" disabled selected>{{ 'contact.form.subject' | t }}</option>
+                        {%- for subject in subjects -%}
+                          <option value="{{ subject }}">{{ subject }}</option>
+                        {%- endfor -%}
+                    </select>
+                    <div class="chevron">
+                        {% render 'svg-icon', name: 'chevron-down' %}
+                    </div>
+                    <label for="Form-Subject">
+                        <span>{{ 'contact.form.subject' | t }}</span>
+                        <span class="asterisk">*</span>
+                    </label>
+                </div>
+            </div>
+          </div>
+        {%- endif -%}
+        <div class="field-row">
+          <div class="field field--1-1">
+              <textarea
+                  name="message"
+                  id="Form-Message"
+                  placeholder="{{ 'contact.form.message' | t }}"
+                  aria-required="true"
+                  required
+              ></textarea>
+              <label for="Form-Message">
+                  <span>{{ 'contact.form.message' | t }}</span>
+                  <span class="asterisk">*</span>
+              </label>
+          </div>
+        </div>
+        
+        {% comment %}
+        <div class="field-row">
+          <attachments-upload class="attachments f-14">
+            <div class="attachments__heading">
+              <p class="w-medium">{{ 'attachments.title' | t }}</p> 
+            </div>
+            <div class="attachments__content">
+              <div class="attachments__list"></div>
+              <button type="button" data-add class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ 'attachments.select' | t }}</span>
+              </button>
+            </div>
+          </attachments-upload>
+        </div>
+        {% endcomment %}
+    
+        {%- if section.settings.form_consent != blank -%}
+          <div class="field-row">
+            <label for="Form-Consent" class="checkbox checkbox--consent">
+              <input 
+                  type="checkbox"
+                  name="consent"
+                  value="true"
+                  id="Form-Consent"
+                  aria-required="true"
+                  required>
+                      {%- render 'svg-icon', name: 'checkbox' -%}
+                      <div class="richtext f-14">{{ section.settings.form_consent | replace: '</p>', '<span class="asterisk">*</span></p>' }}</div>
+            </label> 
+          </div>
+        {%- endif -%}
+
+        <div class="form__msg form-success">
+          <p>{{ 'form.message_sent' | t }}</p>
+        </div>
+        
+        <button class="button button--xlarge" type="submit">{{ 'contact.form.submit' | t }}</button>
+    </form>
+  </contact-form>
+</form-validate>

@@ -1,0 +1,47 @@
+<predictive-search class="predictive-search">
+  <div class="container">
+    <div class="predictive-search__content">
+      <div class="predictive-search__content-inner">
+        <div class="predictive-search__categories">
+            <p class="f-14 w-medium gray">{{ 'search.heading_html' | t: terms: '' }}</p>
+            {%- for link in linklists[settings.menu_categories].links -%}
+                <a 
+                    href="{{ link.url }}?view=all" 
+                    class="button button--outline button--small"
+                    data-search-category="{{ link.title }} {{ link.object.title }} {{ link.object.title | handleize }}">
+                        {{ link.title }}
+                </a>
+                {%- for sublink in link.links -%}
+                    <a 
+                        href="{{ sublink.url }}?view=all" 
+                        class="button button--outline button--small"
+                        data-search-category="{{ sublink.title }} {{ sublink.object.title }} {{ sublink.object.title | handleize }}">
+                            {{ sublink.title }}
+                    </a>
+                    {%- for subsublink in sublink.links -%}
+                        <a 
+                            href="{{ sublink.url }}?view=all" 
+                            class="button button--outline button--small"
+                            data-search-category="{{ subsublink.title }} {{ subsublink.object.title }} {{ subsublink.object.title | handleize }}">
+                                {{ subsublink.title }}
+                        </a>
+                    {%- endfor -%}
+                {%- endfor -%}
+            {%- endfor -%}
+        </div>
+        
+        <div class="predictive-search__grid"></div> 
+        <div class="predictive-search__empty">
+          <div class="richtext richtext--gray center">
+            <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p>
+          </div>
+        </div>
+        <div class="predictive-search__button">
+          <a href="#" class="text-link text-link--reverse f-14 w-medium upper spaced">
+            <span>{{ 'search.view_all_html' | t: count: 0 }}</span>
+        </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</predictive-search>

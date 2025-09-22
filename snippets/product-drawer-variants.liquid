@@ -1,0 +1,120 @@
+<link rel="stylesheet" href="{{ 'section-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-configurator.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-drawer.css' | asset_url | stylesheet_tag }}
+    {{ 'component-configurator.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'drawer.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'configurator-select.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid 
+    assign has_configurator = false
+    assign heading = 'product.dimmensions' | t
+    assign product_color_options = settings.product_color_options | split: ','
+    assign current_variant_values = ''
+
+    for value in product.selected_or_first_available_variant.options
+        assign current_variant_values = current_variant_values | append: value | append: ','
+    endfor
+    assign current_variant_values = current_variant_values | split: ','
+
+    for variant in product.variants
+        if variant.metafields.configurator.json.value != blank
+            assign has_configurator = true
+        endif 
+    endfor
+
+    for option in product.options_with_values
+        if product_color_options contains option.name
+            assign heading = 'product.color_and_dimmensions' | t: color: option.name
+        endif
+    endfor
+-%}
+{%- if has_configurator && product.options.size > 1 -%}
+    <drawer-section class="drawer" id="drawer-configurator-variants" tabindex="-1">
+        <div class="drawer__content">
+            <button 
+                title="{{ 'accessibility.close' | t }}" 
+                aria-label="{{ 'accessibility.close' | t }}"
+                class="drawer__close"
+                data-drawer-close>
+                    {%- render 'svg-icon', name: 'close' -%}
+            </button>
+
+            <div class="drawer__header">
+                <span class="f-24 w-bold">{{ heading }}</span>
+            </div>
+
+            <div class="drawer__scroll">
+                <div class="drawer__scroll-inner">
+                    {%- for option in product.options_with_values -%}
+                        {%- liquid 
+                            assign index = forloop.index0
+                            assign handle = option.name | handleize
+                            assign current_value = current_variant_values[index] | lstrip | rstrip
+                        -%}
+                        <product-options class="product-options product-options--{{ handle }}" data-handle="{{ handle }}">
+                            <div class="product-options__label">
+                                <label for="{{ handle }}" class="f-14 w-medium gray">{{ option.name }}:</label>
+                                {%- for entry in shop.metaobjects['product_option_description'].values -%}
+                                    {%- if entry.name == option.name -%}
+                                        {%- if entry.description != blank -%}
+                                            <div class="tooltip">
+                                                {%- render 'svg-icon', name: 'info' -%}
+                                                <div class="tooltip__caption f-12 w-bold">{{ entry.description }}</div>
+                                            </div>
+                                        {%- endif -%}
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            </div>
+
+                            <div class="chips {% if product_color_options contains option.name %}chips--colors{% else %}chips--image{% endif %}">
+                                {%- if product_color_options contains option.name -%}
+                                    {%- render 'product-item-colors', product: product, tpl: 'configurator', current_value: current_value -%}
+                                {%- else -%}
+                                    {%- for entry in shop.metaobjects['product_option_description'].values -%}
+                                        {%- if entry.name == option.name -%}
+                                            {%- if entry.image != blank -%}
+                                                <div class="chips__image">
+                                                    <img 
+                                                        src="{{ entry.image | img_url: '240x' }}" 
+                                                        width="240"
+                                                        height="160"
+                                                        alt="{{ option.name }}"
+                                                        loading="lazy">
+                                                </div>
+                                            {%- endif -%}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                    <ul class="product-options__list">
+                                        {%- for value in option.values -%}
+                                            <li class="chips__item"> 
+                                                <input 
+                                                    type="radio" 
+                                                    id="option-{{ product.id }}-{{ index }}-{{ value | handleize }}"
+                                                    name="product-option-{{ index }}" 
+                                                    value="{{ value }}"
+                                                    {% if value == current_value %}checked{% endif %}>
+                                                <label  
+                                                    for="option-{{ product.id }}-{{ index }}-{{ value | handleize }}"
+                                                    class="product-options__item button button--gray button--small">
+                                                        {{ value }}
+                                                </label>
+                                            </li>
+                                        {%- endfor -%}
+                                    </ul>
+                                {%- endif -%}
+                            </div>
+                        </product-options>
+                    {%- endfor -%}
+                </div>
+            </div>
+
+            <div class="drawer__buttons">
+                <button class="text-link text-link--reverse f-14 w-medium upper spaced" data-drawer-close>
+                    <span>{{ 'accessibility.return_pdp' | t }}</span>
+                </button>
+            </div>
+        </div>
+    </drawer-section>
+{%- endif -%}

@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product-comparison",
+      "settings": {}
+    },
+    "product_carousel_4Bk7jn": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_axYBt9": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "bestsellers"
+          }
+        }
+      },
+      "block_order": [
+        "category_axYBt9"
+      ],
+      "settings": {
+        "heading": "Für dich empfohlen",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_carousel_4Bk7jn"
+  ]
+}

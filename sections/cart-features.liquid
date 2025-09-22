@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="{{ 'section-cart-features.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-cart-features.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="container">
+  <div class="cart-features">
+    {%- for feature in section.blocks -%}
+      <div class="cart-features__item">
+        {%- render 'svg-icon', name: feature.settings.icon -%}
+        <span class="cart-features__content">{{ feature.settings.title }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Cart features",
+    "tag": "section",
+    "settings": [
+      
+    ],
+    "blocks": [
+      {
+        "name": "Feature",
+        "type": "feature",
+        "settings": [
+           {
+             "type": "select",
+             "id": "icon",
+             "label": "Icon",
+             "options": [
+               {
+                 "value": "delivery",
+                 "label": "Delivery"
+               },
+               {
+                 "value": "design",
+                 "label": "In-house production"
+               },
+               {
+                 "value": "returns",
+                 "label": "Returns"
+               },
+               {
+                 "value": "warranty",
+                 "label": "Warranty"
+               }
+             ],
+             "default": "delivery"
+           },
+           {
+             "type": "text",
+             "id": "title",
+             "label": "Content"
+           }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Cart features",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

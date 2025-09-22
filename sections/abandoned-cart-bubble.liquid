@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="{{ 'section-bubble.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-bubble.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'abandoned-cart-bubble.js' | asset_url }}" defer="defer"></script>
+
+<abandoned-cart-bubble class="bubble" data-delay="{{ section.settings.delay }}">
+    <button 
+        aria-expanded="false"
+        class="bubble__button">
+        {%- render 'svg-icon', name: 'phone' -%}
+    </button>
+    <div class="bubble__content">
+          <p class="f-14 w-medium">{{ section.settings.heading | newline_to_br }}</p>
+          <p class="f-12">{{ section.settings.text | newline_to_br }}</p>
+          <a href="tel:{{ section.settings.phone | remove: ' ' }}" class="text-link w-medium">
+            {%- render 'svg-icon', name: 'phone' -%}
+            <span>{{ section.settings.phone }}</span>
+        </a>
+        <button 
+          class="bubble__close" 
+          title="{{ 'accessibility.close' | t }}"
+          aria-label="{{ 'accessibility.close' | t }}">
+            {%- render 'svg-icon', name: 'close' -%}
+        </button>
+    </div>
+</abandoned-cart-bubble>
+
+{% schema %}
+{
+  "name": "Abandoned Cart Bubble",
+  "class": "section section--bubble",
+  "tag": "aside",
+  "settings": [
+    {
+      "type": "range",
+      "id": "delay",
+      "min": 1,
+      "max": 60,
+      "step": 1,
+      "unit": "min",
+      "label": "Delay",
+      "default": 5,
+      "info": "The bubble appears after X minutes from latest cart update."
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number"
+    }
+  ]
+}
+{% endschema %}

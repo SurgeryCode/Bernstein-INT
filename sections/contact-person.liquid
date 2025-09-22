@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="{{ 'section-contact-person.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-contact-person.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="container">
+    <div class="contact-person">
+        {%- if section.settings.portrait != blank -%}
+            <div class="contact-person__portrait">
+                <img src="{{ section.settings.portrait | img_url: '240x240' }}" width="160" height="160" alt="{{ section.settings.name }}" loading="lazy">
+            </div>
+        {%- endif -%}
+        <div class="contact-person__content">
+            {%- if section.settings.heading -%}
+                <h3 class="f-32 w-bold contact-person__heading">{{ section.settings.heading | newline_to_br }}</h3>
+            {%- endif -%}
+            {%- if section.settings.text -%}
+                <p class="f-16 w-medium contact-person__text ">{{ section.settings.text | newline_to_br }}</p>
+            {%- endif -%}
+            {%- if section.settings.button_url != blank and section.settings.button_text != blank -%}
+                <div class="contact-person__btn-hld">
+                    <a class="button button--large contact-person__btn" href="{{ section.settings.button_url }}" {% if section.settings.button_target == true %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ section.settings.button_text }}</a>
+                </div>
+            {%- endif -%}
+            {%- if section.settings.name -%}
+                <span class="f-12 w-medium gray contact-person__name">{{ section.settings.name }}</span>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Contact Person",
+    "tag": "section",
+    "class": "section section--contact-person",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "portrait",
+            "label": "Portrait"
+        },
+        {
+            "type": "text",
+            "id": "name",
+            "label": "Name"
+        },
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text"
+        },
+        {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button url"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open on new tab"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Contact Person"
+        }
+    ]
+}
+{% endschema %}

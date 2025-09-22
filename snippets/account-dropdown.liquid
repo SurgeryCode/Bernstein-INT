@@ -1,0 +1,57 @@
+<div class="account-dropdown">
+    {%- if customer -%}
+        <div class="richtext f-24 w-bold">
+            <p>{{ 'account.welcome' | t: name: customer.first_name }}</p>
+        </div>
+    {%- else -%}
+        <div>
+            <button
+                aria-controls="drawer-account"
+                aria-expanded="false" 
+                class="button">
+                    {{ 'account.login.button' | t | upcase }}
+            </button>
+        </div>
+
+        <div class="richtext richtext--border f-14 w-medium">
+            <p>{{ 'account.new_account_html' | t }}</p>
+        </div>
+    {%- endif -%}
+
+    <ul class="account-dropdown__menu w-medium">
+        {%- if customer -%}
+            <li>
+                <a href="{{ routes.account_url }}" class="text-link">
+                    {%- render 'svg-icon', name: 'user' -%}
+                    <span>{{ 'account.menu.my_account' | t }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ routes.account_url }}?view=orders" class="text-link">
+                    {%- render 'svg-icon', name: 'delivery' -%}
+                    <span>{{ 'account.menu.orders' | t }}</span>
+                </a>
+            </li>
+        {%- endif -%}
+        {%- if settings.faq_page.url != blank -%}
+            <li>
+                <a href="{{ settings.faq_page.url }}" class="text-link">
+                    {%- render 'svg-icon', name: 'help' -%}
+                    <span>{{ 'account.menu.faq' | t }}</span>
+                </a>
+            </li>
+        {%- endif -%}
+        <li>
+            <a href="{{ routes.account_url }}?view=b2b" class="text-link">
+                {%- render 'svg-icon', name: 'discount' -%}
+                <span>{{ 'account.menu.b2b' | t }}</span>
+            </a>
+        </li>
+    </ul>
+
+    {%- if customer -%}
+        <a href="{{ routes.account_logout_url }}" class="button">
+            {{ 'account.logout' | t | upcase }}
+        </a>
+    {%- endif -%}
+</div>

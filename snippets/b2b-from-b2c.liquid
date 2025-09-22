@@ -1,0 +1,88 @@
+<script src="{{ 'customer-registration.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .globo-formbuilder {
+    display: none;
+  }
+{%- endstyle -%}
+
+<customer-registration>
+    <form-validate>
+        {%- form 'create_customer', class: 'customer-form customer-form--register' -%}
+            {%- if form.errors -%}
+                <div class="form-errors">
+                    {%- for field in form.errors -%}
+                        <p>{{ form.errors.messages[field] }}</p>
+                    {%- endfor -%}
+                </div>
+            {%- endif -%}
+
+            <input type="hidden" name="return_to" value="/pages/b2b">
+
+            <input
+                type="hidden"
+                name="customer[email]"
+                id="RegisterForm-email"
+                value="{{ customer.email }}"
+            />
+
+            <fieldset class="fieldset fieldset--account-type" style="display: none;">
+                <legend>{{ 'customer.account.account_type.label' | t }} <span class="asterisk">*</span></legend>
+
+                <div class="fieldset__item fieldset__item--radio">
+                    <input type="radio" id="account-type-private" name="customer-type" value="private">
+                    <label for="account-type-private">{{ 'customer.account.account_type.b2c' | t }}</label>
+                </div>
+
+                <div class="fieldset__item fieldset__item--radio">
+                    <input type="radio" id="account-type-company" name="customer-type" value="company" checked required>
+                    <label for="account-type-company">{{ 'customer.account.account_type.b2b' | t }}</label>
+                </div>
+            </fieldset>
+
+            <div class="field-row">
+                <div class="field field--1-1">
+                    {%- render 'vat-validation' -%}
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field field--1-1">
+                    <input
+                        type="text"
+                        name="customer[note][company]"
+                        id="RegisterForm-Company"
+                        placeholder="{{ 'customer.register.company' | t }}"
+                        conditional-required="account-type-company"
+                        required
+                    >
+                    <label for="RegisterForm-Company">
+                        <span>{{ 'customer.register.company' | t }}</span>
+                        <span class="asterisk">*</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field field--1-1">
+                    <input
+                        type="text"
+                        name="customer[note][department]"
+                        id="RegisterForm-Department"
+                        placeholder="{{ 'customer.register.department' | t }}"
+                    >
+                    <label for="RegisterForm-Department">
+                        <span>{{ 'customer.register.department' | t }}</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="customer-form__submit-hld">
+                <button class="button button--xlarge" type="submit">{{ 'customer.register.submit' | t }}</button>
+            </div>
+        {%- endform -%}
+    </form-validate>
+</customer-registration>
+<div class="globo-formbuilder" data-id="ODI4NzA="></div>
+
+<script src="{{ 'b2c-to-b2b.js' | asset_url }}" defer="defer"></script>

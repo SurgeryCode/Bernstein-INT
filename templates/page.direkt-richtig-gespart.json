@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_aADqad": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_AAjkrm": {
+          "type": "slide",
+          "settings": {
+            "subtitle": "",
+            "title": "",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_Hero_Fyler_5_2.png",
+            "alignment_desktop": "left",
+            "alignment_tablet": "left",
+            "alignment_mobile": "left",
+            "v_alignment_mobile": "bottom",
+            "overlay": 0
+          }
+        }
+      },
+      "block_order": [
+        "slide_AAjkrm"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "autoplay": false,
+        "delay": 5
+      }
+    },
+    "content_amNixC": {
+      "type": "content",
+      "settings": {
+        "heading": "Bernstein. Dein Bad. <br>Direkt richtig gespart – 5% auf alles!",
+        "text": "<p>Du hast unseren Flyer mit dem exklusiven 5 %-Gutschein erhalten? Perfekt! So einfach löst Du Deinen Rabatt ein.</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "work_with_us_yqfXQq": {
+      "type": "work-with-us",
+      "name": "Work With Us",
+      "settings": {
+        "heading": "Gutscheincode: SPAR5",
+        "content": "<p><strong>So einfach geht's:</strong> Einfach den Code SPAR5 im Checkout eingeben. Dein Rabatt wird automatisch abgezogen. Gültigkeit<strong>:</strong> Der Gutschein ist bis zum 31.12.2025 gültig. </p>",
+        "button_url": "https://bernstein-badshop.de/",
+        "button_label": "Jetzt direkt richtig sparen",
+        "button_target": true
+      }
+    },
+    "content_EgJDnX": {
+      "type": "content",
+      "custom_css": [],
+      "name": "Content",
+      "settings": {
+        "heading": "",
+        "text": "<p><strong>Rechtliche Hinweise:</strong> Der Rabatt gilt auf das gesamte Sortiment. Nicht mit anderen Gutscheinen oder Rabattaktionen kombinierbar. Pro Person nur einmal einlösbar. Keine Barauszahlung möglich.</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_aADqad",
+    "content_amNixC",
+    "work_with_us_yqfXQq",
+    "content_EgJDnX"
+  ]
+}

@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="{{ 'section-content-with-image.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-content-with-image.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="container">
+    <div class="content-with-image content-with-image--{{ section.settings.layout }}" data-background="{{ section.settings.background }}">
+        {%- if section.settings.image != blank -%}
+            <div class="content-with-image__image-hld">
+                {%- render 'image', 
+                    image: section.settings.image,
+                    sizes: '575:543,576:820',
+                    class: 'cover,background',
+                    loading: 'lazy'
+                -%}
+            </div>
+        {%- endif -%}
+        <div class="content-with-image__content-hld">
+            {%- if section.settings.heading != blank -%}
+                <h2 class="f-48 content-with-image__heading">{{ section.settings.heading | newline_to_br }}</h2>
+            {%- endif -%}
+            {%- if section.settings.content != blank -%}
+                <div class="richtext richtext--gray content-with-image__text">
+                    {{ section.settings.content }}
+                </div>
+            {%- endif -%}
+            {%- if section.settings.button_url != blank and section.settings.button_label != blank -%}
+                <div class="content-with-image__btn-hld">
+                    <a class="button button--outline button--large content-with-image__btn" href="{{ section.settings.button_url }}" {% if section.settings.button_target == true %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ section.settings.button_label }}</a>
+                </div>
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Content With Image",
+    "tag": "section",
+    "class": "section section--content-with-image",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Section title"
+        },
+        {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content",
+            "default": "<p>Section content.</p>"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "select",
+            "id": "background",
+            "label": "Background",
+            "options": [
+                {
+                    "value": "white",
+                    "label": "White"
+                },
+                {
+                    "value": "gray",
+                    "label": "Gray" 
+                }
+            ],
+            "default": "white"
+        },
+        {
+            "type": "select",
+            "id": "layout",
+            "label": "Layout",
+            "options": [
+                {
+                    "value": "normal",
+                    "label": "Normal"
+                },
+                {
+                    "value": "reverse",
+                    "label": "Reverse" 
+                }
+            ],
+            "default": "normal"
+        },
+        {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "URL"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Label"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open on new tab"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Content With Image"
+        }
+    ]
+}
+{% endschema %}

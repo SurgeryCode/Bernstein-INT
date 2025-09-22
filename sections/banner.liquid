@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="{{ 'section-banner.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-banner.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- liquid
+  assign hasImage = false
+
+  if section.settings.image != blank
+    assign hasImage = true
+  endif
+-%}
+
+<div class="container {% unless hasImage %}center{% endunless %}">
+    <div class="richtext richtext--gray">
+        {{ section.settings.content }}
+    </div>
+    <div class="banner__buttons">
+        {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_url }}" class="button button--large {% if hasImage %}button--outline{% endif %}">
+                {{ section.settings.button_label }}
+            </a>
+        {%- endif -%}
+        {%- if section.settings.link_label != blank -%}
+            <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ section.settings.link_label }}</span>
+            </a>
+        {%- endif -%}
+    </div>
+</div>
+
+{%- if hasImage -%}
+    {%- render 'image', 
+        image: section.settings.image, 
+        image_mobile: section.settings.image_mobile, 
+        sizes: '380:440,767:767,1200:1200,1600:1600,1601:1920',
+        class: 'cover,background'
+    -%}
+{%- endif -%}
+
+{% schema %}
+{
+    "name": "Banner",
+    "tag": "section",
+    "class": "section section--banner banner",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Label"
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Label"
+        },
+        {
+            "type": "header",
+            "content": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image (desktop/default)"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Image (mobile)"
+        }
+    ],
+  "presets": [
+    {
+      "name": "Banner"
+    }
+  ]
+}
+{% endschema %}

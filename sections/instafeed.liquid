@@ -1,0 +1,135 @@
+<link rel="stylesheet" href="{{ 'section-instafeed.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-instafeed.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'instagram-carousel.js' | asset_url }}" defer="defer"></script>
+
+<div class="instafeed instafeed--{{ section.settings.background }}{% if section.settings.has_mb == true %} instafeed--mb{% endif %}">
+    <div class="container">
+        {%- if section.settings.heading != blank -%}
+            <div class="heading">
+                <div class="heading__text">
+                    <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                    {%- if section.settings.heading_text != blank -%}
+                        <div class="richtext richtext--gray">
+                            <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                        </div>
+                    {%- endif -%}
+                </div>
+                {%- if section.settings.link_title -%}
+                    <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                        <span>{{ section.settings.link_title }}</span>
+                    </a>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+        
+        <instagram-carousel>
+            <div id="{{ section.settings.feed_id }}" class="instafeed-shopify"></div>
+            <div class="swiper">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper"></div>
+                </div>
+                <div class="instafeed__arrows">
+                    <button 
+                        class="arrow arrow--left"
+                        title="{{ 'accessibility.prev_slide' | t }}"
+                        aria-label="{{ 'accessibility.prev_slide' | t }}">
+                        {%- render 'svg-icon', name: 'chevron-left' -%}
+                    </button>
+                    <button 
+                        class="arrow arrow--right"
+                        title="{{ 'accessibility.next_slide' | t }}"
+                        aria-label="{{ 'accessibility.next_slide' | t }}">
+                        {%- render 'svg-icon', name: 'chevron-right' -%}
+                    </button>
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </instagram-carousel>
+
+        {%- if section.settings.link_title -%}
+            <div class="section__read-more">
+                <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                    <span>{{ section.settings.link_title }}</span>
+                </a>
+            </div>
+        {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "tag": "section",
+  "class": "section section--instafeed",
+  "settings": [
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1"
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    },
+    {
+        "type": "textarea",
+        "id": "heading_text",
+        "label": "Text"
+    },
+    {
+        "type": "select",
+        "id": "background",
+        "label": "Background",
+        "default": "gray",
+        "options": [
+            {
+                "value": "white",
+                "label": "White"
+            },
+            {
+                "value": "gray",
+                "label": "Gray" 
+            }
+        ]
+    },
+    {
+        "type": "text",
+        "id": "feed_id",
+        "label": "Instafeed (feed ID)",
+        "default": "feed-34558"
+    },
+    {
+        "type": "checkbox",
+        "id": "has_mb",
+        "label": "Add bottom margin",
+        "info": "If, for example, it's the last section on the page"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Feed"
+    }
+  ]
+}
+{% endschema %}

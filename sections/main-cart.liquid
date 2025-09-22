@@ -1,0 +1,169 @@
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+ 
+<cart-main class="cart" id="{{ section.id }}" data-items-count="{{ cart.item_count }}" loading="true">
+  <div class="container">
+    <h1 class="f-48 w-bold">{{ 'cart.title' | t }}</h1>
+    {%- unless cart.empty? -%}
+      <div class="cart__grid">
+        <div class="cart-list">
+          <form id="cart-form" action="{{ routes.cart_url }}" method="post">
+            {%- for line_item in cart.items -%}
+              {%- render 'cart-item', line_item: line_item -%}
+            {%- endfor -%}
+          </form>
+          <a href="/" class="btn-continue-shopping">
+            {%- render 'svg-icon', name: 'arrow-left' -%}
+            <span>{{ 'accessibility.continue_shopping' | t }}</span>
+          </a>
+        </div>
+        <div class="cart-details">
+          <div class="cart-details__summary">
+            <h2 class="f-24">{{ 'cart.summary' | t }}</h2>
+            <div class="cart-details__total-value">
+              <span class="f-14 w-medium">{{ 'cart.subtotal' | t }}:</span>
+              <span class="w-medium">{{ cart.original_total_price | money }}</span>
+            </div>
+
+            {%- for discount_application in cart.discount_applications -%}
+            <div class="cart-details__total-value">
+              <span class="f-14 w-medium">{{ 'cart.discount' | t }} ({{ discount_application.title }}):</span>
+              <span class="w-medium"><em style="position:relative;top:-1px;">-</em> {{ discount_application.total_allocated_amount | money }}</span>
+            </div>
+            {%- endfor -%} 
+           
+            <div class="cart-details__delivery-cost">
+              <span class="f-14 w-medium">{{ 'cart.delivery_cost' | t }}:</span>
+              <span class="f-12 w-medium gray">{{ 'cart.delivery_cost_information' | t }}</span>
+            </div>
+            <div class="cart-details__subtotal">
+              <span class="f-14 w-medium">{{ 'cart.total' | t }}:</span>
+              <span class="f-24 w-bold">
+                {{ cart.total_price | money }}
+                {%- if cart.taxes_included -%}
+                  {%- liquid
+                    assign tax_excluded = false
+                    assign b2b_country = customer.metafields.wholesale.vat_id | slice: 0, 2
+                    unless b2b_country == 'DE'
+                      if customer.tags contains 'B2B' or customer.tags contains 'b2b'
+                        assign tax_excluded = true
+                      endif
+                    endunless
+                  -%}
+                  {%- if tax_excluded -%}
+                    <p class="f-14 w-regular gray">{{ 'cart.tax_excluded' | t }}</p>
+                  {%- else -%}
+                    <p class="f-14 w-regular gray">{{ 'cart.tax_included' | t }}</p>
+                  {%- endif -%}
+                {%- endif -%}
+              </span>
+            </div>
+          </div>
+
+          <button type="submit" name="checkout" form="cart-form" class="button button--large">{{ "cart.checkout" | t }}</button>
+
+          {%- if section.settings.enable_paypal_button -%}
+            <button type="submit" name="checkout" form="cart-form" class="button button--large button--paypal" aria-label="PayPal">
+              <svg class="wordmark" alt="PayPal" viewBox="0 0 101 32" width="75.75" height="24" data-baseline-offset="-18.25" xmlns="http://www.w3.org/2000/svg" x="0" y="-18.25"><path class="pay" d="M12.24 2.8h-7.8c-.5 0-1 .4-1.1.9l-3.1 20c-.1.4.2.7.6.7h3.7c.5 0 1-.4 1.1-.9l.8-5.4c.1-.5.5-.9 1.1-.9h2.5c5.1 0 8.1-2.5 8.9-7.4.3-2.1 0-3.8-1-5-1.1-1.3-3.1-2-5.7-2Zm.9 7.3c-.4 2.8-2.6 2.8-4.6 2.8h-1.2l.8-5.2c0-.3.3-.5.6-.5h.5c1.4 0 2.7 0 3.4.8.5.4.7 1.1.5 2.1Zm22.3-.1h-3.7c-.3 0-.6.2-.6.5l-.2 1-.3-.4c-.8-1.2-2.6-1.6-4.4-1.6-4.1 0-7.6 3.1-8.3 7.5-.4 2.2.1 4.3 1.4 5.7 1.1 1.3 2.8 1.9 4.7 1.9 3.3 0 5.2-2.1 5.2-2.1l-.2 1c-.1.4.2.8.6.8h3.4c.5 0 1-.4 1.1-.9l2-12.8c.1-.2-.3-.6-.7-.6Zm-5.1 7.2c-.4 2.1-2 3.6-4.2 3.6-1.1 0-1.9-.3-2.5-1-.6-.7-.8-1.6-.6-2.6a4.2 4.2 0 0 1 4.2-3.6c1.1 0 1.9.4 2.5 1 .5.7.7 1.6.6 2.6Zm25-7.2h-3.7c-.4 0-.7.2-.9.5l-5.2 7.6-2.2-7.3c-.1-.5-.6-.8-1-.8h-3.7c-.4 0-.8.4-.6.9l4.1 12.1-3.9 5.4c-.3.4 0 1 .5 1h3.7c.4 0 .7-.2.9-.5l12.5-18c.3-.3 0-.9-.5-.9Z"></path><path class="pal" d="M67.74 2.8h-7.8c-.5 0-1 .4-1.1.9l-3.1 19.9c-.1.4.2.7.6.7h4c.4 0 .7-.3.7-.6l.9-5.7c.1-.5.5-.9 1.1-.9h2.5c5.1 0 8.1-2.5 8.9-7.4.3-2.1 0-3.8-1-5-1.2-1.2-3.1-1.9-5.7-1.9Zm.9 7.3c-.4 2.8-2.6 2.8-4.6 2.8h-1.2l.8-5.2c0-.3.3-.5.6-.5h.5c1.4 0 2.7 0 3.4.8.5.4.6 1.1.5 2.1Zm22.3-.1h-3.7c-.3 0-.6.2-.6.5l-.2 1-.3-.4c-.8-1.2-2.6-1.6-4.4-1.6-4.1 0-7.6 3.1-8.3 7.5-.4 2.2.1 4.3 1.4 5.7 1.1 1.3 2.8 1.9 4.7 1.9 3.3 0 5.2-2.1 5.2-2.1l-.2 1c-.1.4.2.8.6.8h3.4c.5 0 1-.4 1.1-.9l2-12.8c0-.2-.3-.6-.7-.6Zm-5.2 7.2c-.4 2.1-2 3.6-4.2 3.6-1.1 0-1.9-.3-2.5-1-.6-.7-.8-1.6-.6-2.6a4.2 4.2 0 0 1 4.2-3.6c1.1 0 1.9.4 2.5 1 .6.7.8 1.6.6 2.6Zm9.6-13.9-3.2 20.3c-.1.4.2.7.6.7h3.2c.5 0 1-.4 1.1-.9l3.2-19.9c.1-.4-.2-.7-.6-.7h-3.6c-.4 0-.6.2-.7.5Z"></path></svg>
+            </button>
+          {%- endif -%}
+
+          <div class="cart-details__payments">
+            {% assign enabled_payment_types = 'visa,master,american_express,cartes_bancaires,paypal' | remove: ' ' | split: ',' %}
+            {% assign klarna_countries = "nl, es, pt, no, de, it, ie, fr, fi, dk, be, at, se" | split: ", " %}
+            {% for type in shop.enabled_payment_types %}
+              {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+            {% endfor %}
+          </div>
+
+          {%- if section.settings.pay_in_three != blank or section.settings.sichere_zalung != blank -%}
+            <div class="cart-details__features">
+              {%- if section.settings.pay_in_three != blank -%}
+                <div class="cart-details__features__item">
+                  {%- render 'svg-icon', name: 'cart-empty' -%}
+                  {%- assign p = cart.total_price | divided_by: 3 | money -%}
+                  <span>{{ 'product.pay_in_3' | t: price: p }}</span>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.sichere_zalung != blank -%}
+                <div class="cart-details__features__item">
+                  {%- render 'svg-icon', name: 'warranty' -%}
+                  <span>{{ section.settings.sichere_zalung }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- else -%}
+      <div class="cart__empty">
+        {%- render 'svg-icon', name: 'cart-empty' -%}
+        <h2 class="f-32">{{ section.settings.empty_heading }}</h2>
+        <p class="w-medium gray">{{ section.settings.empty_text | newline_to_br }}</p>
+        <a href="{{ section.settings.empty_button_url }}" class="button button--large">
+          {{ section.settings.empty_button_label }}
+        </a>
+      </div>
+    {%- endunless -%}
+  </div>
+</cart-main>
+
+{% schema %}
+{
+  "name": "Main Cart",
+  "tag": "section",
+  "class": "section section--cart",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "empty_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "empty_button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "text",
+      "id": "empty_button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar: Features"
+    },
+    {
+      "type": "text",
+      "id": "pay_in_three",
+      "label": "Pay in 3"
+    },
+    {
+      "type": "text",
+      "id": "sichere_zalung",
+      "label": "Safe payment information"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_paypal_button",
+      "label": "PayPal button",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

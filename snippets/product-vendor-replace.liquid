@@ -1,0 +1,37 @@
+{%- if template.name == 'product' -%}
+  {%- assign brand = '' -%}
+  {%- capture brand -%}
+    {%- for variant in product.variants -%}
+      {%- if variant.metafields.custom.brand != blank -%}
+          {{- variant.metafields.custom.brand -}}
+          {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  <script>
+    new function(){
+      const me=this;
+      const config = { attributes: false, childList: true, subtree: false };
+      me.init=()=>{    
+        me.addObserver(document.querySelector("head"),config,me.callback)
+      }
+      me.callback = (mutationsList, observer)=> {
+        // Use traditional 'for loops' for IE 11
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+              if(window.ShopifyAnalytics && window.ShopifyAnalytics.meta && window.ShopifyAnalytics.meta.product){
+                window.ShopifyAnalytics.meta.product.vendor = '{{ brand }}';
+                me.stop(observer);
+              }
+            } 
+        }        
+      };
+      me.stop=(observer)=>{observer.disconnect();};
+      me.addObserver=(target, config,callback)=>{
+        const observer = new MutationObserver(callback);
+        observer.observe(target, config);
+      };
+      me.init();
+    }
+  </script>
+{%- endif -%}

@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="{{ 'section-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-upsell.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-drawer.css' | asset_url | stylesheet_tag }}
+    {{ 'section-upsell.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'drawer.js' | asset_url }}" defer="defer"></script>
+
+<drawer-section class="drawer" id="drawer-product-installation-accessories" tabindex="-1">
+    <div class="drawer__content">
+        <button 
+            title="{{ 'accessibility.close' | t }}" 
+            aria-label="{{ 'accessibility.close' | t }}"
+            class="drawer__close"
+            data-drawer-close>
+                {%- render 'svg-icon', name: 'close' -%}
+        </button>
+
+        <div class="drawer__header drawer__header--short">
+            <span class="f-24 w-bold">{{ 'upsell.heading_installation' | t }}</span>
+            <div class="drawer__message f-14">
+                <p>{{ 'upsell.message_installation' | t }}</p>
+            </div>
+        </div>
+
+        <div class="drawer__scroll">
+            <div class="drawer__scroll-inner drawer__scroll-inner--padding">
+                {%- for variant in product.variants -%}
+                    {%- if variant.metafields.custom.ProductAssembly != blank -%}
+                        <upsell-list 
+                            class="upsell selected" 
+                            data-sku="{{ variant.metafields.custom.ProductAssembly | remove: variant.sku }}"
+                            data-type="bundle"></upsell-list> 
+                        {%- break -%}
+                    {%- endif -%}
+                {%- endfor -%}   
+            </div>
+        </div>
+
+        <div class="drawer__buttons drawer__buttons--border">
+            <button class="text-link text-link--reverse f-14 w-medium upper spaced" data-drawer-close>
+                <span>{{ 'accessibility.return_pdp' | t }}</span>
+            </button>
+        </div>
+    </div>
+</drawer-section>

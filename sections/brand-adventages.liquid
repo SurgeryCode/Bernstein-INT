@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="{{ 'section-brand-adventages.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-brand-adventages.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="brand-adventages">
+    <div class="container">
+        <div class="brand-adventages__grid">
+            {%- if section.settings.heading != blank -%}
+                <h{{ section.settings.heading_tag }} class="f-32 w-bold">{{ section.settings.heading }}</h{{ section.settings.heading_tag }}>
+            {%- endif -%}
+            <div class="brand-adventages__items">
+                {%- for block in section.blocks -%}
+                    <div class="brand-adventages__item">
+                        <img 
+                            src="{{ block.settings.icon | img_url: 'master' }}" 
+                            width="48"
+                            height="48"
+                            alt="{{ block.settings.icon.alt }}"
+                            loading="lazy">
+                        <p class="w-medium">{{ block.settings.title }}</p>
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Advantages",
+  "tag": "section",
+  "class": "section section--brand-adventages",
+  "settings": [
+    {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "3",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1"
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    }
+  ],
+  "blocks": [
+    {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "icon",
+                "label": "Icon"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Advantages",
+      "blocks": [
+        {
+            "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

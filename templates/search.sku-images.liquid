@@ -1,0 +1,28 @@
+{%- layout none -%}
+
+{%- if search.results_count > 0 -%}
+    {%- for product in search.results -%}
+        {%- for item in product.media -%}
+            <div class="swiper-slide" data-index="{{ forloop.index0 }}" data-id="{{ item.id }}">
+                {%- if item.media_type == 'image' -%}
+                    <div class="swiper-zoom-container"> 
+                        <img 
+                            src="{{ item | img_url: '2500x' }}" 
+                            loading="lazy" 
+                            alt="{{ item.alt }}">
+                        <div class="swiper-lazy-preloader"></div>
+                    </div>
+                {%- endif -%}
+                {%- if item.media_type == 'video' -%}
+                    {%- render 'video', 
+                        video: item, 
+                        class: 'contain',
+                        autoplay: false,
+                        muted: true,
+                        loop: true 
+                    -%}
+                {%- endif -%}
+            </div>
+        {%- endfor -%}
+    {%- endfor -%}
+{%- endif -%}

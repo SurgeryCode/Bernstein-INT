@@ -1,0 +1,31 @@
+<style>
+    :root {
+        --color-white: #ffffff;
+        --color-black: #111111;
+        --color-black-light: #414141;
+        --color-gray: #666666;
+        --color-gray-medium: #c5c5c5;
+        --color-gray-light: #e5e5e5;
+        --color-gray-ultra-light: #F5F5F5;
+        --color-blue: #005A70;
+        --color-blue-border: #587e88;
+        --color-blue-light: #abc8cf;
+        --color-green: #46B810;
+        --color-red: #f22c00;
+        --color-orange: #fdc55b;
+        --color-gold: #fdc55b;
+
+        --header-height: 126px;
+        --scroll: 0px;
+    }
+
+    {%- for item in shop.metaobjects['product_badge'].values -%}
+        {%- assign background = item.background.value | default: '#ffffff' -%}
+        {%- assign text_color = item.text_color.value | default: '#ffffff' -%}
+        .product-badges__item--{{ item.name.value | handleize }}{
+            background-color: {{ background }};
+            color: {{ text_color }};
+            order: {{ item.order.value }};
+        }
+    {%- endfor -%}
+</style>

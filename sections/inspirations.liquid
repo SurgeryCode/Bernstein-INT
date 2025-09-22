@@ -1,0 +1,319 @@
+{%- assign layout = section.settings.layout -%}
+{%- assign total = 0 -%}
+{%- capture content -%}
+    {%- for block in section.blocks -%}       
+        {%- if block.type == 'manual' -%}                 
+            {%- assign item = shop.metaobjects['inspiration'][block.settings.title] -%}
+            {%- if item -%}
+                <div class="swiper-slide">
+                    {%- render 'inspiration-item', item: item -%}
+                    {%- assign total = total | plus: 1 -%}
+                </div>
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if block.type == 'auto' -%}
+            {%- if block.settings.source == 'from-bernstein' -%}
+                {%- assign layout = '1-1' -%}
+            {%- endif -%}
+            {%- for item in shop.metaobjects['inspiration'].values -%}
+                {%- liquid 
+                    assign type = item.type | handleize
+                    assign products = item.bullet_1_product.value.id | append: ',' | append: item.bullet_2_product.value.id | append: ',' | append: item.bullet_3_product.value.id | append: ','
+                -%}
+                {%- if type == block.settings.source -%}
+                    {%- if products contains product.id -%}
+                        <div class="inspiration-item-wrapper">
+                        {%- render 'inspiration-item', item: item -%}
+                        {% if request.path contains 'products' %}
+                        <div class="inspiration__products-wrapper">
+                            <div class="inspiration__products">
+                                <h2 class="f-24">{{ 'inspirations.buy' | t }}</h2>
+                                {%- for i in (1..5) -%}
+                                    {%- liquid
+                                        assign key_product = 'bullet_' | append: i | append: '_product'
+                                        assign product = item[key_product].value
+                                    -%}
+                                    {%- if product -%}
+                                        <div class="inspiration__product"  data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                                            <a href="{{ product.url }}" class="inspiration__product-image">
+                                                <img 
+                                                    src="{{ product.featured_image | img_url: '240x' }}" 
+                                                    width="100"
+                                                    height="100"
+                                                    alt="{{ product.featured_image.alt }}"
+                                                    loading="lazy">
+                                            </a>
+                                            <div>
+                                                <a href="{{ product.url }}" class="f-16 w-medium text-link">
+                                                    <span>{{ product.title }}</span>
+                                                </a>
+                                                <p class="f-24 w-bold">{{ product.price | money }}</p>
+                                            </div>
+                                        </div>
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            </div>
+            
+                            <div class="product-form__submit">
+                                <button 
+                                    type="button" 
+                                    class="button button--large js-add-all">
+                                    {{ 'product.add_to_cart' | t }}
+                                </button>
+                            </div>
+                        </div>
+
+                        <script>
+                            document.querySelectorAll(".inspiration__products-wrapper").forEach(inspirationWrapper => {
+                              const addAllBtn = inspirationWrapper.querySelector('.js-add-all');
+                              if (addAllBtn) {
+                                addAllBtn.addEventListener('click', e => {
+                                  e.preventDefault();
+                          
+                                  const products = inspirationWrapper.querySelectorAll('.inspiration__product[data-variant-id]');
+                                  const items = Array.from(products)
+                                    .map(p => ({
+                                      id: Number(p.dataset.variantId || p.getAttribute('data-variant-id')),
+                                      quantity: 1
+                                    }))
+                                    .filter(i => !Number.isNaN(i.id));
+                          
+                                  if (items.length) {
+                                    fetch('/cart/add.js', {
+                                      method: 'POST',
+                                      headers: { 'Content-Type': 'application/json' },
+                                      body: JSON.stringify({ items })
+                                    })
+                                    .then(r => r.json())
+                                    .then(d => {
+                                      console.log("added", d);
+                                      window.location.href = '/cart';
+                                    })
+                                    .catch(err => console.error(err));
+                                  }
+                                });
+                              }
+                            });
+                          </script>
+                        {% endif %}
+                        {%- assign total = total | plus: 1 -%}
+                        </div>
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endfor -%}
+
+            {%- for item in product.metafields.custom[block.settings.source].value -%}
+                <div class="swiper-slide">
+                    {%- render 'inspiration-item', item: item -%}
+                    {%- assign total = total | plus: 1 -%}
+                </div>
+            {%- endfor -%}
+        {%- endif -%}
+
+        {%- if block.type == 'image' -%}
+            <div class="swiper-slide">
+                <div class="inspirations__item">
+                    {%- render 'image', 
+                        image: block.settings.image, 
+                        sizes: '379:400,991:600,992:1200',
+                        class: 'cover'
+                    -%}
+                </div>
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+            
+{%- if content != blank -%}
+    <link rel="stylesheet" href="{{ 'section-inspirations.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'component-image-bullet.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>
+        {{ 'section-inspirations.css' | asset_url | stylesheet_tag }}
+        {{ 'component-image-bullet.css' | asset_url | stylesheet_tag }}
+    </noscript>
+    <script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'inspirations.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'image-bullet.js' | asset_url }}" defer="defer"></script>
+
+    <section class="margin">
+        <div class="container">
+            {%- if section.settings.heading != blank -%}
+                <div class="heading">
+                    <div class="heading__text">
+                        <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                        {%- if section.settings.heading_text != blank -%}
+                            <div class="richtext richtext--gray">
+                                <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                            </div>
+                        {%- endif -%}
+                    </div>
+                    {%- if section.settings.link_title -%}
+                        <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                            <span>{{ section.settings.link_title }}</span>
+                        </a>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+
+            <inspirations-section class="inspirations">
+                <div class="swiper">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper swiper-wrapper--{{ layout }} total-item-{{ total }}">
+                            {{ content }}
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </inspirations-section>
+
+            {%- if section.settings.link_title -%}
+                <div class="section__read-more">
+                    <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                        <span>{{ section.settings.link_title }}</span>
+                    </a>
+                </div>
+            {%- endif -%}
+        </div>
+    </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Inspirations",
+  "tag": "div",
+  "class": "section section--inspirations",
+  "settings": [
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1"
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    },
+    {
+        "type": "textarea",
+        "id": "heading_text",
+        "label": "Text"
+    },
+    {
+        "type": "header",
+        "content": "Link"
+    },
+    {
+        "type": "url",
+        "id": "link_url",
+        "label": "URL"
+    },
+    {
+        "type": "text",
+        "id": "link_title",
+        "label": "Title"
+    },
+    {
+        "type": "header",
+        "content": "Layout"
+    },
+    {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "1-1-1",
+        "options": [
+            {
+                "value": "1-1-1",
+                "label": "1/1/1"
+            },
+            {
+                "value": "1-1",
+                "label": "1/1" 
+            },
+            {
+                "value": "1-2",
+                "label": "1/2"
+            }
+        ]
+    }
+  ],
+  "blocks": [
+    {
+        "type": "manual",
+        "name": "Manually selected",
+        "settings": [ 
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Handle (the entry’s identifier)",
+                "info": "Navigate to Content > Metaobjects > Inspirations, find the entry and click on it. You can find the handle at the very bottom."
+            }
+        ]
+    },
+    {
+        "type": "auto",
+        "name": "Automatically pulled",
+        "limit": 1,
+        "settings": [
+            {
+                "type": "select",
+                "id": "source",
+                "label": "Source",
+                "default": "from-customers",
+                "options": [
+                    {
+                        "value": "from-customers",
+                        "label": "From customers"
+                    },
+                    {
+                        "value": "from-bernstein",
+                        "label": "From Bernstein"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "image",
+        "name": "Static image",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            }
+        ]
+    }
+  ], 
+  "presets": [
+    {
+      "name": "Inspirations",
+      "blocks": [
+        {
+            "type": "manual"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

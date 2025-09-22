@@ -1,0 +1,125 @@
+<style>
+    .product-list-element__single-item {
+        grid-template-columns: 1fr;
+        max-width: 45%;
+        margin: 0 auto;
+    }
+    
+    @media (max-width: 750px){
+        .product-list-element__single-item {
+            max-width: 100%;
+        }
+    }
+</style>
+
+<div class="container">
+    <div
+        id="product-list-element-{{ section.id }}"
+        class="product-list-element listing__grid listing__grid--vertical">
+            {%- for product in section.settings.products -%}
+                <div class="product-list-element__item">
+                    {%- render 'product-item', product: product -%}
+                </div>
+            {%- endfor -%}
+            {%- for product in section.settings.collection.products limit: section.settings.products_limit -%}
+                <div class="product-list-element__item">
+                    {%- render 'product-item', product: product -%}
+                </div>
+            {%- endfor -%}
+    </div>
+</div>
+
+<script>
+    const listOfItems = document.querySelectorAll(".product-list-element .product-list-element__item").length;
+    const listWrapper = document.querySelector(".product-list-element.listing__grid");
+    const productsLimit = {{ section.settings.products_limit | json }}
+
+    if (listOfItems < 2) {
+        listWrapper.classList.add("product-list-element__single-item")
+    }
+
+    if ("{{ section.settings.url_products }}") {
+    fetch('{{ section.settings.url_products }}', {
+        method: 'GET'
+        })
+        .then(response => response.text())
+        .then(response => {
+            const parser = new DOMParser();
+            const html = parser.parseFromString(response, 'text/html');
+
+            const items = html.querySelectorAll('.listing__grid product-item');
+        
+            const container = document.querySelector('#product-list-element-{{ section.id }}');
+        
+            container.innerHTML = '';
+
+            if (items.length > productsLimit) {
+                [...items].slice(0, productsLimit).forEach(item => {
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('product-list-element__item');
+                    wrapper.appendChild(item.cloneNode(true));
+                    container.appendChild(wrapper);
+                });
+            } else {
+                items.forEach(item => {
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('product-list-element__item');
+                    wrapper.appendChild(item.cloneNode(true));
+                    container.appendChild(wrapper);
+                });
+            }
+
+            container.querySelectorAll('.jdgm-prev-badge__text').forEach(element => {
+                const text = element.innerHTML.replace('reviews','review'); 
+                const parts = text.split(' review'); 
+                element.innerHTML = `(${parts[0].replace(/\s/g, '')})`;
+                element.style.visibility = 'visible';
+            });
+            
+            if (items.length < 2) {
+                listWrapper.classList.add("product-list-element__single-item")
+            } else {
+                listWrapper.classList.remove("product-list-element__single-item")
+            }
+        });
+    }
+</script>
+
+
+{% schema %}
+{
+  "name": "Product List Element",
+  "tag": "section",
+  "class": "section section--product-list-element",
+  "settings": [
+    {
+        "type": "product_list",
+        "id": "products",
+        "label": "Products",
+        "info": "Select only specific products"
+    },
+    {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection",
+        "info": "Select the whole collection" 
+    },
+    {
+        "type": "url",
+        "id": "url_products",
+        "label": "Type URL to specific collection with filters"
+    },
+    {
+        "type": "number",
+        "id": "products_limit",
+        "label": "Maximum amount of products",
+        "default": 12
+    }
+    ],
+  "presets": [
+    {
+      "name": "Product List Element"
+    }
+  ]
+}
+{% endschema %}

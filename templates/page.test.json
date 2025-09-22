@@ -1,0 +1,443 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "intro_ezDzWB": {
+      "type": "intro",
+      "settings": {
+        "banner": "shopify://shop_images/about-us-banner-desktop.jpg",
+        "banner_mobile": "shopify://shop_images/about-us-banner-mobile.jpg",
+        "banner_size": "full",
+        "heading": "Über uns",
+        "text": "<p>Wir sind NEXTREND, ein junges und dynamisch wachsendes Unternehmen aus Flörsheim bei Frankfurt am Main. Wir haben es uns zur Aufgabe gemacht, den Vertrieb von Bädern neu zu denken. Als einer der führenden Online-Shops im Bad- und Sanitärbereich vertrauen uns seit 2007 schon über 2 Mio. zufriedene Kunden bei der Erfüllung ihrer Badträume.</p><p>Unsere Marke Bernstein steht für hochwertige Badmöbel und Sanitärprodukte, während NEXTREND als Unternehmen hinter der Marke die gesamte Entwicklung, Produktion und den Vertrieb verantwortet. Im Jahr 2021 sind wir vollständig Teil der Duravit AG geworden, einem weltweit tätigen und bekannten Hersteller von Sanitärtechnik.</p>",
+        "text_2": "<p>Getreu nach unserem Versprechen<br/>„Dein Bad. Direkt richtig.“ versenden wir direkt an unsere Kunden. Denn wir<br/>sind Hersteller und Versender in einem. Das spart unseren Kunden nicht nur<br/>Zeit, sondern auch bares Geld, denn bei uns gibt es keine Zwischenhändler oder<br/>versteckte Kosten.</p>",
+        "text_width": "normal",
+        "button_url": "",
+        "button_text": "",
+        "button_target": false
+      }
+    },
+    "custom_html_DRPpJX": {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": {
+        "title": "Wir brechen auf und denken neu,um die Dinge richtig anders zu machen.",
+        "custom_HTML": "<!-- Bernstein Text + Video Sektion -->\n<div style=\"display: flex; flex-wrap: wrap; justify-content: center; align-items: center; max-width: 1200px; margin: 0 auto; padding: 40px 20px; box-sizing: border-box; gap: 40px;\">\n\n  <!-- Textbereich -->\n  <div style=\"flex: 1 1 480px; max-width: 600px;\">\n    <h2 style=\"font-size: 28px; margin-bottom: 20px; font-weight: 600; line-height: 1.2;\">Mehr als nur ein Badezimmer</h2>\n    <p style=\"font-size: 17px; line-height: 1.7; color: #333; margin: 0;\">\n      Das Badezimmer ist mehr als nur ein Ort zum Duschen und Zähneputzen. Es ist ein Ort der Entspannung, ein persönliches Refugium, ein kleines Stück Luxus im Alltag. <br><br>\n      Darum machen wir von <strong>Bernstein</strong> aus rein funktionalen Räumen echte Traumbäder. Mit innovativen Ideen und hochwertigen Produkten zu fairen Preisen schaffen wir die perfekte Atmosphäre für dein Wohlbefinden – direkt, unkompliziert und ohne Zwischenhändler.\n    </p>\n  </div>\n\n  <!-- Video-Bereich -->\n  <div style=\"flex: 1 1 480px; max-width: 600px;\">\n    <div style=\"position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);\">\n      <iframe src=\"https://www.youtube-nocookie.com/embed/q5n3vY-KalQ\" title=\"Bernstein YouTube Video\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen loading=\"lazy\" style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;\"></iframe>\n    </div>\n  </div>\n\n</div>"
+      }
+    },
+    "heading_subheading_xEE8eX": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "column",
+        "heading": "Namensherkunft „Bernstein“",
+        "heading_tag": "2",
+        "heading_width": 40,
+        "alignment": "center",
+        "description": "<h3><strong>Für<br/>Bäder, die begeistern.</strong></h3><p>Der Name Bernstein steht für die außergewöhnliche Verwandlung des Gewöhnlichen insbesondere, inspiriert von der Entstehung von Bernstein aus Harz. Wir gestalten Badezimmer zu individuellen, designstarken Räumen, die durch Schönheit und Funktionalität beeindrucken – ein einzigartiges Erlebnis für dein Wohlbefinden.</p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "brand_adventages_iNMiYb": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_MqmAy7": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-designing_149cd22b-f249-4f5e-8870-6ba2ec5942f8.svg",
+            "title": "Individuelles Design von Bernstein"
+          }
+        },
+        "item_BwFQwW": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-transport_b9803311-1373-4847-8835-540e8ceba140.svg",
+            "title": "Lieferung innerhalb von 3-5 Tagen"
+          }
+        },
+        "item_HXLGXa": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-we_45e19cac-d400-4641-98e0-259e09b03b24.svg",
+            "title": "Persönliche Herangehensweise an jede Bestellung"
+          }
+        },
+        "item_cH4h6x": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-pfeil_big_3331df22-e105-4cf9-8342-ea483c25cf0c.svg",
+            "title": "Direkt vom Hersteller – bestePreise ohne Zwischenhändler"
+          }
+        },
+        "item_DRNjTB": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-progress_work_d8983940-b362-42a6-9da3-bda71143f958.svg",
+            "title": "Wir begleiten dich von der Idee bis zur Umsetzung"
+          }
+        }
+      },
+      "block_order": [
+        "item_MqmAy7",
+        "item_BwFQwW",
+        "item_HXLGXa",
+        "item_cH4h6x",
+        "item_DRNjTB"
+      ],
+      "settings": {
+        "heading": "Markenvorteile",
+        "heading_tag": "3"
+      }
+    },
+    "quote_carousel_4EN44j": {
+      "type": "quote-carousel",
+      "blocks": {
+        "item_nKAV7C": {
+          "type": "item",
+          "settings": {
+            "quote": "Als 100%ige Tochtergesellschaft der Duravit AG vereinen wir die Stärke eines weltweit agierenden Konzerns mit der Flexibilität eines E-Commerce Startups. Das lieben unsere Kunden: Wir brechen auf und denken neu, um Dinge richtig anders zu machen.",
+            "author": "Yannick Hügle, Geschäftsführer",
+            "author_image": "shopify://shop_images/quote-yannick.png"
+          }
+        },
+        "item_QbKxCz": {
+          "type": "item",
+          "settings": {
+            "quote": "Unsere Produkte überzeugen selbstbewusst durch Design, Qualität und Service- sowie Preis-Innovation. Dank proaktiver Dynamik leisten wir den entscheidenden Mehrwert bei der schnellen Realisierung unserer Projekte und Innovationen. Für nachhaltige Werte, die für uns und unsere Kunden entstehen.",
+            "author": "Tarek El-Mir, Leiter Produktmanagement & Marketing"
+          }
+        },
+        "item_kMewf8": {
+          "type": "item",
+          "settings": {
+            "quote": "Wir entwickeln und gestalten jedes Produkt so, dass es ästhetisch und funktional den Status Quo der gesamten Branche mit definiert. Unser Ansatz ist es, Grenzen zu überwinden und innovative, mutige Ideen zu entwickeln. Für Designbäder, die sich jeder leisten kann.",
+            "author": "Robert Zentek, Leiter Entwicklung",
+            "author_image": "shopify://shop_images/about-us-content.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_nKAV7C",
+        "item_QbKxCz",
+        "item_kMewf8"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "content_myhRck": {
+      "type": "content",
+      "disabled": true,
+      "settings": {
+        "heading": "Unsere Versprechen",
+        "text": "<p>Wir haben uns der Mission verschrieben „Dein Bad. Direkt richtig.“<br/>zu machen. Im Kern versteckt sich dahinter nicht nur, dass wir eine<br/>Direct-to-Consumer Brand sind, sondern auch, dass wir, gemeinsam mit unseren<br/>Kunden, alles dafür tun, die richtigen Lösungen zu finden. Daraus ergeben sich<br/>unsere Versprechen:</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "content_blocks_LhUc93": {
+      "type": "content-blocks",
+      "blocks": {
+        "item_qFRJzF": {
+          "type": "item",
+          "settings": {
+            "title": "Bestes Preis-Leistungs-Verhältnis",
+            "content": "<ul><li>Hochwertige Produkte mit ansprechendem Design, direkt aus dem Headquarter in Flörsheim am Main</li><li>Installationsbereit – auspacken, aufhängen, fertig</li><li>Direkte<br/>Herstellung und Versand ohne Zwischenhändler für faire Preise</li></ul>",
+            "image": "shopify://shop_images/Img2-front-1351_56db1c71-297e-4aac-aa8c-2bfafd70a2ce.jpg"
+          }
+        },
+        "item_YP3qaK": {
+          "type": "item",
+          "settings": {
+            "title": "Beste Beratung",
+            "content": "<ul><li>Großes Sortiment, abgestimmt auf deine Bedürfnisse</li><li>Auswahl basierend auf deinen Vorlieben und deinem Geschmack</li><li>Berücksichtigung von Raumgröße und Einbausituation für die ideale Passform</li><li>Individuelle Beratung: Ruf uns an, schreib uns eine <a href=\"https://support.bernstein-badshop.de/hc/de\"><strong>E-Mail</strong></a><br/>oder besuch einen unserer <a href=\"https://app.cituro.com/booking/showrooms\"><strong>Showrooms</strong> </a>in Deutschland</li></ul>",
+            "image": "shopify://shop_images/Beste-Beratung.png"
+          }
+        },
+        "item_XnCK76": {
+          "type": "item",
+          "settings": {
+            "title": "Bestes Einkaufserlebnis",
+            "content": "<ul><li>Einkaufen in 11 Sprachen</li><li>Europaweite Lieferung direkt zu dir</li><li>2025: Neuer Webshop für einfachere Produktsuche</li><li>Ständige Verbesserung deines Einkaufserlebnisses</li><li>Vor Ort Produkte ansehen in 4 Showrooms deutschlandweit</li></ul>",
+            "image": "shopify://shop_images/Einkauferlebnis.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_qFRJzF",
+        "item_YP3qaK",
+        "item_XnCK76"
+      ],
+      "settings": {
+        "heading": ""
+      }
+    },
+    "testimonials_JkRJxB": {
+      "type": "testimonials",
+      "blocks": {
+        "testimony_dxCCfh": {
+          "type": "testimony",
+          "settings": {
+            "content": "Alles was wir uns für unser Traumbad gewünscht haben, haben wir im Bernstein Badshop gefunden. Von Dusch WCs bis hin zu den perfekten Spiegelschränken mit indirekter Beleuchtung. Hier findet man alles und muss nicht lange suchen!",
+            "image": "shopify://shop_images/Sanny.webp",
+            "title": "Sanny K."
+          }
+        },
+        "testimony_qk49EB": {
+          "type": "testimony",
+          "settings": {
+            "content": "Der Bernstein Onlineshop beeindruckte mich mit schneller Lieferung und 24/7 Verfügbarkeit. Ideal, wenn es mal schnell gehen muss.",
+            "image": "shopify://shop_images/Alexandru.webp",
+            "title": "Alexandru I."
+          }
+        },
+        "testimony_hTKGRr": {
+          "type": "testimony",
+          "settings": {
+            "content": "With Bernstein everything has been easy, fast and of course with the highest quality.",
+            "image": "shopify://shop_images/Pablo.webp",
+            "title": "Pablo P."
+          }
+        }
+      },
+      "block_order": [
+        "testimony_dxCCfh",
+        "testimony_qk49EB",
+        "testimony_hTKGRr"
+      ],
+      "settings": {
+        "heading": "Meinungen unserer Kunden",
+        "heading_tag": "2",
+        "heading_text": "",
+        "background": "gray",
+        "disable_langs": "fr,it"
+      }
+    },
+    "custom_html_q4yD3N": {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": {
+        "title": "Unsere Geschichte",
+        "custom_HTML": "<style>\n  .timeline {\n    max-width: 900px;\n    margin: 0 auto;\n    padding: 20px;\n    box-sizing: border-box;\n    position: relative;\n  }\n\n  .timeline::before {\n    content: '';\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 20px;\n    width: 2px;\n    background: #ccc;\n  }\n\n  .timeline-entry {\n    display: flex;\n    flex-direction: column;\n    padding-left: 40px;\n    position: relative;\n    margin-bottom: 40px;\n  }\n\n  .timeline-entry::before {\n    content: '';\n    position: absolute;\n    left: 11px;\n    top: 5px;\n    width: 18px;\n    height: 18px;\n    background: #000;\n    border-radius: 50%;\n  }\n\n  .timeline-entry h3 {\n    font-size: 18px;\n    margin: 0 0 10px 0;\n  }\n\n  .timeline-entry img {\n    width: 100%;\n    max-width: 400px;\n    height: auto;\n    border-radius: 8px;\n    margin-bottom: 10px;\n    object-fit: contain;\n  }\n\n  .timeline-entry p {\n    font-size: 15px;\n    line-height: 1.6;\n    margin: 0;\n  }\n\n  /* Alternierendes Layout für größere Bildschirme */\n  @media (min-width: 768px) {\n    .timeline-entry {\n      flex-direction: row;\n      justify-content: space-between;\n      align-items: flex-start;\n      padding-left: 0;\n    }\n\n    .timeline-entry.even {\n      flex-direction: row-reverse;\n    }\n\n    .timeline-content,\n    .timeline-image {\n      width: 48%;\n    }\n\n    .timeline-entry::before {\n      left: 50%;\n      margin-left: -9px;\n    }\n\n    .timeline::before {\n      left: 50%;\n      margin-left: -1px;\n    }\n  }\n</style>\n\n<div class=\"timeline\">\n\n  <div class=\"timeline-entry\">\n    <div class=\"timeline-content\">\n      <h3>Für Bäder, die begeistern</h3>\n      <p>\n        Der Name Bernstein steht für die außergewöhnliche Verwandlung des Gewöhnlichen insbesondere, inspiriert von der Entstehung von Bernstein aus Harz. Wir gestalten Badezimmer zu individuellen, designstarken Räumen, die durch Schönheit und Funktionalität beeindrucken – ein einzigartiges Erlebnis für dein Wohlbefinden.\n      </p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/Team.png\" alt=\"Team\">\n    </div>\n  </div>\n\n  <div class=\"timeline-entry even\">\n    <div class=\"timeline-content\">\n      <h3>2013</h3>\n      <p>\n        haben wir mit der Produktion von freistehenden Badewannen und Waschtischen aus Mineralguss begonnen und sind mit unserer breiten Produktpalette mittlerweile einer der europäischen Marktführer in diesem Bereich.\n      </p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/779562_Rio-Stone.jpg\" alt=\"Freistehende Badewanne\">\n    </div>\n  </div>\n\n  <div class=\"timeline-entry\">\n    <div class=\"timeline-content\">\n      <h3>2017</h3>\n      <p>\n        haben wir mit der eigenen Produktion von Duschabtrennungen begonnen und sind nun in der Lage, jedes einzelne Duschbad individuell zu gestalten! Unser Ziel ist es, die besten individuellen Badlösungen zu schaffen.\n      </p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/471038_Duschabtrennung-EX101-Milchglas-Streifen_1600mm.jpg?v=1738320255\" alt=\"Duschabtrennung\">\n    </div>\n  </div>\n\n  <div class=\"timeline-entry even\">\n    <div class=\"timeline-content\">\n      <h3>2021</h3>\n      <p>\n        sind wir zu 100% eine Tochtergesellschaft der Duravit AG, des weltweit tätigen und bekannten Herstellers von Sanitärtechnik, geworden. Dadurch konnten wir unsere Möglichkeiten maximieren und unsere innovativen Kapazitäten steigern.\n      </p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/Logo_Duravit.svg?v=1747227096\" alt=\"Duravit Logo\">\n    </div>\n  </div>\n\n  <div class=\"timeline-entry\">\n    <div class=\"timeline-content\">\n      <h3>2024</h3>\n      <p>\n        haben wir unserer Marke einen brandneuen Anstrich verpasst und einem einheitlichen Corporate Design unterzogen. Unseren Anspruch „Dein Bad. Direkt richtig.“ konnten wir dadurch sowohl visuell als auch im Kundenerlebnis verankern.\n      </p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/Bernstein-Logo_91c29d5b-2a05-49d7-8ff2-37f47ec7a56e.png\" alt=\"Bernstein Logo\">\n    </div>\n  </div>\n\n  <div class=\"timeline-entry even\">\n    <div class=\"timeline-content\">\n      <h3>2025</h3>\n      <p>\n        Ein Jahr später wurde der neue Look auch im gesamten Webshop umgesetzt. Ab sofort könnt Ihr noch intuitiver und schneller die gewünschten Produkte finden – mit einer benutzerfreundlicheren Navigation und einem optimierten Einkaufsprozess.\n      </p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/BERN_Markenerlebnisstrategie_1_1_Kopie_verschoben_2.jpg\" alt=\"Markenerlebnisstrategie\">\n    </div>\n  </div>\n\n</div>"
+      }
+    },
+    "custom_html_bNYkje": {
+      "type": "custom-html",
+      "disabled": true,
+      "name": "Custom HTML",
+      "settings": {
+        "title": "Unsere Geschichte",
+        "custom_HTML": "<style>\n  .seo-timeline {\n    max-width: 1000px;\n    margin: 0 auto;\n    padding: 20px;\n    box-sizing: border-box;\n  }\n\n  .timeline-entry {\n    display: flex;\n    flex-direction: column;\n    gap: 15px;\n    margin-bottom: 50px;\n  }\n\n  .timeline-entry img {\n    width: 100%;\n    max-width: 400px;\n    height: auto;\n    object-fit: contain;\n    border-radius: 8px;\n  }\n\n  .timeline-entry h3 {\n    font-size: 20px;\n    margin: 0 0 5px;\n  }\n\n  .timeline-entry p {\n    font-size: 15px;\n    line-height: 1.6;\n    margin: 0;\n  }\n\n  /* Alternierendes Layout für große Bildschirme */\n  @media (min-width: 768px) {\n    .timeline-entry {\n      flex-direction: row;\n      justify-content: space-between;\n      align-items: flex-start;\n    }\n\n    .timeline-entry:nth-child(even) {\n      flex-direction: row-reverse;\n    }\n\n    .timeline-text, .timeline-image {\n      width: 48%;\n    }\n  }\n</style>\n\n<section class=\"seo-timeline\">\n  <h2>Unsere Meilensteine</h2>\n\n  <article class=\"timeline-entry\">\n    <div class=\"timeline-text\">\n      <h3>Für Bäder, die begeistern</h3>\n      <p>Der Name Bernstein steht für die außergewöhnliche Verwandlung des Gewöhnlichen, inspiriert von der Entstehung von Bernstein aus Harz. Wir gestalten Badezimmer zu individuellen, designstarken Räumen, die durch Schönheit und Funktionalität beeindrucken – ein einzigartiges Erlebnis für dein Wohlbefinden.</p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/Team.png\" alt=\"Team von Bernstein Badshop\">\n    </div>\n  </article>\n\n  <article class=\"timeline-entry\">\n    <div class=\"timeline-text\">\n      <h3>2013 – Start unserer Eigenproduktion</h3>\n      <p>Wir haben mit der Produktion von freistehenden Badewannen und Waschtischen aus Mineralguss begonnen. Heute zählen wir zu den europäischen Marktführern in diesem Segment.</p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/779562_Rio-Stone.jpg\" alt=\"Freistehende Badewanne von Bernstein\">\n    </div>\n  </article>\n\n  <article class=\"timeline-entry\">\n    <div class=\"timeline-text\">\n      <h3>2017 – Individuelle Duschabtrennungen</h3>\n      <p>Wir starten mit der eigenen Produktion von Duschabtrennungen und ermöglichen individuelle Lösungen für jedes Bad – abgestimmt auf Maße, Stil und Funktionalität.</p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/471038_Duschabtrennung-EX101-Milchglas-Streifen_1600mm.jpg?v=1738320255\" alt=\"Individuelle Duschabtrennung\">\n    </div>\n  </article>\n\n  <article class=\"timeline-entry\">\n    <div class=\"timeline-text\">\n      <h3>2021 – Teil der Duravit Gruppe</h3>\n      <p>Wir werden eine 100%ige Tochtergesellschaft der Duravit AG – ein weltweit führender Hersteller von Sanitärkeramik und Badlösungen. Gemeinsam stärken wir unsere Innovationskraft und Marktposition.</p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/Logo_Duravit.svg?v=1747227096\" alt=\"Duravit Logo\">\n    </div>\n  </article>\n\n  <article class=\"timeline-entry\">\n    <div class=\"timeline-text\">\n      <h3>2024 – Rebranding & neues Corporate Design</h3>\n      <p>Unsere Marke präsentiert sich in neuem Look: modern, klar und konsequent an unserem Claim „Dein Bad. Direkt richtig.“ ausgerichtet – visuell und inhaltlich.</p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/Bernstein-Logo_91c29d5b-2a05-49d7-8ff2-37f47ec7a56e.png\" alt=\"Bernstein Logo 2024\">\n    </div>\n  </article>\n\n  <article class=\"timeline-entry\">\n    <div class=\"timeline-text\">\n      <h3>2025 – Relaunch unseres Webshops</h3>\n      <p>Mit der Einführung unseres neuen Webshops wird das Einkaufserlebnis noch intuitiver: bessere Navigation, klare Nutzerführung und mobile Optimierung für alle Geräte.</p>\n    </div>\n    <div class=\"timeline-image\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/BERN_Markenerlebnisstrategie_1_1_Kopie_verschoben_2.jpg\" alt=\"UX Design Strategie 2025\">\n    </div>\n  </article>\n</section>"
+      }
+    },
+    "custom_html_PYGQeD": {
+      "type": "custom-html",
+      "name": "Custom HTML",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<style> \n  .facts-wrapper {\n    display: grid;\n    grid-template-columns: 1fr;\n    gap: 40px;\n    max-width: 1000px;\n    margin: 0 auto;\n    padding: 20px;\n    box-sizing: border-box;\n    font-family: sans-serif;\n    text-align: center;\n  }\n\n  .fact {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    opacity: 0;\n    transform: translateY(40px);\n    transition: opacity 0.6s ease, transform 0.6s ease;\n  }\n\n  .fact.visible {\n    opacity: 1;\n    transform: translateY(0);\n  }\n\n  .fact-icon img {\n    width: 80px;\n    height: auto;\n    margin-bottom: 10px;\n  }\n\n  .fact-title {\n    font-weight: bold;\n    font-size: 18px;\n    margin: 5px 0;\n  }\n\n  .fact-subtitle {\n    font-size: 16px;\n    font-weight: 600;\n    margin-bottom: 10px;\n  }\n\n  .fact-text {\n    font-size: 15px;\n    line-height: 1.5;\n    max-width: 400px;\n  }\n\n  @media (min-width: 768px) {\n    .facts-wrapper {\n      grid-template-columns: 1fr 1fr;\n    }\n  }\n</style>\n\n<div class=\"facts-wrapper\">\n  <div class=\"fact\">\n    <div class=\"fact-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/icon-wanne_a55e0874-cd25-4446-b78d-4e978ecef66f.svg\" alt=\"18 Jahre Icon\" loading=\"lazy\">\n    </div>\n    <div class=\"fact-title\">18 Jahre</div>\n    <div class=\"fact-text\">Seit 2007 steht Bernstein für hochwertige Badewannen, Duschabtrennungen, Badmöbel und Badkeramik – direkt vom Hersteller in Einzelhandelsqualität.</div>\n  </div>\n\n  <div class=\"fact\">\n    <div class=\"fact-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/icon-we_45e19cac-d400-4641-98e0-259e09b03b24.svg\" alt=\"200 Mitarbeiter Icon\" loading=\"lazy\">\n    </div>\n    <div class=\"fact-title\">200 Mitarbeiter</div>\n    <div class=\"fact-subtitle\">wollen Kunden begeistern</div>\n    <div class=\"fact-text\">Im Bernstein-Team arbeiten wir Hand in Hand, um dir ein erstklassiges Einkaufserlebnis zu bieten – von der Entwicklung bis zum Versand.</div>\n  </div>\n\n  <div class=\"fact\">\n    <div class=\"fact-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/icon-globe_ffdbe127-0ab4-4d0f-b53b-5ca3faf2af67.svg\" alt=\"Lieferländer Icon\" loading=\"lazy\">\n    </div>\n    <div class=\"fact-title\">Lieferländer</div>\n    <div class=\"fact-text\">Bernstein liefert deutschlandweit und in 10 europäische Länder.</div>\n  </div>\n\n  <div class=\"fact\">\n    <div class=\"fact-icon\">\n      <img src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/icon-BRST_pin_95b15d87-0d01-40df-a97b-50e810b613a3.svg\" alt=\"Standorte Icon\" loading=\"lazy\">\n    </div>\n    <div class=\"fact-title\">Standorte</div>\n    <div class=\"fact-text\">Wir verfügen über 4 Showrooms in Deutschland: Stuttgart, Viernheim, Berlin-Schönefeld und Frankfurt.</div>\n  </div>\n</div>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function () {\n    const facts = document.querySelectorAll(\".fact\");\n    const observer = new IntersectionObserver((entries) => {\n      entries.forEach((entry) => {\n        if (entry.isIntersecting) {\n          entry.target.classList.add(\"visible\");\n        }\n      });\n    }, { threshold: 0.2 });\n\n    facts.forEach((fact) => observer.observe(fact));\n  });\n</script>"
+      }
+    },
+    "content_with_image_hL9Hkf": {
+      "type": "content-with-image",
+      "disabled": true,
+      "name": "Content With Image",
+      "settings": {
+        "heading": "Die Geschäftsführung",
+        "content": "<p>Section content.</p>",
+        "background": "white",
+        "layout": "normal",
+        "button_url": "",
+        "button_label": "",
+        "button_target": false
+      }
+    },
+    "content_with_image_Y4E3Wt": {
+      "type": "content-with-image",
+      "disabled": true,
+      "settings": {
+        "heading": "Unsere Mannschaft",
+        "content": "<p>Bei uns arbeiten rund 200 Mitarbeiter, verteilt über ein Bürogebäude in Flörsheim am Main, drei verschiedene Läger, vier Showrooms in Deutschland sowie zwei Regionalbüros in Polen und Frankreich. Seit 2018 haben wir mit unserer eigenen Designabteilung Maßstäbe gesetzt und konnten sogar Design-Preise gewinnen, z. B. für unsere Badmöbelserie Arctic. 2023 haben wir eine eigene Abteilung für Produktmanagement und Entwicklung geschaffen und unsere Kapazitäten im Qualitätsmanagement erhöht. So schaffen wir es, dir jederzeit das beste Produkt anzubieten. </p><p><strong>Werde Teil des<br/>Bernstein-Teams</strong></p><p>Wir suchen motivierte Mitarbeiter, die mit uns die Zukunft der Badmöbel- und Sanitärbranche gestalten möchten. Profitiere von einem kreativen Arbeitsumfeld, flachen Hierarchien und spannenden Projekten.</p><p>Warum es sich lohnt, bei uns zu arbeiten:</p><ul><li> 30 Urlaubstage </li><li>Flexible Arbeitszeiten und remote Arbeiten möglich</li><li>Fahrtkostenzuschuss</li><li>Zusätzlicher Beitrag zur betrieblichen Altersvorsorge</li><li>Foodji-Automat</li><li>Jobbike und Fitnessstudio Zuschuss</li><li>uvm.</li></ul><p>Entdecke unsere Stellenanzeigen und werde Teil unseres<br/>Teams!</p><p>Hier geht's zu unseren Stellenanzeigen (<a href=\"https://bernstein-badshop.ch/pages/karriere\">Bernstein Karriere</a>).</p>",
+        "image": "shopify://shop_images/Mannschaft_a819e4cd-843b-4aaa-a3ee-a6dfec9ea672.jpg",
+        "background": "white",
+        "layout": "normal",
+        "button_url": "",
+        "button_label": "",
+        "button_target": false
+      }
+    },
+    "work_with_us_XHjqT4": {
+      "type": "work-with-us",
+      "settings": {
+        "heading": "Unsere Mannschaft",
+        "content": "<p>Bei uns arbeiten rund 200 Mitarbeiter, verteilt über ein Bürogebäude in Flörsheim am Main, drei verschiedene Läger, vier Showrooms in Deutschland sowie zwei Regionalbüros in Polen und Frankreich. Seit 2018 haben wir mit unserer eigenen Designabteilung Maßstäbe gesetzt und konnten sogar Design-Preise gewinnen, z. B. für unsere Badmöbelserie Arctic. 2023 haben wir eine eigene Abteilung für Produktmanagement und Entwicklung geschaffen und unsere Kapazitäten im Qualitätsmanagement erhöht. So schaffen wir es, dir jederzeit das beste Produkt anzubieten. </p><h2>Werde Teil des Bernstein-Teams</h2><p>Wir suchen motivierte Mitarbeiter, die mit uns die Zukunft der Badmöbel- und Sanitärbranche gestalten möchten. Profitiere von einem kreativen Arbeitsumfeld, flachen Hierarchien und spannenden Projekten.</p><h3>Warum es sich lohnt, bei uns zu arbeiten:</h3><ul><li> 30 Urlaubstage </li><li>Flexible Arbeitszeiten und remote Arbeiten möglich</li><li>Fahrtkostenzuschuss</li><li>Zusätzlicher Beitrag zur betrieblichen Altersvorsorge</li><li>Foodji-Automat</li><li>Jobbike und Fitnessstudio Zuschuss</li></ul><p>Entdecke unsere Stellenanzeigen und werde Teil unseres<br/>Teams!</p>",
+        "button_url": "shopify://pages/karriere",
+        "button_label": "Hier geht's zu unseren Stellenanzeigen",
+        "button_target": false,
+        "image": "shopify://shop_images/work-with-us.jpg"
+      }
+    },
+    "numbers_Ah3hQC": {
+      "type": "numbers",
+      "blocks": {
+        "item_aWBwPP": {
+          "type": "item",
+          "settings": {
+            "number": "2007",
+            "top": "Seit",
+            "bottom": "erfolgreich am Markt"
+          }
+        },
+        "item_6NQi8m": {
+          "type": "item",
+          "settings": {
+            "number": "2 Millionen",
+            "top": "Mehr als",
+            "bottom": "zufriedenen Kunden"
+          }
+        },
+        "item_QEzGXL": {
+          "type": "item",
+          "settings": {
+            "number": "100%",
+            "top": "Seit 2021",
+            "bottom": "Tochter der Duravit AG"
+          }
+        },
+        "item_WNmnr9": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "number": "100%",
+            "top": "",
+            "bottom": "Duravit group\ncompany"
+          }
+        },
+        "item_pbXrH9": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "number": "4",
+            "top": "",
+            "bottom": "Showrooms\nin Deutschland"
+          }
+        }
+      },
+      "block_order": [
+        "item_aWBwPP",
+        "item_6NQi8m",
+        "item_QEzGXL",
+        "item_WNmnr9",
+        "item_pbXrH9"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Bernstein in Zahlen"
+      }
+    },
+    "content_with_image_MRxNnk": {
+      "type": "content-with-image",
+      "disabled": true,
+      "settings": {
+        "heading": "Unsere Geschichte",
+        "content": "<p><strong>Seit 2007</strong> bieten wir als Hersteller der Marke Bernstein freistehende Badewannen, Duschabtrennungen sowie Badmöbel und Badkeramik in Einzelhandelsqualität an.</p><p><br/><strong>2013</strong> haben wir mit der Produktion von freistehenden Badewannen und Waschtischen aus Mineralguss begonnen und sind mit unserer breiten Produktpalette mittlerweile einer der europäischen Marktführer in diesem Bereich.</p><p><br/><strong>2017</strong> haben wir mit der eigenen Produktion von Duschabtrennungen begonnen und sind nun in der Lage, jedes einzelne Duschbad individuell zu gestalten! Unser Ziel ist es, die besten individuellen Badlösungen zu schaffen.</p><p><br/><strong>2021</strong> sind wir zu 100% eine Tochtergesellschaft der Duravit AG, des weltweit tätigen und bekannten Herstellers von Sanitärtechnik, geworden. Dadurch konnten wir unsere Möglichkeiten maximieren und unsere innovativen Kapazitäten steigern.</p><p><br/><strong>2024</strong> haben wir unserer Marke einen brandneuen Anstrich verpasst und unsere Website ganzheitlich neu gelaunched. Unseren Anspruch „Dein Bad. Direkt richtig.“ konnten wir dadurch sowohl visuell als auch im Kundenerlebnis verankern.<br/></p>",
+        "image": "shopify://shop_images/BERN_Markenerlebnisstrategie_1_1_Kopie_verschoben_2.jpg",
+        "background": "gray",
+        "layout": "reverse",
+        "button_url": "",
+        "button_label": "",
+        "button_target": false
+      }
+    },
+    "featured_articles_y98Hgg": {
+      "type": "featured-articles",
+      "disabled": true,
+      "settings": {
+        "heading": "Wir reden darüber",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://blogs/articles",
+        "link_title": "Alle Artikel ansehen",
+        "background": false
+      }
+    },
+    "shop_reviews_4T9Jpy": {
+      "type": "shop-reviews",
+      "disabled": true,
+      "settings": {
+        "heading": "Kundenrezensionen",
+        "heading_tag": "2",
+        "background": "gray"
+      }
+    },
+    "our_showrooms_4NDxim": {
+      "type": "our-showrooms",
+      "settings": {
+        "heading": "Unsere\nShowrooms",
+        "content": "<p>Bei Bernstein haben wir es uns zur Aufgabe gemacht, Dein Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Dir eine Reihe hochwertiger Armaturen und Badartikel, die Form und Funktion vereinen.</p>",
+        "button_url": "shopify://pages/showrooms",
+        "button_label": "Entdecke unsere Showrooms",
+        "button_target": false,
+        "image_left": "shopify://shop_images/Armaturen.jpg",
+        "image_right": "shopify://shop_images/Showroom.jpg"
+      }
+    },
+    "banner_qHzLhg": {
+      "type": "banner",
+      "settings": {
+        "content": "",
+        "button_url": "https://bernstein-badshop.de/",
+        "button_label": "Entdecke jetzt unsere Produkte",
+        "link_url": "https://bernstein-badshop.de/",
+        "link_label": "",
+        "image": "shopify://shop_images/b2b-banner-desktop.webp",
+        "image_mobile": "shopify://shop_images/b2b-banner-mobile.webp"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "intro_ezDzWB",
+    "custom_html_DRPpJX",
+    "heading_subheading_xEE8eX",
+    "brand_adventages_iNMiYb",
+    "quote_carousel_4EN44j",
+    "content_myhRck",
+    "content_blocks_LhUc93",
+    "testimonials_JkRJxB",
+    "custom_html_q4yD3N",
+    "custom_html_bNYkje",
+    "custom_html_PYGQeD",
+    "content_with_image_hL9Hkf",
+    "content_with_image_Y4E3Wt",
+    "work_with_us_XHjqT4",
+    "numbers_Ah3hQC",
+    "content_with_image_MRxNnk",
+    "featured_articles_y98Hgg",
+    "shop_reviews_4T9Jpy",
+    "our_showrooms_4NDxim",
+    "banner_qHzLhg"
+  ]
+}

@@ -1,0 +1,16 @@
+<div class="product__icons">
+    <ul>
+        {%- for i in (1..5) -%}
+            {%- liquid 
+                assign key_caption = 'caption_' | append: i
+                assign key_image = 'image_' | append: i
+            -%}
+            {%- if data[key_caption] != blank or data[key_image] != blank -%}
+                <li class="f-12 w-medium gray">
+                    <img src="{{ data[key_image] | img_url: 'master' }}" alt="{{ data[key_image].alt }}" loading="lazy">
+                    <p>{{ data[key_caption] | newline_to_br }}</p>
+                </li>
+            {%- endif -%}
+        {%- endfor -%}
+    </ul>
+</div>

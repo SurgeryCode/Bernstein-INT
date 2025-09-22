@@ -1,0 +1,515 @@
+<div class="container">
+    <div class="account-hld">
+        <div class="account-left">
+            {% render 'account-main-box' %}
+            {% render 'account-nav', active_item: 'addresses' %}
+        </div>
+        <div class="account-right">
+            <h1 class="account-title">{{ 'customer.account.addresses' | t }}</h1>
+            <div class="account-content">
+                <div class="account-addresses-hld" aria-hidden="false">
+                    {%- if section.settings.text -%}
+                        <div class="account-content__text richtext richtext--gray">
+                            {{ section.settings.text }}
+                        </div>
+                    {%- endif -%}
+    
+                    {% render 'account-addresses-list', no_title: true, separate_on_desktop: true %}
+    
+                    <div class="account-content__btn-hld">
+                        <a class="button button--outline upper" href="{{ routes.account_address_new_url }}?edit_address=new">{{ 'customer.addresses.add_new' | t }}</a>
+                    </div>
+                </div>
+                <div class="account-addresses-edit-hld" aria-hidden="true">
+                    <a href="{{ routes.account_addresses_url }}" class="account-back-btn">
+                        {% render 'svg-icon', name: 'arrow-left' %}
+                        <span class="f-14 w-medium gray">{{ 'customer.addresses.back_to_addresses' | t }}</span>
+                    </a>
+                    {%- for address in customer.addresses -%}
+                        <div class="account-edit-address-item" data-address-id="{{ address.id }}" aria-hidden="true">
+                            <form-validate>
+                                <span class="account-edit-address-item__title f-24 w-bold">{{ 'customer.addresses.form_edit' | t }}</span>
+                                {%- form 'customer_address', address, class: 'customer-form customer-form--edit-address' -%}
+                                    {%- if customer.tags contains 'B2B' and customer.metafields.wholesale.vat_id.value != blank -%}
+                                        <div class="field-row">
+                                            <div class="field field--1-1">
+                                                <input
+                                                    type="text"
+                                                    id="Address-VatId_{{ form.id }}"
+                                                    value="{{ customer.metafields.wholesale.vat_id.value }}"
+                                                    readonly
+                                                >
+                                                <label for="Address-VatId_{{ form.id }}">
+                                                    <span>{{ 'b2b.form.ust_id' | t }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    {%- endif -%}
+                                    {%- if customer.tags contains 'B2B' and customer.metafields.wholesale.company_name.value != blank -%}
+                                        <div class="field-row">
+                                            <div class="field field--1-1">
+                                                <input
+                                                    type="text"
+                                                    id="Address-CompanyName_{{ form.id }}"
+                                                    value="{{ customer.metafields.wholesale.company_name.value }}"
+                                                    readonly
+                                                >
+                                                <label for="Address-CompanyName_{{ form.id }}">
+                                                    <span>{{ 'b2b.form.company' | t }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    {%- endif -%}
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <input
+                                                type="text"
+                                                name="address[first_name]"
+                                                id="Address-FirstName_{{ form.id }}"
+                                                value="{{ form.first_name }}"
+                                                placeholder="{{ 'customer.register.first_name' | t }}"
+                                                aria-required="true"
+                                                required
+                                            >
+                                            <label for="Address-FirstName_{{ form.id }}">
+                                                <span>{{ 'customer.register.first_name' | t }}</span>
+                                                <span class="asterisk">*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+    
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <input
+                                                type="text"
+                                                name="address[last_name]"
+                                                id="Address-LastName_{{ form.id }}"
+                                                value="{{ form.last_name }}"
+                                                placeholder="{{ 'customer.register.last_name' | t }}"
+                                                aria-required="true"
+                                                required
+                                            >
+                                            <label for="Address-LastName_{{ form.id }}">
+                                                <span>{{ 'customer.register.last_name' | t }}</span>
+                                                <span class="asterisk">*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+    
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <input
+                                                type="text"
+                                                name="address[address1]"
+                                                id="Address-Address1_{{ form.id }}"
+                                                value="{{ form.address1 }}"
+                                                spellcheck="false"
+                                                autocapitalize="off"
+                                                placeholder="{{ 'customer.register.address' | t }}"
+                                                aria-required="true"
+                                                required
+                                            >
+                                            <label for="Address-Address1_{{ form.id }}">
+                                                <span>{{ 'customer.register.address' | t }}</span>
+                                                <span class="asterisk">*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+    
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <input
+                                                type="text"
+                                                name="address[address2]"
+                                                id="Address-Adress2_{{ form.id }}"
+                                                value="{{ form.address2 }}"
+                                                spellcheck="false"
+                                                autocapitalize="off"
+                                                placeholder="{{ 'customer.register.address_secondary' | t }}"
+                                            >
+                                            <label for="Address-Adress2_{{ form.id }}">
+                                                <span>{{ 'customer.register.address_secondary' | t }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+    
+                                    <div class="field-row">
+                                        <div class="field field--1-4">
+                                            <input
+                                                type="text"
+                                                name="address[zip]"
+                                                id="Address-Zip_{{ form.id }}"
+                                                value="{{ form.zip }}"
+                                                spellcheck="false"
+                                                autocapitalize="off"
+                                                aria-required="true"
+                                                placeholder="{{ 'customer.register.zip' | t }}"
+                                                required
+                                            >
+                                            <label for="Address-Zip_{{ form.id }}">
+                                                <span>{{ 'customer.register.zip' | t }}</span>
+                                                <span class="asterisk">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="field field--3-4">
+                                            <input
+                                                type="text"
+                                                name="address[city]"
+                                                id="Address-City_{{ form.id }}"
+                                                value="{{ form.city }}"
+                                                spellcheck="false"
+                                                autocapitalize="off"
+                                                aria-required="true"
+                                                placeholder="{{ 'customer.register.city' | t }}"
+                                                required
+                                            >
+                                            <label for="Address-City_{{ form.id }}">
+                                                <span>{{ 'customer.register.city' | t }}</span>
+                                                <span class="asterisk">*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+    
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <div class="select-hld">
+                                                <select
+                                                    name="address[country]"
+                                                    id="Address-Country_{{ form.id }}"
+                                                    required
+                                                    data-country-selected="{{ form.country }}"
+                                                >
+                                                    <option value="" disabled selected>{{ 'customer.register.country' | t }}</option>
+                                                    {{ all_country_option_tags | remove: '<option value="---" data-provinces="[]">---</option>' }}
+                                                </select>
+                                                <div class="chevron">
+                                                    {% render 'svg-icon', name: 'chevron-down' %}
+                                                </div>
+                                                <label for="Address-Country_{{ form.id }}">
+                                                    <span>{{ 'customer.register.country' | t }}</span>
+                                                    <span class="asterisk">*</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="field-row">
+                                        <div class="field field--1-2">
+                                            <input
+                                                type="tel"
+                                                name="address[phone]"
+                                                id="Address-Phone_{{ form.id }}"
+                                                value="{{ form.phone }}"
+                                                spellcheck="false"
+                                                autocapitalize="off"
+                                                aria-required="true"
+                                                placeholder="{{ 'customer.register.phone' | t }}"
+                                                required
+                                            >
+                                            <label for="Address-Phone_{{ form.id }}">
+                                                <span>{{ 'customer.register.phone' | t }}</span>
+                                                <span class="asterisk">*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                
+                                    <div class="field-row">
+                                        <div class="field field--1-1 field--required-info">
+                                            <p>{{ 'customer.required_info_html' | t }}</p>
+                                        </div>
+                                    </div>
+    
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <div class="checkbox-hld checkbox-hld--default-address">
+                                                <input
+                                                    type="checkbox"
+                                                    id="Address-Default_{{ form.id }}"
+                                                    name="address[default]"
+                                                    value="1"
+                                                    {% if address == customer.default_address %}checked disabled{% endif %}
+                                                    class="visually-hidden"
+                                                >
+                                                <label for="Address-Default_{{ form.id }}">
+                                                    {% render 'svg-icon', name: 'check-mark' %}
+                                                    {{ 'customer.addresses.set_default' | t }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <input type="hidden" name="return_to" value="{{ routes.account_addresses_url }}">
+    
+                                    <div class="customer-form__submit-hld">
+                                        <button class="button button--xlarge" type="submit">{{ 'customer.addresses.update' | t }}</button>
+                                    </div>
+                                {%- endform -%}
+                            </form-validate>
+
+                            <div class="account-delete-address-item-hld">
+                                <form method="post" action="/account/addresses/{{ address.id }}" id="delete_address_form_{{ address.id }}" onsubmit="return confirm('{{ 'customer.addresses.delete_confirm' | t }}');">
+                                    <input type="hidden" name="return_to" value="{{ routes.account_addresses_url }}">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button type="submit" class="account-delete-address-item text-link text-link--icon text-link--reverse upper f-14 w-medium js-delete-address">
+                                        {% render 'svg-icon', name: 'trash' %}
+                                        <span>{{ 'customer.addresses.delete' | t }}</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {%- endfor -%}
+                    <div class="account-edit-address-item" data-address-id="new" aria-hidden="true">
+                        <form-validate>
+                            <span class="account-edit-address-item__title f-24 w-bold">{{ 'customer.addresses.form_new' | t }}</span>
+                            {%- form 'customer_address', customer.new_address, class: 'customer-form customer-form--edit-address' -%}
+                                {%- if customer.tags contains 'B2B' and customer.metafields.wholesale.vat_id.value != blank -%}
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <input
+                                                type="text"
+                                                id="Address-VatId_{{ form.id }}"
+                                                value="{{ customer.metafields.wholesale.vat_id.value }}"
+                                                readonly
+                                            >
+                                            <label for="Address-VatId_{{ form.id }}">
+                                                <span>{{ 'b2b.form.ust_id' | t }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                {%- endif -%}
+                                {%- if customer.tags contains 'B2B' and customer.metafields.wholesale.company_name.value != blank -%}
+                                    <div class="field-row">
+                                        <div class="field field--1-1">
+                                            <input
+                                                type="text"
+                                                id="Address-CompanyName_{{ form.id }}"
+                                                value="{{ customer.metafields.wholesale.company_name.value }}"
+                                                readonly
+                                            >
+                                            <label for="Address-CompanyName_{{ form.id }}">
+                                                <span>{{ 'b2b.form.company' | t }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                {%- endif -%}
+                                <div class="field-row">
+                                    <div class="field field--1-1">
+                                        <input
+                                            type="text"
+                                            name="address[first_name]"
+                                            id="Address-FirstName_new"
+                                            value=""
+                                            placeholder="{{ 'customer.register.first_name' | t }}"
+                                            aria-required="true"
+                                            required
+                                        >
+                                        <label for="Address-FirstName_new">
+                                            <span>{{ 'customer.register.first_name' | t }}</span>
+                                            <span class="asterisk">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="field field--1-1">
+                                        <input
+                                            type="text"
+                                            name="address[last_name]"
+                                            id="Address-LastName_new"
+                                            value=""
+                                            placeholder="{{ 'customer.register.last_name' | t }}"
+                                            aria-required="true"
+                                            required
+                                        >
+                                        <label for="Address-LastName_new">
+                                            <span>{{ 'customer.register.last_name' | t }}</span>
+                                            <span class="asterisk">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="field field--1-1">
+                                        <input
+                                            type="text"
+                                            name="address[address1]"
+                                            id="Address-Address1_new"
+                                            value=""
+                                            spellcheck="false"
+                                            autocapitalize="off"
+                                            placeholder="{{ 'customer.register.address' | t }}"
+                                            aria-required="true"
+                                            required
+                                        >
+                                        <label for="Address-Address1_new">
+                                            <span>{{ 'customer.register.address' | t }}</span>
+                                            <span class="asterisk">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="field field--1-1">
+                                        <input
+                                            type="text"
+                                            name="address[address2]"
+                                            id="Address-Adress2_new"
+                                            value=""
+                                            spellcheck="false"
+                                            autocapitalize="off"
+                                            placeholder="{{ 'customer.register.address_secondary' | t }}"
+                                        >
+                                        <label for="Address-Adress2_new">
+                                            <span>{{ 'customer.register.address_secondary' | t }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="field field--1-4">
+                                        <input
+                                            type="text"
+                                            name="address[zip]"
+                                            id="Address-Zip_new"
+                                            value=""
+                                            spellcheck="false"
+                                            autocapitalize="off"
+                                            aria-required="true"
+                                            placeholder="{{ 'customer.register.zip' | t }}"
+                                            required
+                                        >
+                                        <label for="Address-Zip_new">
+                                            <span>{{ 'customer.register.zip' | t }}</span>
+                                            <span class="asterisk">*</span>
+                                        </label>
+                                    </div>
+                                    <div class="field field--3-4">
+                                        <input
+                                            type="text"
+                                            name="address[city]"
+                                            id="Address-City_new"
+                                            value=""
+                                            spellcheck="false"
+                                            autocapitalize="off"
+                                            aria-required="true"
+                                            placeholder="{{ 'customer.register.city' | t }}"
+                                            required
+                                        >
+                                        <label for="Address-City_new">
+                                            <span>{{ 'customer.register.city' | t }}</span>
+                                            <span class="asterisk">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="field field--1-1">
+                                        <div class="select-hld">
+                                            <select
+                                                name="address[country]"
+                                                id="Address-Country_new"
+                                                required
+                                                data-country-selected=""
+                                            >
+                                                <option value="" disabled selected>{{ 'customer.register.country' | t }}</option>
+                                                {{ all_country_option_tags | remove: '<option value="---" data-provinces="[]">---</option>' }}
+                                            </select>
+                                            <div class="chevron">
+                                                {% render 'svg-icon', name: 'chevron-down' %}
+                                            </div>
+                                            <label for="Address-Country_new">
+                                                <span>{{ 'customer.register.country' | t }}</span>
+                                                <span class="asterisk">*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="field field--1-2">
+                                        <input
+                                            type="tel"
+                                            name="address[phone]"
+                                            id="Address-Phone_new"
+                                            value=""
+                                            spellcheck="false"
+                                            autocapitalize="off"
+                                            aria-required="true"
+                                            placeholder="{{ 'customer.register.phone' | t }}"
+                                            required
+                                        >
+                                        <label for="Address-Phone_new">
+                                            <span>{{ 'customer.register.phone' | t }}</span>
+                                            <span class="asterisk">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+            
+                                <div class="field-row">
+                                    <div class="field field--1-1 field--required-info">
+                                        <p>{{ 'customer.required_info_html' | t }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="field-row">
+                                    <div class="field field--1-1">
+                                        <div class="checkbox-hld checkbox-hld--default-address">
+                                            <input
+                                                type="checkbox"
+                                                id="Address-Default_new"
+                                                name="address[default]"
+                                                value="1"
+                                                class="visually-hidden"
+                                            >
+                                            <label for="Address-Default_new">
+                                                {% render 'svg-icon', name: 'check-mark' %}
+                                                {{ 'customer.addresses.set_default' | t }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="return_to" value="{{ routes.account_addresses_url }}">
+
+                                <div class="customer-form__submit-hld">
+                                    <button class="button button--xlarge" type="submit">{{ 'customer.addresses.add' | t }}</button>
+                                </div>
+                            {%- endform -%}
+                        </form-validate>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    if (getUrlParameter('edit_address')) {
+        document.querySelector('.account-addresses-hld').setAttribute('aria-hidden', 'true');
+        document.querySelector('.account-addresses-edit-hld').setAttribute('aria-hidden', 'false');
+        document.querySelector('.account-edit-address-item[data-address-id="' + getUrlParameter('edit_address') + '"]').setAttribute('aria-hidden', 'false');
+    }
+</script>
+
+{% schema %}
+{
+    "name": "Main Addresses",
+    "tag": "section",
+    "class": "section section--account",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Sehen Sie sich Ihre aktuellen Standardadressen an oder fügen Sie neue hinzu.</p>"
+        }
+    ]
+}
+{% endschema %}

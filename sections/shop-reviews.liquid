@@ -1,0 +1,196 @@
+<link rel="stylesheet" href="{{ 'section-reviews.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-tabs.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-chips.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-reviews.css' | asset_url | stylesheet_tag }}
+    {{ 'component-tabs.css' | asset_url | stylesheet_tag }}
+    {{ 'component-chips.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'shop-reviews.js' | asset_url }}" defer="defer"></script>
+
+<reviews-section 
+    class="reviews reviews--all reviews--{{ section.settings.background }} padding" 
+    id="reviews"
+    data-channel="{{ settings.trusted_shops_channel }}">
+        <div class="container">
+            {%- if section.settings.heading != blank -%}
+                <div class="heading">
+                    <div class="heading__text">
+                        <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                        {%- if section.settings.heading_text != blank -%}
+                            <div class="richtext richtext--gray">
+                                <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                            </div>
+                        {%- endif -%}
+                    </div>
+                    <div class="reviews__summary">
+                        <div class="reviews__summary-header">
+                            <p class="f-32 w-bold" data-reviews-average>0.0</p>
+                            <div class="reviews__summary-stars">
+                                {%- for i in (1..5) -%}
+                                    {%- render 'svg-icon', name: 'star' -%}
+                                {%- endfor -%}
+                            </div>
+                        </div>
+                        <p class="gray">{{ 'reviews.based_on_html' | t }}</p>
+                    </div>
+                    {%- if section.settings.link_title -%}
+                        <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                            <span>{{ section.settings.link_title }}</span>
+                        </a>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+            
+            {% comment %}
+            <nav class="chips chips--scroll"> 
+                <ul>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="true"
+                            data-filter-button="all">
+                                {{ 'reviews.all' | t }}
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="false"
+                            data-filter-handle="five_stars"
+                            data-filter-button="5">
+                                <span>5</span>
+                                {%- render 'svg-icon', name: 'star' -%}
+                                <span class="f-14 w-regular" data-reviews-count="5">(0)</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="false"
+                            data-filter-handle="four_stars"
+                            data-filter-button="4">
+                                <span>4</span>
+                                {%- render 'svg-icon', name: 'star' -%}
+                                <span class="f-14 w-regular" data-reviews-count="4">(0)</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="false"
+                            data-filter-handle="three_stars"
+                            data-filter-button="3">
+                                <span>3</span>
+                                {%- render 'svg-icon', name: 'star' -%}
+                                <span class="f-14 w-regular" data-reviews-count="3">(0)</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="false"
+                            data-filter-handle="two_stars"
+                            data-filter-button="2">
+                                <span>2</span>
+                                {%- render 'svg-icon', name: 'star' -%}
+                                <span class="f-14 w-regular" data-reviews-count="2">(0)</span>
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="false"
+                            data-filter-handle="one_star"
+                            data-filter-button="1">
+                                <span>1</span>
+                                {%- render 'svg-icon', name: 'star' -%}
+                                <span class="f-14 w-regular" data-reviews-count="1">(0)</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            {% endcomment %}
+
+            <p class="reviews__empty gray">{{ 'reviews.empty' | t }}</p>
+
+            <div class="swiper">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper"></div>
+                </div>
+            </div>
+    
+            {%- if section.settings.link_title -%}
+                <div class="section__read-more">
+                    <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                        <span>{{ section.settings.link_title }}</span>
+                    </a>
+                </div>
+            {%- endif -%}
+        </div>
+</reviews-section>
+
+{% schema %}
+{
+  "name": "Shop Reviews",
+  "tag": "section",
+  "class": "section section--reviews",
+  "settings": [
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1"
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    },
+    {
+        "type": "select",
+        "id": "background",
+        "label": "Background",
+        "default": "gray",
+        "options": [
+            {
+                "value": "white",
+                "label": "White"
+            },
+            {
+                "value": "gray",
+                "label": "Gray" 
+            }
+        ]
+    }
+  ],
+  "blocks": [
+    {
+        "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Reviews"
+    }
+  ]
+}
+{% endschema %}

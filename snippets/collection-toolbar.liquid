@@ -1,0 +1,134 @@
+{%- capture filters -%}
+    {% comment %} {%- if collection.sort_by != blank -%}
+        <div class="button button--small button--filter">
+            {{ 'collection.sort.' | append: collection.sort_by | t }}
+            <button data-remove-filter="sort-{{ collection.sort_by }}">
+                {%- render 'svg-icon', name: 'close' -%}
+            </button>
+        </div>
+    {%- endif -%} {% endcomment %}
+
+    {%- for filter in collection.filters -%}
+        {%- if filter.type == 'list' -%}                
+            {%- for filter_value in filter.values -%}
+                {%- if filter_value.active -%}
+                    <div class="button button--small button--filter">
+                        {%- if filter.label contains 'Glasstärke' or filter.label contains 'Tiefe' or filter.label contains 'Breite' or filter.label contains 'Höhe' or filter.label contains 'Länge' or filter.label contains 'Grundfläche' -%}
+                            {{ filter.label }}: {{ filter_value.value }}
+                        {%- else -%}
+                            {{ filter_value.value }}
+                        {%- endif -%}
+                        {%- if filter.label == 'Tags' -%}
+                            <button data-remove-tag="{{ filter_value.value }}">
+                                {%- render 'svg-icon', name: 'close' -%}
+                            </button>
+                        {%- else -%}
+                            <button data-remove-filter="filter-{{ filter.param_name }}-{{ forloop.index }}">
+                                {%- render 'svg-icon', name: 'close' -%}
+                            </button>
+                        {%- endif -%}
+                    </div>     
+                {%- endif  -%}
+            {%- endfor -%}
+        {%- endif -%}
+        
+        {%- if filter.type == 'price_range' -%}
+            {%- if filter.min_value.value and filter.max_value.value -%}
+                <div class="button button--small button--filter">
+                    {{ filter.min_value.value | money }} – {{ filter.max_value.value | money }}
+                    <button data-remove-filter="{{ filter.param_name }}">
+                        {%- render 'svg-icon', name: 'close' -%}
+                    </button>
+                </div>
+            {%- endif -%}
+            {%- if filter.min_value.value -%}
+                {%- unless filter.max_value.value -%}
+                    <div class="button button--small button--filter">
+                        > {{ filter.min_value.value | money }}
+                        <button data-remove-filter="{{ filter.param_name }}">
+                            {%- render 'svg-icon', name: 'close' -%}
+                        </button>
+                    </div>
+                {%- endunless -%}
+            {%- endif -%}
+            {%- if filter.max_value.value -%}
+                {%- unless filter.min_value.value -%}
+                    <div class="button button--small button--filter">
+                        < {{ filter.max_value.value | money }}
+                        <button data-remove-filter="{{ filter.param_name }}">
+                            {%- render 'svg-icon', name: 'close' -%}
+                        </button>
+                    </div>
+                {%- endunless -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+<div class="listing__toolbar {% unless section.settings.enable_toggle_images %}listing__toolbar--no-toggle{% endunless %}">
+    <div class="listing__toolbar-filters">
+        {%- if filters != blank -%}
+            {{ filters }}
+            <a href="{{ collection.url }}?view=all" class="text-link text-link--reverse f-14 w-medium upper spaced" data-reset-filters>
+                <span>{{ 'collection.filters.reset' | t }}</span>
+            </a>
+        {%- endif -%}
+    </div>
+    <div class="listing__toolbar-count f-12 w-medium" data-count="{{ collection.products_count }}">
+        {%- if collection.products_count == 0 or collection.products_count > 1 -%}
+            {{ 'collection.products_count_more' | t: count: collection.products_count }}
+        {%- else -%}
+            {{ 'collection.products_count_one' | t: count: collection.products_count }}
+        {%- endif -%}
+    </div>
+    <div class="listing__toolbar-buttons">
+        {%- if enable_toggle_images -%}
+            <div class="chips">
+                <ul>
+                    <li class="w-medium">{{ 'collection.view.title' | t }}</li>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="false"
+                            aria-controls="">
+                                {{ 'collection.view.outside' | t }}
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            class="button button--gray button--small"
+                            aria-expanded="true"
+                            aria-controls="">
+                                {{ 'collection.view.inside' | t }}
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        {%- endif -%}
+        
+        <div class="listing__toolbar-grid">
+            <ul>
+                <button class="listing__toolbar-grid-sort" aria-controls="drawer-collection-filters" data-richtext="sort-opened">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrows-up-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M7 3l0 18"></path><path d="M10 6l-3 -3l-3 3"></path><path d="M20 18l-3 3l-3 -3"></path><path d="M17 21l0 -18"></path></svg>{{ 'collection.sort.title' | t }}
+                </button>
+
+                <li>
+                    <button
+                        data-change-grid="horizontal"
+                        aria-selected="false"
+                        aria-controls="">
+                            {%- render 'svg-icon', name: 'grid-horizontal' -%}
+                    </button>
+                </li>
+                <li>
+                    <button
+                        data-change-grid="vertical"
+                        aria-selected="true"
+                        aria-controls="">
+                            {%- render 'svg-icon', name: 'grid-vertical' -%}
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

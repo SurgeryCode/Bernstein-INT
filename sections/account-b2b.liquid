@@ -1,0 +1,260 @@
+{%- liquid 
+    assign is_b2b = false
+    if customer.tags contains 'b2b' or customer.tags contains 'B2B'
+        assign is_b2b = true
+    endif
+    assign is_b2b_program = false
+    if customer.tags contains 'Standard' or customer.tags contains 'Silver' or customer.tags contains 'Gold' or customer.tags contains 'Platinum'
+        assign is_b2b_program = true
+    endif
+-%}
+{%- if is_b2b_program -%} 
+    <div class="account-content__success">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="24" fill="#46B810"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M31.517 18.456c.3.286.312.76.027 1.06l-10.455 11a.75.75 0 0 1-1.087 0l-4.546-4.782a.75.75 0 1 1 1.088-1.033l4.002 4.21 9.91-10.428a.75.75 0 0 1 1.06-.027Z" fill="#fff"/>
+        </svg>
+        {%- for tag in customer.tags -%}
+          {%- if tag == 'Standard' or tag == 'Silver' or tag == 'Gold' or tag == 'Platinum' -%}
+            <p>{{ 'customer.is_b2b_html' | t: tag: tag, discount: customer.metafields.wholesale.discount }}</p>
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+    </div>
+{%- else -%}
+    {% if section.settings.text != blank %}
+        <div class="account-content__text richtext richtext--gray">
+            {{ section.settings.text }}
+        </div>
+    {% endif %} 
+{%- endif -%}
+
+<div class="account-b2b-perks">
+    <div class="account-b2b-perks__item">
+        {%- if section.settings.perk_1_icon != blank -%}
+            <div class="account-b2b-perks__icon-hld">
+                <img 
+                    src="{{ section.settings.perk_1_icon | img_url: 'master' }}" 
+                    width="48"
+                    height="48"
+                    alt="{{ section.settings.perk_1_icon.alt }}"
+                    loading="lazy">
+            </div>
+        {%- endif -%}
+        <span class="account-b2b-perks__title">{{ section.settings.perk_1_title }}</span>
+        <p class="account-b2b-perks__text">{{ section.settings.perk_1_text }}</p>
+    </div>
+    <div class="account-b2b-perks__item">
+        {%- if section.settings.perk_2_icon != blank -%}
+            <div class="account-b2b-perks__icon-hld">
+                <img 
+                    src="{{ section.settings.perk_2_icon | img_url: 'master' }}" 
+                    width="48"
+                    height="48"
+                    alt="{{ section.settings.perk_2_icon.alt }}"
+                    loading="lazy">
+            </div>
+        {%- endif -%}
+        <span class="account-b2b-perks__title">{{ section.settings.perk_2_title }}</span>
+        <p class="account-b2b-perks__text">{{ section.settings.perk_2_text }}</p>
+    </div>
+    <div class="account-b2b-perks__item">
+        {%- if section.settings.perk_3_icon != blank -%}
+            <div class="account-b2b-perks__icon-hld">
+                <img 
+                    src="{{ section.settings.perk_3_icon | img_url: 'master' }}" 
+                    width="48"
+                    height="48"
+                    alt="{{ section.settings.perk_3_icon.alt }}"
+                    loading="lazy">
+            </div>
+        {%- endif -%}
+        <span class="account-b2b-perks__title">{{ section.settings.perk_3_title }}</span>
+        <p class="account-b2b-perks__text">{{ section.settings.perk_3_text }}</p>
+    </div>
+</div>
+
+{%- unless is_b2b_program -%}
+    <div class="account-b2b-bottom">
+        <div class="account-b2b-how-it-works-hld">
+            {%- if section.settings.how_it_works_title != blank -%}
+                <span class="account-b2b-how-it-works-title">{{ section.settings.how_it_works_title }}</span>
+            {%- endif -%}
+
+            <ol class="account-b2b-how-it-works">
+                <li>
+                    <div class="account-b2b-how-it-works__icons">
+                        <div class="account-b2b-how-it-works__number">1</div>
+                        {% render 'svg-icon', name: 'arrow-down' %}
+                    </div>
+                    <span class="account-b2b-how-it-works__text">{{ section.settings.how_it_works_text_1 }}</span>
+                </li>
+                <li>
+                    <div class="account-b2b-how-it-works__icons">
+                        <div class="account-b2b-how-it-works__number">2</div>
+                        {% render 'svg-icon', name: 'arrow-down' %}
+                    </div>
+                    <span class="account-b2b-how-it-works__text">{{ section.settings.how_it_works_text_2 }}</span>
+                </li>
+                <li>
+                    <div class="account-b2b-how-it-works__icons">
+                        <div class="account-b2b-how-it-works__number">3</div>
+                        {% render 'svg-icon', name: 'arrow-down' %}
+                    </div>
+                    <span class="account-b2b-how-it-works__text">{{ section.settings.how_it_works_text_3 }}</span>
+                </li>
+                <li>
+                    <div class="account-b2b-how-it-works__number">
+                        {% render 'svg-icon', name: 'check-mark' %}
+                    </div>
+                    <span class="account-b2b-how-it-works__text">{{ section.settings.how_it_works_text_4 }}</span>
+                </li>
+            </ol>
+        </div>
+
+        <div class="account-b2b-form-hld">
+            <span class="account-b2b-form-title">
+                {%- if is_b2b -%}
+                    {{ section.settings.form_title_b2b }}
+                {%- else -%}
+                    {{ section.settings.form_title }}
+                {%- endif -%}
+            </span>
+            {%- if is_b2b -%}
+                {%- render 'b2b-form' -%}
+            {%- else -%}
+                {%- render 'b2b-from-b2c' -%}
+            {%- endif -%}
+            
+        </div>
+    </div>
+{%- endunless -%}
+
+{% schema %}
+{
+    "name": "Account B2B",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Nehmen Sie das Programm Ihres neuen B2B-Partners in Anspruch und erhalten Sie 15 % Rabatt auf den Verkaufspreis.</p>"
+        },
+        {
+            "type": "header",
+            "content": "Perks"
+        },
+        {
+            "type": "image_picker",
+            "id": "perk_1_icon",
+            "label": "Perk 1 - icon"
+        },
+        {
+            "type": "text",
+            "id": "perk_1_title",
+            "label": "Perk 1 - title",
+            "default": "Ermäßigte Preise"
+        },
+        {
+            "type": "textarea",
+            "id": "perk_1_text",
+            "label": "Perk 1 - text",
+            "default": "Suspendisse suscipit finibus augue, sed porta ligula vehicula ac. Vivamus lacinia nisl nec euismod vehicula."
+        },
+        {
+            "type": "image_picker",
+            "id": "perk_2_icon",
+            "label": "Perk 2 - icon"
+        },
+        {
+            "type": "text",
+            "id": "perk_2_title",
+            "label": "Perk 2 - title",
+            "default": "Persönlicher Account Manager"
+        },
+        {
+            "type": "textarea",
+            "id": "perk_2_text",
+            "label": "Perk 2 - text",
+            "default": "Nam maximus purus ac pharetra molestie. Duis id faucibus nunc. Ut purus urna."
+        },
+        {
+            "type": "image_picker",
+            "id": "perk_3_icon",
+            "label": "Perk 3 - icon"
+        },
+        {
+            "type": "text",
+            "id": "perk_3_title",
+            "label": "Perk 3 - title",
+            "default": "Individuelles Angebot"
+        },
+        {
+            "type": "textarea",
+            "id": "perk_3_text",
+            "label": "Perk 3 - text",
+            "default": "Suspendisse suscipit finibus augue, sed porta ligula vehicula ac. Vivamus lacinia nisl nec euismod vehicula."
+        },
+        {
+            "type": "header",
+            "content": "How it works"
+        },
+        {
+            "type": "text",
+            "id": "how_it_works_title",
+            "label": "Title",
+            "default": "Wie es funktioniert?"
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_1",
+            "label": "Text 1",
+            "default": "Füllen Sie das Bewerbungsformular aus und senden Sie es ab."
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_2",
+            "label": "Text 2",
+            "default": "Unser Kundenservice wird Ihre Anfrage prüfen und sich innerhalb von 2 Werktagen mit Ihnen in Verbindung setzen."
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_3",
+            "label": "Text 3",
+            "default": "Nach der Genehmigung Ihres professionellen Kontos erhalten Sie eine E-Mail mit Informationen zu den verfügbaren Vorteilen."
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_4",
+            "label": "Text 4",
+            "default": "Geben Sie eine Bestellung bei unserem engagierten Service auf"
+        },
+        {
+            "type": "header",
+            "content": "Platform"
+        },
+        {
+            "type": "text",
+            "id": "platform_title",
+            "label": "Title",
+            "default": "Wechseln Sie zur B2B-Plattform"
+        },
+        {
+            "type": "header",
+            "content": "Form"
+        },
+        {
+            "type": "text",
+            "id": "form_title",
+            "label": "Title",
+            "default": "Fordern Sie ein B2B-Konto an"
+        },
+        {
+            "type": "text",
+            "id": "form_title_b2b",
+            "label": "Form title (for B2B customers)",
+            "default": "Einen Antrag auf Aufnahme in das Pro-Programm stellen"
+        }
+    ]
+}
+{% endschema %}

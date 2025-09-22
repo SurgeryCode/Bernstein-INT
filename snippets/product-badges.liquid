@@ -1,0 +1,70 @@
+{%- capture content -%}
+    {%- for item in shop.metaobjects['product_badge'].values -%}
+        {%- if item.condition.value == 'Product is on sale' -%}
+            {%- if large -%}
+                {%- for variant in product.variants -%}
+                    {%- liquid
+                        assign sale = false
+                        assign price = variant.price | times: 0.01
+                        assign compare_at_price = variant.compare_at_price | times: 0.01
+                        assign diff = ''
+                    
+                        if variant.compare_at_price > variant.price
+                            assign diff = compare_at_price | minus: price
+                            assign sale = diff | divided_by: compare_at_price | times: 100 | round
+                        endif
+                    -%}
+                    {%- if sale -%}
+                        <li 
+                            class="product-badges__item product-badges__item--sale product-badges__item--{{ item.name.value | handleize }} {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}" 
+                            data-variant-detail="{{ variant.id }}">
+                                -{{ sale }}%
+                        </li>
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- else -%}
+                {%- liquid
+                    assign test_sale = product.selected_or_first_available_variant
+                    unless product.has_only_default_variant
+                        for variant in product.variants
+                            if variant.compare_at_price > variant.price
+                                assign test_sale = variant
+                                break
+                            endif
+                        endfor
+                    endunless
+
+                    assign sale = false
+                    assign price = test_sale.price | times: 0.01
+                    assign compare_at_price = test_sale.compare_at_price | times: 0.01
+                    assign diff = ''
+                    if test_sale.compare_at_price > test_sale.price
+                        assign diff = compare_at_price | minus: price
+                        assign sale = diff | divided_by: compare_at_price | times: 100 | round
+                    endif
+                -%}
+                {%- if sale -%}
+                    <li class="product-badges__item product-badges__item--sale product-badges__item--{{ item.name.value | handleize }}">-{{ sale }}%</li>
+                {%- endif -%}
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if item.condition.value == 'Product is sold out' -%}
+            {%- unless product.available -%}
+                <li class="product-badges__item product-badges__item--{{ item.name.value | handleize }}">{{ item.name.value }}</li>
+            {%- endunless -%}
+        {%- endif -%}
+
+        {%- if item.condition.value == 'Product is tagged' -%}
+            {%- if product.tags contains item.related_product_tag.value -%}
+                <li class="product-badges__item product-badges__item--{{ item.name.value | handleize }}">{{ item.name.value }}</li>
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%} 
+{%- endcapture -%}
+
+{%- if content != blank -%}
+    <ul class="product-badges {% if large %}product-badges--large f-16{% else %}f-11{% endif %} w-medium upper">
+        {{ content }}
+    </ul>
+{%- endif -%}

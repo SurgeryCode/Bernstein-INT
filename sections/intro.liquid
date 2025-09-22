@@ -1,0 +1,160 @@
+{%- if section.settings.video != blank -%}
+    <script src="{{ 'video-player.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% render 'breadcrumbs' %}
+
+{%- if section.settings.banner != blank -%}
+    {%- liquid
+        case section.settings.banner_size
+            when 'normal'
+                assign banner_sizes = '380:440,767:767,992:992,1200:1200,1201:1420'
+            when 'full'
+                assign banner_sizes = '380:440,767:767,992:992,1200:1200,1420:1420,1600:1600,1621:1920'
+        endcase
+    -%}
+    <div class="intro__banner intro__banner--{{ section.settings.banner_size }}">
+        {%- render 'image', 
+            image: section.settings.banner, 
+            image_mobile: section.settings.banner_mobile, 
+            sizes: banner_sizes,
+            class: 'cover,background',
+            loading: 'eager'
+        -%}
+        {%- if section.settings.video != blank -%}
+            <div class="intro__video-hld">
+                {%- render 'video', 
+                    video: section.settings.video,
+                    autoplay: true, 
+                    loop: true, 
+                    muted: true, 
+                    custom_controls: true
+                -%}
+            </div>
+        {%- endif -%}
+    </div>
+{%- endif -%}
+
+<div class="intro__content{% if section.settings.banner == blank %} intro__content--no-banner{% endif %}">
+    <div class="container container--{{ section.settings.text_width }}">
+        {%- if section.settings.heading != blank -%}
+            <h1 class="f-48 intro__heading">{{ section.settings.heading }}</h1>
+        {%- else -%}
+            <h1 class="f-48 intro__heading">{{ page.title }}</h1>
+        {%- endif -%}
+        <div class="intro__text intro__text--{% if section.settings.text != blank and section.settings.text_2 != blank %}columns{% else %}normal{% endif %}">
+            {%- if section.settings.text != blank -%}
+                <div class="richtext richtext--gray">
+                    {{ section.settings.text }}
+                </div>
+            {%- endif -%}
+            {%- if section.settings.text_2 != blank -%}
+                <div class="richtext richtext--gray">
+                    {{ section.settings.text_2 }}
+                </div>
+            {%- endif -%}
+        </div>
+        {%- if section.settings.button_url != blank and section.settings.button_text != blank -%}
+            <div class="intro__btn-hld">
+                <a class="button button--large intro__btn" href="{{ section.settings.button_url }}" {% if section.settings.button_target == true %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ section.settings.button_text }}</a>
+            </div>
+        {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Intro",
+    "tag": "section",
+    "class": "section section--intro",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "banner",
+            "label": "Banner"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_mobile",
+            "label": "Banner (mobile)"
+        },
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video (optional)"
+        },
+        {
+            "type": "select",
+            "id": "banner_size",
+            "label": "Banner size",
+            "options": [
+                {
+                    "value": "normal",
+                    "label": "Normal"
+                },
+                {
+                    "value": "full",
+                    "label": "Full"
+                }
+            ],
+            "default": "normal"
+        },
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Page description</p>"
+        },
+        {
+            "type": "richtext",
+            "id": "text_2",
+            "label": "Text (additional column)"
+        },
+        {
+            "type": "select",
+            "id": "text_width",
+            "label": "Text width",
+            "options": [
+                {
+                    "value": "normal",
+                    "label": "Normal"
+                },
+                {
+                    "value": "tight",
+                    "label": "Tight"
+                }
+            ],
+            "default": "normal"
+        },
+        {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button url"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open on new tab"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Intro"
+        }
+    ]
+}
+{% endschema %}

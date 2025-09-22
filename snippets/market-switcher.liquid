@@ -1,0 +1,50 @@
+<script src="{{ 'markets-switcher.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid 
+  assign path = request.origin | append: request.path
+  assign button_label = ''
+  assign button_flag = ''
+  
+  for link in linklists['markets'].links
+    assign handle = link.title | downcase | replace: 'en','uk'
+    if path contains link.url or handle == localization.market.metafields.custom.country_iso_code
+      assign handle_parts = handle | split: '/'
+      assign button_label = link.title | upcase
+      assign button_flag = 'https://cdn.shopify.com/static/images/flags/' | append: handle_parts[0] | append: '.svg'
+    endif
+  endfor
+
+  if title
+    assign button_label = title | replace: '|MARKETS|', button_label
+  endif
+-%}
+
+<markets-switcher class="markets markets--{{ modifier }}">
+  <button 
+    class="markets__button w-medium f-16"
+    title="{{ 'accessibility.lang_currency' | t }}"
+    aria-label="{{ 'accessibility.lang_currency' | t }}"
+    aria-expanded="false"
+    {% if tabindex %}tabindex="{{ tabindex }}"{% endif %}>
+      <img src="{{ button_flag }}" width="22" height="16" alt="{{ button_label }}" loading="lazy">
+      {{- button_label -}}
+  </button>
+
+  <div class="markets__content">
+      <div class="markets__content-inner">
+        <ul class="f-14 w-medium spaced">
+          {%- for link in linklists['markets'].links -%}
+            {%- assign handle = link.title | downcase | replace: 'en','uk' -%}
+            {%- assign handle_parts = handle | split: '/' -%}
+            {%- assign flag = 'https://cdn.shopify.com/static/images/flags/' | append: handle_parts[0] | append: '.svg' -%}
+            <li>
+              <a href="{{ link.url }}" {% if handle == label %}class="active"{% endif %}>
+                <img src="{{ flag }}" width="22" height="16" alt="{{ link.title }}" loading="lazy">
+                {{- link.title -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+  </div>
+</markets-switcher>

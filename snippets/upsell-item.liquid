@@ -1,0 +1,108 @@
+{%- if product.available -%}
+    {%- capture description -%}
+        {%- for variant in product.variants -%}
+            {%- if variant.metafields.custom['information'] != blank -%}
+                {{ variant.metafields.custom['information'] }}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endcapture -%}
+    {%- liquid 
+        if description contains '</style>'
+            assign _description = description | split: '</style>'
+            assign description = _description[1]
+        endif
+
+        assign description = description | replace: 'class="container"', ''
+        assign description = description | replace: 'h1', 'h4'
+        assign description = description | replace: 'h2', 'h4'
+        assign description = description | replace: 'h3', 'h4'
+    -%} 
+
+    {%- capture specification -%}
+        {%- for variant in product.variants -%}
+            {%- if variant.metafields.custom['specification'] != blank -%}
+                {{ variant.metafields.custom['specification'] }}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endcapture -%}
+    {%- liquid 
+        if specification contains '</style>'
+            assign _specification = specification | split: '</style>'
+            assign specification = _specification[1]
+        endif
+
+        assign specification = specification | replace: 'class="container"', ''
+        assign specification = specification | replace: 'h1', 'h4'
+        assign specification = specification | replace: 'h2', 'h4'
+        assign specification = specification | replace: 'h3', 'h4'
+    -%} 
+
+    <upsell-item 
+        class="upsell__item" 
+        data-variant="{{ product.first_available_variant.id }}">
+            <div class="upsell__item-main">
+                {%- liquid 
+                    assign classes = 'cover'
+                    if product.metafields.custom.image_fit == 'contain'
+                        assign classes = 'contain'
+                    endif
+                -%}
+                <div class="upsell__item-image">
+                    {%- render 'image', 
+                        image: product.featured_image, 
+                        sizes: '767:240,768:320',
+                        class: classes
+                    -%}
+                </div>
+                <div class="upsell__item-content">
+                    <a href="{{ product.url }}" class="upsell__item-title text-link w-medium">
+                        <span>{{ product.title }}</span>
+                    </a>
+                    {%- render 'product-price', product: product -%}
+                    {%- if description != blank or specification != blank -%}
+                        <div class="upsell__item-expand">
+                            <button class="text-link f-14 w-medium gray" aria-expanded="false">
+                                <span>{{ 'accessibility.read_more' | t }}</span>
+                                {%- render 'svg-icon', name: 'chevron-down' -%}
+                            </button>
+                        </div>
+                    {%- endif -%}
+                </div>
+                <button 
+                    class="upsell__button"
+                    data-action="{{ action }}"
+                    title="{{ 'product.add_to_cart' | t }}"
+                    aria-label="{{ 'product.add_to_cart' | t }}">
+                        {%- render 'svg-icon', name: 'cart-add' -%}
+                        {%- render 'svg-icon', name: 'check' -%}
+                </button>
+            </div>
+            <div class="upsell__item-description">
+                <div class="upsell__item-images">
+                    {%- for image in product.images limit: 3 -%}
+                        {%- unless forloop.first -%}
+                            {%- render 'image', 
+                                image: image, 
+                                sizes: '767:240,768:400',
+                                class: 'cover'
+                            -%}
+                        {%- endunless -%}
+                    {%- endfor -%}
+                </div>
+
+                {%- if description != blank -%}
+                    <div class="richtext richtext--gray f-14 black">
+                        <p class="f-16 w-medium">{{ 'upsell.details' | t }}</p>
+                        {{- description -}}
+                    </div>
+                {%- endif -%}
+
+                {%- if specification != blank -%}
+                    <div class="richtext richtext--gray f-14 black">
+                        <p class="f-16 w-medium">{{ 'upsell.specification' | t }}</p>
+                        {{- specification -}}
+                    </div>
+                {%- endif -%}
+            </div>
+    </upsell-item>
+{%- endif -%}

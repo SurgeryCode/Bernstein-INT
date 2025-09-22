@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "heading": "Entdecken Sie die neuesten Trends und Tipps zur Badgestaltung",
+        "posts_per_page": 15,
+        "promo_banner_handle": "",
+        "promo_banner_size": "half",
+        "promo_banner_position": 9,
+        "show_dates": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

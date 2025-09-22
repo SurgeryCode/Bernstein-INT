@@ -1,0 +1,55 @@
+<script>
+    window.shopUrl = '{{ request.origin }}';
+
+    window.routes = {
+        root_url: '{{ routes.root_url }}',
+        cart_add_url: '{{ routes.cart_add_url }}',
+        cart_change_url: '{{ routes.cart_change_url }}',
+        cart_update_url: '{{ routes.cart_update_url }}',
+        cart_url: '{{ routes.cart_url }}',
+        search_url: '{{ routes.search_url }}',
+        predictive_search_url: '{{ routes.predictive_search_url }}',
+        product_recommendations_url: '{{ routes.product_recommendations_url }}',
+        {% if routes.root_url.size > 1 %}
+        inspiration_url: '{{ routes.root_url }}/pages/inspiration',
+        {% else %}
+        inspiration_url: '/pages/inspiration',
+        {% endif %}
+    };
+
+    window.accessibility = {
+        read_more: "{{ 'accessibility.read_more' | t }}",
+        read_less: "{{ 'accessibility.read_less' | t }}",
+        show_product: "{{ 'accessibility.show_product' | t }}",
+        hide_product: "{{ 'accessibility.hide_product' | t }}",
+        days: ["{{ 'delivery.days.sunday' | t }}","{{ 'delivery.days.monday' | t }}","{{ 'delivery.days.tuesday' | t }}","{{ 'delivery.days.wednesday' | t }}","{{ 'delivery.days.thursday' | t }}","{{ 'delivery.days.friday' | t }}","{{ 'delivery.days.saturday' | t }}"],
+        months: ["{{ 'delivery.months.january' | t }}","{{ 'delivery.months.february' | t }}","{{ 'delivery.months.march' | t }}","{{ 'delivery.months.april' | t }}","{{ 'delivery.months.may' | t }}","{{ 'delivery.months.june' | t }}","{{ 'delivery.months.july' | t }}","{{ 'delivery.months.august' | t }}","{{ 'delivery.months.september' | t }}","{{ 'delivery.months.october' | t }}","{{ 'delivery.months.november' | t }}","{{ 'delivery.months.december' | t }}"],
+        verified: "{{ 'reviews.verified' | t }}",
+        add_to_cart: "{{ 'product.add_to_cart' | t }}",
+        remove_from_cart: "{{ 'product.remove_from_cart' | t }}",
+        careersResults: "{{ 'careers.results_html' | t }}",
+        careersDetails: "{{ 'careers.details' | t }}"
+    };
+
+    window.messages = {
+        required: "{{ 'form.required' | t }}",
+        invalid_email: "{{ 'form.invalid_email' | t }}",
+        invalid_phone: "{{ 'form.invalid_phone' | t }}",
+        invalid_tax_id: "{{ 'form.invalid_tax_id' | t }}",
+        invalid_name: "{{ 'form.invalid_name' | t }}"
+
+    }
+
+    window.moneyFormat = "{{ shop.money_format }}";
+
+    window.lockScroll = false;
+    window.lastScroll = 0; 
+    window.scrollDirection = 'down'; 
+    window.disableStickyHeader = false;
+    window.scrollbarWidth = 0;
+
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
+    window.addEventListener('resize', () => {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`);
+    });
+</script>

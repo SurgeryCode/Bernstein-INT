@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="{{ 'section-content-blocks.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-content-blocks.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'video-player.js' | asset_url }}" defer="defer"></script>
+
+<div class="container">
+    {%- if section.settings.heading != blank -%}
+        <h2 class="f-48 content-blocks__heading">{{ section.settings.heading | newline_to_br }}</h2>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+        <div class="content-blocks">
+            {%- for item in section.blocks -%}
+                <div class="content-blocks__row">
+                    {%- if item.settings.image != blank -%}
+                        <div class="content-blocks__image-hld">
+                            {%- render 'image', 
+                                image: item.settings.image,
+                                sizes: '575:543,576:698',
+                                class: 'cover,background',
+                                loading: 'lazy'
+                            -%}
+                            {%- if item.settings.video != blank -%}
+                                <div class="content-blocks__video-hld">
+                                    {%- render 'video', 
+                                        video: item.settings.video,
+                                        class: 'content-blocks__video',
+                                        autoplay: true,
+                                        loop: true,
+                                        muted: true,
+                                        custom_controls: true
+                                    -%}
+
+                                </div>
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+                    <div class="content-blocks__content-hld">
+                        {%- if item.settings.title != blank -%}
+                            <h3 class="f-32 f-32--deco content-blocks__title">{{ item.settings.title | newline_to_br }}</h3>
+                        {%- endif -%}
+                        {%- if item.settings.content != blank -%}
+                            <div class="richtext richtext--gray content-blocks__text">
+                                {{ item.settings.content }}
+                            </div>
+                        {%- endif -%}
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+</div>
+
+{% schema %}
+{
+    "name": "Content Blocks",
+    "tag": "section",
+    "class": "section section--content-blocks",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Section title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Row",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "content",
+                    "label": "Content"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "video",
+                    "id": "video",
+                    "label": "Video"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Content Blocks"
+        }
+    ]
+}
+{% endschema %}

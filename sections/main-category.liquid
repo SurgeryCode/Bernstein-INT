@@ -1,0 +1,126 @@
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'category.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'breakline.js' | asset_url }}" defer="defer"></script>
+
+{%- render 'breadcrumbs' -%}
+
+{%- capture categories -%}
+  {%- for link in linklists[settings.menu_categories].links -%}
+    {%- if link.object.handle == collection.handle -%}
+      {%- for sublink in link.links -%}
+        <div class="swiper-slide">
+          <a href="{{ sublink.url }}" class="category__item {% if sublink.object.image != blank %}category__item--has-image{% endif %}">
+            <h2 class="f-24 w-bold">
+              <break-line>
+                  <span data-default>{{- sublink.title | replace: '&', '<br>&' -}}</span>
+                  {%- if sublink.object.metafields.custom.br_title != blank -%}
+                    <span data-alter>{{- sublink.object.metafields.custom.br_title | newline_to_br -}}</span>
+                  {%- endif -%}  
+              </break-line>
+            </h2>
+            <span class="text-link text-link--reverse f-14 w-medium upper spaced">
+              <span>{{ 'accessibility.discover' | t }}</span>
+            </span>
+            {%- if sublink.object.image != blank -%}
+              <div class="category__item-image">
+                {%- assign alter_image = sublink.object.metafields.custom.image_alternate -%}
+                  {%- render 'image', 
+                      image: sublink.object.image, 
+                      sizes: '379:400,767:800,768:1200',
+                      class: 'cover,background'
+                  -%}
+                {%- if alter_image -%}
+                  {%- render 'image', 
+                      image: alter_image, 
+                      sizes: '379:400,767:800,768:1200',
+                      class: 'cover,background,alter'
+                  -%}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </a>
+        </div>  
+      {%- endfor -%} 
+    {%- endif -%}  
+  {%- endfor -%}
+{%- endcapture -%}
+
+<category-section class="category margin margin--first">  
+  <div class="container">
+    <div class="heading">
+      <div class="heading__text">
+        {%- if section.settings.heading != blank -%}
+          <h1 class="f-48">{{ section.settings.heading | newline_to_br }}</h1>
+        {%- else -%}
+          <h1 class="f-48">{{ collection.title }}</h1>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+            <div class="richtext richtext--gray">
+                {{ section.settings.description }}
+            </div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="category__grid">
+      <div class="swiper">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            {{ categories }}
+            <div class="swiper-slide">
+              <a href="{{ collection.url }}?view=all" class="category__item category__item--all">
+                <span class="text-link text-link--reverse f-14 w-medium upper spaced gray">
+                  <span>{{ 'collection.show_collection_html' | t: name: collection.title }}</span>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="main-category-gradients">
+            <span class="grad-left"></span>
+            <span class="grad-right"></span>
+          </div>
+          
+          <div class="category__arrows">
+            <button 
+                class="arrow arrow--left"
+                title="{{ 'accessibility.prev_slide' | t }}"
+                aria-label="{{ 'accessibility.prev_slide' | t }}">
+                {%- render 'svg-icon', name: 'chevron-left' -%}
+            </button>
+            <button 
+                class="arrow arrow--right"
+                title="{{ 'accessibility.next_slide' | t }}"
+                aria-label="{{ 'accessibility.next_slide' | t }}">
+                {%- render 'svg-icon', name: 'chevron-right' -%}
+            </button>
+          </div>
+          <div class="swiper-scrollbar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</category-section>
+
+{% schema %}
+{
+  "name": "Main Category",
+  "tag": "section",
+  "class": "section section--category",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "paragraph",
+      "content": "The category list is automatically pulled form Categories nagivation."
+    }
+  ]
+}
+{% endschema %}

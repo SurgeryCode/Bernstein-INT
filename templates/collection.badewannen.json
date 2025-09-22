@@ -1,0 +1,278 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-category",
+      "settings": {
+        "heading": "",
+        "description": "<p>Tauche ein in unsere Welt  der Badewannen! Ob platzsparend, rechteckig, eckig oder oval – bei uns findest Du die perfekte Wanne für Dein Badezimmer und Budget. Entdecke freistehende Badewannen und Einbauwannen in allen Größen. Ob kleines Gästebad oder großzügiges Familienbad – bei uns wirst Du fündig!</p>"
+      }
+    },
+    "product_carousel_hNfgrr": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_g6aBFX": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "badewannen"
+          }
+        }
+      },
+      "block_order": [
+        "category_g6aBFX"
+      ],
+      "settings": {
+        "heading": "Beliebte Badwannen",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    },
+    "inspirations_mk6HMA": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_KewRi9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-5"
+          }
+        },
+        "manual_GJ9Rxd": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        }
+      },
+      "block_order": [
+        "manual_KewRi9",
+        "manual_GJ9Rxd"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Freistehende Badewannen",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein sind wir bestrebt, Dein Badezimmer in eine Oase des Wohlbefindens zu verwandeln. Unsere freistehenden Badewannen stehen für höchste Qualität und innovative Gestaltung, um Dir ein unvergleichliches Badeerlebnis zu bieten.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "promo_banner_gL3VyX": {
+      "type": "promo-banner",
+      "blocks": {
+        "manual_6kNqMD": {
+          "type": "manual",
+          "settings": {
+            "title": "unsere-aktuellen-aktionen"
+          }
+        }
+      },
+      "block_order": [
+        "manual_6kNqMD"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "images_6XiGrA": {
+      "type": "images",
+      "blocks": {
+        "collection_showcase_9m9nTF": {
+          "type": "collection_showcase",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection_showcase_9m9nTF"
+      ],
+      "settings": {
+        "background": false
+      }
+    },
+    "inspirations_ryBaxh": {
+      "type": "inspirations",
+      "blocks": {
+        "image_AfTkgf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sitzplatze.webp"
+          }
+        },
+        "manual_3iTQr9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        }
+      },
+      "block_order": [
+        "image_AfTkgf",
+        "manual_3iTQr9"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Unsere Sitzplätze",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein legen wir großen Wert darauf, Dein Badezimmererlebnis zu revolutionieren. Mit einem starken Fokus auf Qualität und Innovation bieten wir Dir eine exquisite Auswahl an hochwertigen Badhockern, die Design und Funktionalität perfekt miteinander verbinden.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "inspirations_HBqUpn": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_BpRazm": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-4"
+          }
+        },
+        "manual_EcpxM3": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-5"
+          }
+        }
+      },
+      "block_order": [
+        "manual_BpRazm",
+        "manual_EcpxM3"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Badezimmerspiegel mit LED-Beleuchtung",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem starken Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine exklusive Auswahl an Badezimmerspiegeln mit LED-Beleuchtung, die Ästhetik und Funktionalität vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-1"
+      }
+    },
+    "inspirations_aej3jW": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_yTjWPF": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-7"
+          }
+        },
+        "manual_U3CfcL": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        },
+        "manual_yUVVVN": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-4wt4cdw5"
+          }
+        }
+      },
+      "block_order": [
+        "manual_yTjWPF",
+        "manual_U3CfcL",
+        "manual_yUVVVN"
+      ],
+      "settings": {
+        "heading": "Inspirationen von unseren Kunden",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://pages/inspirationen",
+        "link_title": "Galerie ansehen",
+        "layout": "1-1-1"
+      }
+    },
+    "images_LdBwUR": {
+      "type": "images",
+      "blocks": {
+        "content_iWRrUt": {
+          "type": "content",
+          "settings": {
+            "heading": "Stilvolle Wandnischen für Deine Badewanne",
+            "heading_tag": "2",
+            "description": "Entdecke unsere praktischen und eleganten Wandnischen, die perfekt zu Deiner Badewanne passen. Diese durchdachten Ablagen bieten zusätzlichen Stauraum und verleihen Deinem Badezimmer ein modernes und aufgeräumtes Aussehen. Finde die ideale Wandnische, die Funktionalität und Design vereint.",
+            "link_url": "#",
+            "link_title": "Anzeigen",
+            "image_1": "shopify://shop_images/Wandnischen-1.webp",
+            "image_2": "shopify://shop_images/Wandnischen-2.webp"
+          }
+        }
+      },
+      "block_order": [
+        "content_iWRrUt"
+      ],
+      "settings": {
+        "background": true
+      }
+    },
+    "collapsible_text_collection_AEeyBw": {
+      "type": "collapsible-text-collection",
+      "settings": {
+        "alignment": "left",
+        "lines_desktop": 5,
+        "lines_mobile": 5
+      }
+    },
+    "brand_adventages_eB6RrL": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_NVk8Gp": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design.svg",
+            "title": "Individuelles Design von Bernstein"
+          }
+        },
+        "item_9zJC7Y": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-delivery.svg",
+            "title": "Lieferung innerhalb von 3-5 Tagen"
+          }
+        },
+        "item_9p7xRN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-customer.svg",
+            "title": "Persönliche Herangehensweise an jede Bestellung"
+          }
+        }
+      },
+      "block_order": [
+        "item_NVk8Gp",
+        "item_9zJC7Y",
+        "item_9p7xRN"
+      ],
+      "settings": {
+        "heading": "Markenvorteile",
+        "heading_tag": "3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_carousel_hNfgrr",
+    "inspirations_mk6HMA",
+    "promo_banner_gL3VyX",
+    "images_6XiGrA",
+    "inspirations_ryBaxh",
+    "inspirations_HBqUpn",
+    "inspirations_aej3jW",
+    "images_LdBwUR",
+    "collapsible_text_collection_AEeyBw",
+    "brand_adventages_eB6RrL"
+  ]
+}

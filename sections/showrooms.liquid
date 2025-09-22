@@ -1,0 +1,251 @@
+<link rel="stylesheet" href="{{ 'section-showrooms.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-showrooms.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- if section.settings.heading -%}
+    <div class="container">
+        <h2 class="f-48 showrooms__heading">{{ section.settings.heading }}</h2>
+    </div>
+{%- endif -%}
+
+{%- if section.blocks.size > 0 -%}
+<div class="showrooms__map-hld js-map-hld">
+    <div class="map showrooms__map js-map" data-marker-url="{{ 'map-marker-logo.svg' | asset_url }}"></div>
+    <div class="map-controls showrooms__map-controls">
+        <button class="map-controls__zoom map-controls__zoom--in js-map__zoom-in">
+            {%- render 'svg-icon', name: 'plus' -%}
+            <span class="visually-hidden">{{ 'map.zoom_in' | t }}</span>
+        </button>
+        <button class="map-controls__zoom map-controls__zoom--out js-map__zoom-out">
+            {%- render 'svg-icon', name: 'minus' -%}
+            <span class="visually-hidden">{{ 'map.zoom_out' | t }}</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    function initMap() {
+        const mapHld = document.querySelector('.section#shopify-section-{{ section.id }} .js-map-hld');
+        const mapEl = mapHld.querySelector('.js-map');
+        const mapZoomIn = mapHld.querySelector('.js-map__zoom-in');
+        const mapZoomOut = mapHld.querySelector('.js-map__zoom-out');
+        const showroomItems = document.querySelectorAll('.section#shopify-section-{{ section.id }} .js-showroom-item');
+
+        const map = new google.maps.Map(mapEl, {
+            minZoom: 5,
+            maxZoom: 20,
+            disableDefaultUI: true,
+            scrollwheel: false
+        });
+
+        const showrooms = [
+            {%- for item in section.blocks -%}
+            {
+                position: new google.maps.LatLng({{ item.settings.geo_lat }}, {{ item.settings.geo_lng }}),
+                name: "{{ item.settings.title }}",
+                directions_url: "{{ item.settings.directions_url }}"
+            },
+            {%- endfor -%}
+        ];
+
+        const infowindow = new google.maps.InfoWindow();
+        let latLngBounds = new google.maps.LatLngBounds();
+    
+        for (let i = 0; i < showrooms.length; i++) {
+            let marker = new google.maps.Marker({
+                position: showrooms[i].position,
+                map: map,
+                icon: {
+                    url: mapEl.getAttribute('data-marker-url'),
+                    scaledSize: new google.maps.Size(68, 83),
+                    orgin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(34, 54)
+                }
+            });
+
+            latLngBounds.extend(marker.position);
+
+            marker.addListener('click', () => {
+                map.setCenter(marker.position);
+                if (map.getZoom() < 14) {
+                    map.setZoom(Math.max(map.getZoom(), 16));
+                }
+                map.panBy(0, -100);
+                infowindow.setOptions({
+                    content: `<span class="infowindow__title">${showrooms[i].name}</span>
+                    <div class="infowindow__info">${showroomItems[i].querySelector('.showrooms-item__info').innerHTML}</div>
+                    <div class="infowindow__btn-hld"><a class="button button--outline infowindow__btn" href="${showrooms[i].directions_url}" target="_blank" rel="noopener noreferrer">{{ 'map.directions' | t }}</a></div>`,
+                });
+                infowindow.open({
+                    anchor: marker,
+                    map
+                });
+            });
+        }
+
+        let bounds = new google.maps.LatLngBounds();
+
+        mapZoomIn.addEventListener('click', () => {
+            map.setZoom(map.getZoom() + 1);
+        });
+
+        mapZoomOut.addEventListener('click', () => {
+            map.setZoom(map.getZoom() - 1);
+        });
+
+        map.addListener('zoom_changed', () => {
+            infowindow.close();
+        });
+
+        setTimeout(() => {
+            map.setCenter(latLngBounds.getCenter());
+            map.fitBounds(latLngBounds);
+        }, 1000);
+    }
+    
+    window.initMap = initMap;
+</script>
+
+<div class="container">
+    <div class="showrooms">
+        {%- for item in section.blocks -%}
+            <div class="showrooms-item js-showroom-item">
+                {%- if item.settings.image != blank -%}
+                    <div class="showrooms-item__img-hld">
+                        {%- render 'image', 
+                            image: item.settings.image, 
+                            sizes: '767:686,768:1047',
+                            class: 'cover',
+                            loading: 'lazy'
+                        -%}
+                    </div>
+                {%- endif -%}
+
+                <div class="showrooms-item__text-hld">
+
+                    {%- if item.settings.title != blank -%}
+                        <h3 class="f-32 showrooms-item__title">{{ item.settings.title }}</h3>
+                    {%- endif -%}
+
+                    {%- if item.settings.address != blank or item.settings.opening_hours != blank -%}
+                        <div class="showrooms-item__info">
+                            {%- if item.settings.address != blank -%}
+                                <p>
+                                    <strong>{{ 'showrooms.address' | t }}</strong>
+                                    {{ item.settings.address | newline_to_br }}
+                                </p>
+                            {%- endif -%}
+                            {%- if item.settings.opening_hours != blank -%}
+                                <p>
+                                    <strong>{{ 'showrooms.opening_hours' | t }}</strong>
+                                    {{ item.settings.opening_hours | newline_to_br }}
+                                </p>
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+
+                    {%- if item.settings.button_url != blank and item.settings.button_text != blank -%}
+                        <div class="showrooms-item__btn-hld">
+                            <a class="button button--outline button--large showrooms-item__btn" href="{{ item.settings.button_url }}" {% if item.settings.button_target == true %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.settings.button_text }}</a>
+                        </div>
+                    {%- endif -%}
+                </div>
+            </div>
+        {%- endfor -%}
+    </div>
+</div>
+{%- endif -%}
+
+<script> if (!window.google || !window.google.maps) {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?callback=initMap&key={{ settings.google_maps_api_key }}&v=weekly`;
+    script.defer = true;
+    document.head.appendChild(script);
+} else {
+    console.log("Google Maps API ist bereits geladen.");
+    initMap();
+}</script>
+
+{% schema %}
+{
+    "name": "Showrooms",
+    "tag": "section",
+    "class": "section section--showrooms",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Section title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Showroom"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "textarea",
+                    "id": "address",
+                    "label": "Address"
+                },
+                {
+                    "type": "textarea",
+                    "id": "opening_hours",
+                    "label": "Opening hours"
+                },
+                {
+                    "type": "text",
+                    "id": "geo_lat",
+                    "label": "Geo latitude"
+                },
+                {
+                    "type": "text",
+                    "id": "geo_lng",
+                    "label": "Geo longitude"
+                },
+                {
+                    "type": "textarea",
+                    "id": "directions_url",
+                    "label": "Google Maps directions url"
+                },
+                {
+                    "type": "header",
+                    "content": "Button"
+                },
+                {
+                    "type": "url",
+                    "id": "button_url",
+                    "label": "Button url"
+                },
+                {
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "Button text",
+                    "default": "Buchen Sie ein Treffen"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "button_target",
+                    "label": "Open on new tab"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Showrooms"
+        }
+    ]
+}
+{% endschema %}

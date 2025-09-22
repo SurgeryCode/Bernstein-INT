@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="{{ 'section-work-with-us.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-work-with-us.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="container">
+    <div class="work-with-us">
+        <div class="work-with-us__content-hld">
+            {%- if section.settings.heading != blank -%}
+                <h2 class="{% if template contains 'page.careers' %}f-32{% else %}f-48{% endif %} work-with-us__heading">{{ section.settings.heading | newline_to_br }}</h2>
+            {%- endif -%}
+            {%- if section.settings.content != blank -%}
+                <div class="richtext richtext--gray richtext--checkify-ul work-with-us__text">
+                    {{ section.settings.content }}
+                </div>
+            {%- endif -%}
+            {%- if section.settings.button_url != blank and section.settings.button_label != blank -%}
+                <div class="work-with-us__btn-hld">
+                    <a class="button button--outline button--large work-with-us__btn" href="{{ section.settings.button_url }}" {% if section.settings.button_target == true %}target="_blank" rel="noopener noreferrer"{% endif %}>{{ section.settings.button_label }}</a>
+                </div>
+            {%- endif -%}
+        </div>
+        {%- if section.settings.image != blank -%}
+            <div class="work-with-us__img-hld">
+                <img src="{{ section.settings.image | image_url: width: 690, height: 930 }}" width="460" height="620" alt="{{ section.settings.image.alt }}" loading="lazy">
+            </div>
+        {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Work With Us",
+    "tag": "section",
+    "class": "section section--work-with-us",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Arbeite mit uns"
+        },
+        {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content",
+            "default": "<p>Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.</p><ul><li>Arbeiten in einem internationalen Team</li><li>Stabile Arbeitsbedingungen</li><li>Gutes Gehalt und Boni</li></ul>"
+        },
+        {
+            "type": "header",
+            "content": "Button"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "URL"
+        },
+        {
+            "type": "text",
+            "id": "button_label",
+            "label": "Label",
+            "default": "Stellenangebote ansehen"
+        },
+        {
+            "type": "checkbox",
+            "id": "button_target",
+            "label": "Open on new tab"
+        },
+        {
+            "type": "header",
+            "content": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image (desktop)"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Work With Us"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,299 @@
+{%- capture content -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'content' -%}
+      {%- if block.settings.heading != blank -%}
+        <div class="heading">
+          <div class="heading__text">
+            <h{{ block.settings.heading_tag }} class="f-48">{{ block.settings.heading | newline_to_br }}</h{{ block.settings.heading_tag }}>
+            {%- if block.settings.description != blank -%}
+                <div class="richtext richtext--gray">
+                    <p>{{ block.settings.description | newline_to_br }}</p>
+                </div>
+            {%- endif -%}
+          </div>
+          {%- if block.settings.link_title -%}
+            <a href="{{ block.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ block.settings.link_title }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      <div class="images__grid">
+        {%- for i in (1..4) -%}
+          {%- assign key = 'image_' | append: i -%}
+          {%- if block.settings[key] != blank -%}
+            <div class="images__media">
+              {%- render 'image', 
+                  image: block.settings[key], 
+                  sizes: '379:500,991:900,992:1400',
+                  class: 'cover,background'
+              -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if block.settings.link_title -%}
+        <div class="section__read-more">
+            <a href="{{ block.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ block.settings.link_title }}</span>
+            </a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if block.type == 'collection_showcase' -%}
+      {%- liquid 
+        assign data = false 
+        for entry in shop.metaobjects['collection_showcase'].values
+          if entry.show_on_all_collections
+            assign data = entry
+          else
+            assign collections = entry.collections.value | map: 'id'
+            if collections contains collection.id
+              assign data = entry
+            endif
+          endif 
+        endfor
+
+        assign link = false
+        if data.link_to_collection != blank
+            assign link = data.link_to_collection.value.url
+        endif
+        if data.link_to_page != blank
+            assign link = data.link_to_page.value.url
+        endif
+      -%}
+      {%- if data -%}
+        <div class="heading">
+          <div class="heading__text">
+            <h2 class="f-48">{{ data.heading }}</h2>
+            {%- if data.description != blank -%}
+                <div class="richtext richtext--gray">
+                    <p>{{ data.description | newline_to_br }}</p>
+                </div>
+            {%- endif -%}
+          </div>
+          {%- if data.link_label != blank and link -%}
+            <a href="{{ link }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ data.link_label }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+        <div class="images__grid">
+          {%- for media in data.gallery.value -%}
+            <div class="images__media">
+              {%- if media.sources != null -%}
+                  {%- render 'video', 
+                    video: media,
+                    class: 'cover,background',
+                    autoplay: true,
+                    muted: true,
+                    loop: true 
+                  -%}
+              {%- else -%}
+                  {%- render 'image', 
+                    image: media, 
+                    sizes: '379:500,991:900,992:1400',
+                    class: 'cover,background'
+                  -%}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+        {%- if data.link_label != blank and link -%}
+          <div class="section__read-more">
+              <a href="{{ link }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                  <span>{{ data.link_label }}</span>
+              </a>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if block.type == "single_image" -%}
+      {%- liquid 
+        assign desktop = block.settings.image
+        assign tablet = desktop
+        assign mobile = desktop
+
+        if block.settings.image_tablet != nil and block.settings.image_mobile != nil
+          assign tablet = block.settings.image_tablet
+          assign mobile = block.settings.image_mobile
+        endif
+
+        if block.settings.image_tablet != nil and block.settings.image_mobile == nil
+          assign tablet = block.settings.image_tablet
+          assign mobile = tablet
+        endif
+
+        if block.settings.image_tablet == nil and block.settings.image_mobile != nil
+          assign mobile = block.settings.image_mobile
+        endif
+      -%}
+      {%- if desktop != nil -%}
+        <picture class="media media--image media--contain">
+          <source srcset="{{ mobile | img_url: '576x' }}" media="(max-width: 575px)">
+          <source srcset="{{ tablet | img_url: '1024x' }}" media="(min-width: 578px) and (max-width: 1023px)">
+          <source srcset="{{ desktop | img_url: '1920x' }}" media="(min-width: 1024px)">
+          <img 
+            src="{{ desktop | img_url: first }}"  
+            width="{{ desktop.width }}" 
+            height="{{ desktop.height }}" 
+            alt="{{ desktop.alt | strip_html | escape }}"
+            loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}"
+            {% if forloop.index == 1 %}fetchpriority="high"{% endif %}>
+        </picture>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if content != blank -%}
+  <link rel="stylesheet" href="{{ 'section-images.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript>{{ 'section-images.css' | asset_url | stylesheet_tag }}</noscript>
+  <section class="images {% if section.settings.background %}images--background{% endif %} margin">
+    <div class="container">
+      {{ content }}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Images",
+  "tag": "div",
+  "class": "section section--images",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "background",
+      "label": "Add gray background",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading tag",
+          "default": "2",
+          "options": [
+              {
+                  "value": "1",
+                  "label": "H1"
+              },
+              {
+                  "value": "2",
+                  "label": "H2" 
+              },
+              {
+                  "value": "3",
+                  "label": "H3"
+              },
+              {
+                  "value": "4",
+                  "label": "H4"
+              }
+          ]
+        },
+        {
+          "type": "inline_richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "Title"
+        },
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        }
+      ]
+    },
+    {
+      "type": "single_image",
+      "name": "Single image",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop - required",
+          "info": "At least 1920px wide"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_tablet",
+          "label": "Tablet",
+          "info": "At least 1024px wide"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile",
+          "info": "At least 640px wide"
+        }
+      ],
+    },
+    {
+      "type": "collection_showcase",
+      "name": "Collection Showcase",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "The images and description are automatically pulled from Collection Showcase metaobjects. Available only on collection pages."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Images"
+    }
+  ]
+}
+{% endschema %}

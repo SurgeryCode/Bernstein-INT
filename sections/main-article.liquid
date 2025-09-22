@@ -1,0 +1,108 @@
+{%- render 'breadcrumbs' -%}
+
+<div class="container">
+
+    {%- liquid
+        assign article_banner = article.image
+        if article.metafields.custom.details_banner != blank
+            assign article_banner = article.metafields.custom.details_banner
+        endif
+    %}
+    {%- if article_banner != blank -%}
+        {%- liquid
+            assign article_banner_size_class = 'normal'
+            assign article_banner_sizes = '380:440,767:767,768:1000'
+
+            if article.metafields.custom.banner_size != blank
+                assign article_banner_size_class = article.metafields.custom.banner_size
+    
+                if article.metafields.custom.banner_size == 'large'
+                    assign article_banner_sizes = '380:440,767:767,1200:1200,1201:1420'
+                endif
+            endif
+        -%}
+        <div class="main-article__banner main-article__banner--{{ article_banner_size_class }}">
+            {%- render 'image', 
+                image: article_banner,
+                sizes: article_banner_sizes,
+                class: 'cover',
+                loading: 'eager'
+            -%}
+        </div>
+    {%- endif -%}
+
+    {% assign month_name = article.published_at | date: "%m" %}
+    <time class="main-article__date f-12 w-medium gray" datetime="{{ article.published_at | date: "%Y-%m-%d" }}">
+        {{ article.published_at | date: "%d." }} {{ 'dates.months.' | append: month_name | t }} {{ article.published_at | date: "%Y" }}
+    </time>
+    <article class="richtext richtext--gray richtext--blog">
+        <h1 class="main-article__title">{{ article.title }}</h1>
+        {% assign content_parts = article.content | split: '[inspirations="' %}
+        {% for content_part in content_parts %}
+            {%- if content_part contains '"]' -%}
+                {%- assign text = content_part | split: '"]' -%}
+                {%- assign ids = text[0] | split: ',' -%}
+                <div class="main-article__inspirations">
+                    {% for id in ids %}
+                        {%- if shop.metaobjects['inspiration'][id] -%}
+                            {%- render 'inspiration-item', item: shop.metaobjects['inspiration'][id], original_aspect_ratio: true -%}
+                        {%- endif -%}
+                    {% endfor  %}
+                </div>
+                {{ text[1] }}
+            {%- else -%}    
+                {{ content_part }}
+            {%- endif -%}
+        {%- endfor -%}
+    </article>
+    <div class="main-article__footer">
+        {%- if article.tags.size > 0 -%}
+            {%- liquid
+                assign split_1 = article.url | split: '/blogs/'
+                assign split_2 = split_1[1] | split: '/'
+                assign blog_handle = split_2[0] | strip
+                assign article_blog = blogs[blog_handle]
+            -%}
+            <ul class="main-article__tags f-12 w-medium gray upper">
+                {%- for tag in article.tags -%}
+                    <li>
+                        <a href="{{ article_blog.url }}/tagged/{{ tag | handle }}" class="text-link">
+                            <span>
+                                {%- render 'translation', key: 'blog.tags', value: tag -%}
+                            </span>
+                        </a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+        {%- endif -%}
+        <span class="main-article__thx f-16 w-medium center">{{ 'blog.thx' | t }}</span>
+        <div class="main-article__back-hld">
+            <a class="main-article__back text-link" href="{{ blog.url }}">
+                {%- render 'svg-icon', name: 'arrow-left' -%}
+                <span class="f-14 w-medium">{{ 'blog.back' | t }}</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="{{ 'section-inspirations.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-image-bullet.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-inspirations.css' | asset_url | stylesheet_tag }}
+    {{ 'component-image-bullet.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'image-bullet.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+    "name": "Main Article",
+    "tag": "section",
+    "class": "section section--article main-article",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "@app"
+        }
+    ]
+}
+{% endschema %}

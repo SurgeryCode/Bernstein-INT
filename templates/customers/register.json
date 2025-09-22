@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-register-ch",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

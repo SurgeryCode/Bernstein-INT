@@ -1,0 +1,51 @@
+<div class="wishlist-wrapper {{ class }}" id="product-wishlist" data-section-id="product-wishlist">
+{% liquid
+    assign subtitle = ''
+    for variant in product.variants
+        if variant.metafields.custom.subtitle != blank
+            assign subtitle = subtitle | append: variant.metafields.custom.subtitle | append: '||'
+        endif
+    endfor
+    assign subtitle = subtitle | split: '||' | uniq
+
+    assign selected_variant = product.variants[0]
+    unless product.has_only_default_variant
+        for variant in product.variants
+            if variant.compare_at_price > variant.price
+                assign selected_variant = variant
+                break
+            endif
+        endfor
+    endunless
+-%}
+
+    <button 
+        onclick="toggleWishlist()" 
+        class="wishlist_button" 
+        {% if class == "product-item-wishlist" %}
+            data-variant-id="{{ selected_variant.id }}" 
+            data-title="{{ product.title }} {% if selected_variant.title != "Default Title" %}{{ selected_variant.title }}{% endif %}"
+            data-subtitle="{% if selected_variant.metafields.custom.subtitle != blank %}{{ selected_variant.metafields.custom.subtitle }}{% else %}{{ subtitle[0] }}{% endif %}"
+            data-old-price="{{ selected_variant.compare_at_price | money_without_currency }}"
+            data-price="{{ selected_variant.price | money_without_currency }}"
+            data-img="{% if product.variants.size > 1 and selected_variant.featured_image != blank %}{{ selected_variant.featured_image | img_url: 'master'  }}{% else %}{{ product.images[0] | img_url: 'master'  }}{% endif %}"
+            data-url="{{ shop.url }}{{ selected_variant.url }}"
+            data-lowest-price="{{ selected_variant.metafields.custom.omnibus }}"
+            data-tag="{{ product.tags }}"
+            data-available="{{ product.available }}"
+        {% else %} 
+            data-variant-id="{% if product.selected_or_first_available_variant.id %}{{ product.selected_or_first_available_variant.id }}{% else %}null{% endif %}" 
+            data-title="{{ product.title }} {% if product.selected_or_first_available_variant.title != "Default Title" %}{{ product.selected_or_first_available_variant.title }}{% endif %}"
+            data-subtitle="{% if product.selected_or_first_available_variant.metafields.custom.subtitle != blank %}{{ product.selected_or_first_available_variant.metafields.custom.subtitle }}{% else %}{{ subtitle[0] }}{% endif %}"
+            data-old-price="{{ product.selected_or_first_available_variant.compare_at_price | money_without_currency }}"
+            data-price="{{ product.selected_or_first_available_variant.price | money_without_currency }}"
+            data-img="{% if product.variants.size > 1 and product.selected_or_first_available_variant.featured_image != blank %}{{ product.selected_or_first_available_variant.featured_image | img_url: 'master'  }}{% else %}{{ product.images[0] | img_url: 'master'  }}{% endif %}"
+            data-url="{{ shop.url }}{{ product.selected_or_first_available_variant.url }}"
+            data-lowest-price="{{ product.selected_or_first_available_variant.metafields.custom.omnibus }}"
+            data-tag="{{ product.tags }}"
+            data-available="{{ product.available }}"
+        {% endif %}
+    >
+        {% render 'svg-icon', name: "heart" %}
+    </button>
+</div>

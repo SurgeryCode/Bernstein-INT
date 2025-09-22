@@ -1,0 +1,40 @@
+{%- if settings.enable_product_stars -%}
+    {%- liquid
+        if variant
+        assign target = variant
+        else
+        assign target = product.selected_or_first_available_variant
+        endif
+    -%}
+
+    {% comment %}
+    <div class="product-rate f-12 w-medium gray">
+        <div class="product-rate__stars">
+            {%- for i in (1..5) -%}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.524.964a.5.5 0 0 1 .952 0l.983 3.027a.5.5 0 0 0 .476.346h3.184a.5.5 0 0 1 .293.904L8.837 7.113a.5.5 0 0 0-.182.559L9.64 10.7a.5.5 0 0 1-.77.559L6.295 9.387a.5.5 0 0 0-.588 0L3.13 11.26a.5.5 0 0 1-.769-.56l.984-3.027a.5.5 0 0 0-.182-.56L.588 5.243a.5.5 0 0 1 .293-.905h3.184a.5.5 0 0 0 .476-.346L5.524.964Z" fill="#e5e5e5"/>
+                </svg>
+            {%- endfor -%}
+        </div>
+        <span>(0)</span>
+    </div>
+
+    {%- if template contains 'product' -%}
+        <a href="#reviews"
+            class="product-rate {% if target.id == product.selected_or_first_available_variant.id %}selected{% endif %} f-12 w-medium gray" 
+            data-variant-detail="{{ variant.id }}">
+                <etrusted-widget data-etrusted-widget-id="wdg-49aa8a8a-3937-4038-bcde-ca35fd1b0d9f" data-sku="{{ target.sku }}"></etrusted-widget>
+        </a>
+    {%- else -%}
+        <div 
+            class="product-rate {% if target.id == product.selected_or_first_available_variant.id %}selected{% endif %} f-12 w-medium gray" 
+            data-variant-detail="{{ variant.id }}">
+                <etrusted-widget data-etrusted-widget-id="wdg-49aa8a8a-3937-4038-bcde-ca35fd1b0d9f" data-sku="{{ target.sku }}"></etrusted-widget>
+        </div>
+    {%- endif -%}
+    {% endcomment %}
+
+    <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+        {{ product.metafields.judgeme.badge }} 
+    </div> 
+{%- endif -%}

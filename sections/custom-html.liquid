@@ -1,0 +1,59 @@
+<div class="custom-section">
+    <div class="container">
+        <div class="richtext richtext--gray">
+            {%- if section.settings.title != blank -%}
+                <div class="custom-section__title">
+                    <h2>{{ section.settings.title }}</h2>
+                </div> 
+            {%- endif -%}   
+    
+            <div class="custom-section__code">
+                {{ section.settings.custom_HTML }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+  .custom-section {
+    position: relative;
+  }
+
+  .custom-section__title {
+    text-align: center;
+  }
+
+  .custom-section__code {
+    
+  }
+
+  .credit {
+    text-align: right;
+    font-size: 11px;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Custom HTML",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_HTML",
+        "label": "HTML"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Custom HTML"
+      }
+    ]
+  }
+{% endschema %}

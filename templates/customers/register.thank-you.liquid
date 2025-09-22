@@ -1,0 +1,58 @@
+<section class="section section--thank-you loading">
+    <div class="container">
+        <div class="container">
+            <div class="richtext richtext--gray richtext--centered">
+                <h1>{{ 'customer.thank_you.heading' | t }}</h1>
+                <p>{{ 'customer.thank_you.text' | t }}</p>
+            </div>
+            <div class="thank-you__btn-hld">
+                <a href="/account" class="button button--xlarge">{{ 'customer.thank_you.button' | t }}</a>
+            </div>
+        </div>
+    </div>
+
+    {%- form 'customer_address', customer.new_address -%}
+        <input type="hidden" name="return_to" value="/account/register?view=thank-you">
+        <input type="text" name="address[first_name]">
+        <input type="text" name="address[last_name]">
+        <input type="text" name="address[company]">
+        <input type="text" name="address[address1]">
+        <input type="text" name="address[address2]">
+        <input type="text" name="address[city]">
+        <input type="text" name="address[country]">
+        <input type="text" name="address[zip]">
+        <input type="text" name="address[phone]">
+        <input type="checkbox" name="address[default]" value="1">
+    {%- endform -%}
+</section>
+
+<script>
+    const section = document.querySelector('.section--thank-you');
+    const form = document.querySelector('.section--thank-you form');
+    const addresses = (localStorage.getItem('bernstein-ragistration-addresses') !== null) ? JSON.parse(localStorage.getItem('bernstein-ragistration-addresses')) : [];
+
+    if(addresses.length > 0){
+        form.querySelector('[name="address[first_name]"]').value = addresses[0].first_name;
+        form.querySelector('[name="address[last_name]"]').value = addresses[0].last_name;
+        form.querySelector('[name="address[company]"]').value = addresses[0].company;
+        form.querySelector('[name="address[address1]"]').value = addresses[0].address1;
+        form.querySelector('[name="address[address2]"]').value = addresses[0].address2;
+        form.querySelector('[name="address[city]"]').value = addresses[0].city;
+        form.querySelector('[name="address[country]"]').value = addresses[0].country;
+        form.querySelector('[name="address[zip]"]').value = addresses[0].zip;
+        form.querySelector('[name="address[phone]"]').value = addresses[0].phone;
+        if(addresses[0].default == 1){
+            form.querySelector('[name="address[default]"]').checked = true;
+        }
+        
+        const queue = [...addresses];
+        queue.splice(0, 1);
+        localStorage.setItem('bernstein-ragistration-addresses', JSON.stringify(queue));
+        form.submit();
+    } else {
+        form.remove();
+        localStorage.removeItem('bernstein-ragistration-addresses');
+        localStorage.setItem('bernstein-ragistration-complete', '1');
+        section.classList.remove('loading');
+    }
+</script>

@@ -1,0 +1,142 @@
+{% render 'breadcrumbs' %}
+
+<div class="b2b-intro">
+    <div class="b2b-intro__image">
+        {%- if section.settings.image != blank -%}
+            {%- render 'image', 
+                image: section.settings.image, 
+                image_mobile: section.settings.image_mobile, 
+                sizes: '380:440,767:767,1200:1200,1600:1600,1601:1920',
+                class: 'cover'
+            -%}
+        {%- endif -%}
+        <div class="b2b-intro__main-content">
+            <div class="container">
+                {%- if section.settings.heading_main != blank -%}
+                    <h1 class="f-48 white">{{ section.settings.heading_main | newline_to_br }}</h1>
+                {%- endif -%}
+                {%- if section.settings.text_main != blank -%}
+                    <div class="b2b-intro__main-text white">
+                        <p>{{ section.settings.text_main | newline_to_br }}</p>
+                    </div>
+                {%- endif -%}
+                {%- if section.settings.button_text != blank -%}
+                    <div class="b2b-intro__btn-hld">
+                        <button data-scroll-to=".section--b2b-how-it-works" class="button button--large button--white">
+                            <span>{{ section.settings.button_text }}</span>
+                        </button>
+                    </div>
+                {%- elsif section.settings.button_link != blank and section.settings.button_text != blank -%}
+                <div class="b2b-intro__btn-hld">
+                    <a href="{{ section.settings.button_text }}" class="button button--large button--white">
+                        <span>{{ section.settings.button_text }}</span>
+                    </a>
+                </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+    <div class="b2b-intro__aside">
+        <div class="container">
+            {%- if section.settings.heading_aside != blank -%}
+                <h2 class="f-24">{{ section.settings.heading_aside | newline_to_br }}</h2>
+            {%- endif -%}
+
+            <ul class="b2b-intro__list">
+                {%- for block in section.blocks -%}
+                    <li>
+                        {%- if block.settings.icon != blank -%}
+                            {%- render 'image', 
+                                image: block.settings.icon,
+                                width: 48,
+                                height: 48
+                            -%}
+                        {%- endif -%}
+                        {%- if block.settings.text != blank -%}
+                            <p class="gray w-medium">{{ block.settings.text | newline_to_br }}</p>
+                        {%- endif -%}
+                    </li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "B2B Intro",
+    "tag": "section", 
+    "class": "section section--b2b-intro",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image (desktop/default)"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Image (mobile)"
+        },
+        {
+            "type": "textarea",
+            "id": "heading_main",
+            "label": "Main heading",
+            "default": "Für Profis"
+        },
+        {
+            "type": "textarea",
+            "id": "text_main",
+            "label": "Main text",
+            "default": "At Bernstein we're dedicated to redefining your bathroom experience. With a commitment to quality and innovation, we bring you a range of premium fittings that combine form and function."
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text",
+            "default": "Werden Sie Bernstein-Partner"
+        },
+        {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+        },
+        {
+            "type": "text",
+            "id": "scroll_to_selector",
+            "label": "Scroll to selector",
+            "default": ".section--b2b-how-it-works",
+            "info": "Add a selector to scroll to when the button is clicked. Example: .section--b2b-how-it-works. This overrides the button link."
+        },
+        {
+            "type": "textarea",
+            "id": "heading_aside",
+            "label": "Aside heading",
+            "default": "Wir geben dir Deckung:"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "Text"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Icon"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "B2B Intro"
+        }
+    ]
+}
+{% endschema %}

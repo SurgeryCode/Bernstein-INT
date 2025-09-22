@@ -1,0 +1,83 @@
+{%- unless collection.description != blank -%}
+    {%- if collection.metafields.custom.category_page != blank -%}
+        {%- assign collection = collection.metafields.custom.category_page.value -%}
+    {%- endif -%}
+{%- endunless -%}
+
+{%- if collection.description != blank -%}
+    <link rel="stylesheet" href="{{ 'section-collapsible-text.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'section-collapsible-text.css' | asset_url | stylesheet_tag }}</noscript>
+    <script src="{{ 'collapsible-text.js' | asset_url }}" defer="defer"></script>
+
+    <collapsible-text class="collapsible-text">
+        <div class="container container--text">
+            <div class="richtext richtext--gray">
+                <div class="collapsible-text__content collapsible-text__content--{{ section.settings.alignment }}" id="collapsible-text-{{ section.id }}">
+                    {{ collection.description }}
+                </div>
+            </div>
+            <button 
+                class="text-link text-link--reverse f-14 w-medium upper spaced"
+                aria-expanded="false" 
+                aria-controls="collapsible-text-{{ section.id }}">
+                    <span>{{ 'accessibility.read_more' | t }}</span>
+            </button>
+        </div>
+    </collapsible-text>
+{%- endif -%}
+
+<style>
+    #shopify-section-{{ section.id }} .collapsible-text__content:not(.expanded) {
+        -webkit-line-clamp: {{ section.settings.lines_mobile }};
+    }
+
+    @media screen and (min-width: 1200px) {
+        #shopify-section-{{ section.id }} .collapsible-text__content:not(.expanded) {
+            -webkit-line-clamp: {{ section.settings.lines_desktop }};
+        }
+    }
+  </style>
+
+{% schema %}
+{
+    "name": "Collection Description",
+    "tag": "section",
+    "class": "section section--text margin margin--small",
+    "enabled_on": {
+        "templates": ["collection"]
+    },
+    "settings": [
+        {
+            "type": "paragraph",
+            "content": "This section displays Description of currently viewed collection."
+        },
+        {
+            "type": "text_alignment",
+            "id": "alignment",
+            "label": "Text alignment",
+            "default": "left"
+        },
+        {
+            "type": "range",
+            "id": "lines_desktop",
+            "label": "Visible text lines (desktop)",
+            "min": 1,
+            "max": 10,
+            "default": 5
+        },
+        {
+            "type": "range",
+            "id": "lines_mobile",
+            "label": "Visible text lines (mobile)",
+            "min": 1,
+            "max": 10,
+            "default": 5
+        } 
+    ],
+  "presets": [
+    {
+      "name": "Collection Description"
+    }
+  ]
+}
+{% endschema %}

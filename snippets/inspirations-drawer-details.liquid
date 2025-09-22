@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="{{ 'section-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-drawer.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'drawer.js' | asset_url }}" defer="defer"></script>
+
+<drawer-section class="drawer drawer--popup" id="drawer-inspirations-details" tabindex="-1">
+    <div class="drawer__content">
+        <button 
+            title="{{ 'accessibility.close' | t }}" 
+            aria-label="{{ 'accessibility.close' | t }}"
+            class="drawer__close"
+            data-drawer-close>
+                {%- render 'svg-icon', name: 'close' -%}
+        </button>
+
+        <div class="drawer__scroll">
+            <div class="drawer__scroll-inner drawer__scroll-inner--offset drawer__scroll-inner--loader"></div>
+        </div>
+    </div>
+</drawer-section>

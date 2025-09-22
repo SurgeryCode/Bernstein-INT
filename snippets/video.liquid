@@ -1,0 +1,72 @@
+{%- liquid 
+    assign has_controls = controls | default: false, allow_false: true
+    assign is_autoplay = autoplay | default: false, allow_false: true
+    assign is_loop = loop | default: false, allow_false: true
+    assign is_muted = muted | default: false, allow_false: true
+
+    assign modifier = ''
+    assign classes = class | split: ','
+    for class in classes 
+        if class contains '__'
+            assign modifier = modifier | append: class | append: ' '
+        else
+            assign modifier = modifier | append: ' media--' | append: class
+        endif
+    endfor
+-%}
+
+{%- if custom_controls -%}
+    
+{%- endif -%}
+
+<video-player class="media media--video {{- modifier -}}">
+    <video 
+        class="media {{ modifier }}"
+        playsinline 
+        {% if has_controls %}controls{% endif %}
+        {% if is_autoplay %}autoplay{% endif %}
+        {% if is_loop %}loop{% endif %}
+        {% if is_muted %}muted{% endif %} 
+        poster="https:{{ video.preview_image | img_url: '1024x' }}"
+        preload="metadata"
+        controlsList="nodownload">
+            {%- if video_mobile -%}
+                <source src="{{ video_mobile.sources[1].url }}" type="video/mp4" media="(max-width: 575px)">
+                {%- if video_tablet -%}
+                    <source src="{{ video_tablet.sources[1].url }}" type="video/mp4" media="(min-width: 576px) and (max-width: 1199px)">
+                    <source src="{{ video.sources[1].url }}" type="video/mp4" media="(min-width: 1200px)">
+                {%- else -%}
+                    <source src="{{ video.sources[1].url }}" type="video/mp4" media="(min-width: 576px)">
+                {%- endif -%}
+            {%- else -%}
+                {%- if video_tablet -%}
+                    <source src="{{ video.sources[1].url }}" type="video/mp4" media="(max-width: 575px)">
+                    <source src="{{ video_tablet.sources[1].url }}" type="video/mp4" media="(min-width: 576px) and (max-width: 1199px)">
+                    <source src="{{ video.sources[1].url }}" type="video/mp4" media="(min-width: 1200px)">
+                {%- else -%}
+                    <source src="{{ video.sources[1].url }}" type="video/mp4">
+                {%- endif -%}
+            {%- endif -%}
+    </video>
+
+    {%- if poster != blank -%}
+        {%- render 'image', 
+            image: poster, 
+            image_mobile: poster_mobile, 
+            sizes: '380:440,767:767,1200:1200,1600:1600,1601:1920',
+            class: 'cover,background'
+        -%}
+    {%- endif -%}
+
+    {%- if custom_controls -%}
+        <div class="media__controls">
+            <button 
+                class="play play--transparent"
+                title="{{ 'accessibility.play' | t }}"
+                aria-label="{{ 'accessibility.play' | t }}"
+                data-fullscreen>
+                {%- render 'svg-icon', name: 'play-outline' -%}
+            </button>
+        </div>
+    {%- endif -%}
+</video-player>

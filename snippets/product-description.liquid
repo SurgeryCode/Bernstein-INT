@@ -1,0 +1,96 @@
+{%- capture content -%}
+    {%- assign uniq = '' -%}
+    {%- for variant in product.variants -%}
+        {%- if data.source == 'delivery' -%}
+            {%- assign dalivery_handle = variant.metafields.custom.shipping | default: 'spedition' -%}
+            {%- assign delivery_info = shop.metaobjects['delivery_info'][dalivery_handle] -%}    
+            <div 
+                class="richtext richtext--gray {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}" 
+                data-variant-detail="{{ variant.id }}">
+                    {{ delivery_info.description | metafield_tag }}
+            </div>
+        {%- elsif data.source == 'downloads' -%}
+            {%- assign keys = 'montage,elektrohinweis,bedienung,pflege,anleitung_sonstiges' | split: ',' -%}
+            {%- for key in keys -%}  
+                {%- assign key2 = key | append: '_2' -%}
+                {%- if variant.metafields.custom[key] != blank -%}
+                    {%- unless uniq contains key -%}
+                        {%- assign file = variant.metafields.custom[key] | split: '/' -%}
+                        <div class="product__download gray">
+                            <p><strong>{%- render 'translation', key: 'product.download', value: key -%}</strong></p>
+                            <a href="{{ variant.metafields.custom[key] }}" class="link link--reverse" target="_blank">
+                                {%- render 'svg-icon', name: 'download' -%}
+                                <span>{{ file | last }}</span>
+                            </a>
+                            {%- if variant.metafields.custom[key2] != blank -%}
+                                {%- assign file = variant.metafields.custom[key2] | split: '/' -%}
+                                <br>
+                                <a href="{{ variant.metafields.custom[key2] }}" class="link link--reverse" target="_blank">
+                                    {%- render 'svg-icon', name: 'download' -%}
+                                    <span>{{ file | last }}</span>
+                                </a>
+                            {%- endif -%}
+                        </div>
+                        {%- assign uniq = uniq | append: key | append: ',' -%}
+                    {%- endunless -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- elsif data.source == 'gpsr' -%}
+            {%- if variant.metafields.custom.gpsr.value != blank -%}
+                {%- assign brand = variant.metafields.custom.gpsr.value | split: '</p>' | first | split: ':' | last | strip_html | handleize -%}
+                {%- if shop.metaobjects['brand_info'][brand] -%}
+                    <div class="richtext richtext--gray">
+                        {{ shop.metaobjects.brand_info[brand].description | metafield_tag }}
+                    </div>
+                {%- else -%}
+                    <div class="richtext richtext--gray">
+                        {{ variant.metafields.custom['gpsr'] }}
+                    </div>
+                {%- endif -%}
+                {%- if variant.metafields.custom.gpsrDatei != blank -%}
+                    <div class="richtext richtext--gray" style="margin-top: 20px;">
+                        <p class="product__download">
+                            <a href="{{ variant.metafields.custom.gpsrDatei }}" class="link link--reverse" target="_blank">
+                                {%- render 'svg-icon', name: 'download' -%}
+                                {{ 'product.safety_instructions' | t }}
+                            </a>
+                        </p>
+                    </div>
+                {%- endif -%}
+                {%- break -%}
+            {%- endif -%}
+        {%- else -%}
+            {%- if variant.metafields.custom[data.source] != blank -%}
+                <div class="richtext richtext--gray">
+                    {{ variant.metafields.custom[data.source] }}
+                </div>
+                {%- break -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+{%- liquid 
+    if content contains '</style>'
+        assign _content = content | split: '</style>'
+        assign content = _content[1]
+    endif
+
+    assign content = content | replace: 'class="container"', ''
+    assign content = content | replace: 'h1', 'h3'
+    assign content = content | replace: 'h2', 'h3'
+-%}
+
+{%- if content != blank -%}
+    <details-block class="details" id="{{ data.heading | handleize }}">
+        <details>
+            <summary>
+                <h2 class="f-16 w-medium">{{ data.heading }}</h2>
+                {%- render 'svg-icon', name: 'chevron-down' -%}
+            </summary>
+            <div class="details__content">
+                {{ content }}
+            </div>
+        </details>
+    </details-block>
+{%- endif -%}

@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="{{ 'section-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-configurator.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-drawer.css' | asset_url | stylesheet_tag }}
+    {{ 'component-configurator.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'drawer.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'configurator-select.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid 
+    assign has_configurator = false
+
+    for variant in product.variants
+        if variant.metafields.configurator.json.value != blank
+            assign has_configurator = true
+        endif 
+    endfor
+-%}
+
+{%- if has_configurator -%} 
+    {%- for variant in product.variants -%}
+        {%- if variant.metafields.configurator.json.value != blank -%}
+            {%- for option in variant.metafields.configurator.json.value -%}
+                {%- unless option.type == 'warranty' -%}
+                    {%- assign id = 'configurator-' | append: variant.id | append: '-' | append: option.name | handleize -%}
+                    <drawer-section class="drawer" id="drawer-{{ id }}" tabindex="-1">
+                        <div class="drawer__content">
+                            <button 
+                                title="{{ 'accessibility.close' | t }}" 
+                                aria-label="{{ 'accessibility.close' | t }}"
+                                class="drawer__close"
+                                data-drawer-close>
+                                    {%- render 'svg-icon', name: 'close' -%}
+                            </button>
+        
+                            <div class="drawer__header">
+                                <span class="f-24 w-bold">{{ option.name }}</span>
+                            </div>
+        
+                            <div class="drawer__scroll">
+                                <div class="drawer__scroll-inner">
+                                    <configurator-select class="configurator">
+                                        {%- for value in option.options -%}
+                                            {%- assign value_handle = value.name | handleize -%}
+                                            <div class="configurator__option">
+                                                <input 
+                                                    type="radio" 
+                                                    id="{{ id }}-{{ value_handle }}" 
+                                                    name="{{ id }}"
+                                                    value="{{ value.name }}"
+                                                    data-price-mod="{{ value.priceMod }}"
+                                                    data-price-mod-money="{{ value.priceMod | times: 100 | money }}"
+                                                    data-image="{{ value.image }}"
+                                                    {% if forloop.first %}checked{% endif %}>
+                                                <label for="{{ id }}-{{ value_handle }}" class="configurator__option-label">
+                                                    <div class="configurator__image">
+                                                        {%- if value.image != blank -%}
+                                                            <img src="{{ value.image }}" alt="{{ value.name }}" width="120" height="80" loading="lazy">
+                                                        {%- endif -%}
+                                                    </div>
+                                                    <div class="configurator__caption">
+                                                        <div class="configurator__caption-product">
+                                                            <p class="f-14 w-medium">{{ value.name }}</p>
+                                                            {%- if value.description != blank -%}
+                                                                <p class="f-12 w-medium gray">{{ value.description }}</p>
+                                                            {%- endif -%}
+                                                        </div>
+                                                        {%- if value.priceMod > 0 -%}
+                                                            <div class="configurator__caption-price w-medium">+ {{ value.priceMod | times: 100 | money }}</div>
+                                                        {%- endif -%}
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        {%- endfor -%}
+                                    </configurator-select>
+                                </div>
+                            </div>
+        
+                            <div class="drawer__buttons">
+                                <button class="text-link text-link--reverse f-14 w-medium upper spaced" data-drawer-close>
+                                    <span>{{ 'accessibility.return_pdp' | t }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </drawer-section>
+                    {%- assign configurator_id = configurator_id | plus: 1 -%}
+                {%- endunless -%}
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endif -%}

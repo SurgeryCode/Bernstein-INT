@@ -1,0 +1,137 @@
+{%- liquid 
+    assign product_color_options = settings.product_color_options | split: ','
+    assign total = 0
+    assign count = 0
+    assign max = 999
+    if limit
+        assign max = limit
+    endif
+-%}
+
+{%- capture content -%}
+    {%- for option in product.options_with_values -%}
+        {%- liquid 
+            assign index = forloop.index0
+            assign handle = option.name | handleize
+        -%}
+
+        {%- if product_color_options contains option.name -%}
+            {%- assign total = option.values.size -%}
+            {%- for value in option.values -%}
+                {%- liquid 
+                    assign handle = value | handleize
+                    assign color = false
+
+                    paginate shop.metaobjects['product_color'].values by 999
+                      for entry in shop.metaobjects['product_color'].values
+                          assign t_handle = entry.name.value | handleize 
+                          if t_handle == handle
+                              assign color = entry 
+                          endif
+                      endfor 
+                   endpaginate
+
+                    assign brightness = 'light'
+                    assign color_diff = color.color | append: '' | brightness_difference: '#ffffff'
+                    if color_diff > 50
+                        assign brightness = 'dark'
+                    endif
+                -%}
+
+                {%- if count < max -%}
+                    {%- if tpl == 'configurator' -%}
+                        <div class="configurator__option">
+                            <input 
+                                type="radio" 
+                                id="option-{{ product.id }}-{{ index }}-{{ value | handleize }}"
+                                name="product-option-{{ index }}" 
+                                value="{{ value }}"
+                                {% if value == current_value %}checked{% endif %}>
+                            <label for="option-{{ product.id }}-{{ index }}-{{ value | handleize }}" class="configurator__option-label configurator__option-label--color">
+                                <div class="colors__item-image colors__item-image--large  colors__item-image--{{ brightness }}" {% unless color.image != blank %}style="background: {{ color.color }}"{% endunless %}>
+                                    {%- if color.image != blank -%}
+                                        <img 
+                                            src="{{ color.image | img_url: '96x' }}" 
+                                            alt="{{ color.name }}"
+                                            loading="lazy">
+                                    {%- endif -%}
+                                </div>
+                                <div class="configurator__caption">
+                                    <div class="configurator__caption-product">
+                                        <p class="f-14 w-medium">{{ value }}</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    {%- else -%}
+                        {%- if pdp -%}
+                            <li class="colors__item chips__item tooltip">
+                                <input 
+                                    type="radio" 
+                                    id="option-{{ product.id }}-{{ index }}-{{ value | handleize }}"
+                                    name="product-option-{{ index }}" 
+                                    value="{{ value }}"
+                                    {% if value == current_value %}checked{% endif %}>
+                                <label  
+                                    for="option-{{ product.id }}-{{ index }}-{{ value | handleize }}"
+                                    class="colors__item-image colors__item-image--large colors__item-image--{{ brightness }}" {% unless color.image != blank %}style="background: {{ color.color }}"{% endunless %}>
+                                        {%- if color.image != blank -%}
+                                            <img 
+                                                src="{{ color.image | img_url: '96x' }}" 
+                                                alt="{{ color.name }}"
+                                                loading="lazy">
+                                        {%- endif -%}
+                                </label>
+                                <div class="tooltip__caption f-12 w-bold">{{ value }}</div>
+                                {%- assign count = count | plus: 1 -%}
+                            </li>
+                        {%- else -%}
+                            <li class="colors__item tooltip">
+                                <a 
+                                    href="{{ product.url }}?variant={{ value.variant.id }}"
+                                    class="colors__item-image colors__item-image--{{ brightness }}" 
+                                    {% unless color.image != blank %}style="background: {{ color.color }}"{% endunless %}>
+                                    {%- if color.image != blank -%}
+                                        <img 
+                                            src="{{ color.image | img_url: '40x' }}" 
+                                            alt="{{ color.name }}"
+                                            loading="lazy">
+                                    {%- endif -%}
+                                </a>
+                                <div class="tooltip__caption f-12 w-bold">{{ value }}</div>
+                                {%- assign count = count | plus: 1 -%}
+                            </li>
+                        {%- endif -%}
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+{%- assign diff = total | minus: max -%}
+    
+{%- if content != blank -%}
+    {%- if tpl == 'configurator' -%}
+        <div class="configurator">
+            {{ content }}
+        </div>
+    {%- else -%}
+        <ul class="colors">
+            {{ content }}
+            {%- if template contains 'product' -%}
+                <li class="chips__count chips__count--color">
+                    <button 
+                        type="button" 
+                        class="button button--outline button--small"
+                        title="{{ 'product.show_more_options' | t }}"
+                        aria-label="{{ 'product.show_more_options' | t }}">+0</button>
+                </li>
+            {%- else -%}
+                {%- if diff > 0 -%}
+                    <span class="colors__plus f-12 w-medium gray">+{{ diff }}</span>
+                {%- endif -%}
+            {%- endif -%}
+        </ul>
+    {%- endif -%}
+{%- endif -%}

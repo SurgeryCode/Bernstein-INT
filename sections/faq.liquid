@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="{{ 'section-faq.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-faq.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'faq.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+    assign faq_items = shop.metaobjects['faq'].values | sort_natural: 'order'
+    assign faq_categories = ''
+    for item in faq_items
+        unless faq_categories contains item.category_name
+            assign faq_categories = faq_categories | append: item.category_name | append: ','
+        endunless
+    endfor
+    assign faq_categories = faq_categories | split: ','
+%}
+
+
+<div class="container">
+    <faq-section class="faq">
+        <div class="faq__categories">
+            {%- for category in faq_categories -%}
+                <div class="faq__category js-faq-category">
+                    <button class="faq__category-btn js-faq-category-btn" aria-expanded="{% if forloop.index == 1 %}true{% else %}false{% endif %}" data-id="{{ category | handleize }}">
+                        <span class="f-16 w-medium">{{ category }}</span>
+                        {%- render 'svg-icon', name: 'chevron-down' -%}
+                        {%- render 'svg-icon', name: 'arrow-right' -%}
+                    </button>
+                    <div class="faq__category-entries">
+                        <div class="faq__category-content">
+                            {%- assign viable_index = 0 -%}
+                            {%- for item in faq_items -%}
+                                {%- if item.category_name == category -%}
+                                    <button class="faq__category-content-btn js-faq-category-content-btn" aria-expanded="{% if viable_index == 0 %}true{% else %}false{% endif %}">
+                                        <span>{{ item.question }}</span>
+                                        {%- render 'svg-icon', name: 'plus' -%}
+                                        {%- render 'svg-icon', name: 'minus' -%}
+                                    </button>
+                                    <div class="richtext richtext--gray faq__category-content-answer"
+                                        id="faq-category-content-{{ category | handleize }}-{{ viable_index }}">
+                                        {{ item.answer | metafield_tag }}
+                                    </div>
+                                    {%- assign viable_index = viable_index | plus: 1 -%}
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </div>
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+        <div class="faq__answers">
+            {%- for category in faq_categories -%}
+                <div class="faq__category-content-large js-faq-category-large" data-id="{{ category | handleize }}" aria-expanded="{% if forloop.index == 1 %}true{% else %}false{% endif %}">
+                    {%- assign viable_index = 0 -%}
+                    {%- for item in faq_items -%}
+                        {%- if item.category_name == category -%}
+                            <button class="faq__category-content-large-btn js-faq-category-content-large-btn" aria-expanded="{% if viable_index == 0 %}true{% else %}false{% endif %}">
+                                <span>{{ item.question }}</span>
+                                {%- render 'svg-icon', name: 'chevron-down' -%}
+                            </button>
+                            <div class="richtext richtext--gray faq__category-content-large-answer">
+                                {{ item.answer | metafield_tag }}
+                            </div>
+                            {%- assign viable_index = viable_index | plus: 1 -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            {%- endfor -%}
+        </div>
+    </faq-section>
+</div>
+
+{% schema %}
+{
+    "name": "FAQ",
+    "tag": "section",
+    "class": "section section--faq",
+    "settings": [],
+    "presets": [
+        {
+            "name": "FAQ"
+        }
+    ]
+}
+{% endschema %}

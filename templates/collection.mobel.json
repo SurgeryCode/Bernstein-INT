@@ -1,0 +1,384 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-category",
+      "settings": {
+        "heading": "",
+        "description": ""
+      }
+    },
+    "content_dnmYmL": {
+      "type": "content",
+      "name": "Content",
+      "settings": {
+        "heading": "Unsere beliebtesten Badmöbel",
+        "text": "",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "product_list_element_K8qNw3": {
+      "type": "product-list-element",
+      "name": "Product List Element",
+      "settings": {
+        "products": [],
+        "collection": "badmoebel",
+        "url_products": "",
+        "products_limit": 20
+      }
+    },
+    "heading_subheading_HiTmM9": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "Alle ansehen",
+        "button_link": "https://bernstein-badshop.de/collections/badmoebel?view=all",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_hNfgrr": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_g6aBFX": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "waschbecken-mit-unterschrank"
+          }
+        }
+      },
+      "block_order": [
+        "category_g6aBFX"
+      ],
+      "settings": {
+        "heading": "2-in-1: Waschbecken mit Unterschrank",
+        "heading_tag": "2",
+        "link_url": "shopify://collections/waschbecken-mit-unterschrank",
+        "link_title": "Alle ansehen"
+      }
+    },
+    "images_6XiGrA": {
+      "type": "images",
+      "blocks": {
+        "collection_showcase_9m9nTF": {
+          "type": "collection_showcase",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection_showcase_9m9nTF"
+      ],
+      "settings": {
+        "background": false
+      }
+    },
+    "images_ib7xNY": {
+      "type": "images",
+      "blocks": {
+        "content_iaUCbz": {
+          "type": "content",
+          "settings": {
+            "heading": "Die perfekte Waschbecken-Auswahl für Dein Badezimmer",
+            "heading_tag": "2",
+            "description": "Ob Aufsatzbecken oder Wandwaschbecken – bei uns findest Du eine breite Auswahl, die perfekt mit unseren Badmöbelsets und Badarmaturen harmoniert. Entdecke die Vielfalt unserer Designs und lass Dich inspirieren, wie Du Dein Badezimmer mit einem stilvollen und funktionalen Waschbecken aufwerten kannst.",
+            "link_url": "shopify://collections/waschbecken",
+            "link_title": "Anzeigen",
+            "image_1": "shopify://shop_images/waschbecken_solidstone-bb.jpg",
+            "image_2": "shopify://shop_images/Gussmarmor-Waschbecken.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "content_iaUCbz"
+      ],
+      "settings": {
+        "background": true
+      }
+    },
+    "inspirations_mk6HMA": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_KewRi9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-11"
+          }
+        },
+        "manual_GJ9Rxd": {
+          "type": "manual",
+          "settings": {
+            "title": "bad-mobel-set-alice-led-spiegel-2137"
+          }
+        }
+      },
+      "block_order": [
+        "manual_KewRi9",
+        "manual_GJ9Rxd"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Badezimmermöbel-Sets",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "promo_banner_gL3VyX": {
+      "type": "promo-banner",
+      "blocks": {
+        "manual_6kNqMD": {
+          "type": "manual",
+          "settings": {
+            "title": "unsere-aktuellen-aktionen"
+          }
+        }
+      },
+      "block_order": [
+        "manual_6kNqMD"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "inspirations_ryBaxh": {
+      "type": "inspirations",
+      "blocks": {
+        "image_AfTkgf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sitzplatze.webp"
+          }
+        },
+        "manual_3iTQr9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        }
+      },
+      "block_order": [
+        "image_AfTkgf",
+        "manual_3iTQr9"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Unsere Sitzplätze",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "inspirations_HBqUpn": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_BpRazm": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-11"
+          }
+        },
+        "manual_EcpxM3": {
+          "type": "manual",
+          "settings": {
+            "title": "bad-mobel-set-alice-led-spiegel-2137"
+          }
+        }
+      },
+      "block_order": [
+        "manual_BpRazm",
+        "manual_EcpxM3"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Badezimmerspiegel mit LED-Beleuchtung",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "shopify://collections/led-badspiegel",
+        "link_title": "Anzeigen",
+        "layout": "1-1"
+      }
+    },
+    "inspirations_aej3jW": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_yTjWPF": {
+          "type": "manual",
+          "settings": {
+            "title": "badmobelset-milou"
+          }
+        },
+        "manual_U3CfcL": {
+          "type": "manual",
+          "settings": {
+            "title": "badmobel-inalco-1500"
+          }
+        },
+        "manual_yUVVVN": {
+          "type": "manual",
+          "settings": {
+            "title": "badmobelset-edge-650"
+          }
+        }
+      },
+      "block_order": [
+        "manual_yTjWPF",
+        "manual_U3CfcL",
+        "manual_yUVVVN"
+      ],
+      "settings": {
+        "heading": "Inspirationen von unseren Kunden",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://pages/inspirationen",
+        "link_title": "Gallerie ansehen",
+        "layout": "1-1-1"
+      }
+    },
+    "images_LdBwUR": {
+      "type": "images",
+      "blocks": {
+        "content_iWRrUt": {
+          "type": "content",
+          "settings": {
+            "heading": "Wandnischen –  Stilvolle Akzente für Dein Badezimmer",
+            "heading_tag": "2",
+            "description": "Wandnischen sind eine hervorragende Ergänzung für jedes Badezimmer. Sie bieten nicht nur zusätzlichen Stauraum, sondern setzen auch stilvolle Akzente, die Deinem Bad eine moderne und aufgeräumte Optik verleihen. Entdecke unsere vielfältigen Designmöglichkeiten und lass Dich inspirieren, wie Wandnischen Dein Bad funktionaler und attraktiver gestalten können.",
+            "link_url": "shopify://collections/wandnischen",
+            "link_title": "Anzeigen",
+            "image_1": "shopify://shop_images/Wandnischen-1.webp",
+            "image_2": "shopify://shop_images/Wandnischen-2.webp"
+          }
+        }
+      },
+      "block_order": [
+        "content_iWRrUt"
+      ],
+      "settings": {
+        "background": true
+      }
+    },
+    "featured_articles_yCTNUL": {
+      "type": "featured-articles",
+      "blocks": {
+        "article_gJ8k6C": {
+          "type": "article",
+          "settings": {
+            "article": "blog/clevere-ideen-einrichtung-kleines-bad"
+          }
+        },
+        "article_LT3YmL": {
+          "type": "article",
+          "settings": {
+            "article": "blog/badezimmer-design-minimalistisch-funktional"
+          }
+        },
+        "article_PRgfHM": {
+          "type": "article",
+          "settings": {
+            "article": "blog/wahl-badezimmermoebel"
+          }
+        }
+      },
+      "block_order": [
+        "article_gJ8k6C",
+        "article_LT3YmL",
+        "article_PRgfHM"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Tipps für ein perfekt eingerichtetes Badezimmer",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://blogs/articles",
+        "link_title": "Alle Artikel ansehen",
+        "background": true
+      }
+    },
+    "collapsible_text_collection_AEeyBw": {
+      "type": "collapsible-text-collection",
+      "settings": {
+        "alignment": "left",
+        "lines_desktop": 5,
+        "lines_mobile": 5
+      }
+    },
+    "brand_adventages_eB6RrL": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_NVk8Gp": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design.svg",
+            "title": "Individuelles Design von Bernstein"
+          }
+        },
+        "item_9zJC7Y": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-delivery.svg",
+            "title": "Lieferung innerhalb von 3-5 Tagen"
+          }
+        },
+        "item_9p7xRN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-customer.svg",
+            "title": "Persönliche Herangehensweise an jede Bestellung"
+          }
+        }
+      },
+      "block_order": [
+        "item_NVk8Gp",
+        "item_9zJC7Y",
+        "item_9p7xRN"
+      ],
+      "settings": {
+        "heading": "Markenvorteile",
+        "heading_tag": "3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "content_dnmYmL",
+    "product_list_element_K8qNw3",
+    "heading_subheading_HiTmM9",
+    "product_carousel_hNfgrr",
+    "images_6XiGrA",
+    "images_ib7xNY",
+    "inspirations_mk6HMA",
+    "promo_banner_gL3VyX",
+    "inspirations_ryBaxh",
+    "inspirations_HBqUpn",
+    "inspirations_aej3jW",
+    "images_LdBwUR",
+    "featured_articles_yCTNUL",
+    "collapsible_text_collection_AEeyBw",
+    "brand_adventages_eB6RrL"
+  ]
+}

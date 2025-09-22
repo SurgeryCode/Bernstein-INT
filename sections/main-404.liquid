@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="{{ 'section-not-found.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-not-found.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="container">
+  <div class="not-found__grid">
+      <div class="not-found__sign">
+        <span class="w-bold">404</span>
+      </div>
+      <div class="not-found__content">
+        <h1 class="f-48">{{ section.settings.heading }}</h1>
+        <p class="w-medium gray">{{ section.settings.description }}</p>
+
+        <a href="{{ section.settings.url1 }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+          <span>{{ section.settings.label1 }}</span>
+        </a>
+
+        <div class="not-found__buttons">
+          <span class="not-found__separator gray">{{ section.settings.separator }}</span>
+
+          <a href="{{ section.settings.url2 }}" class="button button--large">
+            {{ section.settings.label2 }}
+          </a>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main 404",
+  "tag": "section",
+  "class": "not-found",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Link 1"
+    },
+    {
+      "type": "url",
+      "id": "url1",
+      "label": "URL"
+    },
+    {
+      "type": "text",
+      "id": "label1",
+      "label": "Label"
+    },
+    {
+      "type": "header",
+      "content": "Link 2"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator"
+    },
+    {
+      "type": "url",
+      "id": "url2",
+      "label": "URL"
+    },
+    {
+      "type": "text",
+      "id": "label2",
+      "label": "Label"
+    }
+  ]
+}
+{% endschema %}

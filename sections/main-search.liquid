@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="{{ 'rSlider.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'rSlider.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'collection.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-item.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'comparison-toolbar.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'dropdown.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'rSlider.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'range-slider.js' | asset_url }}" defer="defer"></script>
+
+{%- render 'breadcrumbs' -%}
+
+<collection-section class="listing listing--no-compare" data-base-url="{{ request.url }}">
+  <div class="container"> 
+    <div class="listing__header"> 
+      <h1 class="f-48">{{ 'search.heading_html' | t: terms: search.terms }}</h1>
+    </div>
+    
+    {%- render 'search-filters' -%}
+    {%- render 'search-toolbar' -%}
+
+    {%- paginate search.results  by 32 -%}
+      <div class="listing__content">
+        {%- if search.results_count > 0 -%}
+          <div class="listing__grid">
+            {%- for product in search.results -%}
+              {%- if product.object_type == 'product' -%}
+                {%- render 'product-item', product: product, compare: false -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <div class="listing__empty">
+            <div class="richtext center">
+              <p>{{ 'search.no_results_html' | t: terms: search.terms }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+      {%- render 'pagination', paginate: paginate, container_class: 'collection' -%}    
+    {% endpaginate %}
+  </div>  
+</collection-section> 
+
+{% schema %}
+{
+  "name": "Main Search",
+  "tag": "section",
+  "class": "section section--search margin margin--first margin--large",
+  "blocks": [
+    {
+      "type": "filter_group",
+      "name": "Filter group",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+        },
+        {
+          "type": "textarea",
+          "id": "labels",
+          "label": "Product color option names",
+          "info": "Enter all filter names that should be grouped (in German, comma separated)"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,340 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "intro_ihQYaz": {
+      "type": "intro",
+      "settings": {
+        "banner_mobile": "shopify://shop_images/about-us-banner-mobile.jpg",
+        "banner_size": "normal",
+        "heading": "Über uns",
+        "text": "<p>Wir sind NEXTREND, ein junges und dynamisch wachsendes Unternehmen aus Flörsheim bei Frankfurt am Main. Wir haben es uns zur Aufgabe gemacht, den Vertrieb von Bädern neu zu denken. Als einer der führenden Online-Shops im Bad- und Sanitärbereich vertrauen uns seit 2007 schon über 2 Mio. zufriedene Kunden bei der Erfüllung ihrer Badträume. </p>",
+        "text_2": "<p>Getreu nach unserem Versprechen „Dein Bad. Direkt richtig.“ versenden wir direkt an unsere Kunden. Denn wir sind Hersteller und Versender in einem.<br/>Das spart unseren Kunden nicht nur Zeit, sondern auch bares Geld, denn bei uns gibt es keine Zwischenhändler oder versteckte Kosten.</p>",
+        "text_width": "normal",
+        "button_url": "",
+        "button_text": "",
+        "button_target": false
+      }
+    },
+    "brand_adventages_ACdyHg": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_NVk8Gp": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design.svg",
+            "title": "Individuelles Design von Bernstein"
+          }
+        },
+        "item_9zJC7Y": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-delivery.svg",
+            "title": "Lieferung innerhalb von 3-5 Tagen"
+          }
+        },
+        "item_9p7xRN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-customer.svg",
+            "title": "Persönliche Herangehensweise an jede Bestellung"
+          }
+        }
+      },
+      "block_order": [
+        "item_NVk8Gp",
+        "item_9zJC7Y",
+        "item_9p7xRN"
+      ],
+      "settings": {
+        "heading": "Markenvorteile",
+        "heading_tag": "3"
+      }
+    },
+    "quote_carousel_kUBnaX": {
+      "type": "quote-carousel",
+      "blocks": {
+        "item_cHyjDH": {
+          "type": "item",
+          "settings": {
+            "quote": "Als 100%ige Tochtergesellschaft der Duravit AG vereinen wir die Stärke eines weltweit agierenden Konzerns mit der Flexibilität eines E-Commerce Startups. Das lieben unsere Kunden: Wir brechen auf und denken neu, um Dinge richtig anders zu machen.",
+            "author": "Yannick Hügle, Geschäftsführer",
+            "author_image": "shopify://shop_images/quote-yannick.png"
+          }
+        },
+        "item_kqyzxh": {
+          "type": "item",
+          "settings": {
+            "quote": "Unsere Produkte überzeugen selbstbewusst durch Design, Qualität und Service- sowie Preis-Innovation. Dank proaktiver Dynamik leisten wir den entscheidenden Mehrwert bei der schnellen Realisierung unserer Projekte und Innovationen. Für nachhaltige Werte, die für uns und unsere Kunden entstehen.",
+            "author": "Tarek El-Mir, Leiter Produktmanagement & Marketing"
+          }
+        },
+        "item_YmTi44": {
+          "type": "item",
+          "settings": {
+            "quote": "Wir entwickeln und gestalten jedes Produkt so, dass es ästhetisch und funktional den Status Quo der gesamten Branche mit definiert. Unser Ansatz ist es, Grenzen zu überwinden und innovative, mutige Ideen zu entwickeln. Für Designbäder, die sich jeder leisten kann.",
+            "author": "Robert Zentek, Leiter Entwicklung",
+            "author_image": "shopify://shop_images/about-us-content.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_cHyjDH",
+        "item_kqyzxh",
+        "item_YmTi44"
+      ],
+      "settings": {}
+    },
+    "content_DGW6xx": {
+      "type": "content",
+      "settings": {
+        "heading": "Unsere Versprechen",
+        "text": "<p>Wir haben uns der Mission verschrieben „Dein Bad. Direkt richtig.“<br/>zu machen. Im Kern versteckt sich dahinter nicht nur, dass wir eine<br/>Direct-to-Consumer Brand sind, sondern auch, dass wir, gemeinsam mit unseren<br/>Kunden, alles dafür tun, die richtigen Lösungen zu finden. Daraus ergeben sich<br/>unsere Versprechen:</p>",
+        "embed": "",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "content_blocks_pyN4zD": {
+      "type": "content-blocks",
+      "blocks": {
+        "item_NKPhQ9": {
+          "type": "item",
+          "settings": {
+            "title": "Beste Beratung",
+            "content": "<p>Uns ist wichtig, genau die Produkte zu finden, die wirklich zu Dir passen.<br/>Dabei zählen nicht nur persönliche Vorlieben und Dein Stil, sondern auch die Raumgröße und die bauliche Situation vor Ort.<br/>Ruf uns also gerne an, schreib uns eine Mail oder besuch uns in einem unserer Showrooms in Deutschland.<br/>Gemeinsam machen wir aus Deinem Badtraum Realität.</p>",
+            "image": "shopify://shop_images/uber_uns_laptop_mockup.png"
+          }
+        },
+        "item_Gj4FjQ": {
+          "type": "item",
+          "settings": {
+            "title": "Bestes Einkaufserlebnis",
+            "content": "<p>Bei uns kannst Du nicht nur in sieben verschiedenen Sprachen einkaufen – wir versenden auch europaweit.<br/>2024 haben wir unseren Webshop komplett überarbeitet und aus Kundensicht optimiert, damit Du noch einfacher genau die Produkte findest, die Dich interessieren.<br/>So verbessern wir Dein Einkaufserlebnis immer wieder aufs Neue.</p>",
+            "image": "shopify://shop_images/Einkauferlebnis.jpg"
+          }
+        },
+        "item_6QaRXm": {
+          "type": "item",
+          "settings": {
+            "title": "Bestes Preis-Leistungs-Verhältnis",
+            "content": "<p>Unsere Produkte haben einen hohen Qualitäts- und Design-Anspruch. Deshalb kommen unsere Produkte installationsbereit direkt zu Dir nach Hause – ganz nach dem Motto: auspacken, an die Wand hängen, fertig.<br/>Bei uns musst Du für ein Badmöbel keinen Inbusschlüssel schwingen. Und trotzdem können wir unser Preisniveau optimal halten – denn wir verzichten bewusst auf Zwischen- und Großhändler.<br/>Wir sind Hersteller und Versender in einem.</p>",
+            "image": "shopify://shop_images/Img2-front-1351_56db1c71-297e-4aac-aa8c-2bfafd70a2ce.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "item_NKPhQ9",
+        "item_Gj4FjQ",
+        "item_6QaRXm"
+      ],
+      "settings": {
+        "heading": ""
+      }
+    },
+    "numbers_P6pypX": {
+      "type": "numbers",
+      "blocks": {
+        "item_7mWNYt": {
+          "type": "item",
+          "settings": {
+            "number": "2007",
+            "top": "Seit",
+            "bottom": "erfolgreich am Markt"
+          }
+        },
+        "item_y3biKc": {
+          "type": "item",
+          "settings": {
+            "number": "2 Millionen",
+            "top": "Mehr als",
+            "bottom": "zufriedenen Kunden"
+          }
+        },
+        "item_K43C33": {
+          "type": "item",
+          "settings": {
+            "number": "100%",
+            "top": "Seit 2021",
+            "bottom": "Tochter der Duravit AG"
+          }
+        },
+        "item_PJfWhL": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "number": "100%",
+            "top": "",
+            "bottom": "Duravit group\ncompany"
+          }
+        },
+        "item_8kTAAd": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "number": "4",
+            "top": "",
+            "bottom": "Showrooms\nin Deutschland"
+          }
+        }
+      },
+      "block_order": [
+        "item_7mWNYt",
+        "item_y3biKc",
+        "item_K43C33",
+        "item_PJfWhL",
+        "item_8kTAAd"
+      ],
+      "settings": {
+        "heading": "Bernstein in Zahlen"
+      }
+    },
+    "content_with_image_ihYQUN": {
+      "type": "content-with-image",
+      "settings": {
+        "heading": "Unsere Geschichte",
+        "content": "<p><strong>Seit 2007</strong> bieten wir als Hersteller der Marke Bernstein freistehende Badewannen, Duschabtrennungen sowie Badmöbel und Badkeramik in Einzelhandelsqualität an.</p><p><br/><strong>2013</strong> haben wir mit der Produktion von freistehenden Badewannen und Waschtischen aus Mineralguss begonnen und sind mit unserer breiten Produktpalette mittlerweile einer der europäischen Marktführer in diesem Bereich.</p><p><br/><strong>2017</strong> haben wir mit der eigenen Produktion von Duschabtrennungen begonnen und sind nun in der Lage, jedes einzelne Duschbad individuell zu gestalten! Unser Ziel ist es, die besten individuellen Badlösungen zu schaffen.</p><p><br/><strong>2021</strong> sind wir zu 100% eine Tochtergesellschaft der Duravit AG, des weltweit tätigen und bekannten Herstellers von Sanitärtechnik, geworden. Dadurch konnten wir unsere Möglichkeiten maximieren und unsere innovativen Kapazitäten steigern.</p><p><br/><strong>2024</strong> haben wir unserer Marke einen brandneuen Anstrich verpasst und unsere Website ganzheitlich neu gelaunched. Unseren Anspruch „Dein Bad. Direkt richtig.“ konnten wir dadurch sowohl visuell als auch im Kundenerlebnis verankern.<br/></p>",
+        "image": "shopify://shop_images/BERN_Markenerlebnisstrategie_1_1_Kopie_verschoben_2.jpg",
+        "background": "gray",
+        "layout": "reverse",
+        "button_url": "",
+        "button_label": "",
+        "button_target": false
+      }
+    },
+    "content_with_image_9mNebC": {
+      "type": "content-with-image",
+      "settings": {
+        "heading": "Unsere Mannschaft",
+        "content": "<p>Bei uns arbeiten um die 200 Mitarbeiter, verteilt über ein Bürogebäude in Flörsheim am Main, drei verschiedene Läger, vier Showrooms in Deutschland sowie zwei Regionalbüros in Polen und Frankreich. Seit 2018 haben wir mit unserer eigenen Designabteilung Maßstäbe gesetzt und konnten sogar Design-Preise gewinnen, z.B. für unsere Badmöbelserie Arctic. 2023 haben wir eine dedizierte Abteilung für Produktmanagement und Entwicklung installiert und unsere Kapazitäten im Qualitätsmanagement erhöht. So schaffen wir es, Dir jederzeit das passende Produkt anzubieten.<br/>Jetzt freuen wir uns darauf, gemeinsam mit Dir Dein Bad von Anfang an richtig zu planen und umzusetzen!</p><p><br/>Wir wünschen viel Spaß beim Einkauf bei Bernstein.<br/></p>",
+        "image": "shopify://shop_images/Mannschaft_a819e4cd-843b-4aaa-a3ee-a6dfec9ea672.jpg",
+        "background": "white",
+        "layout": "normal",
+        "button_url": "",
+        "button_label": "",
+        "button_target": false
+      }
+    },
+    "featured_articles_44XMjg": {
+      "type": "featured-articles",
+      "disabled": true,
+      "settings": {
+        "heading": "Wir reden darüber",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://blogs/articles",
+        "link_title": "Alle Artikel ansehen",
+        "background": false
+      }
+    },
+    "testimonials_fPYJbG": {
+      "type": "testimonials",
+      "blocks": {
+        "testimony_UibWBL": {
+          "type": "testimony",
+          "settings": {
+            "content": "Alles was wir uns für unser Traumbad gewünscht haben, haben wir im Bernstein Badshop gefunden. Von Dusch WCs bis hin zu den perfekten Spiegelschränken mit indirekter Beleuchtung. Hier findet man alles und muss nicht lange suchen!",
+            "image": "shopify://shop_images/Sanny.webp",
+            "title": "Sanny K."
+          }
+        },
+        "testimony_9RUjqH": {
+          "type": "testimony",
+          "settings": {
+            "content": "With Bernstein everything has been easy, fast and of course with the highest quality.",
+            "image": "shopify://shop_images/Pablo.webp",
+            "title": "Pablo P."
+          }
+        },
+        "testimony_TtGTHi": {
+          "type": "testimony",
+          "settings": {
+            "content": "Der Bernstein Onlineshop beeindruckte mich mit schneller Lieferung und 24/7 Verfügbarkeit. Ideal, wenn es mal schnell gehen muss.",
+            "image": "shopify://shop_images/Alexandru.webp",
+            "title": "Alexandru I."
+          }
+        }
+      },
+      "block_order": [
+        "testimony_UibWBL",
+        "testimony_9RUjqH",
+        "testimony_TtGTHi"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Meinungen unserer Kunden",
+        "heading_tag": "2",
+        "heading_text": "",
+        "background": "gray",
+        "disable_langs": "fr,it"
+      }
+    },
+    "shop_reviews_fq8KQM": {
+      "type": "shop-reviews",
+      "disabled": true,
+      "settings": {
+        "heading": "Kundenrezensionen",
+        "heading_tag": "2",
+        "background": "gray"
+      }
+    },
+    "our_showrooms_zEXkF9": {
+      "type": "our-showrooms",
+      "settings": {
+        "heading": "Unsere\nShowrooms",
+        "content": "<p>Bei Bernstein haben wir es uns zur Aufgabe gemacht, Dein Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Dir eine Reihe hochwertiger Armaturen und Badartikel, die Form und Funktion vereinen.</p>",
+        "button_url": "shopify://pages/showrooms",
+        "button_label": "Entdecke unsere Showrooms",
+        "button_target": false,
+        "image_left": "shopify://shop_images/Armaturen.jpg",
+        "image_right": "shopify://shop_images/Showroom.jpg"
+      }
+    },
+    "work_with_us_4NVx3Q": {
+      "type": "work-with-us",
+      "settings": {
+        "heading": "Warum es sich lohnt,\nbei Bernstein zu arbeiten?",
+        "content": "<p>Beständig, einzigartig und vielseitig wie Bernstein – das sind wir. Bei uns findest Du ein dynamisches und kreatives Umfeld, in dem Deine Ideen wachsen können. Werde Teil unseres Teams und arbeite gemeinsam mit uns an spannenden und innovativen Produkten im Badbereich.</p><ul><li>30 Urlaubstage</li><li>Fahrtkostenzuschuss</li><li>Zusätzlicher Beitrag zur betrieblichen Altersvorsorge</li></ul>",
+        "button_url": "shopify://pages/karriere",
+        "button_label": "Stellenangebote ansehen",
+        "button_target": false,
+        "image": "shopify://shop_images/work-with-us.jpg"
+      }
+    },
+    "banner_bqEKak": {
+      "type": "banner",
+      "settings": {
+        "content": "<p>Bei Bernstein verbinden wir Leidenschaft mit Fachwissen, um Dir maßgeschneiderte Lösungen und exklusive Angebote zu bieten, die Deine Projekte bereichern und Deine Erwartungen übertreffen.<br/><br/>Ob Installateur, Fliesenleger, Showroom-Betreiber oder Immobilienprofi – als Bernstein-Partner profitierst Du von persönlicher Fachberatung, individuellen Angeboten und einem umfassenden Service, der Dich in jeder Phase unterstützt.<br/><br/>Werde Teil unserer Vision und erlebe, wie wir gemeinsam das Badezimmer neu definieren.<br/>Jetzt Bernstein-Partner werden und exklusive Vorteile sichern!</p>",
+        "button_url": "shopify://pages/b2b",
+        "button_label": "Erstelle einen Profi Account",
+        "link_url": "shopify://pages/b2b",
+        "link_label": "",
+        "image": "shopify://shop_images/b2b-banner-desktop.webp",
+        "image_mobile": "shopify://shop_images/b2b-banner-mobile.webp"
+      }
+    }
+  },
+  "order": [
+    "intro_ihQYaz",
+    "brand_adventages_ACdyHg",
+    "quote_carousel_kUBnaX",
+    "content_DGW6xx",
+    "content_blocks_pyN4zD",
+    "numbers_P6pypX",
+    "content_with_image_ihYQUN",
+    "content_with_image_9mNebC",
+    "featured_articles_44XMjg",
+    "testimonials_fPYJbG",
+    "shop_reviews_fq8KQM",
+    "our_showrooms_zEXkF9",
+    "work_with_us_4NVx3Q",
+    "banner_bqEKak"
+  ]
+}

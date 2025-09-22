@@ -1,0 +1,13 @@
+{% comment %} Kategorie-section.liquid {% endcomment %}
+
+<div class="custom-section">
+  <h2>{{ section.settings.heading }}</h2>
+
+  {% if product.metafields.custom.coll.category %}
+    {% assign original_value = product.metafields.custom.coll.category %}
+    {% assign cleaned_value = original_value | remove: "coll::" %}
+    <p>{{ cleaned_value }}</p>
+  {% else %}
+    <p>Kein Wert gefunden</p>
+  {% endif %}
+</div>

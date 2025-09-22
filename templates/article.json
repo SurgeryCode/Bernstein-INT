@@ -1,0 +1,60 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "settings": {}
+    },
+    "featured_articles_CkYnRj": {
+      "type": "featured-articles",
+      "blocks": {
+        "article_VpqyyV": {
+          "type": "article",
+          "settings": {
+            "article": "articles\/23_standwaschbecken_im_bad"
+          }
+        },
+        "article_TeULCj": {
+          "type": "article",
+          "settings": {
+            "article": "articles\/16_badezimmer_ohne_sanierung_verschoenern"
+          }
+        },
+        "article_xLAN4m": {
+          "type": "article",
+          "settings": {
+            "article": "articles\/24_kaufberatung_duschwanne"
+          }
+        }
+      },
+      "block_order": [
+        "article_VpqyyV",
+        "article_TeULCj",
+        "article_xLAN4m"
+      ],
+      "settings": {
+        "heading": "Die folgenden Beiträge könnten Sie interessieren",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify:\/\/blogs\/articles",
+        "link_title": "Alle Beiträge ansehen",
+        "background": false
+      }
+    },
+    "instafeed_kXgnAt": {
+      "type": "instafeed",
+      "settings": {
+        "heading": "Treten Sie der #bernstein-Community bei",
+        "heading_tag": "3",
+        "heading_text": "Feiern Sie mit uns die Kunst des Innendesigns, die Inspiration für das Innendesign und unsere gemeinsame Liebe, schöne Räume zu schaffen.",
+        "background": "white",
+        "feed_id": "feed-34558",
+        "has_mb": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "featured_articles_CkYnRj",
+    "instafeed_kXgnAt"
+  ]
+}

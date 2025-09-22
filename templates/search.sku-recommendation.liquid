@@ -1,0 +1,7 @@
+{%- layout none -%}
+
+{%- if search.results_count > 0 -%}
+    {%- for product in search.results -%}
+        {%- render 'product-item', product: product, add_to_cart: true -%}
+    {%- endfor -%}
+{%- endif -%}

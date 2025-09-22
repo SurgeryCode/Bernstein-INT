@@ -1,0 +1,91 @@
+{%- liquid 
+    if card_size == 'big'
+        assign card_class = 'article-item--big'
+        assign title_class = 'f-32'
+        assign image_sizes = '379:360,380:520'
+        assign create_text_hld = true
+        assign loading_type = 'eager'
+    elsif card_size == 'medium'
+        assign card_class = 'article-item--medium'
+        assign title_class = 'f-24'
+        assign image_sizes = '379:360,575:543,576:940'
+        assign create_text_hld = false
+        assign loading_type = 'lazy'
+    else
+        assign card_class = 'article-item--normal'
+        assign title_class = 'f-24'
+        assign image_sizes = '379:360,575:543,576:940'
+        assign create_text_hld = false
+        assign loading_type = 'lazy'
+    endif
+
+-%}
+<article class="article-item {{ card_class }}">
+    <a 
+        href="{{ article.url }}" 
+        aria-label="{{ 'blog.read' | t }}"
+        class="article-item__image">
+            {%- render 'image', 
+                image: article.image, 
+                sizes: image_sizes,
+                class: 'cover',
+                loading: loading_type
+            -%}
+    </a>
+    {%- if create_text_hld -%}
+        <div class="article-item__text-hld">
+    {%- endif -%}
+        {%- if show_date -%}
+            {% assign month_name = article.published_at | date: "%m" %}
+            <time class="article-item__date f-12 w-medium gray" datetime="{{ article.published_at | date: "%Y-%m-%d" }}">
+                {{ article.published_at | date: "%d." }} {{ 'dates.months.' | append: month_name | t }} {{ article.published_at | date: "%Y" }}
+            </time>
+        {%- endif -%}
+        <h3 class="{{ title_class }} w-bold">
+            <a href="{{ article.url }}" class="text-link text-link--strong">
+                <span>{{ article.title }}</span>
+            </a>
+        </h3>
+        <div class="richtext richtext--gray">
+            {{ article.excerpt_or_content | strip_html }}
+        </div>
+        
+        <div class="article-item__footer">
+            {%- if article.tags.size > 0 -%}
+                {%- liquid
+                    assign split_1 = article.url | split: '/blogs/'
+                    assign split_2 = split_1[1] | split: '/'
+                    assign blog_handle = split_2[0] | strip
+                    assign article_blog = blogs[blog_handle]
+                -%}
+                <ul class="article-item__tags f-12 w-medium gray upper">
+                    {%- for tag in article.tags -%}
+                        <li>
+                            <a href="{{ article_blog.url }}/tagged/{{ tag | handle }}" class="text-link">
+                                <span>
+                                    {%- render 'translation', key: 'blog.tags', value: tag -%}
+                                </span>
+                            </a>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+            {%- endif -%}
+            {%- if card_size == 'big' -%}
+                <a 
+                    href="{{ article.url }}" 
+                    aria-label="{{ 'blog.read' | t }}"
+                    class="article-item__image-mobile-big">
+                        {%- render 'image', 
+                            image: article.image, 
+                            sizes: image_sizes,
+                            class: 'cover',
+                            loading: loading_type
+                        -%}
+                </a>
+            {%- endif -%}
+            <a href="{{ article.url }}" class="button button--xlarge button--outline">{{ 'blog.read' | t }}</a>
+        </div>
+    {%- if create_text_hld -%}
+        </div>
+    {%- endif -%}
+</article>

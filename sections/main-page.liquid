@@ -1,0 +1,63 @@
+{%- render 'breadcrumbs' -%}
+
+{%- if section.settings.remove_bottom_margin or section.settings.remove_min_height -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} {
+      {%- if section.settings.remove_bottom_margin -%}
+        margin-bottom: 0;
+      {%- endif -%}
+      {%- if section.settings.remove_min_height -%}
+        min-height: auto;
+      {%- endif -%}
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{%- unless page.content contains '<h1>' -%}
+  <div class="container">
+    <div class="heading">
+        <div class="heading__text">
+            <h1 class="f-48">
+              {%- if page.metafields.custom.alter_heading != blank -%}
+                {{ page.metafields.custom.alter_heading }}
+              {%- else -%}
+                {{ page.title }}
+              {%- endif -%}
+            </h1>          
+        </div>
+    </div>
+  </div>
+{%- endunless -%}
+
+<div class="container container--text">
+  <div class="richtext richtext--table-border">
+    {%- if page.metafields.custom.policy_page != blank -%}
+      {%- assign handle = page.metafields.custom.policy_page | replace: ' ', '_' -%}
+      {{ shop[handle] }}
+    {%- else -%}
+      {{ page.content }}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Page",
+  "tag": "section",
+  "class": "section section--page margin margin--large margin--first",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "remove_bottom_margin",
+      "label": "Remove bottom margin",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "remove_min_height",
+      "label": "Remove min height",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

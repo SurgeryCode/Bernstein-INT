@@ -1,0 +1,1 @@
+if(!customElements.get("footer-section")){class a extends HTMLElement{constructor(){super()}}customElements.define("footer-section",a)}

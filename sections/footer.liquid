@@ -1,0 +1,238 @@
+<link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-footer.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'footer.js' | asset_url }}" defer="defer"></script>
+
+<footer-section class="footer f-14">
+  {%- capture badges -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'badge' -%}
+        <img 
+          src="{{ block.settings.image | img_url: 'x72' }}" 
+          width="{{ 36 | times: block.settings.image.aspect_ratio | round }}"
+          height="36" 
+          alt="{{ block.settings.image.alt }}"
+          loading="lazy">
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- capture social -%}
+    {%- render 'social-media-links' -%}
+  {%- endcapture -%}
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'note' -%}
+      {%- if block.type == 'note' -%}
+        <div class="footer__note">
+          <div class="container">
+            <div class="richtext">
+              {{ block.settings.text }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__main">
+        <div class="footer__logo"> 
+          {%- render 'brand-logo', name: 'bernstein' -%}
+        </div>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'newsletter' -%}
+            <h3 class="f-24 w-bold">{{ block.settings.heading }}</h3>
+            {%- if block.settings.description != blank -%}
+              <div class="richtext">
+                {{ block.settings.description }}
+              </div>
+            {%- endif -%}
+            {%- render 'newsletter-form' -%}
+            {%- if block.settings.legal_notice != blank -%}
+              <div class="richtext f-12">
+                <p>{{ block.settings.legal_notice }}</p>
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if badges != blank -%}
+            <div class="footer__badges">
+              {{ badges }}
+            </div>
+        {%- endif -%}
+      </div>
+
+      {%- if social != blank -%}
+        <div class="footer__social footer__social--mobile">
+          <h4 class="f-16 w-medium gold">{{ 'social_media.title' | t }}</h4>
+          <ul>
+            {{ social }}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <div class="footer__menus">
+        {%- assign menu_id = 1 -%}
+        {%- for block in section.blocks -%}      
+          {%- if block.type == 'menu' -%}
+            <nav class="footer__menu footer__menu--{{ menu_id }}">
+              <h4 class="f-16 w-medium gold">{{ block.settings.heading }}</h4>
+              <ul>
+                {%- for link in linklists[block.settings.menu].links -%}
+                  <li>
+                    {%- if link.url contains 'support.bernstein-badshop' -%}
+                      <a href="{{ link.url }}{{ request.locale.iso_code }}" target="_blank" rel="noopener noreferrer" class="text-link w-medium">
+                        <span>{{ link.title }}</span>
+                      </a>
+                    {%- else -%}
+                      <a href="{{ link.url }}" class="text-link w-medium">
+                        <span>{{ link.title }}</span>
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </nav>
+            {%- assign menu_id = menu_id | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="footer__markets">
+      {%- render 'market-switcher', modifier: 'top' -%}
+    </div>
+
+    <div class="footer__icons">
+      {%- if social != blank -%}
+        <div class="footer__social footer__social--desktop">
+          <h4 class="f-16 w-medium gold">{{ 'social_media.title' | t }}</h4>
+          <ul>
+            {{ social  }}
+          </ul>
+        </div>
+      {%- endif -%}
+     <div class="footer__payments">
+        <h4 class="f-16 w-medium gold">{{ 'payments.title' | t }}</h4>
+       {% assign enabled_payment_types = 'klarna_invoice,visa,master,american_express,cartes_bancaires,paypal' | remove: ' ' | split: ',' %}
+    <ul>
+        {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag }}</li>
+        {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__copyright w-medium">
+    <div class="container">
+      {%- if section.settings.cookies_menu != blank -%}
+        <ul>
+          {%- for link in linklists[section.settings.cookies_menu].links -%}
+            <li>
+              <a href="{{ link.url }}" class="text-link">
+                <span>{{ link.title }}</span>
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      <div class="footer__back">
+        <button data-scroll-top class="button button--small button--white">
+          {{ 'accessibility.back_top' | t }}
+          {%- render 'svg-icon', name: 'chevron-up' -%}
+        </button>
+      </div>
+
+      {%- assign year = "now" | date: "%Y" -%}
+      <p>{{ section.settings.copyright | replace: '|YYYY|', year }}</p>
+    </div>
+  </div>
+</footer-section>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section section--footer",
+  "tag": "footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "copyright",
+      "label": "Copyright",
+      "info": "Enter |YYYY| to display current year" 
+    },
+    {
+      "type": "link_list",
+      "id": "cookies_menu",
+      "label": "Cookies menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "Note",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer" 
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "legal_notice",
+          "label": "Legal notice"
+        }
+      ]
+    },
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

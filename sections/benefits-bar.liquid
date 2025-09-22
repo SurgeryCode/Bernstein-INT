@@ -1,0 +1,68 @@
+<ul class="container container--wide">
+    {%- for block in section.blocks -%}
+        <li>
+            {%- if block.settings.icon != blank -%}
+                <img 
+                    src="{{ block.settings.icon | img_url }}" 
+                    width="{{ block.settings.icon.width }}"
+                    height="{{ block.settings.icon.height }}"
+                    alt="{{ block.settings.icon.alt }}"
+                    loading="lazy"
+                >
+            {%- endif -%}
+            {{ block.settings.caption }}
+        </li>
+    {%- endfor -%}
+</ul>
+
+<style>
+  #shopify-section-{{ section.id }}  {
+    background: {{ section.settings.color_background }};
+    color: {{ section.settings.color_text }};
+  }
+</style>
+
+{% schema %}
+{
+    "name": "Benefits bar",
+    "tag": "section",
+    "class": "section section--content benefits-bar",
+    "settings": [
+        {
+            "type": "color",
+            "id": "color_background",
+            "label": "Background",
+            "default": "#111111"
+        },
+        {
+            "type": "color",
+            "id": "color_text",
+            "label": "Text",
+            "default": "#ffffff"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Icon"
+                },
+                {
+                    "type": "text",
+                    "id": "caption",
+                    "label": "Caption"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Benefits bar"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,57 @@
+<form-validate class="novalidate">
+    {%- form 'customer_login', class: 'form form--login' -%}
+        {%- if form.errors -%}
+            <div class="form__message w-medium" role="status">
+                <div class="form__status form__status--error" tabindex="-1" autofocus>
+                    {{ form.errors | default_errors }}
+                </div>
+            </div>
+        {%- endif -%}
+
+        <div class="form__row">
+            <div class="form__field">
+            <input
+                type="email"
+                name="customer[email]"
+                id="CustomerEmail"
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="off"
+                {% if form.errors contains 'form' %}
+                aria-invalid="true"
+                {% endif %}
+                placeholder="{{ 'account.login.email' | t }}"
+                required>
+            </div>
+        </div>  
+        <div class="form__row">
+            <div class="form__field">
+                <input
+                    type="password"
+                    value=""
+                    name="customer[password]"
+                    id="CustomerPassword"
+                    autocomplete="current-password" 
+                    {% if form.errors contains 'form' %}
+                    aria-invalid="true"
+                    {% endif %}
+                    placeholder="{{ 'account.login.password' | t }}"
+                    required>
+                <button 
+                    type="button"
+                    class="button-show-password"
+                    data-show-password
+                    aria-expanded="false">
+                        {%- render 'svg-icon', name: 'eye' -%}
+                </button>
+            </div>
+        </div>
+        <div class="form__submit">
+            <button type="submit" class="button button--large">{{ 'account.login.button' | t }}</button>
+        </div>
+    {%- endform -%}
+</form-validate>
+
+<a href="{{ routes.account_login_url }}#recover" class="text-link text-link--reverse f-14 w-medium upper spaced">
+    <span>{{ 'account.login.forgot_password' | t }}</span>
+</a>

@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "intro_YAiLfr": {
+      "type": "intro",
+      "settings": {
+        "banner": "shopify:\/\/shop_images\/faq-intro.jpg",
+        "banner_mobile": "shopify:\/\/shop_images\/faq-intro-mobile.jpg",
+        "banner_size": "normal",
+        "heading": "Hilfezentrum",
+        "text": "<p>Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.<\/p>",
+        "text_2": "",
+        "button_url": "",
+        "button_text": "",
+        "button_target": false
+      }
+    },
+    "faq_yweFR4": {
+      "type": "faq",
+      "settings": {}
+    },
+    "contact_person_TFyt6x": {
+      "type": "contact-person",
+      "settings": {
+        "portrait": "shopify:\/\/shop_images\/faq-person.jpg",
+        "name": "Julia Roberts, Help-Center-Manager",
+        "heading": "Haben Sie die Antwort auf Ihre Frage nicht gefunden?",
+        "text": "Bitte wenden Sie sich an unsere\nServiceabteilung",
+        "button_url": "shopify:\/\/pages\/kontakt",
+        "button_text": "Kontakt",
+        "button_target": false
+      }
+    }
+  },
+  "order": [
+    "intro_YAiLfr",
+    "faq_yweFR4",
+    "contact_person_TFyt6x"
+  ]
+}

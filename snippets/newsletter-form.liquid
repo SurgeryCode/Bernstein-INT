@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="{{ 'component-form.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-form.css' | asset_url | stylesheet_tag }}</noscript>
+
+<form-validate>
+  {%- form 'customer', class: 'form form--newsletter' -%}
+    {%- if form.posted_successfully? -%}
+      <div class="form__status form__status--success" tabindex="-1" autofocus>
+        <p>{{ 'newsletter.success' | t }}</p>
+      </div>
+      <script>
+        document.querySelectorAll('.footer__main .richtext').forEach(el => el.style.display = 'none');
+      </script>
+    {%- else -%}
+      <div class="form__row">
+          <div class="form__field">
+              <input 
+                  type="email" 
+                  name="contact[email]"
+                  id="newsletter-email"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  placeholder="{{ 'newsletter.email' | t }}"
+                  required>
+          </div>
+      </div>
+      <div class="form__submit">
+          <button 
+              type="submit"  
+              class="button button--large {% unless dark %}button--white{% endunless %}" 
+              aria-label="{{ 'newsletter.submit' | t }}">
+              <span>{{ 'newsletter.submit' | t }}</span>
+          </button>
+      </div>
+    {%- endif -%}
+      
+    {%- if form.errors -%}
+      <div class="form__status form__status--error" tabindex="-1" autofocus>
+        <p>{{ form.errors.messages['email'] }}</p>
+      </div>
+    {%- endif -%}
+  {%- endform -%}
+</form-validate>

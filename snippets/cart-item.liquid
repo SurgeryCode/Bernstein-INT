@@ -1,0 +1,172 @@
+{%- liquid
+    assign warranty_json = false
+    assign warranty_metaobject = false
+    assign unit_price = line_item.price | money
+
+    for variant in line_item.product.variants
+      for option in variant.metafields.custom.warranty_json.value
+          assign warranty_json = option
+          assign warranty_metaobject = shop.metaobjects.warranty[option.id]
+      endfor
+    endfor
+
+    assign country = localization.country.iso_code | downcase
+    assign warranty_price = warranty_json.prices[country]
+    assign _desc = warranty_metaobject.description | metafield_tag | replace: '<p>|TABLE|</p>', '|TABLE|' | split: '|TABLE|'
+    assign selected_warranty = line_item.properties['_warranty'] | first
+
+    assign max_amount = line_item.variant.inventory_quantity
+    if line_item.variant.inventory_policy == 'continue'
+        assign max_amount = 999
+    endif
+-%}
+
+{%- capture warranty_description -%}
+    {% for part in _desc %}
+        {%- if part contains '|ENDTABLE|' -%}
+            {%- assign subpart = part | split: '|ENDTABLE|' -%}
+            {%- assign rows = subpart[0] | split: '</p>' -%}
+            <table>
+                {%- for row in rows -%}
+                    {%- assign cells = row | remove: '<p>' | split: '|' -%}
+                    <tr>
+                        {%- for cell in cells -%}
+                            <td>{{ cell }}</td>
+                        {%- endfor -%}
+                    </tr>
+                {%- endfor -%}
+            </table>
+            {{ subpart[1] }}
+        {%- else -%}
+            {{ part }}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture properties -%}
+    {%- assign sku_label = 'product.sku' | t: sku: line_item.sku | split: ':'  -%}
+    <li class="f-12 w-medium"><span>{{ sku_label[0] }}:</span> <span class="gray">{{ line_item.sku }}</span></li>
+    {%- unless line_item.product.has_only_default_variant -%}
+        {%- for option in line_item.options_with_values -%}
+            <li class="f-12 w-medium"><span>{{ option.name }}:</span> <span class="gray">{{ option.value }}</span></li>
+        {%- endfor -%}
+    {%- endunless -%}
+
+    {%- for property in line_item.properties -%}
+            {%- liquid 
+                assign first_character_in_key = property.first | truncate: 1, '' 
+                assign prop_visible = true
+                if selected_warranty.name == property.last and selected_warranty.priceMod == 0
+                    assign prop_visible = false
+                endif
+            -%}
+            {%- if prop_visible -%}
+                {%- unless property.last == blank or first_character_in_key == '_' -%}
+                    <li class="f-12 w-medium"><span>{{ property.first }}:</span> <span class="gray">{{ property.last }}</span></li>
+                {%- endunless -%}
+            {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+<cart-item 
+    class="cart-item" 
+    data-line-key="{{ line_item.key }}" 
+    data-variant-id="{{ line_item.variant.id }}"
+    data-properties='{{ line_item.properties | json }}' 
+    data-warranty='{{ warranty_json | json }}'
+>
+    <div class="cart-item__image">
+        {%- liquid 
+            assign classes = 'cover'
+            if line_item.product.metafields.custom.image_fit == 'contain'
+                assign classes = 'contain'
+            endif
+        -%}
+        {%- render 'image', 
+            image: line_item.image, 
+            sizes: '767:120,768:240',
+            class: classes
+        -%}
+    </div>
+    <div class="cart-item__content">
+        <h2 href="{{ line_item.product.url }}" class="f-16"><a href="{{ line_item.url }}">{{ line_item.product.title }}</a></h2>
+        {%- for variant in line_item.product.variants -%}
+            {%- if variant.metafields.custom.subtitle != blank -%}
+                {%- unless variant.metafields.custom.subtitle == 'Farbe wählbar' -%}
+                    <p class="cart-item__subtitle f-14 gray">{{ variant.metafields.custom.subtitle }}</p>
+                    {%- break -%}
+                {%- endunless -%}
+            {%- endif -%}
+        {%- endfor -%}
+
+        {%- if properties != blank -%}
+            <ul class="cart-item__content__properties">
+                {{ properties }}
+            </ul>         
+        {%- endif -%}
+
+        <div class="cart-item__unit-price">
+            {%- if line_item.line_level_total_discount > 0 -%}  
+                {%- assign unit_price = line_item.original_price | money -%}
+                <span class="f-14 w-bold">{{ line_item.price | money }}</span>
+                <del class="f-12 w-medium gray">{{ 'product.unit_price' | t: price: unit_price }}</del>
+            {%- else -%}
+                <span class="f-14 w-bold">{{ 'product.unit_price' | t: price: unit_price }}</span>
+            {%- endif -%}
+            {%- for discount in line_item.line_level_discount_allocations -%}
+                <span class="cart-item__discount f-11 w-medium upper">
+                    {{ discount.discount_application.title }}:
+                    {% if discount.discount_application.value_type == 'percentage' %}
+                        -{{ discount.discount_application.value | ceil }}%
+                    {% else %}
+                        -{{ discount.discount_application.value | money }}
+                    {% endif %}
+                </span>
+            {%- endfor -%}
+        </div>
+    </div>
+    <div class="cart-item__actions">
+        <div class="cart-item__actions__prices">
+            {%- render 'line-item-price', line_item: line_item -%}
+        </div>
+        <div class="cart-item__actions__qty">
+            {%- render 'quantity', value: line_item.quantity, min: 1, max: max_amount, product: line_item.product -%}
+        </div>
+        <div class="cart-item__actions__remove">
+            <a href="{{ line_item.url_to_remove }}">
+                {%- render 'svg-icon', name: 'trash' -%}
+            </a>
+        </div>
+    </div>
+    {%- if warranty_metaobject -%}
+        <details class="cart-item__warranty" data-warranty-key="{{ "upsell.warranty" | t }}" data-warranty-name="{{ warranty_metaobject.name }}">
+            <summary>
+                <div class="cart-item__warranty__checkmark">
+                    <label for="warranty_{{ line_item.key }}" class="checkbox">
+                        <input type="checkbox" id="warranty_{{ line_item.key }}" {%- if selected_warranty != nil -%}checked{%- endif -%}>
+                        {%- render 'svg-icon', name: 'checkbox' -%}
+                        <div class="cart-item__warranty__description">
+                            <span class="w-medium">{{ warranty_metaobject.name }}</span>
+                            <span class="w-bold">
+                                {%- assign warranty_price = warranty_price | times: 100 -%}
+                                +{%- render 'price', price: warranty_price -%}
+                            </span>
+                        </div>
+                    </label>
+                </div>
+                {%- if warranty_description != blank -%}
+                <div class="cart-item__warranty__toggle">
+                    {%- render 'svg-icon', name: 'chevron-down' -%}
+                </div>
+                {%- endif -%}
+            </summary>
+            {%- if warranty_description != blank -%}
+            <div class="cart-item__warranty__content">
+                <div class="richtext richtext--small richtext--table-border">
+                    {{ warranty_description }}
+                </div>
+            </div>
+            {%- endif -%}
+        </details>
+    {%- endif -%}
+</cart-item>

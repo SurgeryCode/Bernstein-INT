@@ -1,0 +1,286 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-category",
+      "settings": {
+        "heading": "",
+        "description": "<p>Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.<\/p>"
+      }
+    },
+    "custom_html_qEUNJH": {
+      "type": "custom-html",
+      "settings": {
+        "title": "",
+        "custom_HTML": "<body>\n\n\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Wandnischen<\/title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f0f0f0;\n            margin: 0;\n            padding: 0;\n        }\n        .container {\n            max-width: 1200px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n        .header {\n            text-align: center;\n            margin-bottom: 20px;\n        }\n        .options {\n            display: flex;\n            justify-content: space-around;\n            margin-bottom: 40px;\n        }\n        .option {\n            text-align: center;\n        }\n        .option img {\n            width: 100px;\n            height: auto;\n        }\n        .materials {\n            display: flex;\n            justify-content: space-around;\n        }\n        .material {\n            text-align: center;\n            background-color: #fff;\n            padding: 20px;\n            border-radius: 8px;\n            box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n            width: 45%;\n        }\n        .material img {\n            width: 100%;\n            height: auto;\n            border-radius: 8px;\n        }\n    <\/style>\n\n\n\n<div class=\"container\">\n    <div class=\"header\">\n        <h1>Wählen Sie die gewünschte Ausführung:<\/h1>\n    <\/div>\n    <div class=\"options\">\n        <div class=\"option\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0675\/6158\/6915\/files\/Wandnische_Rand_1.png?v=1719999813\" alt=\"Randlos (befliesbar)\">\n            <p>Randlos (befliesbar)<\/p>\n        <\/div>\n        <div class=\"option\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0675\/6158\/6915\/files\/Wandnische_LEDSpot_2.png?v=1719999813\" alt=\"Mit Rahmen\">\n            <p>Mit Rahmen<\/p>\n        <\/div>\n        <div class=\"option\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0675\/6158\/6915\/files\/Wandnische_Ablagefach_2.png?v=1719999813\" alt=\"Mit Ablage \/ Trennwand\">\n            <p>Mit Ablage \/ Trennwand<\/p>\n        <\/div>\n        <div class=\"option\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0675\/6158\/6915\/files\/Wandnische_LEDSpot_2.png?v=1719999813\" alt=\"Mit LED-Spots\">\n            <p>Mit LED-Spots<\/p>\n        <\/div>\n    <\/div>\n\n    <div class=\"header\">\n        <h1>Wandnischen nach Material<\/h1>\n    <\/div>\n    <div class=\"materials\">\n        <div class=\"material\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0675\/6158\/6915\/files\/Wandnischen-Edelstahl_2_1.jpg?v=1720000635\" alt=\"Wandnischen aus Edelstahl\">\n            <p>Wandnischen aus Edelstahl<\/p>\n        <\/div>\n        <div class=\"material\">\n            <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0675\/6158\/6915\/files\/Wandnischen-Mineralguss_4_1.jpg?v=1720000537\" alt=\"Wandnischen aus Mineralguss\">\n            <p>Wandnischen aus Mineralguss<\/p>\n        <\/div>\n    <\/div>\n<\/div>\n\n\n<\/body>"
+      }
+    },
+    "product_carousel_hNfgrr": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_g6aBFX": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "wandnischen"
+          }
+        }
+      },
+      "block_order": [
+        "category_g6aBFX"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    },
+    "inspirations_mk6HMA": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_KewRi9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-5"
+          }
+        },
+        "manual_GJ9Rxd": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        }
+      },
+      "block_order": [
+        "manual_KewRi9",
+        "manual_GJ9Rxd"
+      ],
+      "settings": {
+        "heading": "Wandnischen",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "promo_banner_gL3VyX": {
+      "type": "promo-banner",
+      "blocks": {
+        "manual_6kNqMD": {
+          "type": "manual",
+          "settings": {
+            "title": "unsere-aktuellen-aktionen"
+          }
+        }
+      },
+      "block_order": [
+        "manual_6kNqMD"
+      ],
+      "settings": {}
+    },
+    "images_6XiGrA": {
+      "type": "images",
+      "blocks": {
+        "collection_showcase_9m9nTF": {
+          "type": "collection_showcase",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection_showcase_9m9nTF"
+      ],
+      "settings": {
+        "background": false
+      }
+    },
+    "inspirations_ryBaxh": {
+      "type": "inspirations",
+      "blocks": {
+        "image_AfTkgf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/sitzplatze.webp"
+          }
+        },
+        "manual_3iTQr9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        }
+      },
+      "block_order": [
+        "image_AfTkgf",
+        "manual_3iTQr9"
+      ],
+      "settings": {
+        "heading": "Unsere Sitzplätze",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "inspirations_HBqUpn": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_BpRazm": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-4"
+          }
+        },
+        "manual_EcpxM3": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-5"
+          }
+        }
+      },
+      "block_order": [
+        "manual_BpRazm",
+        "manual_EcpxM3"
+      ],
+      "settings": {
+        "heading": "Badezimmerspiegel mit LED-Beleuchtung",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-1"
+      }
+    },
+    "inspirations_aej3jW": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_yTjWPF": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-5"
+          }
+        },
+        "manual_U3CfcL": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        },
+        "manual_yUVVVN": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-4wt4cdw5"
+          }
+        }
+      },
+      "block_order": [
+        "manual_yTjWPF",
+        "manual_U3CfcL",
+        "manual_yUVVVN"
+      ],
+      "settings": {
+        "heading": "Inspirationen von unseren Kunden",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify:\/\/pages\/inspirationen",
+        "link_title": "Gallerie ansehen",
+        "layout": "1-1-1"
+      }
+    },
+    "images_LdBwUR": {
+      "type": "images",
+      "blocks": {
+        "content_iWRrUt": {
+          "type": "content",
+          "settings": {
+            "heading": "Wandnischen",
+            "heading_tag": "2",
+            "description": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+            "link_url": "#",
+            "link_title": "Anzeigen",
+            "image_1": "shopify:\/\/shop_images\/Wandnischen-1.webp",
+            "image_2": "shopify:\/\/shop_images\/Wandnischen-2.webp"
+          }
+        }
+      },
+      "block_order": [
+        "content_iWRrUt"
+      ],
+      "settings": {
+        "background": true
+      }
+    },
+    "featured_articles_yCTNUL": {
+      "type": "featured-articles",
+      "disabled": true,
+      "settings": {
+        "heading": "Viel Spaß mit unseren Artikeln",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify:\/\/blogs\/articles",
+        "link_title": "Alle Artikel ansehen",
+        "background": true
+      }
+    },
+    "collapsible_text_collection_AEeyBw": {
+      "type": "collapsible-text-collection",
+      "settings": {
+        "alignment": "left",
+        "lines_desktop": 5,
+        "lines_mobile": 5
+      }
+    },
+    "brand_adventages_eB6RrL": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_NVk8Gp": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-design.svg",
+            "title": "Individuelles Design von Bernstein"
+          }
+        },
+        "item_9zJC7Y": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-delivery.svg",
+            "title": "Lieferung innerhalb von 3-5 Tagen"
+          }
+        },
+        "item_9p7xRN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/icon-customer.svg",
+            "title": "Persönliche Herangehensweise an jede Bestellung"
+          }
+        }
+      },
+      "block_order": [
+        "item_NVk8Gp",
+        "item_9zJC7Y",
+        "item_9p7xRN"
+      ],
+      "settings": {
+        "heading": "Markenvorteile",
+        "heading_tag": "3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_html_qEUNJH",
+    "product_carousel_hNfgrr",
+    "inspirations_mk6HMA",
+    "promo_banner_gL3VyX",
+    "images_6XiGrA",
+    "inspirations_ryBaxh",
+    "inspirations_HBqUpn",
+    "inspirations_aej3jW",
+    "images_LdBwUR",
+    "featured_articles_yCTNUL",
+    "collapsible_text_collection_AEeyBw",
+    "brand_adventages_eB6RrL"
+  ]
+}

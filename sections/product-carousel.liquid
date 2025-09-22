@@ -1,0 +1,183 @@
+<link rel="stylesheet" href="{{ 'section-product-carousel.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-tabs.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
+    {{ 'component-tabs.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'tabs.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-carousel.js' | asset_url }}" defer="defer"></script>
+
+<div class="container">
+    {%- if section.settings.heading != blank -%}
+        <div class="heading">
+            <div class="heading__text">
+                <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                {%- if section.settings.heading_text != blank -%}
+                    <div class="richtext richtext--gray">
+                        <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                    </div>
+                {%- endif -%}
+            </div>
+            {%- if section.settings.link_title -%}
+                <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                    <span>{{ section.settings.link_title }}</span>
+                </a>
+            {%- endif -%}
+        </div>
+    {%- endif -%}
+    
+    <tabs-section class="tabs {% if section.settings.heading == blank %}product-carousel__no-margin{% endif %}">
+        {%- if section.blocks.size > 1 -%}
+            <nav class="tabs__menu chips chips--scroll"> 
+                <ul>
+                    {%- for block in section.blocks -%}
+                        <li>
+                            <button
+                                class="button button--gray button--small"
+                                aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+                                aria-controls="{{ block.settings.title | handleize }}-{{ section.id }}">
+                                    {{ block.settings.title }}
+                            </button>
+                        </li>
+                    {%- endfor -%}
+                </ul>
+            </nav>
+        {%- endif -%}
+
+        {%- for block in section.blocks -%}
+            <product-carousel 
+                id="{{ block.settings.title | handleize }}-{{ section.id }}"
+                class="product-carousel tabs__content {% if forloop.first %}tabs__content--active tabs__content--visible{% endif %}">
+                    <div class="swiper">
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                {%- for product in block.settings.products -%}
+                                    <div class="swiper-slide">
+                                        {%- render 'product-item', product: product -%}
+                                    </div>
+                                {%- endfor -%}
+                                {%- for product in block.settings.collection.products limit: 8 -%}
+                                    <div class="swiper-slide">
+                                        {%- render 'product-item', product: product -%}
+                                    </div>
+                                {%- endfor -%}
+                            </div>
+                        </div>
+                        <div class="product-carousel__arrows">
+                            <button 
+                                class="arrow arrow--left"
+                                title="{{ 'accessibility.prev_slide' | t }}"
+                                aria-label="{{ 'accessibility.prev_slide' | t }}">
+                                {%- render 'svg-icon', name: 'chevron-left' -%}
+                            </button>
+                            <button 
+                                class="arrow arrow--right"
+                                title="{{ 'accessibility.next_slide' | t }}"
+                                aria-label="{{ 'accessibility.next_slide' | t }}">
+                                {%- render 'svg-icon', name: 'chevron-right' -%}
+                            </button>
+                        </div>
+                        <div class="swiper-scrollbar"></div>
+                    </div>
+            </product-carousel>
+        {%- endfor -%}
+    </tabs-section>
+
+    {%- if section.settings.link_title -%}
+        <div class="section__read-more">
+            <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ section.settings.link_title }}</span>
+            </a>
+        </div>
+    {%- endif -%}
+</div>
+
+
+{% schema %}
+{
+  "name": "Product Carousel",
+  "tag": "section",
+  "class": "section section--product-carousel margin",
+  "settings": [
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1"
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    },
+    {
+        "type": "header",
+        "content": "Link"
+    },
+    {
+        "type": "url",
+        "id": "link_url",
+        "label": "URL"
+    },
+    {
+        "type": "text",
+        "id": "link_title",
+        "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+        "type": "category",
+        "name": "Category",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "product_list",
+                "id": "products",
+                "label": "Products",
+                "info": "Select only specific products"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "Collection",
+                "info": "Select the whole collection" 
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel",
+      "blocks": [
+        {
+            "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

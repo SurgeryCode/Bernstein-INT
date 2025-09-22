@@ -1,0 +1,66 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "173807521949938685": {
+      "type": "apps",
+      "settings": {}
+    },
+    "content_XYiH3x": {
+      "type": "content",
+      "settings": {
+        "heading": "Duravit",
+        "text": "",
+        "embed": "<p><iframe title=\"YouTube video player\" src=\"https://www.youtube.com/embed/548tnQQR24U?si=gOc4Lv8Bl5q5cbv3\" height=\"500\" width=\"900\"></iframe></p>\n<p> </p>\n<p> </p>\n<p><img alt=\"\" src=\"https://cdn.shopify.com/s/files/1/0924/0985/6313/files/DuravitLogo_rgb_800px_1.png?v=1742824627\"><br></p>\n<table height=\"358\" width=\"100%\" style=\"width: 80.2512%;\">\n<tbody>\n<tr>\n<td style=\"width: 26.2376%;\"> \n<p>Was braucht dein Badezimmer, um deinen Tag ein Stück besser zu machen? Jeden Tag. In jeder Lebenslage. Upgrade your Everyday – mit Duravit.</p>\n<p>Entdecke exklusive Designprodukte von Duravit im Bernstein Badshop und frische dein Badezimmer auf.</p>\n</td>\n<td style=\"width: 32.797%;\">\n<p><strong>Authentisches Design</strong></p>\n<p>Original Duravit Design. Von unseren Design Experten. Seit 1817.</p>\n</td>\n<td style=\"width: 18.7411%;\">\n<p><strong>Hohe Qualität</strong><br></p>\n<p>Unsere Produkte sind bekannt für ihre Qualität. Auch zum Einstiegspreis.</p>\n</td>\n<td style=\"width: 21.5523%;\">\n<p><strong>Durchdachte Funktion</strong></p>\n<p>Was brauchst du wirklich? Ein Bad, das immer für dich da ist. Funktioniert.</p>\n</td>\n</tr>\n</tbody>\n</table>",
+        "embed_aspect_ratio_desktop": "16/9",
+        "embed_aspect_ratio_mobile": "4/3"
+      }
+    },
+    "images_RY6XzC": {
+      "type": "images",
+      "blocks": {
+        "content_JigXGH": {
+          "type": "content",
+          "settings": {
+            "heading": "Was braucht dein Bad?",
+            "heading_tag": "2",
+            "description": "",
+            "link_url": "",
+            "link_title": "",
+            "image_1": "shopify://shop_images/2302315_MM_Bernstein_01-Badewannen.jpg",
+            "image_2": "shopify://shop_images/2302315_MM_Bernstein_02-Duschwannen.jpg",
+            "image_3": "shopify://shop_images/2302315_MM_Bernstein_03-Moebel.jpg",
+            "image_4": "shopify://shop_images/2302315_MM_Bernstein_04-Waschbecken.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "content_JigXGH"
+      ],
+      "settings": {
+        "background": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "173807521949938685",
+    "content_XYiH3x",
+    "images_RY6XzC"
+  ]
+}

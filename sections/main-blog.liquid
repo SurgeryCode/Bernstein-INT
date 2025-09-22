@@ -1,0 +1,114 @@
+{%- render 'breadcrumbs' -%}
+
+<div class="container">
+    <h1 class="main-blog__heading f-48">{{ section.settings.heading }}</h1>
+    {%- if blog.tags.size > 0 -%}
+        <nav class="chips chips--scroll main-blog__tabs">
+            <ul>
+                <li>
+                    <a href="{{ blog.url }}" class="button button--gray button--small" aria-expanded="{% if current_tags == nil %}true{% else %}false{% endif %}">{{ 'blog.all' | t }}</a>
+                </li>
+                {%- for tag in blog.all_tags -%}
+                    <li>
+                        <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="button button--gray button--small" aria-expanded="{% if current_tags contains tag %}true{% else %}false{% endif %}">
+                            {%- render 'translation', key: 'blog.tags', value: tag -%}
+                        </a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+        </nav>
+    {%- endif -%}
+    {%- paginate blog.articles by section.settings.posts_per_page -%}
+        {%- liquid
+            assign show_dates = section.settings.show_dates
+            assign banner = false
+            if section.settings.promo_banner_handle != '' and shop.metaobjects['collection_banner'][section.settings.promo_banner_handle]
+                assign banner = shop.metaobjects['collection_banner'][section.settings.promo_banner_handle]
+            endif
+        -%}
+        <blog-posts class="main-blog__listing">
+            {%- for article in blog.articles -%}
+                {%- if forloop.first -%}
+                    {%- render 'article-item', article: article, show_date: show_dates, card_size: 'big' -%}
+                {%- elsif forloop.index == 6 -%}
+                    {%- render 'article-item', article: article, show_date: show_dates, card_size: 'medium' -%}
+                {%- else -%}
+                    {%- render 'article-item', article: article, show_date: show_dates -%}
+                {%- endif -%}
+                {%- if forloop.index == section.settings.promo_banner_position and banner -%}
+                    {%- render 'collection-banner', data: banner, banner_size: section.settings.promo_banner_size -%}
+                {%- endif -%}
+            {%- endfor -%}
+        </blog-posts>
+
+        {%- render 'pagination', paginate: paginate, container_class: 'blog' -%}
+    {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+    "name": "Main Blog",
+    "tag": "section",
+    "class": "section section--blog main-blog",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Blog"
+        },
+        {
+            "type": "range",
+            "id": "posts_per_page",
+            "label": "Posts per page",
+            "min": 6,
+            "max": 36,
+            "step": 1,
+            "default": 15
+        },
+        {
+            "type": "text",
+            "id": "promo_banner_handle",
+            "label": "Promo banner handle",
+            "info": "Enter the handle of the promo banner you want to display. Found in Content->Metaobjects->Promo-Banner. Example: 'unsere-aktuellen-aktionen'",
+            "default": "unsere-aktuellen-aktionen"
+        },
+        {
+            "type": "select",
+            "id": "promo_banner_size",
+            "label": "Promo banner size",
+            "options": [
+                {
+                    "value": "full",
+                    "label": "Full"
+                },
+                {
+                    "value": "half",
+                    "label": "Medium"
+                },
+                {
+                    "value": "quarter",
+                    "label": "Small"
+                }
+            ],
+            "default": "full"
+        },
+        {
+            "type": "range",
+            "id": "promo_banner_position",
+            "label": "Promo banner position",
+            "info": "After which card the banner will appear.",
+            "min": 1,
+            "max": 36,
+            "step": 1,
+            "default": 9
+        },
+        {
+            "type": "checkbox",
+            "id": "show_dates",
+            "label": "Show publication dates",
+            "default": true
+        }
+    ]
+}
+{% endschema %}

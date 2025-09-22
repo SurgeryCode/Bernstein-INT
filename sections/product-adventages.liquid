@@ -1,0 +1,81 @@
+{%- capture content -%}
+    {%- for i in (1..10) -%}
+        {%- liquid 
+            assign key_image = 'adventages_' | append: i | append: '_image'
+            assign key_text = 'adventages_' | append: i | append: '_text'
+        -%}
+        {%- for variant in product.variants -%}
+            {%- if variant.metafields.custom[key_text] != blank -%}
+                <div class="swiper-slide" data-variant-detail="{{ variant.id }}">
+                    <div class="product-adventages__item">
+                        <div class="product-adventages__image">
+                            {%- if variant.metafields.custom[key_image] != blank -%}
+                                <picture class="media media--image media--cover">
+                                    <img src="{{ variant.metafields.custom[key_image] }}" alt="{{ variant.title }}" loading="lazy">
+                                </picture>
+                            {%- endif -%}
+                        </div>
+                        <div class="product-adventages__text">                            
+                            <div class="richtext richtext--gray">
+                                {{ variant.metafields.custom[key_text] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+{%- if content != blank -%}
+    <link rel="stylesheet" href="{{ 'section-product-adventages.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'section-product-adventages.css' | asset_url | stylesheet_tag }}</noscript>
+    <script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-adventages.js' | asset_url }}" defer="defer"></script>
+
+    <product-adventages class="product-adventages margin">
+        <div class="container">
+            <div class="swiper">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {{ content }}
+                    </div>
+                </div>
+
+                <div class="product-adventages__arrows">
+                    <button 
+                        class="arrow arrow--left"
+                        title="{{ 'accessibility.prev_slide' | t }}"
+                        aria-label="{{ 'accessibility.prev_slide' | t }}">
+                            {%- render 'svg-icon', name: 'chevron-left' -%}
+                    </button>
+                    <button 
+                        class="arrow arrow--right"
+                        title="{{ 'accessibility.next_slide' | t }}"
+                        aria-label="{{ 'accessibility.next_slide' | t }}">
+                            {%- render 'svg-icon', name: 'chevron-right' -%}
+                    </button>
+                </div>
+
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+    </product-adventages>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Advantages",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "class": "section section--product-adventages",
+  "presets": [
+    {
+      "name": "Product Advantages"
+    }
+  ]
+}
+{% endschema %}

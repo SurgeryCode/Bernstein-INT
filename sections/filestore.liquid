@@ -1,0 +1,251 @@
+{%- liquid
+    assign bathtub_items = shop.metaobjects['filestore_bathtub'].values | sort_natural: 'order'    
+    assign furniture_items = shop.metaobjects['filestore_furniture'].values | sort_natural: 'order'    
+    assign shower_items = shop.metaobjects['filestore_shower'].values | sort_natural: 'order'    
+    assign armature_items = shop.metaobjects['filestore_armature'].values | sort_natural: 'order'    
+    assign washbasin_items = shop.metaobjects['filestore_washbasin'].values | sort_natural: 'order'    
+    assign toilet_items = shop.metaobjects['filestore_toilet'].values | sort_natural: 'order'    
+    assign heating_items = shop.metaobjects['filestore_heating'].values | sort_natural: 'order'    
+    assign other_items = shop.metaobjects['filestore_other'].values | sort_natural: 'order'    
+
+    assign all_items = bathtub_items | concat: furniture_items | concat: shower_items | concat: armature_items | concat: washbasin_items | concat: toilet_items | concat: heating_items | concat: other_items
+
+    assign count_type_montage = 0
+    assign count_type_schematics = 0
+    assign count_type_images = 0
+    assign count_type_certificate = 0
+    assign count_type_marketing = 0
+
+    for item in all_items
+        case item.type
+          when 'montage'
+            assign count_type_montage = count_type_montage | plus: 1
+          when 'schematics'
+            assign count_type_schematics = count_type_schematics | plus: 1
+          when 'images'
+            assign count_type_images = count_type_images | plus: 1
+          when 'certificate'
+            assign count_type_certificate = count_type_certificate | plus: 1
+          when 'marketing'
+            assign count_type_marketing = count_type_marketing | plus: 1
+        endcase
+    endfor
+-%}
+
+<script src="{{ 'modal.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'filestore.js' | asset_url }}" defer="defer"></script>
+
+{%- render 'breadcrumbs' -%}
+
+<div class="container">
+    <filestore-section>
+        <div class="filestore__heading-hld">
+            <h1 class="filestore__heading f-48">{{ section.settings.heading }}</h1>
+            <form action="{{ page.url }}" method="get" role="filter" class="filestore__search" autocomplete="off">
+                {%- render 'svg-icon', name: 'search' -%}
+                <input 
+                    type="search" 
+                    id="filestore-search"
+                    name="filter_name" 
+                    placeholder="{{ 'filestore.find_file' | t }}"
+                    class="f-14 w">
+            </form>
+        </div>
+        {%- if section.blocks.size > 0 -%}
+            <div class="filestore__filters-hld">
+                {%- for item in section.blocks -%}
+                    {%- if item.type == 'main_category' -%}
+                        <button class="filestore__main-category js-filestore-main-category" aria-expanded="false" data-main-category="{{ item.settings.main_key }}">
+                            {%- if item.settings.icon != blank -%}
+                                <img src="{{ item.settings.icon | image_url: width: 48, height: 48  }}" width="48" height="48" alt="{{ item.settings.name }}" loading="eager">
+                            {%- endif -%}
+                            {%- if item.settings.name != blank -%}
+                                <span class="w-medium">{{ item.settings.name }}</span>
+                            {%- endif -%}
+                            {%- render 'svg-icon', name: 'chevron-down' -%}
+                        </button>
+                    {%- endif -%}
+                    {%- if item.type == 'sub_category' -%}
+                        <button class="filestore__sub-category js-filestore-sub-category" aria-hidden="true" aria-expanded="false" data-main-category="{{ item.settings.main_key }}" data-sub-category="{{ item.settings.sub_key }}">
+                            <div>
+                                {%- if item.settings.image != blank -%}
+                                    <img src="{{ item.settings.image | image_url: width: 135, height: 90 }}" width="48" height="48" alt="{{ item.settings.name }}" loading="lazy">
+                                {%- endif -%}
+                            </div>
+                            {%- if item.settings.name != blank -%}
+                                <span class="w-medium">{{ item.settings.name }}</span>
+                            {%- endif -%}
+                        </button>
+                    {%- endif -%}
+                {%- endfor -%}
+                <div class="filestore__category-separator" aria-hidden="true"></div>
+            </div>
+            <div class="filestore__filters-button js-filestore-open-filters-hld">
+                <button class="button button--large" aria-controls="drawer-filestore-filters">{{ 'filestore.filters' | t }}</button>
+            </div>
+        {%- endif -%}
+        <div class="filestore__main-hld">
+            <div class="filestore__title-hld">
+                <h2 class="f-32 filestore__title">{{ section.settings.title }}</h2>
+            </div>
+            <div class="filestore__main"> 
+                <div class="filestore__tabs-hld">
+                    <nav class="chips chips--scroll filestore__tabs">
+                        <ul>
+                            <li>
+                                <button class="button button--gray button--small js-filestore-type" aria-expanded="true" data-type="">{{ 'filestore.type_all' | t }}</button>
+                            </li>
+                            {%- if count_type_montage > 0 -%}
+                                <li>
+                                    <button class="button button--gray button--small js-filestore-type" aria-expanded="false" data-type="montage">{{ 'filestore.type_montage' | t }}</button>
+                                </li>
+                            {%- endif -%}
+                            {%- if count_type_schematics > 0 -%}
+                                <li>
+                                    <button class="button button--gray button--small js-filestore-type" aria-expanded="false" data-type="schematics">{{ 'filestore.type_schematics' | t }}</button>
+                                </li>
+                            {%- endif -%}
+                            {%- if count_type_images > 0 -%}
+                                <li>
+                                    <button class="button button--gray button--small js-filestore-type" aria-expanded="false" data-type="images">{{ 'filestore.type_images' | t }}</button>
+                                </li>
+                            {%- endif -%}
+                            {%- if count_type_certificate > 0 -%}
+                                <li>
+                                    <button class="button button--gray button--small js-filestore-type" aria-expanded="false" data-type="certificate">{{ 'filestore.type_certificate' | t }}</button>
+                                </li>
+                            {%- endif -%}
+                            {%- if count_type_marketing > 0 -%}
+                                <li>
+                                    <button class="button button--gray button--small js-filestore-type" aria-expanded="false" data-type="marketing">{{ 'filestore.type_marketing' | t }}</button>
+                                </li>
+                            {%- endif -%}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="filestore__files js-filestore-list" data-main-category="" data-sub-category="" data-type="" data-search="">
+                    {%- if bathtub_items.size > 0 -%}
+                        {%- for item in bathtub_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'bathtub' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if furniture_items.size > 0 -%}
+                        {%- for item in furniture_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'furniture' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if shower_items.size > 0 -%}
+                        {%- for item in shower_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'shower' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if armature_items.size > 0 -%}
+                        {%- for item in armature_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'armature' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if washbasin_items.size > 0 -%}
+                        {%- for item in washbasin_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'washbasin' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if toilet_items.size > 0 -%}
+                        {%- for item in toilet_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'toilet' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if heating_items.size > 0 -%}
+                        {%- for item in heating_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'heating' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if other_items.size > 0 -%}
+                        {%- for item in other_items -%}
+                            {% render 'filestore-item', item: item, main_category: 'other' %}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    <div class="filestore__no-results js-filestore-no-results" aria-hidden="true">
+                        <span class="f-32">{{ 'filestore.no_results' | t }}</span>
+                        <div class="filestore__no-results-btn-hld">
+                            <a href="{{ page.url }}" class="button button--large">{{ 'filestore.clear_filters' | t }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </filestore-section>
+</div>
+
+{% schema %}
+{
+    "name": "Filestore",
+    "tag": "section",
+    "class": "section section--filestore",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Dateispeicher"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title",
+            "default": "Alle Dateien"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "main_category",
+            "name": "Main category",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "name",
+                    "label": "Name"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Icon"
+                },
+                {
+                    "type": "text",
+                    "id": "main_key",
+                    "label": "Key",
+                    "info": "Subcategories should have the same key as the main category. Please don't translate it - only default language allowed."
+                }
+            ]
+        },
+        {
+            "type": "sub_category",
+            "name": "Sub category",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "name",
+                    "label": "Name"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "text",
+                    "id": "main_key",
+                    "label": "Key",
+                    "info": "Subcategories should have the same key as the main category. Please don't translate it - only default language allowed."
+                },
+                {
+                    "type": "text",
+                    "id": "sub_key",
+                    "label": "Subcategory tag",
+                    "info": "Tag from the defined metaobjects dropdown"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

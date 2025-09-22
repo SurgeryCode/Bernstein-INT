@@ -1,0 +1,43 @@
+{%- liquid
+    assign subtitle = ''
+    for variant in product.variants
+        if variant.metafields.custom.subtitle != blank
+            assign subtitle = subtitle | append: variant.metafields.custom.subtitle | append: '||'
+        endif
+    endfor
+    assign subtitle = subtitle | split: '||' | uniq
+-%}
+<div class="product__header">    
+    {%- for variant in product.variants -%}
+        {%- if variant.metafields.custom.brand != blank -%}
+            <div class="product__brand">
+                {%- render 'brand-logo', name: variant.metafields.custom.brand -%}
+            </div> 
+            {%- break -%}
+        {%- endif -%}
+    {%- endfor -%}
+
+    <h1 class="f-32">{{ product.title }}</h1>
+
+    {%- if subtitle.size > 1 -%} 
+        {%- for variant in product.variants -%}
+            {%- if variant.metafields.custom.subtitle != blank -%}
+                <p class="product__sku f-16 gray {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}" data-variant-detail="{{ variant.id }}">{{ variant.metafields.custom.subtitle }}</p>
+            {%- endif -%}
+        {%- endfor -%}
+    {%- else -%}
+        <p class="f-16 gray">{{ subtitle[0] }}</p>
+    {%- endif -%}
+
+    {%- for variant in product.variants -%}
+        <div class="product__sku {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}" data-variant-detail="{{ variant.id }}">
+            <p class="f-11 w-medium gray">{{ 'product.sku' | t: sku: variant.sku }}</p>   
+        </div>
+    {%- endfor -%}
+
+    {%- render 'product-rate', product: product -%}
+
+    {%- for variant in product.variants -%}
+        {%- render 'product-price', variant: variant, extended: true -%}
+    {%- endfor -%}
+</div>

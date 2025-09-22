@@ -1,0 +1,14 @@
+<article class="article-item">
+    <h3 class="f-24 w-bold">
+        <a href="{{ item.url }}" class="text-link text-link--strong">
+            <span>{{ item.title }}</span>
+        </a>
+    </h3>
+    <div class="richtext richtext--gray">
+        {{ item.content | strip_html }}
+    </div>
+    
+    <div class="article-item__footer">
+        <a href="{{ item.url }}" class="button button--xlarge button--outline">{{ 'accessibility.read_more' | t }}</a>
+    </div>
+</article>

@@ -1,0 +1,19 @@
+{%- if section.settings.text -%}
+    <div class="account-content__text richtext richtext--gray">
+        {{ section.settings.text }}
+    </div>
+{%- endif -%}
+
+{% schema %}
+{
+    "name": "Account profile",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Überprüfen Sie Ihre persönlichen Daten.</p>"
+        }
+    ]
+}
+{% endschema %}

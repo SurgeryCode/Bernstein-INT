@@ -1,0 +1,310 @@
+{%- liquid 
+    assign has_configurator = false
+    assign has_accesories = false
+    assign configure_variant_label = 'product.dimmensions' | t
+    for variant in product.variants
+        if variant.metafields.configurator.json.value != blank
+            assign has_configurator = true
+        endif 
+
+        if variant.metafields.custom.ProductAssembly != blank
+            assign recommendations = variant.metafields.custom.ProductAssembly | split: ','
+            for sku in recommendations
+                unless product.selected_or_first_available_variant.sku == sku
+                    assign has_accesories = true
+                endunless
+            endfor
+        endif
+    endfor
+    assign product_color_options = settings.product_color_options | split: ','
+    assign variants = variants | replace: '}{', '},{'
+    assign current_variant = product.selected_or_first_available_variant
+    assign current_variant_values = ''
+    for value in current_variant.options
+        assign current_variant_values = current_variant_values | append: value | append: ','
+    endfor
+    assign current_variant_values = current_variant_values | split: ','
+
+    assign in_stock = current_variant.inventory_quantity
+    if current_variant.inventory_policy == 'continue'
+        assign in_stock = 999
+    else
+        for line_item in cart.items
+            if line_item.variant.id == current_variant.id
+                assign in_stock = in_stock | minus: line_item.quantity
+            endif
+        endfor
+    endif
+-%} 
+
+<product-form class="product-form">
+    {%- form 'product', product, class: 'product-form__container', novalidate: true -%}
+        <input type="hidden" name="product-id" value="{{ product.id }}">
+
+        {%- if product.has_only_default_variant -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {%- else -%}
+            <select name="id">
+                {%- for variant in product.variants -%}
+                    <option value="{{ variant.id }}" {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}>{{ variant.title }}</option>
+                {%- endfor -%}
+            </select>
+
+            {%- for option in product.options_with_values -%}
+                {%- liquid 
+                    assign index = forloop.index0
+                    assign handle = option.name | handleize
+                    assign current_value = current_variant_values[index] | lstrip | rstrip
+                -%}
+                {%- if has_configurator and product.options.size > 1 -%}
+                    {% if product_color_options contains option.name %}
+                        {%- assign configure_variant_label = 'product.color_and_dimmensions' | t: color: option.name -%}
+                    {%- endif -%}
+                    <input 
+                        type="hidden" 
+                        id="{{ handle }}" 
+                        value="{{ current_value }}"
+                        data-product-option="{{ index }}" 
+                        required>
+                {%- else -%}
+                    <product-options class="product-options product-options--{{ handle }}" data-handle="{{ handle }}">
+                        <input 
+                            type="hidden" 
+                            id="{{ handle }}" 
+                            value="{{ current_value }}"
+                            data-product-option="{{ index }}" 
+                            required>
+                        <div class="product-options__label">
+                            <label for="{{ handle }}" class="w-medium">
+                                {{ option.name }}: 
+                                {% if product_color_options contains option.name %}
+                                    <span class="f-14 w-medium gray" data-current-option>{{ current_value }}</span>
+                                {% endif %}
+                            </label>
+                            {%- for entry in shop.metaobjects['product_option_description'].values -%}
+                                {%- if entry.name == option.name -%}
+                                    {%- if entry.description != blank -%}
+                                        <div class="tooltip">
+                                            {%- render 'svg-icon', name: 'info' -%}
+                                            <div class="tooltip__caption f-12 w-bold">{{ entry.description }}</div>
+                                        </div>
+                                    {%- endif -%}
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </div>
+
+                        <chips-select class="chips chips--select chips--scroll {% if product_color_options contains option.name %}chips--colors{% endif %}">
+                            {%- if product_color_options contains option.name -%}
+                                {%- render 'product-item-colors', product: product, pdp: true, current_value: current_value -%}
+                            {%- else -%}
+                                <ul class="product-options__list">
+                                    {%- for value in option.values -%}
+                                        <li class="chips__item"> 
+                                            <input 
+                                                type="radio" 
+                                                id="option-{{ product.id }}-{{ index }}-{{ value | handleize }}"
+                                                name="product-option-{{ index }}" 
+                                                value="{{ value | replace: '  ', ' ' }}"
+                                                {% if value == current_value %}checked{% endif %}>
+                                            <label  
+                                                for="option-{{ product.id }}-{{ index }}-{{ value | handleize }}"
+                                                class="product-options__item button button--gray button--small">
+                                                    {{ value | replace: '  ', ' ' }}
+                                            </label>
+                                        </li>
+                                    {%- endfor -%}
+                                    <li class="chips__count">
+                                        <button 
+                                            type="button" 
+                                            class="button button--outline button--small"
+                                            title="{{ 'product.show_more_options' | t }}"
+                                            aria-label="{{ 'product.show_more_options' | t }}">+0</button>
+                                    </li>
+                                </ul>
+                            {%- endif -%}
+                        </chips-select>
+                    </product-options>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+
+        {%- if has_configurator -%}
+            {%- if product.options.size > 1 -%}
+                <product-configurator class="product-configurator selected" id="configurator-variants">
+                    <div class="product-configurator__option">
+                        <div class="product-configurator__label">
+                            <label 
+                                for="variants" 
+                                aria-controls="drawer-configurator-variants"
+                                class="w-medium">
+                                    {{ configure_variant_label }}: 
+                            </label>
+                        </div>
+                        <span class="f-14 w-medium gray" data-configurator-label>{{ current_variant.title }}</span>
+                    </div>
+                    <button 
+                        type="button"
+                        aria-controls="drawer-configurator-variants"
+                        class="text-link text-link--reverse f-14 w-medium upper spaced gray">
+                            <span>{{ 'configurator.change' | t }}</span>
+                    </button>
+                </product-configurator>
+            {%- endif -%}
+            
+            {%- for variant in product.variants -%}
+                {%- if variant.metafields.configurator.json.value != blank -%}
+                    {%- for option in variant.metafields.configurator.json.value -%}
+                        {%- assign id = 'configurator-' | append: variant.id | append: '-' | append: option.name | handleize -%}
+                        {%- unless option.type == 'warranty' -%}
+                            <product-configurator 
+                                class="product-configurator {% if product.selected_or_first_available_variant.id == variant.id %}selected{% endif %}" 
+                                data-variant-detail="{{ variant.id }}"
+                                id="{{ id }}">
+                                <div class="product-configurator__option">
+                                    <div class="product-configurator__label">
+                                        <label 
+                                            aria-controls="drawer-{{ id }}"
+                                            class="w-medium">
+                                            {{ option.name }}: 
+                                        </label>
+                                        {%- for entry in shop.metaobjects['product_option_description'].values -%}
+                                            {%- if entry.name == option.name -%}
+                                                {%- if entry.description != blank -%}
+                                                    <div class="tooltip">
+                                                        {%- render 'svg-icon', name: 'info' -%}
+                                                        <div class="tooltip__caption f-12 w-bold">{{ entry.description }}</div>
+                                                    </div>
+                                                {%- endif -%}
+                                            {%- endif -%}
+                                        {%- endfor -%}
+                                    </div>
+                                    <input 
+                                        type="hidden" 
+                                        value="{{ option.options[0].name }}" 
+                                        name="{{ option.name }}"
+                                        data-option-type="{{ option.type }}"
+                                        data-price-mod="{{ option.options[0].priceMod }}"
+                                        data-price-mod-money="{{ option.options[0].priceMod | times: 100 | money }}"
+                                        data-image="{{ option.options[0].image }}"
+                                        data-configurator-value>
+                                    <span class="f-14 w-medium gray" data-configurator-label>
+                                        {{ option.options[0].name }} 
+                                        {%- if option.options[0].priceMod > 0 -%}
+                                            <span class="f-12">(+{{ option.options[0].priceMod | times: 100 | money }})</span>
+                                        {%- endif -%}
+                                    </span>
+                                </div>
+                                <button 
+                                    type="button"
+                                    aria-controls="drawer-{{ id }}"
+                                    class="text-link text-link--reverse f-14 w-medium upper spaced gray">
+                                        <span>{{ 'configurator.change' | t }}</span>
+                                </button>
+                            </product-configurator>
+                        {%- endunless -%}
+                    {%- endfor -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endif -%}
+
+        
+        {%- if has_accesories -%}
+            <button 
+                type="button"
+                aria-controls="drawer-product-installation-accessories"
+                class="product-configurator selected w-medium">
+                    {{ 'upsell.heading_installation' | t }}
+                    {%- render 'svg-icon', name: 'plus' -%}
+            </button>
+        {%- endif -%}
+        
+        {%- for variant in product.variants -%}
+            {%- assign show_delivery_date = false -%}
+            <div 
+                class="product-form__info {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}"
+                data-variant-detail="{{ variant.id }}">
+                    <div class="product-form__info-stock w-medium">
+                        {%- if variant.available -%}
+                            {%- if variant.inventory_policy == 'continue' -%}
+                                {%- if variant.inventory_quantity > 0 -%}
+                                    <span class="status status--success">{{ 'product.in_stock_html' | t }}</span>
+                                    {%- assign show_delivery_date = true -%}
+                                {%- else -%}
+                                    {%- render 'product-preorder-date', variant: variant -%}
+                                {%- endif -%}
+                            {%- else -%}
+                                {%- if variant.inventory_quantity > 3 -%}
+                                    <span class="status status--success">{{ 'product.in_stock_html' | t }}</span>
+                                {%- else -%}
+                                    <span class="status status--danger">{{ 'product.in_stock_low_html' | t: count: variant.inventory_quantity }}</span>
+                                {%- endif -%}
+                                {%- assign show_delivery_date = true -%}
+                            {%- endif -%}
+                        {%- else -%}
+                            <span class="status status--warn">{{ 'product.out_of_stock_html' | t }}</span>
+                        {%- endif -%}                    
+                    </div>
+
+                    {%- if show_delivery_date -%}
+                        {%- assign dalivery_handle = variant.metafields.custom.shipping | default: 'spedition' -%}
+                        {%- assign delivery_info = shop.metaobjects['delivery_info'][dalivery_handle] -%}    
+                        <div class="product-form__info-date w-medium">
+                            {%- render 'svg-icon', name: 'delivery' -%}
+                            <div>
+                                <span>{{ 'delivery.title' | t }}:</span>
+                                <span class="gray">{{ 'delivery.prefix' | t }} <em data-delivery-date="{{ delivery_info.delivery_time_range_of_days }}"></em></span>
+                            </div>
+                        </div> 
+                    {%- endif -%}
+            </div>
+        {%- endfor -%}
+
+        <div class="product-form__submit">
+            {%- render 'quantity', min: 1, max: in_stock -%}
+            <button 
+                type="submit" 
+                class="button button--large"
+                {% unless current_variant.available %}disabled{% endunless %}>
+                    {{ 'product.add_to_cart' | t }}
+            </button>
+        </div>
+
+      {% comment %}
+        <div class="product-form__price-info">
+            {%- if customer.tags contains 'b2b' or customer.tags contains 'B2B' -%}
+                <p class="f-11 w-medium gray">{{ 'product.tax_excluded_html' | t }}</p>
+            {%- else -%}
+                <p class="f-11 w-medium gray">{{ 'product.tax_included_html' | t }}</p>
+            {%- endif -%}  
+        </div>
+      {% endcomment %}
+
+        <div class="product-form__availability-info">
+            <p class="f-16 w-medium gray">{{ 'product.availability_info' | t }}</p>
+        </div>
+
+       {% comment %} <div class="product-form__installments">
+            <a href="" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                {%- render 'svg-icon': name: 'cart-empty' -%}
+                {%- liquid
+                    if variant
+                      assign target = variant
+                    else
+                      assign target = product.selected_or_first_available_variant
+                    endif
+                  
+                    assign compare_at_price = target.compare_at_price
+                    assign price = target.price 
+                
+                    if compare_at_price > price
+                        assign p = compare_at_price | divided_by: 3 | money
+                    else
+                        assign p = price | divided_by: 3 | money
+                    endif
+                  -%}
+                <span>{{ 'product.pay_in_3' | t: price: p }}</span>
+            </a>
+        </div>
+      {% endcomment %}
+    {%- endform -%}
+</product-form>

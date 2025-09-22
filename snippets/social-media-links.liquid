@@ -1,0 +1,60 @@
+{%- if settings.instagram != blank -%}
+  <li>
+    <a 
+      href="{{ settings.instagram }}"
+      title="{{ 'social_media.instagram' | t }}" 
+      aria-label="{{ 'social_media.instagram' | t }}"
+      rel="noopener noreferrer"
+      target="_blank">
+        {%- render 'svg-icon', name: 'instagram' -%}
+    </a>
+  </li>
+{%- endif -%}
+{%- if settings.facebook != blank -%}
+  <li>
+    <a 
+      href="{{ settings.facebook }}"
+      title="{{ 'social_media.facebook' | t }}" 
+      aria-label="{{ 'social_media.facebook' | t }}"
+      rel="noopener noreferrer"
+      target="_blank">
+        {%- render 'svg-icon', name: 'facebook' -%}
+    </a>
+  </li>
+{%- endif -%}
+{%- if settings.pinterest != blank -%}
+  <li>
+    <a 
+      href="{{ settings.pinterest }}"
+      title="{{ 'social_media.pinterest' | t }}" 
+      aria-label="{{ 'social_media.pinterest' | t }}"
+      rel="noopener noreferrer"
+      target="_blank">
+        {%- render 'svg-icon', name: 'pinterest' -%}
+    </a>
+  </li>
+{%- endif -%}
+{%- if settings.linkedin != blank -%}
+  <li>
+    <a 
+      href="{{ settings.linkedin }}"
+      title="{{ 'social_media.linkedin' | t }}" 
+      aria-label="{{ 'social_media.linkedin' | t }}"
+      rel="noopener noreferrer"
+      target="_blank">
+        {%- render 'svg-icon', name: 'linkedin' -%}
+    </a>
+  </li>
+{%- endif -%}
+{%- if settings.youtube != blank -%}
+  <li>
+    <a 
+      href="{{ settings.youtube }}"
+      title="{{ 'social_media.youtube' | t }}" 
+      aria-label="{{ 'social_media.youtube' | t }}"
+      rel="noopener noreferrer"
+      target="_blank">
+        {%- render 'svg-icon', name: 'youtube' -%}
+    </a>
+  </li>
+{%- endif -%}

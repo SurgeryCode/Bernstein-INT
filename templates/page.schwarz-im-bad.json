@@ -1,0 +1,388 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_ApbLdB": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_LJrQbp": {
+          "type": "slide",
+          "settings": {
+            "badge": "",
+            "badge_text_color": "#000000",
+            "badge_background_color": "#ffffff",
+            "badge_padding": 22,
+            "subtitle": "Mehr als nur ein Trend",
+            "title": "Schwarzes Bad",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Teaser-schwarzes-bad.png",
+            "image_mobile": "shopify://shop_images/Mobile-black-bath.png",
+            "alignment_desktop": "left",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 0,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_LJrQbp"
+      ],
+      "disabled": true,
+      "settings": {
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_AQixpk": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_wdK8WX": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>BELIEBT</p>",
+            "badge_text_color": "#ffffff",
+            "badge_background_color": "#005a70",
+            "badge_padding": 22,
+            "subtitle": "Warum Schwarz im Bad mehr als nur ein Trend ist",
+            "title": "Schwarz im Bad",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_LP_Hero_schwarz-im-bad.jpg",
+            "image_tablet": "shopify://shop_images/Tablet_LP_Hero_schwarz-im-bad.jpg",
+            "image_mobile": "shopify://shop_images/Mobile_LP_Hero_schwarz-im-bad.jpg",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 10,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_wdK8WX"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 24,
+        "slide_height_mobile": 400,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "heading_subheading_eYBMjQ": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "Mehr als nur ein Trend.",
+        "heading_tag": "2",
+        "heading_width": 30,
+        "alignment": "left",
+        "description": "<p>Setze mit schwarzen Armaturen starke Akzente in Deinem Bad – minimalistisch, modern, aber dennoch elegant. Ob am Waschtisch oder in der Dusche: Schwarz bringt nicht nur Tiefe und Stil in Dein Badezimmer, sondern bringt eine enorme Hochwertigkeit mit hinein.</p>",
+        "subheading_width": 40,
+        "sub_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_links_Fgk6CC": {
+      "type": "product-links",
+      "name": "Product links",
+      "settings": {
+        "product_list": [
+          "schwarz-im-bad"
+        ]
+      }
+    },
+    "product_carousel_JwNWa7": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_i8whcU": {
+          "type": "category",
+          "settings": {
+            "title": "Waschtischarmaturen",
+            "products": [
+              "unterputz-armatur-badarmatur-wandarmatur-9908b",
+              "waschtischarmatur-badarmatur-wasserhahn-1233cb",
+              "waschtischarmatur-xx0539b",
+              "hochwertige-waschtischarmatur-badarmatur-8314",
+              "duravit-manhattan-einhebel-waschtischarmatur",
+              "duravit-tulum-by-starck-waschtischmischer"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_i8whcU"
+      ],
+      "settings": {
+        "heading": "Waschtischarmaturen",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/collections/waschtischarmaturen?filter.p.m.filter.Farbe=Schwarz&page=1&view=all",
+        "link_title": "Mehr ansehen"
+      }
+    },
+    "product_carousel_8LCLYd": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_6pxVj6": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "duravit-manhattan-einhebel-wannenmischer-unterputz",
+              "duravit-manhattan-einhebel-wannenmischer",
+              "duravit-manhattan-einhebel-waschtischarmatur-xl",
+              "duravit-manhattan-einhebel-brausemischer-unterputz-1",
+              "duravit-manhattan-einhebel-wannenmischer-1",
+              "duravit-manhattan-einhebel-brausemischer-unterputz",
+              "duravit-durasystem-betaetigungsplatte-beta-120-fuer-wc",
+              "duravit-manhattan-einhebel-waschtischarmatur-s"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_6pxVj6"
+      ],
+      "settings": {
+        "heading": "Duravit Armaturen",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/collections/duravit?filter.p.m.filter.Farbe=Schwarz&page=1&view=all",
+        "link_title": "Mehr ansehen"
+      }
+    },
+    "product_carousel_R48dBP": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_dbaPYh": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "duschsaeule-thermostat-8221-pro",
+              "duschsaeule-thermostat-4011-pro-schwarz",
+              "duschsystem-thermostat-bs371-1",
+              "aufputz-duschsystem-mit-sedal-thermostat-8921b-basic",
+              "duschsaeule-thermostat-nt6705-inkl-duschschlauch-und-handbrause",
+              "duravit-manhattan-einhebel-wannenmischer",
+              "duscharmatur-wandmischbatterie-4021-mit-thermostat-schwarz-matt",
+              "duravit-tulum-unterputz-duscharmatur-mit-regendusche",
+              "duschsystem-nt038-pro"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_dbaPYh"
+      ],
+      "settings": {
+        "heading": "Duscharmaturen & Duschsysteme",
+        "heading_tag": "2",
+        "link_url": "https://bernstein-badshop.de/collections/duscharmaturen?filter.p.m.filter.Farbe=Schwarz&page=1&view=all",
+        "link_title": "Mehr ansehen"
+      }
+    },
+    "product_carousel_G7kJGn": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_z8V9DA": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "freistehende-badewanne-wave-stone-aus-mineralguss",
+              "freistehende-badewanne-relax-aus-mineralguss",
+              "freistehende-badewanne-paris-acryl-1",
+              "freistehende-badewanne-wave-stone-mineralguss-1",
+              "duravit-duraberk-freistehende-badewanne-1"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_z8V9DA"
+      ],
+      "settings": {
+        "heading": "Schwarze Badewanne – unser Highlight",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    },
+    "heading_subheading_wGJaFU": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 64,
+        "layout": "column",
+        "heading": "Das könnte Dir auch gefallen",
+        "heading_tag": "3",
+        "heading_width": 50,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_list_element_YNzJf7": {
+      "type": "product-list-element",
+      "name": "Product List Element",
+      "settings": {
+        "products": [
+          "duravit-tulum-by-starck-waschtischarmatur-mit-energiespar-funktion-18-cm-farbe-und-ablaufgarnitur-wahlbar",
+          "badmoebel-unterschrank-lavoa-160-cm",
+          "hochschrank-lavoa-170-cm",
+          "duschstange-bs401-inkl-handbrause-und-duschschlauch",
+          "waschtischunterschrank-gaeste-wc-compact-451",
+          "duschsaeule-thermostat-4011-pro-schwarz",
+          "duschwanne-new-york-in-steinoptik",
+          "aufputz-duschsystem-mit-sedal-thermostat-8921b-basic",
+          "duschsaeule-thermostat-8221-pro",
+          "flache-duschwanne-mineralguss-lavoa-steinoptik-anthrazit-matt-groesse-waehlbar",
+          "standarmatur-freistehende-wannenarmatur-nt7752",
+          "waschtischarmatur-xx0539b",
+          "duravit-manhattan-einhebel-waschtischarmatur-xl",
+          "mineralguss-duschtasse-rechteckig-m2290cg-pb3085gg",
+          "bernstein-dusch-wc-pro-1104-in-schwarz-glanzend",
+          "duravit-manhattan-einhebel-wannenmischer",
+          "duravit-manhattan-einhebel-wannenmischer-1",
+          "wand-haenge-wc-b-8030r",
+          "bernstein-spuelrandloses-wand-haenge-wc-nt2039",
+          "freistehende-badewanne-wave-stone-aus-mineralguss",
+          "duravit-duraberk-freistehende-badewanne-1",
+          "unterputz-armatur-badarmatur-wandarmatur-9908b",
+          "waschtischunterschrank-tim-100-cm-1",
+          "wandhaengendes-wc-spuelrandlos-lavoa-inkl-wc-deckel-mit-absenkautomatik"
+        ],
+        "collection": "",
+        "url_products": "",
+        "products_limit": 24
+      }
+    },
+    "heading_subheading_3W7GFp": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "",
+        "heading_tag": "3",
+        "heading_width": 30,
+        "alignment": "center",
+        "description": "",
+        "subheading_width": 40,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "brand_adventages_XnU33E": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_tKmReT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-returns.svg",
+            "title": "30 Tage Rückgaberecht"
+          }
+        },
+        "item_3kyWnT": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design_6b550dbd-cb39-41b6-967c-2072b87898a3.svg",
+            "title": "Direkt vom Hersteller"
+          }
+        },
+        "item_TRXfxx": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-delivery.svg",
+            "title": "Schnelle Lieferung"
+          }
+        }
+      },
+      "block_order": [
+        "item_tKmReT",
+        "item_3kyWnT",
+        "item_TRXfxx"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_tag": "3"
+      }
+    }
+  },
+  "order": [
+    "slideshow_ApbLdB",
+    "main",
+    "slideshow_lp_AQixpk",
+    "heading_subheading_eYBMjQ",
+    "product_links_Fgk6CC",
+    "product_carousel_JwNWa7",
+    "product_carousel_8LCLYd",
+    "product_carousel_R48dBP",
+    "product_carousel_G7kJGn",
+    "heading_subheading_wGJaFU",
+    "product_list_element_YNzJf7",
+    "heading_subheading_3W7GFp",
+    "brand_adventages_XnU33E"
+  ]
+}

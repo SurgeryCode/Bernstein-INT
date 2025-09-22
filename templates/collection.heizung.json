@@ -1,0 +1,318 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-category",
+      "settings": {
+        "heading": "",
+        "description": "<p>Badheizungen sorgen für Komfort vom ersten Moment an. Mit einem Badheizkörper von Bernstein beginnt jeder Tag angenehm warm. Wähle aus verschiedenen Designs und finde den Badheizkörper, der perfekt zu Deinem Bad passt.</p>"
+      }
+    },
+    "inspirations_mk6HMA": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_KewRi9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        },
+        "manual_GJ9Rxd": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-7"
+          }
+        }
+      },
+      "block_order": [
+        "manual_KewRi9",
+        "manual_GJ9Rxd"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Heizung",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "promo_banner_gL3VyX": {
+      "type": "promo-banner",
+      "blocks": {
+        "manual_6kNqMD": {
+          "type": "manual",
+          "settings": {
+            "title": "unsere-aktuellen-aktionen"
+          }
+        }
+      },
+      "block_order": [
+        "manual_6kNqMD"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "images_6XiGrA": {
+      "type": "images",
+      "blocks": {
+        "collection_showcase_9m9nTF": {
+          "type": "collection_showcase",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "collection_showcase_9m9nTF"
+      ],
+      "settings": {
+        "background": false
+      }
+    },
+    "product_carousel_hNfgrr": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_g6aBFX": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [],
+            "collection": "heizungen"
+          }
+        }
+      },
+      "block_order": [
+        "category_g6aBFX"
+      ],
+      "settings": {
+        "heading": "Entdecke unsere Produkte",
+        "heading_tag": "2",
+        "link_url": "",
+        "link_title": ""
+      }
+    },
+    "inspirations_ryBaxh": {
+      "type": "inspirations",
+      "blocks": {
+        "image_AfTkgf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sitzplatze.webp"
+          }
+        },
+        "manual_3iTQr9": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        }
+      },
+      "block_order": [
+        "image_AfTkgf",
+        "manual_3iTQr9"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Unsere Sitzplätze",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-2"
+      }
+    },
+    "inspirations_HBqUpn": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_BpRazm": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-4"
+          }
+        },
+        "manual_EcpxM3": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-5"
+          }
+        }
+      },
+      "block_order": [
+        "manual_BpRazm",
+        "manual_EcpxM3"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Badezimmerspiegel mit LED-Beleuchtung",
+        "heading_tag": "2",
+        "heading_text": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+        "link_url": "#",
+        "link_title": "Anzeigen",
+        "layout": "1-1"
+      }
+    },
+    "inspirations_aej3jW": {
+      "type": "inspirations",
+      "blocks": {
+        "manual_yTjWPF": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-7"
+          }
+        },
+        "manual_U3CfcL": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-3"
+          }
+        },
+        "manual_yUVVVN": {
+          "type": "manual",
+          "settings": {
+            "title": "inspiration-11"
+          }
+        }
+      },
+      "block_order": [
+        "manual_yTjWPF",
+        "manual_U3CfcL",
+        "manual_yUVVVN"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Inspirationen von unseren Kunden",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://pages/inspirationen",
+        "link_title": "Gallerie ansehen",
+        "layout": "1-1-1"
+      }
+    },
+    "images_LdBwUR": {
+      "type": "images",
+      "blocks": {
+        "content_iWRrUt": {
+          "type": "content",
+          "settings": {
+            "heading": "Wandnischen",
+            "heading_tag": "2",
+            "description": "Bei Bernstein haben wir es uns zur Aufgabe gemacht, Ihr Badezimmererlebnis neu zu definieren. Mit einem Bekenntnis zu Qualität und Innovation bieten wir Ihnen eine Reihe hochwertiger Armaturen, die Form und Funktion vereinen.",
+            "link_url": "#",
+            "link_title": "Anzeigen",
+            "image_1": "shopify://shop_images/Wandnischen-1.webp",
+            "image_2": "shopify://shop_images/Wandnischen-2.webp"
+          }
+        }
+      },
+      "block_order": [
+        "content_iWRrUt"
+      ],
+      "disabled": true,
+      "settings": {
+        "background": true
+      }
+    },
+    "featured_articles_yCTNUL": {
+      "type": "featured-articles",
+      "blocks": {
+        "article_MirHhN": {
+          "type": "article",
+          "settings": {
+            "article": "blog/15_bad_heizen_mit_handtuchheizkorper"
+          }
+        },
+        "article_A3TxfP": {
+          "type": "article",
+          "settings": {
+            "article": "blog/clevere-ideen-einrichtung-kleines-bad"
+          }
+        },
+        "article_NF7neN": {
+          "type": "article",
+          "settings": {
+            "article": "blog/badezimmertrends-2024"
+          }
+        }
+      },
+      "block_order": [
+        "article_MirHhN",
+        "article_A3TxfP",
+        "article_NF7neN"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Modernes Badezimmer-Design: Inspiration und Tipps",
+        "heading_tag": "2",
+        "heading_text": "",
+        "link_url": "shopify://blogs/articles",
+        "link_title": "Alle Beiträge ansehen",
+        "background": true
+      }
+    },
+    "collapsible_text_collection_AEeyBw": {
+      "type": "collapsible-text-collection",
+      "settings": {
+        "alignment": "left",
+        "lines_desktop": 5,
+        "lines_mobile": 5
+      }
+    },
+    "brand_adventages_eB6RrL": {
+      "type": "brand-adventages",
+      "blocks": {
+        "item_NVk8Gp": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-design.svg",
+            "title": "Individuelles Design von Bernstein"
+          }
+        },
+        "item_9zJC7Y": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-delivery.svg",
+            "title": "Lieferung innerhalb von 3-5 Tagen"
+          }
+        },
+        "item_9p7xRN": {
+          "type": "item",
+          "settings": {
+            "icon": "shopify://shop_images/icon-customer.svg",
+            "title": "Persönliche Herangehensweise an jede Bestellung"
+          }
+        }
+      },
+      "block_order": [
+        "item_NVk8Gp",
+        "item_9zJC7Y",
+        "item_9p7xRN"
+      ],
+      "settings": {
+        "heading": "Markenvorteile",
+        "heading_tag": "3"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "inspirations_mk6HMA",
+    "promo_banner_gL3VyX",
+    "images_6XiGrA",
+    "product_carousel_hNfgrr",
+    "inspirations_ryBaxh",
+    "inspirations_HBqUpn",
+    "inspirations_aej3jW",
+    "images_LdBwUR",
+    "featured_articles_yCTNUL",
+    "collapsible_text_collection_AEeyBw",
+    "brand_adventages_eB6RrL"
+  ]
+}

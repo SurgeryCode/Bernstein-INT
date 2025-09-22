@@ -1,0 +1,112 @@
+{%- liquid
+    assign skus = product.variants | map: 'sku'
+    assign exclude = '' 
+    assign duplicates = ''
+-%}
+
+{%- capture variant_preview -%}
+    {%- for variant in product.variants -%}
+        {%- if variant.image != blank -%}
+            {%- liquid 
+                assign classes = 'contain,background'
+                if product.metafields.custom.image_fit == 'contain'
+                    assign classes = 'contain,background'
+                endif
+
+                assign exclude = exclude | append: variant.image.src | append: ','
+                assign loading = 'lazy' 
+                if variant.id == product.selected_or_first_available_variant.id
+                    assign loading = 'eager'
+                endif
+
+                assign item_id = ''
+                for item in product.media
+                    if item.src == variant.image.src
+                        assign item_id = item.id
+                    endif 
+                endfor
+            -%}
+            <div 
+                class="swiper-slide swiper-slide--preview {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}" 
+                data-variant-detail="{{ variant.id }}"
+                data-index="{{ forloop.index0 }}"
+                data-gallery-open="{{ item_id }}">
+                    {%- render 'image', 
+                        image: variant.image, 
+                        sizes: '380:540,991:620,992:980',
+                        class: classes,
+                        loading: loading
+                    -%}
+                    {%- assign duplicates = duplicates | append: variant.image.id | append: ',' -%}
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+{%- endcapture -%}
+{%- assign exclude = exclude | split: ',' -%}
+{%- assign duplicates = duplicates | split: ',' -%}
+
+<div class="swiper">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {%- if variant_preview != blank -%}
+                <div class="swiper-slide swiper-slide--desktop">
+                    {{ variant_preview }}
+                </div> 
+            {%- endif -%}
+            
+            {{ variant_preview }}
+
+            {%- for item in product.media -%}
+                {%- unless exclude contains item.src or duplicates contains item.id -%}
+                    {%- liquid
+                        assign loading = 'lazy'
+                        assign autoplay = false
+                        assign classes2 = 'contain,background'
+                        if forloop.first
+                            assign loading = 'eager'
+                            assign autoplay = true
+                            if product.metafields.custom.image_fit == 'contain'
+                                assign classes2 = 'contain,background'
+                            endif
+                        endif
+                        
+                        assign variant_id = false
+                        assign ids = item.alt | split: ','
+                        for v in product.variants
+                            if ids contains v.sku
+                                if variant_id == false
+                                    assign variant_id = v.id
+                                else
+                                    assign variant_id = variant_id | append: ',' | append: v.id
+                                endif                                
+                            endif
+                        endfor
+                    -%}
+                    <div 
+                        class="swiper-slide {% if ids contains product.selected_or_first_available_variant.sku or variant_id contains product.selected_or_first_available_variant.id or product.has_only_default_variant %}selected{% endif %}" 
+                        data-gallery-open="{{ item.id }}"
+                        {% if variant_id %}data-variant-detail="{{ variant_id }}"{% endif %}>
+                            {%- if item.media_type == 'image' -%}
+                                {%- render 'image', 
+                                    image: item, 
+                                    sizes: '380:540,991:620,992:980',
+                                    class: classes2,
+                                    loading: loading
+                                -%}
+                            {%- endif -%}
+                            {%- if item.media_type == 'video' -%}
+                                {%- render 'video', 
+                                    video: item, 
+                                    class: 'cover,background',
+                                    autoplay: autoplay,
+                                    muted: true,
+                                    loop: true 
+                                -%}
+                            {%- endif -%}
+                    </div>
+                {%- endunless -%}
+            {%- endfor -%}
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>

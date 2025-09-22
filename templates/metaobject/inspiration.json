@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-inspiration",
+      "settings": {}
+    },
+    "banner_zR4hb7": {
+      "type": "banner",
+      "settings": {
+        "content": "<h2>Inspirieren Sie andere<br\/>und sichern Sie sich Rabatte!<\/h2><p>Von Wasserhähnen, die mühelos Stil und Zweckmäßigkeit vereinen, bis hin zu Duschköpfen,<br\/>die Ihr tägliches Ritual beleben – die Welt der Armaturen ist ein Tor.<\/p>",
+        "button_url": "#",
+        "button_label": "Senden Sie eine Inspiration",
+        "link_url": "",
+        "link_label": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "banner_zR4hb7"
+  ]
+}

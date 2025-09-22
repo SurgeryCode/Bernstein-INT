@@ -1,0 +1,7 @@
+<div class="account-main-box">
+    <div class="account-main-box__title">
+        {% render 'svg-icon', name: 'user' %}
+        <span>{{ 'customer.account.hello' | t }} {{ customer.first_name }}</span>
+    </div>
+    <a href="{{ routes.account_logout_url }}" class="button button--outline button--small upper">{{ 'customer.log_out' | t }}</a>
+</div>

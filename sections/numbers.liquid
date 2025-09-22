@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="{{ 'section-numbers.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-numbers.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="container">
+    {%- if section.settings.heading != blank -%}
+        <h2 class="f-48 numbers__heading">{{ section.settings.heading | newline_to_br }}</h2>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+        <div class="numbers">
+            {%- for item in section.blocks -%}
+                <div class="numbers__item">
+                    <span class="numbers__text numbers__text--top">{{ item.settings.top | newline_to_br }}</span>
+                    <span class="numbers__number">{{ item.settings.number | newline_to_br }}</span>
+                    <span class="numbers__text numbers__text--bottom">{{ item.settings.bottom | newline_to_br }}</span>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+</div>
+
+{% schema %}
+{
+    "name": "Numbers",
+    "tag": "section",
+    "class": "section section--numbers",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Section title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Row",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "number",
+                    "label": "Number"
+                },
+                {
+                    "type": "textarea",
+                    "id": "top",
+                    "label": "Top"
+                },
+                {
+                    "type": "textarea",
+                    "id": "bottom",
+                    "label": "Bottom"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Numbers"
+        }
+    ]
+}
+{% endschema %}

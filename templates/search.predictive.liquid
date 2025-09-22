@@ -1,0 +1,11 @@
+{%- layout none -%}
+
+{%- if search.results_count > 0 -%}
+    <div data-results="{{ search.results_count }}">
+        {%- paginate search.results by 4 -%}
+            {%- for item in search.results -%}
+                {%- render 'product-item', product: item -%}
+            {%- endfor -%}
+        {%- endpaginate -%}
+    </div>
+{%- endif -%}

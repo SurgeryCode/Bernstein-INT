@@ -1,0 +1,140 @@
+<link rel="stylesheet" href="{{ 'section-inspiration.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-inspiration.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'share-buttons.js' | asset_url }}" defer="defer"></script>
+
+{%- render 'breadcrumbs' -%}
+{%- assign url = request.origin | append: metaobject.system.url -%}
+
+<div class="container margin margin--first" data-content>
+    <section class="inspiration">
+        <div class="inspiration__grid">
+            <div class="inspiration__image">
+                {%- render 'image', 
+                    image: metaobject.image, 
+                    sizes: '379:400,991:600,992:1200',
+                    class: 'cover'
+                -%}
+                {%- if metaobject.author != blank -%}
+                    <div class="inspiration__author">
+                        <p class="f-14 w-medium gray">{{ 'inspirations.author' | t: name: metaobject.author }}</p>
+                    </div>
+                {%- endif -%}
+
+                <div class="inspiration__share inspiration__share--desktop">
+                    <p class="w-medium">{{ 'inspirations.share' | t }}</p>
+                    <share-buttons class="share">
+                        <a 
+                            href="https://www.facebook.com/sharer/sharer.php?u={{ url }}" 
+                            rel="noopener noreferrer"
+                            data-share>
+                                {%- render 'svg-icon', name: 'facebook' -%}
+                        </a>
+                        <a 
+                            href="http://pinterest.com/pin/create/button/?url={{ url }}&media={{ metaobject.image | img_url: '1000x' }}&description={{ metaobject.name }}" 
+                            rel="noopener noreferrer"
+                            data-share>
+                                {%- render 'svg-icon', name: 'pinterest' -%}
+                        </a>
+                        <a href="https://wa.me/?text={{ url }}" data-share>
+                            {%- render 'svg-icon', name: 'whatsapp' -%}
+                        </a>
+                        <button data-copy-link="{{ url }}">
+                            {%- render 'svg-icon', name: 'link' -%}
+                        </button>
+                        <span data-copy-link-msg class="f-12 upper spaced w-medium">{{ 'inspirations.copied' | t }}</span>
+                    </share-buttons>
+                </div>
+            </div>
+
+            <div class="inspiration__content">
+                <div class="inspiration__header">
+                    <h1 class="f-32">{{ metaobject.name }}</h1>
+                    {%- if metaobject.description != blank -%}
+                        <div class="richtext richtext--gray">
+                            <p>{{ metaobject.description }}</p>
+                        </div>
+                    {%- endif -%}
+                    {%- if metaobject.categories.value -%}
+                        {%- capture cat -%}
+                          {%- assign handle = metaobject.categories.value[0] | handleize -%}
+                          {%- render 'translation', key: 'inspirations.categories', value: handle -%}
+                        {%- endcapture -%}
+                        <a 
+                            href="{{ settings.inspirations_page.url }}" 
+                            class="button button--outline upper" 
+                            data-filter="{{ metaobject.categories.value[0] }}">
+                                <span>{{ 'inspirations.more' | t: name: cat }}</span>
+                                <span>{{ 'inspirations.more_short' | t }}</span>
+                        </a>
+                    {%- endif -%}
+                    
+                </div>
+
+                <div class="inspiration__share inspiration__share--mobile">
+                    {% comment %}
+                    <p class="w-medium">{{ 'inspirations.share_short' | t }}</p>
+                    {% endcomment %}
+                    <share-buttons class="share">
+                        <a 
+                            href="https://www.facebook.com/sharer/sharer.php?u={{ url }}" 
+                            rel="noopener noreferrer"
+                            data-share>
+                                {%- render 'svg-icon', name: 'facebook' -%}
+                        </a>
+                        <a 
+                            href="http://pinterest.com/pin/create/button/?url={{ url }}&media={{ metaobject.image | img_url: '1000x' }}&description={{ metaobject.name }}" 
+                            rel="noopener noreferrer"
+                            data-share>
+                                {%- render 'svg-icon', name: 'pinterest' -%}
+                        </a>
+                        <a href="https://wa.me/?text={{ root }}{{ metaobject.system.url }}" data-share>
+                            {%- render 'svg-icon', name: 'whatsapp' -%}
+                        </a>
+                        <button data-copy-link="{{ url }}">
+                            {%- render 'svg-icon', name: 'link' -%}
+                        </button>
+                        <span data-copy-link-msg class="f-12 upper spaced w-medium">{{ 'inspirations.copied' | t }}</span>
+                    </share-buttons>
+                </div>
+
+                <div class="inspiration__products">
+                    <h2 class="f-24">{{ 'inspirations.buy' | t }}</h2>
+                    {%- for i in (1..5) -%}
+                        {%- liquid
+                            assign key_product = 'bullet_' | append: i | append: '_product'
+                            assign product = metaobject[key_product].value
+                        -%}
+                        {%- if product -%}
+                            <div class="inspiration__product"  data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                                <a href="{{ product.url }}" class="inspiration__product-image">
+                                    <img 
+                                        src="{{ product.featured_image | img_url: '240x' }}" 
+                                        width="100"
+                                        height="100"
+                                        alt="{{ product.featured_image.alt }}"
+                                        loading="lazy">
+                                </a>
+                                <div>
+                                    <a href="{{ product.url }}" class="f-16 w-medium text-link">
+                                        <span>{{ product.title }}</span>
+                                    </a>
+                                    <p class="f-24 w-bold">{{ product.price | money }}</p>
+                                </div>
+                            </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                </div>
+
+                <div class="product-form__submit">
+                    <button 
+                        type="button" 
+                        class="button button--large js-add-all">
+                          {{ 'product.add_to_cart' | t }}
+                      </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

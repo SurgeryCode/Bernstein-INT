@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="{{ 'section-careers.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-careers.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'dropdown.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'careers.js' | asset_url }}" defer="defer"></script>
+
+<careers-section class="careers careers--loading">
+    <div class="container">
+        <h2 class="f-48">{{ section.settings.heading }}</h2>
+        <div class="careers__filters">
+            <dropdown-select class="filters__dropdown">
+                <button
+                    class="filters__dropdown-button button button--small button--gray"
+                    aria-expanded="false"
+                    data-dropdown-button>
+                        {{ 'careers.department' | t }}
+                        {%- render 'svg-icon', name: 'chevron-down' -%}
+                        {%- render 'svg-icon', name: 'close' -%}
+                    </button>
+                <div class="filters__dropdown-content" data-dropdown-content>
+                    <div class="filters__dropdown-content-inner">
+                        <ul data-filters-department></ul>
+                    </div>
+                </div>
+            </dropdown-select>
+            <dropdown-select class="filters__dropdown">
+                <button
+                    class="filters__dropdown-button button button--small button--gray"
+                    aria-expanded="false"
+                    data-dropdown-button>
+                        {{ 'careers.location' | t }}
+                        {%- render 'svg-icon', name: 'chevron-down' -%}
+                        {%- render 'svg-icon', name: 'close' -%}
+                    </button>
+                <div class="filters__dropdown-content" data-dropdown-content>
+                    <div class="filters__dropdown-content-inner">
+                        <ul data-filters-location></ul>
+                    </div>
+                </div>
+            </dropdown-select>
+            <button type="reset" class="text-link text-link--reverse f-14 w-medium upper spaced" data-reset-filters>
+                <span>{{ 'collection.filters.reset' | t }}</span>
+            </button>
+        </div>
+        <div class="careers__counter">
+            <p class="f-12 w-medium" data-careers-results></p>
+        </div>
+        <div class="careers__empty">
+            <div class="richtext richtext--gray">
+                <p>{{ 'careers.no_results_html' | t }}</p>
+            </div>
+        </div>
+        <div class="careers__list"></div>
+    </div>
+</careers-section>
+
+
+{% schema %}
+{
+    "name": "Careers",
+    "tag": "section",
+    "class": "section section--careers margin",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        }
+    ]
+}
+{% endschema %}

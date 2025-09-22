@@ -1,0 +1,380 @@
+{%- assign brand = '' -%}
+{%- capture brand -%}
+  {%- for variant in product.variants -%}
+    {%- if variant.metafields.custom.brand != blank -%}
+        {{- variant.metafields.custom.brand -}}
+        {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture variants_json -%}
+    {%- for variant in product.variants -%}
+        {%- liquid 
+          assign in_stock = variant.inventory_quantity 
+          assign in_stock_error = ''
+
+          if current_variant.inventory_policy == 'continue'
+              assign in_stock = 999
+          else
+            for line_item in cart.items
+              if line_item.variant.id == variant.id
+                assign in_stock = in_stock | minus: line_item.quantity
+              endif
+            endfor
+          endif
+
+          if in_stock < 1
+            assign in_stock_error = 'quantity.unavailable' | t
+          else
+            assign in_stock_error = 'quantity.limit' | t: number: in_stock
+          endif
+        -%}
+        {
+            "title": "{{ variant.title }}",
+            "product": "{{ product.id }}",
+            "id": "{{ variant.id }}",
+            "sku": "{{ variant.sku }}",
+            "price": "{{ variant.price }}", 
+            "options": [
+                {%- for option in variant.options -%}
+                    "{{ option}}"{%- unless forloop.last -%},{%- endunless -%}
+                {%- endfor -%}
+            ],
+            "in_stock": {{ in_stock }},
+            "in_stock_error": "{{ in_stock_error }}",
+            "inventory_policy": "{{ variant.inventory_policy }}",
+            "available": {{ variant.available }},
+            {%- if variant.metafields.configurator.json != blank -%}
+              "configurator": {{ variant.metafields.configurator.json }}
+            {%- else -%}
+              "configurator": []
+            {%- endif -%}
+        }
+        {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+<link rel="stylesheet" href="{{ 'judge-me.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'judge-me.css' | asset_url | stylesheet_tag }}</noscript>
+
+<script>
+    window.variants = [{{ variants_json | strip_newlines | replace: '  ',' ' }}];
+</script>
+{{ 'product-recommendation-set.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'hc-sticky.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'chips.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product.js' | asset_url }}" defer="defer"></script> 
+<script src="{{ 'product-options.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-configurator.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'details.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'upsell-list.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'upsell-item.js' | asset_url }}" defer="defer"></script>
+
+{%- render 'breadcrumbs' -%}
+
+<product-section class="product">
+  <div class="container">
+    <div class="product__grid">
+      <div class="product__gallery">
+        {%- render 'product-badges', product: product, large: true -%} 
+        {%- render 'product-gallery', product: product -%}
+        {% if settings.enable-wishlist %}
+          {%- render 'product-wishlist', class: "pdp-wishlist" -%}
+        {% endif %}
+      </div>
+      <div class="product__content">
+        <div class="product__content-inner">
+          {%- for block in section.blocks -%}
+            {%- if block.type == '@app' -%}
+              {%- render block -%}
+            {%- else -%}
+              {%- assign snippet = 'product-' | append: block.type -%}
+              {%- include snippet, data: block.settings -%}
+            {%- endif -%}
+          {%- endfor -%}
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</product-section>
+
+{%- assign seo_media = product.featured_image -%}
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "url": {{ request.origin | append: product.url | json }},
+  {% if seo_media -%}
+  "image": [
+    {{ seo_media | image_url: width: seo_media.preview_image.width | prepend: "https:" | json }}
+  ],
+  {%- endif %}
+
+ {%- assign info = product.metafields.custom.information.value -%}
+{%- if info == blank and product.selected_or_first_available_variant -%}
+  {%- assign info = product.selected_or_first_available_variant.metafields.custom.information.value -%}
+{%- endif -%}
+{%- if info == blank -%}
+  {%- for v in product.variants -%}
+    {%- assign vinfo = v.metafields.custom.information.value -%}
+    {%- if vinfo != blank -%}
+      {%- assign info = vinfo -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+"description": {{ info | default: product.description | strip_html | strip_newlines | truncate: 500, "" | json }},
+  {%- if product.selected_or_first_available_variant and product.selected_or_first_available_variant.sku != blank -%}
+    {%- assign prod_sku = product.selected_or_first_available_variant.sku -%}
+  {%- else -%}
+    {%- for v in product.variants -%}
+      {%- if v.sku != blank -%}{%- assign prod_sku = v.sku -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if prod_sku == blank and product.selected_or_first_available_variant -%}
+      {%- assign prod_sku = product.selected_or_first_available_variant.id -%}
+    {%- endif -%}
+  {%- endif -%}
+  "sku": {{ prod_sku | json }},
+
+  "brand": {
+    "@type": "Brand",
+    "name": {{ brand | default: product.vendor | json }}
+  },
+
+  "offers": [
+    {%- for variant in product.variants -%}
+      {%- liquid
+        assign price = variant.price
+        assign compare_at_price = variant.compare_at_price
+
+        if compare_at_price == price or compare_at_price == blank
+          assign custom_sale = variant.metafields.custom.sale
+          if custom_sale and custom_sale contains '%'
+            assign sale_value = custom_sale | remove: ' ' | remove: '%' | times: 1
+            if sale_value > 0
+              assign compare_at_price = price
+              assign discount = price | times: sale_value | divided_by: 100
+              assign price = price | minus: discount | round: 2
+            endif
+          endif
+        endif
+      -%}
+      {
+        "@type": "Offer",
+        "sku": {{ variant.sku | default: variant.id | json }},
+        "availability": "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+        "price": {{ price | divided_by: 100.00 | json }},
+        "priceCurrency": {{ shop.currency | json }},
+        "url": {{ request.origin | append: variant.url | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+<style>
+  product-section [class$="-payment"] {
+    min-height: 23px;
+  }
+  
+  product-section .pp-message:not(.selected),
+  product-section [class$="-payment"] > p {
+    display: none !important;
+  }
+</style>
+<script>
+  const id = document.querySelector('product-form [name="id"]').value;
+  
+  let timer = setInterval(() => {
+    document.querySelectorAll('[class$="-payment"]').forEach(el => {
+        window.variants.forEach(variant => {
+          const classes = id == variant.id ? 'selected' : '';
+          el.innerHTML += `<div class="pp-message ${classes}" data-pp-amount="${variant.price/100}" data-variant-detail="${variant.id}"></div>`;
+        });
+
+        paypal.Messages({
+          style: {
+            layout: 'text',
+            logo: {
+              type: 'primary',
+              position: 'left'
+            },
+            text: {
+              align: 'center'
+            }
+          }
+        }).render('.pp-message');
+            
+        clearInterval(timer);
+      });
+  }, 500);
+</script>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "tag": "section",
+  "class": "section section--product margin margin--first",
+  "blocks": [
+    {
+      "type": "header",
+      "name": "Header",
+      "limit": 1
+    },
+    {
+      "type": "form",
+      "name": "Form",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+            "type": "select",
+            "id": "source",
+            "label": "Source",
+            "default": "information",
+            "options": [
+                {
+                    "value": "information",
+                    "label": "Metafield: Product information"
+                },
+                {
+                    "value": "specification",
+                    "label": "Metafield: Specification"
+                },
+                {
+                    "value": "in_the_box",
+                    "label": "Metafield: In the box"
+                },
+                {
+                    "value": "delivery",
+                    "label": "Metafield: Delivery"
+                },
+                {
+                    "value": "gpsr",
+                    "label": "Metafield: GPSR"
+                },
+                {
+                    "value": "downloads",
+                    "label": "Metafield: Montageanleitung, Elektrohinweis, ..."
+                }
+            ]
+        }
+      ]
+    },
+    {
+      "type": "icons",
+      "name": "Icons",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "caption_1",
+          "label": "Caption"
+        },
+        {
+          "type": "header",
+          "content": "Icon 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "caption_2",
+          "label": "Caption"
+        },
+        {
+          "type": "header",
+          "content": "Icon 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "caption_3",
+          "label": "Caption"
+        },
+        {
+          "type": "header",
+          "content": "Icon 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "caption_4",
+          "label": "Caption"
+        },
+        {
+          "type": "header",
+          "content": "Icon 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image"
+        },
+        {
+          "type": "textarea",
+          "id": "caption_5",
+          "label": "Caption"
+        }
+      ]
+    },
+    {
+      "type": "payments",
+      "name": "Payments"
+    },
+    {
+      "type": "wishlist",
+      "name": "Wishlist"
+    },
+    {
+      "type": "@app"
+    },
+    {
+      "type": "custom-liquid",
+      "name": "Custom liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

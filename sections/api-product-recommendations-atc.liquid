@@ -1,0 +1,7 @@
+{%- if recommendations.performed? -%}
+    {%- for item in recommendations.products -%}
+        <div class="swiper-slide">
+            {%- render 'product-item': product: item, add_to_cart: true -%}
+        </div>
+    {%- endfor -%}
+{%- endif -%}

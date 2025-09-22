@@ -1,0 +1,86 @@
+{{ 'component-collection-hero-banner.css' | asset_url | stylesheet_tag: preload: true }}
+<script src="{{ 'countdown-timer.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid 
+  assign overlay = banner.overlay | default: false
+
+  assign desktop = banner.image_desktop
+  assign tablet = desktop
+  assign mobile = desktop
+
+  if banner.image_tablet != nil and banner.image_mobile != nil
+    assign tablet = banner.image_tablet
+    assign mobile = banner.image_mobile
+  endif
+
+  if banner.image_tablet != nil and banner.image_mobile == nil
+    assign tablet = banner.image_tablet
+    assign mobile = tablet
+  endif
+
+  if banner.image_tablet == nil and banner.image_mobile != nil
+    assign mobile = banner.image_mobile
+  endif
+-%}
+
+{%- if desktop != nil -%}
+  <div class="collection-hero-banner{% if overlay %} collection-hero-banner--overlay{% endif %}">
+    <picture class="media media--image media--cover">
+      <source srcset="{{ mobile | img_url: '576x' }}" media="(max-width: 575px)">
+      <source srcset="{{ tablet | img_url: '1024x' }}" media="(min-width: 578px) and (max-width: 1023px)">
+      <source srcset="{{ desktop | img_url: '1920x' }}" media="(min-width: 1024px)">
+      <img 
+        src="{{ desktop | img_url: first }}"  
+        width="{{ desktop.width }}" 
+        height="{{ desktop.height }}" 
+        alt="{{ desktop.alt | strip_html | escape }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </picture>
+
+    <div class="collection-hero-banner__content">
+      <div class="collection-hero-banner__left">
+        {%- if banner.sub_title != blank -%}
+          <p class="f-24 w-bold">{{ banner.sub_title }}</p>
+        {%- endif -%}
+        {%- if banner.title != blank -%}
+          <h2 class="f-48 w-bold">{{ banner.title | newline_to_br }}</h2>
+        {%- endif -%}
+        {%- if banner.description != blank -%}
+          <div class="richtext">
+            {{ banner.description | metafield_tag }}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="collection-hero-banner__right">
+        {%- if banner.counter != blank -%}
+          {%- style -%}
+            .collection-hero-banner .countdown {
+              color: {{ banner.counter_text_color }};
+              background-color: rgba({{ banner.counter_background_color.red }},{{ banner.counter_background_color.green }},{{ banner.counter_background_color.blue }},.5);
+            }
+            .collection-hero-banner .countdown > span {
+              background-color: {{ banner.counter_background_color }};
+            }
+          {%- endstyle -%}
+          <div class="collection-hero-banner__countdown">
+            <countdown-timer 
+              end-date="{{ banner.counter }}"
+              data-id="{{ section.id }}"
+              locale="{{ request.locale.iso_code }}"
+              translations='{
+                "day": { "one": "{{ 'countdown.day_one' | t }}", "few": "{{ 'countdown.day_few' | t }}", "many": "{{ 'countdown.day_many' | t }}" },
+                "hour": { "one": "{{ 'countdown.hour_one' | t }}", "few": "{{ 'countdown.hour_few' | t }}", "many": "{{ 'countdown.hour_many' | t }}" },
+                "minute": { "one": "{{ 'countdown.minute_one' | t }}", "few": "{{ 'countdown.minute_few' | t }}", "many": "{{ 'countdown.minute_many' | t }}" },
+                "second": { "one": "{{ 'countdown.second_one' | t }}", "few": "{{ 'countdown.second_few' | t }}", "many": "{{ 'countdown.second_many' | t }}" }
+              }'
+            >
+            </countdown-timer>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  
+{%- endif -%}

@@ -1,0 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-account",
+      "settings": {
+        "b2b_show": true,
+        "b2b_heading": "B2B-Partnerschaft",
+        "b2b_text": "<p>Nehmen Sie das Programm Ihres neuen B2B-Partners in Anspruch und erhalten Sie 15 % Rabatt auf den Verkaufspreis.<\/p>",
+        "b2b_btn_url": "\/account?view=b2b",
+        "b2b_btn_text": "Verbinden",
+        "newsletter_show": true,
+        "newsletter_title": "Abonnements",
+        "newsletter_label": "Ja, ich möchte den kostenlosen Newsletter von Bernstein Badshop abonnieren. (Ich kann mich jederzeit abmelden.)",
+        "newsletter_text": "<p>Erhalten Sie außerdem Updates, Zugang zu exklusiven Angeboten und mehr.<\/p>",
+        "newsletter_text_additional": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

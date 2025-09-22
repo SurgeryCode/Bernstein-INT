@@ -1,0 +1,157 @@
+{%- liquid 
+    assign is_b2b = false
+    if customer.tags contains 'b2b' or customer.tags contains 'B2B'
+        assign is_b2b = true
+    endif
+    assign is_b2b_program = false
+    if customer.tags contains 'Standard' or customer.tags contains 'Silver' or customer.tags contains 'Gold' or customer.tags contains 'Platinum'
+        assign is_b2b_program = true
+    endif
+-%}
+
+<link rel="stylesheet" href="{{ 'section-b2b-how-it-works.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-form.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-attachments.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-b2b-how-it-works.css' | asset_url | stylesheet_tag }}
+    {{ 'component-form.css' | asset_url | stylesheet_tag }}
+    {{ 'component-attachments.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'attachments-upload.js' | asset_url }}" defer="defer"></script>
+
+<div class="container container--tight">
+    <div class="b2b-how-it-works-hld">
+
+        <div class="b2b-how-it-works__col b2b-how-it-works__col--list">
+            {%- unless is_b2b_program -%}
+            
+                {%- if section.settings.how_it_works_title != blank -%}
+                    <span class="b2b-how-it-works__list-title f-32 w-bold">{{ section.settings.how_it_works_title }}</span>
+                {%- endif -%}
+        
+                <ol class="b2b-how-it-works">
+                    <li>
+                        <div class="b2b-how-it-works__icons">
+                            <div class="b2b-how-it-works__number">1</div>
+                            {% render 'svg-icon', name: 'arrow-down' %}
+                        </div>
+                        <span class="b2b-how-it-works__text">{{ section.settings.how_it_works_text_1 }}</span>
+                    </li>
+                    <li>
+                        <div class="b2b-how-it-works__icons">
+                            <div class="b2b-how-it-works__number">2</div>
+                            {% render 'svg-icon', name: 'arrow-down' %}
+                        </div>
+                        <span class="b2b-how-it-works__text">{{ section.settings.how_it_works_text_2 }}</span>
+                    </li>
+                    <li>
+                        <div class="b2b-how-it-works__icons">
+                            <div class="b2b-how-it-works__number">3</div>
+                            {% render 'svg-icon', name: 'arrow-down' %}
+                        </div>
+                        <span class="b2b-how-it-works__text">{{ section.settings.how_it_works_text_3 }}</span>
+                    </li>
+                    <li>
+                        <div class="b2b-how-it-works__number">
+                            {% render 'svg-icon', name: 'check-mark' %}
+                        </div>
+                        <span class="b2b-how-it-works__text">{{ section.settings.how_it_works_text_4 }}</span>
+                    </li>
+                </ol>
+            {%- endunless -%}
+        </div>
+    
+        <div class="b2b-how-it-works__col b2b-how-it-works__col--form">
+
+            {%- if is_b2b and is_b2b_program == false -%}
+                {%- if section.settings.form_title_b2b != blank -%}
+                    <span class="b2b-how-it-works__form-title f-32 w-bold">{{ section.settings.form_title_b2b }}</span>
+                {%- endif -%}
+            {%- elsif is_b2b == false -%}
+                {%- if section.settings.form_title != blank -%}
+                    <span class="b2b-how-it-works__form-title f-32 w-bold">{{ section.settings.form_title }}</span>
+                {%- endif -%}
+            {%- endif -%}
+
+            {%- if is_b2b_program -%}
+                <div class="account-content__success">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="24" fill="#46B810"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M31.517 18.456c.3.286.312.76.027 1.06l-10.455 11a.75.75 0 0 1-1.087 0l-4.546-4.782a.75.75 0 1 1 1.088-1.033l4.002 4.21 9.91-10.428a.75.75 0 0 1 1.06-.027Z" fill="#fff"/>
+                    </svg>
+                    {%- for tag in customer.tags -%}
+                      {%- if tag == 'Standard' or tag == 'Silver' or tag == 'Gold' or tag == 'Platinum' -%}
+                        <p>{{ 'customer.is_b2b_html' | t: tag: tag, discount: customer.metafields.wholesale.discount }}</p>
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            {%- elsif is_b2b -%}
+                {%- render 'b2b-form' -%}
+            {%- else -%}
+                {%- if customer -%}
+                    {%- render 'b2b-from-b2c' -%}
+                {%- else -%}
+                    {%- render 'b2b-register-form' -%}
+                {%- endif -%}
+            {%- endif -%}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "B2B How It Works",
+    "tag": "section",
+    "class": "section section--b2b-how-it-works margin",
+    "settings": [
+        {
+            "type": "text",
+            "id": "form_title",
+            "label": "Form title",
+            "default": "Fordern Sie ein B2B-Konto an"
+        },
+        {
+            "type": "text",
+            "id": "form_title_b2b",
+            "label": "Form title (for B2B customers)",
+            "default": "Einen Antrag auf Aufnahme in das Pro-Programm stellen"
+        },
+        {
+            "type": "text",
+            "id": "how_it_works_title",
+            "label": "How It Works title",
+            "default": "Wie es funktioniert?"
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_1",
+            "label": "How It Works text 1",
+            "default": "Füllen Sie das Bewerbungsformular aus und senden Sie es ab."
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_2",
+            "label": "How It Works text 2",
+            "default": "Unser Kundenservice wird Ihre Anfrage prüfen und sich innerhalb von 2 Werktagen mit Ihnen in Verbindung setzen."
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_3",
+            "label": "How It Works text 3",
+            "default": "Nach der Genehmigung Ihres professionellen Kontos erhalten Sie eine E-Mail mit Informationen zu den verfügbaren Vorteilen."
+        },
+        {
+            "type": "textarea",
+            "id": "how_it_works_text_4",
+            "label": "How It Works text 4",
+            "default": "Geben Sie eine Bestellung bei unserem engagierten Service auf"
+        }
+    ],
+    "presets": [
+        {
+            "name": "B2B How It Works"
+        }
+    ]
+}
+{% endschema %}

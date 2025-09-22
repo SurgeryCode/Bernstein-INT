@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="{{ 'section-gallery.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'gallery.js' | asset_url }}" defer="defer"></script>
+
+<gallery-section id="product-gallery-expanded" class="gallery">
+    <div class="container container--wide">
+        <div class="gallery__header">
+            <button  
+                title="{{ 'accessibility.close' | t }}" 
+                aria-label="{{ 'accessibility.close' | t }}"
+                data-gallery-close>
+                    {%- render 'svg-icon', name: 'close' -%}
+            </button>
+        </div>
+    </div>
+
+    <button 
+        class="arrow arrow--left"
+        title="{{ 'accessibility.prev_slide' | t }}"
+        aria-label="{{ 'accessibility.prev_slide' | t }}">
+        {%- render 'svg-icon', name: 'chevron-left' -%}
+    </button>
+    <button 
+        class="arrow arrow--right"
+        title="{{ 'accessibility.next_slide' | t }}"
+        aria-label="{{ 'accessibility.next_slide' | t }}">
+        {%- render 'svg-icon', name: 'chevron-right' -%}
+    </button>
+
+    <div class="swiper">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {%- for item in product.media -%}
+                    {%- liquid         
+                        assign variant_id = false
+                        assign ids = item.alt | split: ','
+                        for v in product.variants
+                            if ids contains v.sku
+                                if variant_id == false
+                                    assign variant_id = v.id
+                                else
+                                    assign variant_id = variant_id | append: ',' | append: v.id
+                                endif                                
+                            endif
+                        endfor
+                    -%}
+                    <div 
+                        class="swiper-slide {% if ids contains product.selected_or_first_available_variant.sku or variant_id contains product.selected_or_first_available_variant.id or product.has_only_default_variant %}selected{% endif %}" 
+                        data-index="{{ forloop.index0 }}" 
+                        data-id="{{ item.id }}" 
+                        {% if variant_id %}data-variant-detail="{{ variant_id }}"{% endif %}>
+                            {%- if item.media_type == 'image' -%}
+                                <div class="swiper-zoom-container"> 
+                                    <img 
+                                        src="{{ item | img_url: '2500x' }}" 
+                                        loading="lazy" 
+                                        width="{{ item.width }}"
+                                        height="{{ item.height }}"
+                                        alt="{{ item.alt }}">
+                                </div>
+                                <div class="swiper-lazy-preloader"></div>
+                            {%- endif -%}
+                            {%- if item.media_type == 'video' -%}
+                                {%- render 'video', 
+                                    video: item, 
+                                    class: 'contain',
+                                    autoplay: false,
+                                    muted: true,
+                                    loop: true 
+                                -%}
+                            {%- endif -%}
+                    </div>
+                {%- endfor -%}
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</gallery-section>

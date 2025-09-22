@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_aiUe4X": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_QdMpyf": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>BLACK FRIDAY WEEKS</p>",
+            "badge_text_color": "#000000",
+            "badge_background_color": "#ffffff",
+            "badge_padding": 22,
+            "subtitle": "Mega-Angebote den ganzen Monat",
+            "title": "Black Friday 2025",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "2025-11-28",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_LP_Hero_Black_Friday_Pre.jpg",
+            "image_tablet": "shopify://shop_images/Tablet_LP_Hero_Black_Friday_Pre.jpg",
+            "image_mobile": "shopify://shop_images/Mobile_LP_Hero_Black_Friday_Pre.jpg",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 0,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_QdMpyf"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 24,
+        "slide_height_mobile": 500,
+        "autoplay": true,
+        "delay": 5
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_aiUe4X"
+  ]
+}

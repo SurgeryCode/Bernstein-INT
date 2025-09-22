@@ -1,0 +1,127 @@
+{%- unless cart.empty? -%}
+    <link rel="stylesheet" href="{{ 'section-product-carousel.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}</noscript>
+    <script src="{{ 'product-item.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart-recommendations.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-carousel.js' | asset_url }}" defer="defer"></script>
+
+    {%- liquid
+        if template.name contains "cart" and cart.empty? == false
+            assign uniq_products = cart.items | map: 'product' | map: 'id' | uniq
+            assign product_ids = uniq_products | join: ','
+
+            assign per_product_limit = 2
+            assign recommendations_count = per_product_limit | times: uniq_products.size
+            if recommendations_count < 8
+                assign per_product_limit = 8.00 | divided_by: cart.items.size | ceil
+            endif
+        endif
+    -%}
+
+    <div class="container">
+        {%- if section.settings.heading != blank -%}
+            <div class="heading">
+                <div class="heading__text">
+                    <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                    {%- if section.settings.heading_text != blank -%}
+                        <div class="richtext richtext--gray">
+                            <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                        </div>
+                    {%- endif -%}
+                </div>
+                {%- if section.settings.link_title -%}
+                    <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                        <span>{{ section.settings.link_title }}</span>
+                    </a>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+        
+        <cart-recommendations 
+            data-recommendations="related"
+            data-product-ids="{{ product_ids }}"
+            data-base-limit="{{ section.settings.per_product_recommendations }}"
+            data-limit="{{ per_product_limit }}" 
+            class="margin margin--first">
+            <product-carousel class="product-carousel">
+                <div class="swiper">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {%- liquid
+                                if template.name contains "cart" and cart.empty?
+                                    for product in section.settings.standard_recommended_products
+                                        echo '<div class="swiper-slide">'
+                                        render 'product-item': product: product, add_to_cart: true
+                                        echo '</div>'
+                                    endfor
+                                endif
+                            -%}   
+                        </div>
+                    </div>
+                    <div class="product-carousel__arrows">
+                        <button 
+                            class="arrow arrow--left"
+                            title="{{ 'accessibility.prev_slide' | t }}"
+                            aria-label="{{ 'accessibility.prev_slide' | t }}">
+                            {%- render 'svg-icon', name: 'chevron-left' -%}
+                        </button>
+                        <button 
+                            class="arrow arrow--right"
+                            title="{{ 'accessibility.next_slide' | t }}"
+                            aria-label="{{ 'accessibility.next_slide' | t }}">
+                            {%- render 'svg-icon', name: 'chevron-right' -%}
+                        </button>
+                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </product-carousel>
+        </cart-recommendations>
+    </div>
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Cart Recommendations",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["cart"]
+  },
+  "class": "section section--cart-recommendations section--product-carousel",
+  "settings": [
+    {
+        "type": "textarea", 
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1" 
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart Recommendations"
+    }
+  ]
+}
+{% endschema %}

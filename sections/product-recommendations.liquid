@@ -1,0 +1,135 @@
+<link rel="stylesheet" href="{{ 'section-product-carousel.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}</noscript>
+<script src="{{ 'product-item.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-recommendations.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-carousel.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid 
+    assign show = false
+    assign skus = ''
+    for variant in product.variants
+        if variant.metafields.custom.ProductRecommendations != blank
+            assign skus = skus | append: variant.metafields.custom.ProductRecommendations | append: ','
+        endif
+    endfor
+    assign skus = skus | split: ',' | uniq
+
+    if skus.size > 0 or section.settings.source == 'auto'
+        assign show = true
+    endif
+-%}
+
+{%- if show -%}
+<div class="container">
+    {%- if section.settings.heading != blank -%}
+        <div class="heading">
+            <div class="heading__text">
+                <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                {%- if section.settings.heading_text != blank -%}
+                    <div class="richtext richtext--gray">
+                        <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    {%- endif -%}
+    
+    <product-recommendations 
+        {% if section.settings.source == 'auto' %}data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=8&intent=related"{% endif %}
+        {% if section.settings.source == 'erp' %}data-sku="{{ skus | join: ',' }}"{% endif %}>
+        <product-carousel class="product-carousel">
+            <div class="swiper"> 
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {%- if section.settings.source == 'auto' -%}
+                            {%- for product in recommendations.products -%}
+                                <div class="swiper-slide">
+                                    {%- render 'product-item', product: product, add_to_cart: true -%}
+                                </div>
+                            {%- endfor -%}
+                        {%- endif -%}
+                    </div>
+                </div>
+                <div class="product-carousel__arrows">
+                    <button 
+                        class="arrow arrow--left"
+                        title="{{ 'accessibility.prev_slide' | t }}"
+                        aria-label="{{ 'accessibility.prev_slide' | t }}">
+                        {%- render 'svg-icon', name: 'chevron-left' -%}
+                    </button>
+                    <button 
+                        class="arrow arrow--right"
+                        title="{{ 'accessibility.next_slide' | t }}"
+                        aria-label="{{ 'accessibility.next_slide' | t }}">
+                        {%- render 'svg-icon', name: 'chevron-right' -%}
+                    </button>
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </product-carousel>
+    </product-recommendations>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Recommendations",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "class": "section section--product-recommendations section--product-carousel margin",
+  "settings": [
+    {
+        "type": "textarea", 
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1" 
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    },
+    {
+        "type": "select",
+        "id": "source",
+        "label": "Recommendations source",
+        "default": "auto",
+        "options": [
+            {
+                "value": "auto",
+                "label": "Search & Discovery" 
+            },
+            {
+                "value": "erp",
+                "label": "ERP" 
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Recommendations"
+    }
+  ]
+}
+{% endschema %}

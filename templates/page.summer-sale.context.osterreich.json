@@ -1,0 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "parent": "page.summer-sale.json",
+  "context": {
+    "market": "osterreich"
+  },
+  "sections": {
+    "product_carousel_JwNWa7": {
+      "settings": {
+        "link_url": "https://bernstein-badshop.at/collections/sale?sort_by=best-selling&filter.p.vendor=Duravit&page=1&view=all"
+      }
+    },
+    "teaser_element_fYYMMe": {
+      "blocks": {
+        "tile_qjEYXX": {
+          "settings": {
+            "button_url": "https://bernstein-badshop.at/collections/sale?sort_by=best-selling&filter.p.m.filter.coll=Waschbecken&page=1&view=all"
+          }
+        },
+        "tile_XJ7DXX": {
+          "settings": {
+            "button_url": "https://bernstein-badshop.at/collections/sale?sort_by=best-selling&filter.p.m.filter.coll=Duscharmaturen&filter.p.m.filter.coll=Duschen&filter.p.m.filter.coll=Duschk%C3%B6pfe&filter.p.m.filter.coll=Duschstangen&filter.p.m.filter.coll=Duschsysteme&filter.p.m.filter.coll=Wandnischen&page=1&view=all"
+          }
+        },
+        "tile_qAYJMM": {
+          "settings": {
+            "button_url": "https://bernstein-badshop.at/collections/sale?sort_by=best-selling&filter.p.m.filter.coll=Badewannen&filter.p.m.filter.coll=Badewannenarmaturen&page=1&view=all"
+          }
+        }
+      }
+    },
+    "teaser_element_Q3DKyW": {
+      "blocks": {
+        "tile_FrHN6K": {
+          "settings": {
+            "button_url": "https://bernstein-badshop.at/collections/sale?filter.p.m.filter.coll=Badewannen&page=1&view=all"
+          }
+        },
+        "tile_z7gPRU": {
+          "settings": {
+            "button_url": "https://bernstein-badshop.at/collections/sale?filter.p.m.filter.coll=Dusch-WCs&filter.p.m.filter.coll=WCs&page=1&view=all"
+          }
+        },
+        "tile_3YNiG7": {
+          "settings": {
+            "button_url": "https://bernstein-badshop.at/collections/sale?filter.p.m.filter.coll=Duschen&filter.p.m.filter.coll=Duschk%C3%B6pfe&filter.p.m.filter.coll=Duschrinnen&filter.p.m.filter.coll=Duschsysteme&filter.p.m.filter.coll=Duschwannen&page=1&view=all"
+          }
+        }
+      }
+    }
+  }
+}

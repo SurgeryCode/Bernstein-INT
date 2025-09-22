@@ -1,0 +1,67 @@
+{%- liquid
+  assign target = line_item
+  assign compare_at_price = target.variant.compare_at_price
+  assign original_price = target.variant.price
+  assign price = target.final_line_price
+  assign exchange_rate = localization.market.metafields.custom.exchange_rate | default: 1
+  assign lowest_price = target.variant.metafields.custom.omnibus | times: exchange_rate | default: nil
+  assign warranty = line_item.properties['_warranty']
+
+  if warranty != nil
+    assign additional_price = 0
+    assign current_market = localization.country.iso_code | downcase
+    assign warrantyOption = target.variant.metafields.custom.warranty_json.value | where: 'id', warranty[0].id
+
+    assign mod = warrantyOption[0].prices[current_market] | times: 100
+
+    if customer.tags contains 'b2b' or customer.tags contains 'B2B'
+      assign mod = mod | divided_by: 1.19 | round: 2
+
+      assign discount = customer.metafields.wholesale.discount.value
+      if discount
+        assign calculated_discount = 100.0 | minus: discount | divided_by: 100
+        assign mod = mod | times: calculated_discount | round: 2
+      endif
+    endif
+
+    assign quantity_mod = mod | times: line_item.quantity
+    assign price = price | minus: quantity_mod
+  endif
+
+  assign compare_at_price = compare_at_price | times: line_item.quantity
+  assign original_price = original_price | times: line_item.quantity
+-%}
+
+<div class="price selected" data-variant-detail="{{ variant.id }}">
+    <div class="price__main">
+      {%- if compare_at_price > price -%}
+          <span 
+            class="w-bold red" 
+            data-default-price="{{ price }}">
+              {{ price | money }}
+          </span>
+          <span>
+            <del 
+              class="f-12 w-medium gray" 
+              data-default-price="{{ compare_at_price }}">
+                {{ compare_at_price | money }}
+            </del>
+          </span>
+      {%- else -%}
+          <span 
+            class="{% if styles %}{{ styles }}{% else %}f-24 w-bold{% endif %}" 
+            data-default-price="{{ price }}">
+              {{ price | money }}
+          </span>
+      {%- endif -%}
+    </div>
+
+    {%- if compare_at_price > price and lowest_price -%}
+      {%- assign lowest_price_format = lowest_price | times: 100 | money -%}
+      <p class="f-11 w-medium gray">{{ 'product.lowest_price' | t: price: lowest_price_format  }}</p>
+    {%- endif -%}
+
+    {%- if extended -%}
+      <p class="f-11 w-medium gray">{{ 'product.tax_included_html' | t }}</p>   
+    {%- endif -%}
+</div>

@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="customer customer--login">
+
+  
+      <h1 id="login" class="customer__heading customer__heading--login f-48" tabindex="-1">{{ 'customer.activate_account.title' | t }}</h1>
+      {%- if recover_success == true -%}
+          <div class="form-success">
+              <p>{{ 'customer.recover_password.success' | t }}</p>
+          </div>
+      {%- endif -%}
+
+      <div>
+          <form-validate>
+              {%- form 'activate_customer_password', class: 'customer-form' -%}
+                  {%- if form.errors -%}
+                      <div class="form-errors">
+                          <p>{{ form.errors | default_errors }}</p>
+                      </div>
+                  {%- endif -%}      
+                  
+                  <div class="field-row">
+                      <div class="field field--1-1">
+                          <input
+                              type="password"
+                              value=""
+                              name="customer[password]"
+                              id="CustomerPassword"
+                              autocomplete="new-password"
+                              {% if form.errors contains 'form' %}
+                                  aria-invalid="true"
+                              {% endif %}
+                              placeholder="{{ 'customer.activate_account.password' | t }}"
+                              aria-required="true"
+                              required
+                          >
+                          <label for="CustomerPassword">
+                              <span>{{ 'customer.login_page.password' | t }}</span>
+                              <span class="asterisk">*</span>
+                          </label>
+                      </div>
+                  </div>
+
+                  <div class="field-row field-row--small">
+                    <div class="field field--1-1 field--password-info">
+                        <p>{{ 'customer.password_info_html' | t }}</p>
+                    </div>
+                  </div>
+
+                  <div class="field-row">
+                    <div class="field field--1-1">
+                        <input
+                            type="password"
+                            value=""
+                            name="customer[password_confirmation]"
+                            id="CustomerPasswordConfirm"
+                            autocomplete="new-password"
+                            {% if form.errors contains 'form' %}
+                                aria-invalid="true"
+                            {% endif %}
+                            placeholder="{{ 'customer.activate_account.password' | t }}"
+                            aria-required="true"
+                            data-match-error-message="{{ 'customer.register.password_confirmation_error' | t }}"
+                            required
+                        >
+                        <label for="CustomerPasswordConfirm">
+                            <span>{{ 'customer.activate_account.password_confirm' | t }}</span>
+                            <span class="asterisk">*</span>
+                        </label>
+                        <button 
+                            type="button"
+                            class="button-show-password"
+                            data-show-password
+                            aria-expanded="false">
+                                {%- render 'svg-icon', name: 'eye' -%}
+                        </button>
+                    </div>
+                </div>
+              
+                  <div class="customer-form__submit-hld customer-form__submit-hld--closer">
+                      <button class="button button--xlarge" type="submit">{{ 'customer.activate_account.submit' | t }}</button>
+                  </div>
+          
+                  <div class="customer-form__link-hld">
+                      <a href="{{ routes.root_url }}" class="customer-form__link text-link text-link--reverse f-14 w-medium upper spaced">
+                          <span>{{ 'customer.activate_account.cancel' | t }}</span>
+                      </a>
+                  </div>
+              {%- endform -%}
+          </form-validate>
+      </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Main Activate Account",
+  "tag": "section",
+  "class": "section section--login",
+  "settings": []
+}
+{% endschema %}

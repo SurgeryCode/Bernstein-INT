@@ -1,0 +1,166 @@
+{%- liquid 
+    assign is_b2b = false
+    if customer.tags contains 'b2b' or customer.tags contains 'B2B'
+        assign is_b2b = true
+    endif
+    assign is_b2b_program = false
+    if customer.tags contains 'Standard' or customer.tags contains 'Silver' or customer.tags contains 'Gold' or customer.tags contains 'Platinum'
+        assign is_b2b_program = true
+    endif
+-%}
+
+<div class="container">
+    <div class="account-hld">
+        <div class="account-left">
+            {% render 'account-main-box' %}
+            {% render 'account-nav', active_item: 'main' %}
+        </div>
+        <div class="account-right">
+            <h1 class="account-title">{{ 'customer.account.overview' | t }}</h1>
+            <div class="account-content">
+                {% comment %}
+                <div class="account-box account-box--profile">
+                    <span class="account-box__title f-24 w-bold">{{ 'customer.account.profile' | t }}</span>
+                    <div class="account-box__row">
+                        <div class="account-box__col account-box__col--1-1">
+                            <p class="account-box__address">
+                                {{ customer.first_name }} {{ customer.last_name }}<br>
+                                {{ customer.email }}<br>
+                                {% render 'svg-icon', name: 'password-dots' %}
+                            </p>
+                            <div class="account-box__edit-btn-hld">
+                                <button class="account-box__edit-btn">
+                                    {% render 'svg-icon', name: 'edit' %}
+                                    <span>{{ 'customer.addresses.edit' | t }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endcomment %}
+
+                {%- if is_b2b -%}
+                    <div class="account-content__success">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="24" fill="#46B810"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M31.517 18.456c.3.286.312.76.027 1.06l-10.455 11a.75.75 0 0 1-1.087 0l-4.546-4.782a.75.75 0 1 1 1.088-1.033l4.002 4.21 9.91-10.428a.75.75 0 0 1 1.06-.027Z" fill="#fff"/>
+                        </svg>
+                        <p>{{ 'customer.is_b2b' | t }}</p>
+                    </div>
+                {%- endif -%}
+
+                {% render 'account-addresses-list' %}
+
+                {%- if section.settings.b2b_show == true -%}
+                    {%- if is_b2b_program -%}
+                        <div class="account-box account-box--b2b">
+                            {%- for tag in customer.tags -%}
+                                {%- if tag == 'Standard' or tag == 'Silver' or tag == 'Gold' or tag == 'Platinum' -%}
+                                  <p>{{ 'customer.is_b2b_html' | t: tag: tag }}</p>
+                                  {%- break -%}
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </div>
+                    {%- elsif is_b2b -%}
+                        <div class="account-box account-box--b2b">
+                            {%- if section.settings.b2b_heading -%}
+                                <span class="account-box__title f-24 w-bold">{{ section.settings.b2b_heading | newline_to_br }}</span>
+                            {%- endif -%}
+                            {%- if section.settings.b2b_text -%}
+                                <div class="account-box__text">
+                                    {{ section.settings.b2b_text }}
+                                </div>
+                            {%- endif -%}
+                            {%- if section.settings.b2b_btn_url != blank and section.settings.b2b_btn_text != blank -%}
+                                <div class="account-box__btn-hld">
+                                    <a class="button upper" href="{{ routes.account_url }}?view=b2b">{{ section.settings.b2b_btn_text }}</a>
+                                </div>
+                            {%- endif -%}
+                        </div>
+                    {%- endif -%}
+                {%- endif -%}
+                
+                {%- if section.settings.newsletter_show == true -%}
+                    {% render 'account-newsletter' %}
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Main Account",
+    "tag": "section",
+    "class": "section section--account",
+    "settings": [
+        {
+            "type": "header",
+            "content": "B2B"
+        },
+        {
+            "type": "checkbox",
+            "id": "b2b_show",
+            "label": "Show B2B box",
+            "default": true
+        },
+        {
+            "type": "textarea",
+            "id": "b2b_heading",
+            "label": "Heading",
+            "default": "B2B-Partnerschaft"
+        },
+        {
+            "type": "richtext",
+            "id": "b2b_text",
+            "label": "Text",
+            "default": "<p>Nehmen Sie das Programm Ihres neuen B2B-Partners in Anspruch und erhalten Sie 15 % Rabatt auf den Verkaufspreis.</p>"
+        },
+        {
+            "type": "url",
+            "id": "b2b_btn_url",
+            "label": "Button link"
+        },
+        {
+            "type": "text",
+            "id": "b2b_btn_text",
+            "label": "Button text",
+            "default": "Verbinden"
+        },
+        {
+            "type": "header",
+            "content": "Newsletter"
+        },
+        {
+            "type": "checkbox",
+            "id": "newsletter_show",
+            "label": "Show Newsletter box",
+            "default": true
+        },
+        {
+            "type": "textarea",
+            "id": "newsletter_title",
+            "label": "Title",
+            "default": "Abonnements"
+        },
+        {
+            "type": "textarea",
+            "id": "newsletter_label",
+            "label": "Label",
+            "default": "Ja, ich möchte den kostenlosen Newsletter von Bernstein Badshop abonnieren. (Ich kann mich jederzeit abmelden.)"
+        },
+        {
+            "type": "richtext",
+            "id": "newsletter_text",
+            "label": "Text",
+            "default": "<p>Melden Sie sich an und erhalten Sie einen 5% Rabatt auf Ihre erste Bestellung! Erhalten Sie außerdem Updates, Zugang zu exklusiven Angeboten und mehr.</p>"
+        },
+        {
+            "type": "richtext",
+            "id": "newsletter_text_additional",
+            "label": "Text (additional)",
+            "default": "<ul><li></li><li></li><li></li><li></li><li></li></ul>"
+        }
+    ]
+}
+{% endschema %}

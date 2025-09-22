@@ -1,0 +1,84 @@
+{%- liquid 
+    assign skus = ''
+    for variant in product.variants
+        if variant.metafields.custom.topempfehlung != blank
+            assign skus = skus | append: variant.metafields.custom.topempfehlung | append: ','
+        endif
+    endfor
+    assign skus = skus | split: ',' | uniq
+-%}
+
+{% if skus.size > 0 %}
+<div class="product-recommendation-set">
+  <{{ product.metafields.recommendations.heading_tag | default: 'h2' }} class="set-heading">
+    {{ 'product_recommendations.heading' | t }}
+  </{{ product.metafields.recommendations.heading_tag | default: 'h2' }}>
+  <div class="set-grid">
+    <!-- Produkt 1 -->
+    <div class="set-item">
+      <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" class="product-image">
+      <p class="set-item-title">{{ product.title }}</p>
+      {% if product.compare_at_price > product.price %}
+        <p class="set-item-price">PVP*: {{ product.compare_at_price | money }}</p>
+      {% endif %}
+      <p class="set-item-price-current">{{ product.price | money }}</p>
+    </div>
+
+    <!-- Plus-Symbol -->
+    <div class="set-symbol">
+      <span>+</span>
+    </div>
+
+    <!-- Dynamische Produktanzeige -->
+    {% assign second_product_sku = skus[0] %}
+    <div class="set-item" id="second-product-container">
+      <p>Produkt wird geladen...</p>
+    </div>
+
+    {% if skus.size > 1 %}
+      <!-- Plus-Symbol -->
+      <div class="set-symbol">
+        <span>+</span>
+      </div>
+      {% assign third_product_sku = skus[1] %}
+      <div class="set-item" id="third-product-container">
+        <p>Produkt wird geladen...</p>
+      </div>
+    {% endif %}
+
+    <!-- Gleich-Symbol -->
+    <div class="set-symbol">
+      <span>=</span>
+    </div>
+
+    <!-- Gesamtsumme -->
+    <div id="set-total-container" class="set-total">
+      <div class="price-line">
+        <p>Gesamtsumme wird geladen...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  // Konsolenausgabe der gefundenen SKUs und IDs
+  console.log("Gefundene SKUs:", "{{ skus | join: ',' }}");
+  console.log("Erste Produkt-ID:", {{ product.variants.first.id }});
+  
+  // Produktvarianten mit ihren Metafeldern ausgeben
+  const variants = {{ product.variants | json }};
+  variants.forEach(variant => {
+    console.log("Variant ID:", variant.id);
+    if (variant.metafields && variant.metafields.custom) {
+      console.log("Metafields (custom):", variant.metafields.custom);
+    }
+  });
+
+  // Übergebene Werte für dynamisches Laden speichern
+  window.skus = "{{ skus | join: ',' }}";
+  window.firstProductPrice = {{ product.price | divided_by: 100 | round: 2 }};
+  window.firstProductId = {{ product.variants.first.id }};
+</script>
+<script src="{{ 'product-recommendation-set.js' | asset_url }}" defer></script>
+{% endif %}

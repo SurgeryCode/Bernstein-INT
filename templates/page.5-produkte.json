@@ -1,0 +1,250 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "remove_bottom_margin": false,
+        "remove_min_height": false
+      }
+    },
+    "slideshow_lp_a64Kth": {
+      "type": "slideshow-lp",
+      "blocks": {
+        "slide_niG7ff": {
+          "type": "slide",
+          "settings": {
+            "badge": "<p>RATGEBER</p>",
+            "badge_text_color": "#000000",
+            "badge_background_color": "#ffffff",
+            "badge_padding": 22,
+            "subtitle": "Für unter 250€ – kleines Budget, große Wirkung",
+            "title": "3 Produkte, mit denen Du<br>Dein Bad aufwertest",
+            "title_tag": "p",
+            "button_url": "",
+            "button_label": "",
+            "counter_title": "",
+            "counter_end_date": "",
+            "counter_text_color": "#000000",
+            "counter_background_color": "#ffffff",
+            "announcement_bar_title": "",
+            "announcement_bar_text_color": "#000000",
+            "announcement_bar_background_color": "#ffffff",
+            "announcement_bar_alignment": "center",
+            "image": "shopify://shop_images/Desktop_LP_Hero_5_produkte.jpg",
+            "image_tablet": "shopify://shop_images/Tablet_LP_Hero_5_produkte.jpg",
+            "image_mobile": "shopify://shop_images/Mobile_LP_Hero_5_produkte.jpg",
+            "alignment_desktop": "center",
+            "alignment_tablet": "center",
+            "alignment_mobile": "center",
+            "v_alignment_mobile": "bottom",
+            "overlay": 30,
+            "drawer_show_notice": false,
+            "drawer_heading": "",
+            "drawer_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_niG7ff"
+      ],
+      "name": "Hero Teaser Landingpages",
+      "settings": {
+        "slide_height_desktop": 24,
+        "slide_height_mobile": 380,
+        "autoplay": true,
+        "delay": 5
+      }
+    },
+    "heading_subheading_3qHV3A": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 100,
+        "padding_bottom": 64,
+        "layout": "row",
+        "heading": "Neuer Bad-Look für unter 250€? Und wie!",
+        "heading_tag": "3",
+        "heading_width": 37,
+        "alignment": "left",
+        "description": "<p>Ein neuer Look im Bad muss nicht immer teuer sein. Mit unseren Geheimtipps und Klassikern schaffst Du es, Dein Bad direkt aufzuwerten. Hier sind unsere Produkte, die Deinem Kontostand gut tun. </p>",
+        "subheading_width": 40,
+        "sub_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "heading_subheading_3YmP9e": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 76,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Design-Armaturen: Mehr Stil auf Knopfdruck",
+        "heading_tag": "3",
+        "heading_width": 46,
+        "alignment": "center",
+        "description": "<p>Kleines Budget, große Wirkung: Mit diesen Unterputz-Armaturen bringst Du frischen Style, bessere Funktion und ein Hauch von Luxus in Dein Badezimmer – und das alles für unter 250 € pro Produkt. </p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_JEPATG": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_hTnXzT": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "unterputz-armatur-badarmatur-wandarmatur-9908b",
+              "unterputz-armatur-badarmatur-wandarmatur-9908c",
+              "unterputz-badarmatur-9908g-gunmetal",
+              "design-waschtischarmatur-xelo-zur-wandmontage",
+              "waschtischarmatur-xx0539b",
+              "duravit-wave-einhebel-waschtischmischer-unterputz"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_hTnXzT"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Beliebte Armaturen",
+        "heading_tag": "2",
+        "link_url": "shopify://collections/waschtischarmaturen",
+        "link_title": "Mehr Waschtischarmaturen"
+      }
+    },
+    "heading_subheading_UbAwjp": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 76,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Spiegel mit LED – das Upgrade für Licht & Look",
+        "heading_tag": "3",
+        "heading_width": 46,
+        "alignment": "center",
+        "description": "<p>Tageslicht am Morgen? Fast. Ein beleuchteter Badspiegel sorgt für die perfekte Ausleuchtung – ob beim Rasieren oder Schminken – und verleiht Deinem Bad einen edlen Look. Fast wie im Hotel. </p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_P9YxMU": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_B64BQr": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "led-lichtspiegel-8232-2-0-rund-2",
+              "led-lichtspiegel-badspiegel-2712",
+              "led-lichtspiegel-badspiegel-2805-rund",
+              "led-lichtspiegel-badspiegel-2884-rund",
+              "led-lichtspiegel-8144-2-0-oval-2",
+              "led-lichtspiegel-8232-2-0-rund-3"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_B64BQr"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Beliebte LED Spiegel",
+        "heading_tag": "2",
+        "link_url": "shopify://collections/led-badspiegel",
+        "link_title": "Mehr LED-Badspiegel"
+      }
+    },
+    "heading_subheading_DfwxiM": {
+      "type": "heading-subheading",
+      "name": "Heading, subheading, CTA",
+      "settings": {
+        "padding_top": 76,
+        "padding_bottom": 0,
+        "layout": "column",
+        "heading": "Spa-Feeling für Zuhause",
+        "heading_tag": "3",
+        "heading_width": 46,
+        "alignment": "center",
+        "description": "<p>Keine Komplettsanierung nötig: Mit einer stilvollen Duschgarnitur oder Regendusche verwandelst Du Deine Dusche in eine Wellness-Oase. </p>",
+        "subheading_width": 50,
+        "sub_alignment": "center",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "outline",
+        "button_color": "black"
+      }
+    },
+    "product_carousel_tcgbFE": {
+      "type": "product-carousel",
+      "blocks": {
+        "category_frY4JA": {
+          "type": "category",
+          "settings": {
+            "title": "",
+            "products": [
+              "duschsaeule-thermostat-8221-pro",
+              "xxl-regendusche-edelstahl-duschkopf-dpg2051-1",
+              "regendusche-edelstahl-duschkopf-dpg2025",
+              "duschsystem-duschsaeule-8921b-basic-mit-sedal-thermostat",
+              "design-duschsaeule-thermostat-4011-basic",
+              "duschsystem-thermostat-bs371-1"
+            ],
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_frY4JA"
+      ],
+      "name": "Product Carousel",
+      "settings": {
+        "heading": "Beliebte Duscharmaturen",
+        "heading_tag": "2",
+        "link_url": "shopify://collections/duschsysteme",
+        "link_title": "Mehr Duscharmaturen"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "slideshow_lp_a64Kth",
+    "heading_subheading_3qHV3A",
+    "heading_subheading_3YmP9e",
+    "product_carousel_JEPATG",
+    "heading_subheading_UbAwjp",
+    "product_carousel_P9YxMU",
+    "heading_subheading_DfwxiM",
+    "product_carousel_tcgbFE"
+  ]
+}

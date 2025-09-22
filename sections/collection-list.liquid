@@ -1,0 +1,152 @@
+<link rel="stylesheet" href="{{ 'section-collection-list.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- liquid
+    assign h_lvl1 = section.settings.heading_tag
+    assign h_lvl2 = section.settings.heading_tag | plus: 1    
+-%}
+
+<div class="container">
+    <div class="collection-list">
+        <div class="collection-list__listing">
+            <h{{ h_lvl1 }} class="f-48 w-bold">{{ section.settings.heading | newline_to_br }}</h{{ h_lvl1 }}>
+            <ul>
+                {%- for collection in section.settings.collection_list -%}
+                    {%- assign icon = collection.metafields.custom.icon | handleize -%}
+                    <li>
+                        <a href="{{ collection.url }}" class="text-link w-medium">
+                            {%- render 'svg-collection', name: icon -%}
+                            <span>{{ collection.title }}</span>
+                        </a>
+                    </li>
+                {%- endfor -%}
+            </ul>
+            {%- if section.settings.link_title != blank -%}
+                <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                    <span>{{ section.settings.link_title }}</span>
+                </a>
+            {%- endif -%}
+        </div>
+        {%- for block in section.blocks -%}
+            {%- liquid 
+                assign hasAlterImage = false    
+                if block.settings.collection.metafields.custom.image_alternate != blank
+                    assign hasAlterImage = true
+                endif
+            -%}
+            <a href="{{ block.settings.collection.url }}" class="collection-list__image {% unless hasAlterImage %}collection-list__image--overlay{% endunless %}">
+                <div class="collection-list__caption">
+                    <h{{ h_lvl2 }} class="f-16 w-medium collection-list__caption-title">
+                        {%- if block.settings.title != blank -%}
+                            {{ block.settings.title }}
+                        {%- else -%}
+                            {{ block.settings.collection.title }}
+                        {%- endif -%}
+                    </h{{ h_lvl2 }}>
+                    <div class="collection-list__caption-link text-link text-link--reverse">
+                        {%- render 'svg-icon', name: 'arrow-right' -%}
+                        <span class="f-14 upper spaced">{{ 'accessibility.discover' | t }}</span>
+                    </div>
+                </div>
+                {%- if block.settings.collection.image != blank -%}
+                    {%- render 'image', 
+                        image: block.settings.collection.image, 
+                        sizes: '380:180,767:340,768:480',
+                        class: 'cover,background' 
+                    -%}
+                {%- endif -%}
+                {%- if hasAlterImage -%}
+                    {%- render 'image', 
+                        image: block.settings.collection.metafields.custom.image_alternate, 
+                        sizes: '380:180,767:340,768:480',
+                        class: 'cover,background,alter'
+                    -%}
+                {%- endif -%}
+            </a>
+        {%- endfor -%}
+        <a href="{{ section.settings.link_url }}" class="collection-list__more f-14 w-medium upper spaced">
+            {{ 'accessibility.view_more' | t | replace: ' ', '<br>' }}
+        </a>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection List",
+  "tag": "section",
+  "class": "section section--collection-list margin",
+  "settings": [
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1"
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    },
+    {
+        "type": "collection_list",
+        "id": "collection_list",
+        "label": "Collections"
+    },
+    {
+        "type": "header",
+        "content": "Link"
+    },
+    {
+        "type": "url",
+        "id": "link_url",
+        "label": "URL"
+    },
+    {
+        "type": "text",
+        "id": "link_title",
+        "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+        "type": "collection",
+        "name": "Collection image",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "Collection"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection List"
+    }
+  ]
+}
+{% endschema %}

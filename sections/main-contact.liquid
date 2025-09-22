@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="{{ 'section-contact.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-form.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-attachments.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+  {{ 'section-contact.css' | asset_url | stylesheet_tag }}
+  {{ 'component-form.css' | asset_url | stylesheet_tag }}
+  {{ 'component-attachments.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'attachments-upload.js' | asset_url }}" defer="defer"></script> 
+
+<div class="contact">
+  <div class="container container--tight">
+    <div class="contact__grid">
+      <div class="contact__content">
+        {%- if section.settings.email != blank -%}
+          <a href="mailto:{{ section.settings.email }}" class="contact__link text-link text-link--strong f-32 w-bold">
+            {%- render 'svg-icon', name: 'email' -%}
+            <span>{{ section.settings.email }}</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.email != blank -%}
+          <a href="tel:{{ section.settings.phone | remove: ' ' }}" class="contact__link text-link text-link--strong f-32 w-bold">
+            {%- render 'svg-icon', name: 'phone' -%}
+            <span>{{ section.settings.phone }}</span>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="richtext f-14">
+            {{ section.settings.text }}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="contact__form">
+        <h2 class="f-24">{{ 'contact.form.title' | t }}</h2>
+        {%- render 'contact-form' -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact",
+  "tag": "section",
+  "class": "section section--contact margin margin--large margin--first",
+  "settings": [
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Information"
+    },
+    {
+      "type": "header",
+      "content": "Contact form"
+    },
+    {
+      "type": "textarea",
+      "id": "form_subject",
+      "label": "List of subjects",
+      "info": "Comma separated"
+    },
+    {
+      "type": "richtext",
+      "id": "form_consent",
+      "label": "Consent"
+    }
+  ]
+}
+{% endschema %}

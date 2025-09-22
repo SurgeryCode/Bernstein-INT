@@ -1,0 +1,143 @@
+/* Allgemeine Einstellungen */
+.product-recommendation-set {
+  background-color: #f5f5f5; /* Heller Hintergrund */
+  padding: 20px;
+  border-radius: 8px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  margin: 0 auto; /* Zentrierung */
+  max-width: 1200px; /* Begrenzung der Breite */
+}
+
+.set-heading {
+  text-align: left;
+  font-size: 22px; /* Größerer Titel */
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.set-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid #ddd;
+  padding: 30px; /* Mehr Höhe */
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.set-item {
+  text-align: center;
+  flex: 1;
+  max-width: 28%; /* Leicht schmalere Produkte */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.set-item img {
+  width: 120px; /* Einheitliche Bildgröße */
+  height: 120px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.set-item-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px; /* Abstand zum Bild */
+  color: #333;
+  text-align: center;
+}
+
+.set-item-price,
+.set-item-price-current {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #666;
+}
+
+.set-symbol {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e60000; /* Rot wie im Ziel */
+}
+
+.set-total {
+  text-align: center;
+  flex: 1;
+  max-width: 20%;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+}
+
+.set-total .price-line {
+  display: flex; /* Flex-Layout für gleiche Zeile */
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.set-total .price-line span {
+  font-size: 20px; /* Währungszeichen etwas kleiner */
+}
+
+#add-set-to-cart {
+  background-color: #e60000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 15px;
+  display: inline-block;
+  width: auto; /* Passt sich an */
+  text-align: center;
+}
+
+#add-set-to-cart:hover {
+  background-color: #c00000;
+}
+
+/* Mobile Ansicht */
+@media screen and (max-width: 768px) {
+  .set-grid {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    padding: 15px; /* Weniger Platz auf mobilen Geräten */
+  }
+
+  .set-item {
+    max-width: 100%; /* Volle Breite */
+    margin-bottom: 15px;
+  }
+
+  .set-symbol {
+    font-size: 24px;
+    margin: 10px 10;
+  }
+
+   .set-total {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .set-total .btn-primary {
+    width: 100%; /* Volle Breite auf mobilen Geräten */
+  }
+
+
+  #add-set-to-cart {
+    width: 100%; /* Button nimmt die gesamte Breite ein */
+    max-width: 300px; /* Begrenzung der Breite auf größeren Bildschirmen */
+    margin: 0 auto;
+  }
+}

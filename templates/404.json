@@ -1,0 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "heading": "Seite nicht gefunden",
+        "description": "Die gesuchte Seite existiert nicht. Nutze unsere Suche, um zu finden, was Du suchst. Sollten weitere Probleme auftauchen, stehen wir Dir gern zur Verfügung.",
+        "url1": "shopify:\/\/pages\/kontakt",
+        "label1": "KONTAKTIERE UNS",
+        "separator": "oder",
+        "url2": "\/",
+        "label2": "ZUR STARTSEITE"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="{{ 'section-filestore-links.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-filestore-links.css' | asset_url | stylesheet_tag }}</noscript>
+
+<div class="container container--tight">
+    <div class="heading">
+        {%- if section.settings.heading != blank -%}
+            <div class="heading__text">
+                <h2 class="f-48">{{ section.settings.heading }}</h2>
+            </div>
+        {%- endif -%}
+        {%- if section.settings.link_url != empty and section.settings.link_text != empty -%}
+            <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ section.settings.link_text }}</span>
+            </a>
+        {%- endif -%}
+    </div>
+    <div class="filestore-links">
+        {%- for block in section.blocks -%}
+            <a class="filestore-links__item" href="{{ block.settings.url }}">
+                {%- if block.settings.icon != blank -%}
+                    <div class="filestore-links__icon-hld">
+                        <img 
+                            src="{{ block.settings.icon | img_url: 'master' }}" 
+                            width="48"
+                            height="48"
+                            alt="{{ block.settings.icon.alt }}"
+                            loading="lazy">
+                    </div>
+                {%- endif -%}
+                <span class="filestore-links__title w-medium">{{ block.settings.title }}</span>
+            </a>
+        {%- endfor -%}
+    </div>
+    {%- if section.settings.link_url != empty and section.settings.link_text != empty -%}
+        <div class="section__read-more">
+            <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                <span>{{ section.settings.link_text }}</span>
+            </a>
+        </div>
+    {%- endif -%}
+</div>
+
+{% schema %}
+{
+    "name": "Filestore Links",
+    "tag": "section",
+    "class": "section section--filestore-links",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Besuchen Sie unseren Dateispeicher"
+        },
+        {
+            "type": "url",
+            "id": "link_url",
+            "label": "Link url"
+        },
+        {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link text",
+            "default": "Gehen Sie zum Dateispeicher"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "item",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon",
+                    "label": "Icon"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "URL"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Filestore Links"
+        }
+    ]
+}
+{% endschema %}

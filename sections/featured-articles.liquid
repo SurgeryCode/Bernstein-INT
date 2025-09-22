@@ -1,0 +1,173 @@
+<link rel="stylesheet" href="{{ 'section-article-carousel.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-article-item.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>
+    {{ 'section-article-carousel.css' | asset_url | stylesheet_tag }}
+    {{ 'component-article-item.css' | asset_url | stylesheet_tag }}
+</noscript>
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'article-carousel.js' | asset_url }}" defer="defer"></script>
+
+<section class="section section--article-carousel article-carousel {% if section.settings.background %}article-carousel--background padding{% else %}margin{% endif %}">
+    <div class="container">
+        {%- if section.settings.heading != blank -%}
+            <div class="heading">
+                <div class="heading__text">
+                    <h{{ section.settings.heading_tag }} class="f-48">{{ section.settings.heading | newline_to_br }}</h{{ section.settings.heading_tag }}>
+                    {%- if section.settings.heading_text != blank -%}
+                        <div class="richtext richtext--gray">
+                            <p>{{ section.settings.heading_text | newline_to_br }}</p>
+                        </div>
+                    {%- endif -%}
+                </div>
+                {%- if section.settings.link_title -%}
+                    <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                        <span>{{ section.settings.link_title }}</span>
+                    </a>
+                {%- endif -%}
+            </div>
+        {%- endif -%}
+        
+        <article-carousel>
+            <div class="swiper">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {%- if section.blocks.size > 0 -%}
+                            {%- for block in section.blocks -%}
+                                <div class="swiper-slide">
+                                    {%- render 'article-item', article: block.settings.article, show_dates: true -%}
+                                </div>
+                            {%- endfor -%}
+                        {%- else -%}
+                            {%- if article and article.tags.size > 0 -%}
+                                {%- liquid
+                                    assign index = 0
+                                    assign limit = 3
+                                    if article.metafields.custom.primary_tag != blank
+                                        assign primary_tag = article.metafields.custom.primary_tag
+                                    else
+                                        assign primary_tag = article.tags | first
+                                    endif
+                                -%}
+                                {%- for item in blogs['blog'].articles -%}
+                                    {%- if item.id != article.id and item.tags contains primary_tag -%}
+                                        <div class="swiper-slide">
+                                            {%- render 'article-item', article: item, show_date: true -%}
+                                        </div>
+                                        {%- liquid
+                                            assign index = index | plus: 1
+                                        -%}
+                                    {%- endif -%}
+                                    {%- if index == limit -%}
+                                        {% break %}
+                                    {%- endif -%}
+                                {%- endfor -%}
+                            {%- else -%}
+                                {%- for item in blogs['blog'].articles limit: 3 -%}
+                                    <div class="swiper-slide">
+                                        {%- render 'article-item', article: item, show_date: true -%}
+                                    </div>
+                                {%- endfor -%}
+                            {%- endif -%}
+                        {%- endif -%}
+                    </div>
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </article-carousel>
+
+        {%- if section.settings.link_title -%}
+            <div class="section__read-more">
+                <a href="{{ section.settings.link_url }}" class="text-link text-link--reverse f-14 w-medium upper spaced">
+                    <span>{{ section.settings.link_title }}</span>
+                </a>
+            </div>
+        {%- endif -%}
+    </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Featured Articles",
+  "tag": "div",
+  "settings": [
+    {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+    },
+    {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "Heading tag",
+        "default": "2",
+        "options": [
+            {
+                "value": "1",
+                "label": "H1"
+            },
+            {
+                "value": "2",
+                "label": "H2" 
+            },
+            {
+                "value": "3",
+                "label": "H3"
+            },
+            {
+                "value": "4",
+                "label": "H4"
+            }
+        ]
+    },
+    {
+        "type": "textarea",
+        "id": "heading_text",
+        "label": "Text"
+    },
+    {
+        "type": "header",
+        "content": "Link"
+    },
+    {
+        "type": "url",
+        "id": "link_url",
+        "label": "URL"
+    },
+    {
+        "type": "text",
+        "id": "link_title",
+        "label": "Title"
+    },
+    {
+        "type": "header",
+        "content": "Articles",
+        "info": "Please add featured articles, otherwise 3 latest articles will appear."
+    },
+    {
+        "type": "checkbox",
+        "id": "background",
+        "label": "Add gray background",
+        "default": false
+    }
+  ],
+  "blocks": [
+    {
+        "type": "article",
+        "name": "Article",
+        "settings": [
+            {
+                "type": "article",
+                "id": "article",
+                "label": "Article"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Articles"
+    }
+  ]
+}
+{% endschema %}

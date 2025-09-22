@@ -1,0 +1,71 @@
+{%- liquid 
+    assign img = image
+    assign sizes = sizes | split: ',' 
+    assign loading_method = loading | default: 'lazy'
+    assign width = image.width
+    assign height = image.height
+
+    assign modifier = ''
+    assign classes = class | split: ','
+    for class in classes 
+        if class contains '__'
+            assign modifier = modifier | append: ' ' | append: class | append: ' '
+        else
+            assign modifier = modifier | append: ' media--' | append: class
+        endif
+    endfor
+-%}
+
+<picture class="media media--image {{ modifier }}">
+    {%- if sizes.size > 1 -%}
+        {%- liquid 
+            assign first = false
+            assign previous_breakpoint = false
+        -%}
+
+        {%- for item in sizes -%}
+            {%- liquid
+                assign parts = item | split: ':' 
+                assign breakpoint = parts[0]
+                assign b = breakpoint | plus: 0
+                assign size = parts[1] | append: 'x'
+
+                if image_mobile != blank
+                    if b > 767
+                        assign img = image
+                    else    
+                        assign img = image_mobile
+                    endif
+                endif
+            -%}
+
+            {%- if forloop.first -%}
+                {%- liquid
+                    assign width = parts[1] | remove: 'x'   
+                    assign height = width | times: img.aspect_ratio | round
+                -%}
+                <source 
+                    srcset="{{ img | img_url: size }}" 
+                    media="(max-width: {{ breakpoint }}px)">
+            {%- elsif forloop.last -%}
+                <source 
+                    srcset="{{ img | img_url: size }}" 
+                    media="(min-width: {{ breakpoint }}px)">
+            {%- else -%}
+                <source 
+                    srcset="{{ img | img_url: size }}" 
+                    media="(min-width: {{ previous_breakpoint | plus: 1 }}px) and (max-width: {{ breakpoint }}px)">
+            {%- endif -%}
+        
+            {%- assign previous_breakpoint = breakpoint -%}
+        {%- endfor -%}
+    {%- endif -%}
+
+    <img 
+        src="{{ img | img_url: first }}"  
+        width="{{ width }}" 
+        height="{{ height }}" 
+        alt="{{ img.alt | strip_html | escape }}"
+        loading="{{ loading_method }}"
+        {% if loading_method == 'eager' %}fetchpriority="high"{% endif %}>
+</picture>

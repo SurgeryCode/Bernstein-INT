@@ -1,0 +1,22 @@
+{% case product.vendor %}
+  {% when "Nextrend GmbH" %}
+    <div class="vendor-info">
+      <h2>Informationen zu Hersteller A</h2>
+      <p>Hersteller A ist bekannt für seine hochwertigen Produkte und innovativen Designs.</p>
+    </div>
+  {% when "Hersteller B" %}
+    <div class="vendor-info">
+      <h2>Informationen zu Hersteller B</h2>
+      <p>Hersteller B bietet nachhaltige und umweltfreundliche Lösungen für den Alltag.</p>
+    </div>
+  {% when "Hersteller C" %}
+    <div class="vendor-info">
+      <h2>Informationen zu Hersteller C</h2>
+      <p>Hersteller C überzeugt durch jahrzehntelange Erfahrung und höchste Qualität.</p>
+    </div>
+  {% else %}
+    <div class="vendor-info">
+      <h2>Hersteller-Informationen</h2>
+      <p>Weitere Informationen zum Hersteller dieses Produkts sind derzeit nicht verfügbar.</p>
+    </div>
+{% endcase %}

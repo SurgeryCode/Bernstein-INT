@@ -1,0 +1,46 @@
+{% layout none %}
+<xml>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ shop.name }}</title>
+        <link>{{ shop.url }}</link>
+        <description>Produktfeed für {{ shop.name }}</description>
+        {% for product in collections.all.products %}
+        {% for variant in product.variants %}
+        <item>
+            <g:id>{{ variant.sku | default: variant.id }}</g:id>
+            <title>{{ product.title | escape }}</title>
+            <description>{{ variant.metafields.custom.information | strip_html | escape | default: 'Keine Beschreibung verfügbar.' }}</description>
+            <g:google_product_category>574</g:google_product_category>
+            <g:product_type>{{ product.collections.first.title | escape | default: 'Unkategorisiert' }}</g:product_type>
+            <link>{{ shop.url }}/products/{{ product.handle }}</link>
+            <g:image_link>{{ product.featured_image | img_url: 'large' | default: 'https://example.com/default.jpg' }}</g:image_link>
+            {% for image in product.images %}
+            {% if image.src %}
+            <g:additional_image_link>{{ image.src | escape }}</g:additional_image_link>
+            {% endif %}
+            {% endfor %}
+            <g:condition>new</g:condition>
+            <g:availability>
+                {% if variant.inventory_quantity > 0 %}
+                in_stock
+                {% else %}
+                out_of_stock
+                {% endif %}
+            </g:availability>
+            <g:price>{{ variant.price | money_without_currency }} {{ shop.currency }}</g:price>
+            {% if variant.compare_at_price %}
+            <g:sale_price>{{ variant.compare_at_price | money_without_currency }} {{ shop.currency }}</g:sale_price>
+            {% endif %}
+            <g:shipping_label>{{ variant.metafields.custom.shipping | default: 'Standard' }}</g:shipping_label>
+            <g:brand>{{ variant.metafields.custom.brand | default: 'Unbekannt' }}</g:brand>
+            {% if variant.barcode %}
+            <g:gtin>{{ variant.barcode | escape }}</g:gtin>
+            {% endif %}
+            <g:mpn>{{ variant.sku | default: variant.id }}</g:mpn>
+        </item>
+        {% endfor %}
+        {% endfor %}
+    </channel>
+</rss>
+</xml>

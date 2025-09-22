@@ -1,0 +1,533 @@
+<script src="{{ 'swiper.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'slideshow.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'countdown-timer.js' | asset_url }}" defer="defer"></script>
+
+<slideshow-section class="slideshow {% if section.settings.autoplay %}slideshow--autoplay{% endif %}">
+  <div class="swiper">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {%- liquid 
+            assign autoplay = false
+            assign title_tag = block.settings.title_tag
+            if forloop.index == 1
+              assign autoplay = true
+            endif
+            assign duration = section.settings.delay | times: 1000
+            if block.settings.video != blank
+              assign duration = block.settings.video.duration
+            endif
+          -%}
+          
+          {%- if block.settings.button_url != blank and block.settings.button_label != blank -%}
+          <a id="{{ block.id }}" href="{{ block.settings.button_url }}" class="swiper-slide" data-duration="{{ duration }}">
+          {%- else -%}
+          <div id="{{ block.id }}" class="swiper-slide" data-duration="{{ duration }}">
+          {%- endif -%}
+            {%- if block.settings.title != blank or block.settings.subtitle != blank or block.settings.button_label != blank -%}
+              <div class="slideshow__caption slideshow__caption--desktop-{{ block.settings.alignment_desktop }}  slideshow__caption--tablet-{{ block.settings.alignment_tablet }} slideshow__caption--mobile-{{ block.settings.alignment_mobile }} slideshow__caption--mobile-v-{{ block.settings.v_alignment_mobile }}">
+                <div class="container">
+                  <div class="slideshow__caption-inner">
+                    {% if block.settings.badge != blank %}
+                      {%- style -%}
+                        {% if block.settings.alignment_desktop == "center" %}
+                          @media (min-width: 1024px) {
+                            #shopify-section-{{ section.id }} #{{ block.id }} .slideshow__badge {
+                              display: flex;
+                              justify-content: center;
+                            }
+                          }
+                        {% endif %}
+                        {% if block.settings.alignment_tablet == "center" %}
+                          @media (min-width: 576px) and (max-width: 1023px) {
+                            #shopify-section-{{ section.id }} #{{ block.id }} .slideshow__badge {
+                              display: flex;
+                              justify-content: center;
+                            }
+                          }
+                        {% endif %}
+                        {% if block.settings.alignment_mobile == "center" %}
+                          @media (max-width: 575px) {
+                            #shopify-section-{{ section.id }} #{{ block.id }} .slideshow__badge {
+                              display: flex;
+                              justify-content: center;
+                            }
+                          }
+                        {% endif %}
+                        #shopify-section-{{ section.id }} #{{ block.id }} .slideshow__badge p {
+                          color: {{ block.settings.badge_text_color }};
+                          background-color: {{ block.settings.badge_background_color }};
+                          width: fit-content;
+                          font-size: 14px;
+                          border-radius: 2px;
+                          padding: 6px 14px;
+                          font-weight: 500;
+                        }
+
+                        #shopify-section-{{ section.id }} #{{ block.id }} .slideshow__badge {
+                          padding-bottom: {{ block.settings.badge_padding}}px;
+                        }
+                      {%- endstyle -%}
+                      <div class="slideshow__badge">
+                        {{ block.settings.badge }}
+                      </div>
+                    {% endif %}
+                    {%- if block.settings.subtitle != blank -%}
+                      <p class="f-24 w-bold">{{ block.settings.subtitle }}</p> 
+                    {%- endif -%}
+                    {%- if block.settings.title != blank -%}
+                      <{{ title_tag }} class="f-64 w-bold">{{ block.settings.title | newline_to_br }}</{{ title_tag }}>
+                    {%- endif -%}
+                    {%- if block.settings.button_url != blank and block.settings.button_label != blank -%}
+                      <span class="button button--large button--white">{{ block.settings.button_label }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.counter_end_date != blank -%}
+                      {%- style -%}
+                        #shopify-section-{{ section.id }} #{{ block.id }} countdown-timer .countdown {
+                          color: {{ block.settings.counter_text_color }};
+                          background-color: rgba({{ block.settings.counter_background_color.red }},{{ block.settings.counter_background_color.green }},{{ block.settings.counter_background_color.blue }},.5);
+                        }
+                        #shopify-section-{{ section.id }} #{{ block.id }} countdown-timer .countdown > span {
+                          background-color: {{ block.settings.counter_background_color }};
+                        }
+                      {%- endstyle -%}
+                      <div class="slideshow__countdown">
+                        {%- if block.settings.counter_title -%}
+                          <p class="f-32 w-bold">{{ block.settings.counter_title }}</p>
+                        {%- endif -%}
+                        <countdown-timer 
+                          end-date="{{ block.settings.counter_end_date }}"
+                          data-id="{{ block.id }}"
+                          locale="{{ request.locale.iso_code }}"
+                          translations='{
+                            "day": { "one": "{{ 'countdown.day_one' | t }}", "few": "{{ 'countdown.day_few' | t }}", "many": "{{ 'countdown.day_many' | t }}" },
+                            "hour": { "one": "{{ 'countdown.hour_one' | t }}", "few": "{{ 'countdown.hour_few' | t }}", "many": "{{ 'countdown.hour_many' | t }}" },
+                            "minute": { "one": "{{ 'countdown.minute_one' | t }}", "few": "{{ 'countdown.minute_few' | t }}", "many": "{{ 'countdown.minute_many' | t }}" },
+                            "second": { "one": "{{ 'countdown.second_one' | t }}", "few": "{{ 'countdown.second_few' | t }}", "many": "{{ 'countdown.second_many' | t }}" }
+                          }'
+                        >
+                        </countdown-timer>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+              {%- if block.settings.announcement_bar_title != blank -%}
+                {%- style -%}
+                  @media only screen and (max-width: 1199px) {
+                    #shopify-section-{{ section.id }} #{{ block.id }} .slideshow__caption > .container {
+                      padding-bottom: 100px;
+                    }
+                  }
+                {%- endstyle -%}
+                <div class="slideshow__announcement-bar" style="color: {{ block.settings.announcement_bar_text_color }}; background-color: {{ block.settings.announcement_bar_background_color }}; text-align: {{ block.settings.announcement_bar_alignment }}">
+                  <div class="container">
+                    <p class="f-18">{{ block.settings.announcement_bar_title }}</p>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.settings.video != blank -%}
+              {%- render 'video', 
+                  video: block.settings.video, 
+                  video_tablet: block.settings.video_tablet,
+                  video_mobile: block.settings.video_mobile,
+                  class: 'cover,background',
+                  autoplay: autoplay,
+                  muted: true,
+                  loop: true 
+              -%}
+            {%- else -%}
+              {%- liquid 
+                assign desktop = block.settings.image
+                assign tablet = desktop
+                assign mobile = desktop
+
+                if block.settings.image_tablet != nil and block.settings.image_mobile != nil
+                  assign tablet = block.settings.image_tablet
+                  assign mobile = block.settings.image_mobile
+                endif
+
+                if block.settings.image_tablet != nil and block.settings.image_mobile == nil
+                  assign tablet = block.settings.image_tablet
+                  assign mobile = tablet
+                endif
+
+                if block.settings.image_tablet == nil and block.settings.image_mobile != nil
+                  assign mobile = block.settings.image_mobile
+                endif
+              -%}
+              {%- if desktop != nil -%}
+                <picture class="media media--image media--cover media--background">
+                  <source srcset="{{ mobile | img_url: '576x' }}" media="(max-width: 575px)">
+                  <source srcset="{{ tablet | img_url: '1024x' }}" media="(min-width: 576px) and (max-width: 1023px)">
+                  <source srcset="{{ desktop | img_url: '1920x' }}" media="(min-width: 1024px)">
+                  <img 
+                    src="{{ desktop | img_url: first }}"  
+                    width="{{ desktop.width }}" 
+                    height="{{ desktop.height }}" 
+                    alt="{{ desktop.alt | strip_html | escape }}"
+                    loading="{% if forloop.index == 1 %}eager{% else %}lazy{% endif %}"
+                    {% if forloop.index == 1 %}fetchpriority="high"{% endif %}>
+                </picture>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if block.settings.drawer_show_notice -%}
+              <button 
+                class="slideshow__tooltip"
+                aria-controls="drawer-text" 
+                aria-expanded="false"
+                aria-label="{{ block.settings.drawer_heading }}" 
+                data-heading="{{ block.settings.drawer_heading }}" 
+                data-richtext="{{ block.settings.drawer_text }}"
+              >
+                {%- render 'svg-icon', name: 'info' -%}
+              </button>
+            {%- endif -%}
+
+            <div class="slideshow__overlay" style="opacity: {{ block.settings.overlay | times: 0.01 }};"></div>  
+          {%- if block.settings.button_url != blank and block.settings.button_label != blank -%}
+          </a>
+          {%- else -%}
+          </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    {% comment %}
+    <div class="slideshow__arrows">
+      <button 
+        class="arrow arrow--left arrow--transparent"
+        title="{{ 'accessibility.prev_slide' | t }}"
+        aria-label="{{ 'accessibility.prev_slide' | t }}">
+          {%- render 'svg-icon', name: 'chevron-left' -%}
+      </button>
+      <button 
+        class="arrow arrow--right arrow--transparent"
+        title="{{ 'accessibility.next_slide' | t }}"
+        aria-label="{{ 'accessibility.next_slide' | t }}">
+          {%- render 'svg-icon', name: 'chevron-right' -%}
+      </button>
+    </div>
+    {% endcomment %}
+    <div class="swiper-pagination swiper-pagination--strech {% if section.settings.autoplay %}swiper-pagination--strech-autoplay{% endif %}"></div>
+  </div>
+</slideshow-section>
+
+<script>
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.slideshow__tooltip')) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+</script>
+
+{% schema %} 
+{
+  "name": "Slideshow",
+  "tag": "section",
+  "class": "section section--slideshow",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Autoplay"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delay",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "unit": "sec",
+      "label": "Delay",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "badge",
+          "label": "Badge title"
+        },
+        {
+          "id": "badge_text_color",
+          "type": "color",
+          "label": "Badge Text Color",
+          "default": "#000000"
+        },
+        {
+          "id": "badge_background_color",
+          "type": "color",
+          "label": "Badge Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "badge_padding",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "label": "Bottom padding",
+          "default": 22
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Sub-title"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "select",
+          "id": "title_tag",
+          "label": "Title tag",
+          "default": "p",
+          "options": [
+              {
+                  "value": "h1",
+                  "label": "H1"
+              },
+              {
+                  "value": "h2",
+                  "label": "H2" 
+              },
+              {
+                  "value": "h3",
+                  "label": "H3"
+              },
+              {
+                  "value": "h4",
+                  "label": "H4"
+              },
+              {
+                  "value": "p",
+                  "label": "none"
+              }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "URL"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Label"
+        },
+        {
+          "type": "header",
+          "content": "Counter"
+        },
+        {
+          "id": "counter_title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "counter_end_date",
+          "type": "text",
+          "label": "End date (YYYY-MM-DD HH:MM:SS)",
+          "info": "Example: 2025-12-31 23:59:59"
+        },
+        {
+          "id": "counter_text_color",
+          "type": "color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "id": "counter_background_color",
+          "type": "color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Announcement bar"
+        },
+        {
+          "id": "announcement_bar_title",
+          "type": "inline_richtext",
+          "label": "Title"
+        },
+        {
+          "id": "announcement_bar_text_color",
+          "type": "color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "id": "announcement_bar_background_color",
+          "type": "color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "announcement_bar_alignment",
+          "label": "Alignment",
+          "default": "center",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop - required",
+          "info": "At least 1920px wide"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_tablet",
+          "label": "Tablet",
+          "info": "At least 1024px wide"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile",
+          "info": "At least 640px wide"
+        },
+        {
+          "type": "header",
+          "content": "Video"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Desktop"
+        },
+        {
+          "type": "video",
+          "id": "video_tablet",
+          "label": "Tablet"
+        },
+        {
+          "type": "video",
+          "id": "video_mobile",
+          "label": "Mobile"
+        },
+        {
+          "type": "header",
+          "content": "Text alignment (horizontal)"
+        },
+        { 
+          "type": "text_alignment",
+          "id": "alignment_desktop",
+          "label": "Desktop",
+          "default": "left"
+        },
+        {
+          "type": "text_alignment",
+          "id": "alignment_tablet",
+          "label": "Tablet",
+          "default": "center"
+        },
+        {
+          "type": "text_alignment",
+          "id": "alignment_mobile",
+          "label": "Mobile",
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "Text alignment (vertical)"
+        },
+        {
+          "type": "select",
+          "id": "v_alignment_mobile",
+          "label": "Mobile",
+          "default": "bottom",
+          "options": [
+            {
+              "value": "middle",
+              "label": "Middle"
+            },
+            {
+              "value": "bottom",
+              "label": "Bottom" 
+            }
+          ]
+        },
+        { 
+          "type": "header",
+          "content": "Transparent overlay"
+        },
+        {
+          "type": "range",
+          "id": "overlay",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "Transparency",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Legal info"
+        },
+        {
+          "type": "checkbox",
+          "id": "drawer_show_notice",
+          "label": "Show legal info",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "drawer_heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "drawer_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,57 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "tabs_lp_EtPtz3": {
+      "type": "tabs-lp",
+      "blocks": {
+        "tab_bKdWBA": {
+          "type": "tab",
+          "settings": {
+            "label": "Trends & Aktionen",
+            "url": "shopify://pages/trends-aktionen"
+          }
+        },
+        "tab_bDBLCC": {
+          "type": "tab",
+          "settings": {
+            "label": "Shop The Look",
+            "url": "shopify://pages/inspirationen"
+          }
+        }
+      },
+      "block_order": [
+        "tab_bKdWBA",
+        "tab_bDBLCC"
+      ],
+      "name": "Inspiration tab",
+      "settings": {}
+    },
+    "main": {
+      "type": "main-inspirations",
+      "settings": {}
+    },
+    "banner_hcMJdh": {
+      "type": "banner",
+      "settings": {
+        "content": "<h2>Inspiriere andere und sichere Dir attraktive Rabatte!</h2><p>Von Badarmaturen, die Stil und Funktionalität mühelos vereinen, über Badmöbel bis hin zu Duschabtrennungen, die Dein tägliches Ritual bereichern – unsere Vielfalt an Badezimmerlösungen eröffnet Dir unendliche Möglichkeiten.</p>",
+        "button_url": "shopify://pages/kundenbilder",
+        "button_label": "Sende eine Inspiration, die begeistert.",
+        "link_url": "",
+        "link_label": ""
+      }
+    }
+  },
+  "order": [
+    "tabs_lp_EtPtz3",
+    "main",
+    "banner_hcMJdh"
+  ]
+}

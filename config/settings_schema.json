@@ -1,0 +1,210 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Bernstein",
+    "theme_version": "1.0.0",
+    "theme_author": "WeCanFly",
+    "theme_documentation_url": "https:\/\/wecanflyagency.com\/",
+    "theme_support_url": "https:\/\/wecanflyagency.com\/contact\/"
+  },
+  {
+    "name": "References",
+    "settings": [
+      {
+        "type": "url",
+        "id": "old_site_url",
+        "label": "Old site URL"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_categories",
+        "label": "Categories Menu"
+      },
+      {
+        "type": "page",
+        "id": "comparison_page",
+        "label": "Product Comparison Page"
+      },
+      {
+        "type": "page",
+        "id": "inspirations_page",
+        "label": "Inspirations Page"
+      },
+      {
+        "type": "page",
+        "id": "showrooms_page",
+        "label": "Showrooms Page"
+      },
+      {
+        "type": "page",
+        "id": "faq_page",
+        "label": "FAQ Page"
+      },
+      {
+        "type": "page",
+        "id": "b2b_page",
+        "label": "B2B Page"
+      }
+    ]
+  },
+  {
+    "name":"Wishlist",
+    "settings":[
+      {
+        "type": "paragraph",
+        "content": "Subscribe our channel [websensepro](https:\/\/youtube.com\/@websensepro?sub_confirmation=1)"
+      },
+     {
+        "type":"checkbox",
+        "id":"enable-wishlist",
+        "label": "Enable Wishlist",
+        "default": false
+      },
+      {
+        "type":"checkbox",
+        "id":"wishlist-floating-button-position",
+        "label": "Enable Floating Button",
+        "default": false
+      },
+       {
+      "type": "select",
+      "id": "floating_button-position",
+      "options": [
+        {
+          "value": "middle-left",
+          "label": "Middle Left"
+        },
+        {
+          "value": "middle-right",
+          "label": "Middle Right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom Center"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom Right"
+        }
+      ],
+      "default": "middle-right",
+      "label": "Floating Button Position"
+    }
+    ]
+  },
+  {
+    "name": "Products",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_product_stars",
+        "label": "Show product stars",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "product_color_options",
+        "label": "Product color option names",
+        "info": "Enter all option names that represents a color (comma separated)"
+      },
+      {
+        "type": "text",
+        "id": "excluded_filters",
+        "label": "Excluded filters",
+        "info": "Enter all option names to exclude from filters (comma separated)"
+      },
+      {
+        "type": "text",
+        "id": "dimmension_options",
+        "label": "Merge dimmension options",
+        "info": "Enter all option names that represents a dimmensions (comma separated)"
+      }
+    ]
+  },
+  {
+    "name": "Forms",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "forms_privacy_info",
+        "label": "Privacy info"
+      },
+      {
+        "type": "richtext",
+        "id": "forms_newsletter_info",
+        "label": "Newsletter info"
+      },
+      {
+        "type": "textarea",
+        "id": "b2b_countries",
+        "label": "Countries available for B2B customers",
+        "info": "Enter a comma-separated list of countries in English, e.g., Germany,France,Luxembourg,Belgium"
+      }
+    ]
+  },
+  {
+    "name": "Trusted Shops",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_trusted_shops_badge",
+        "label": "Show floating badge",
+        "default": false 
+      },
+      {
+        "type": "text",
+        "id": "trusted_shops_id",
+        "label": "ID"
+      },
+      {
+        "type": "text",
+        "id": "trusted_shops_channel",
+        "label": "Channel"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "linkedin",
+        "label": "Linkedin"
+      },
+      {
+        "type": "text",
+        "id": "pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "youtube",
+        "label": "YouTube"
+      }
+    ]
+  },
+  {
+    "name": "Google Maps",
+    "settings": [
+      {
+        "type": "text",
+        "id": "google_maps_api_key",
+        "label": "API Key"
+      }
+    ]
+  }
+]

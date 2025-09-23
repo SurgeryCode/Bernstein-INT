@@ -1,0 +1,6 @@
+{% liquid
+  assign discount_amount = compare_at_price | minus: price
+  assign discount_percent = discount_amount | times: 100 | divided_by: compare_at_price
+%}
+
+<strong class="f-11 red" style=" margin-left: 10px; font-size: 16px; }">({{ discount_percent | round: 0 }}%)</strong>

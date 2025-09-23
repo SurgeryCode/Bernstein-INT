@@ -8,9 +8,6 @@
   assign price = target.price
   assign compare_at_price = target.compare_at_price
   assign lowest_price = target.metafields.custom.omnibus | default: nil
-
-  assign discount_amount = compare_at_price | minus: price
-  assign discount_percent = discount_amount | times: 100 | divided_by: compare_at_price
 -%}
 
 
@@ -47,8 +44,9 @@
         {%- render 'price', price: price -%}
       </span>
     {%- endif -%}
-    <strong class="f-11 red" style=" margin-left: 10px; font-size: 16px; }">({{ discount_percent | round: 0 }}%)</strong>
-    
+
+    {% render 'product-percentage-calc', compare_at_price: compare_at_price, price: price %}
+
     {%- if compare_at_price > price and lowest_price -%}
       {%- assign lowest_price_format = lowest_price | times: 100 | money -%}
       <p class="price__lowest f-11 w-medium gray">{{ 'product.lowest_price' | t: price: lowest_price_format  }}</p>

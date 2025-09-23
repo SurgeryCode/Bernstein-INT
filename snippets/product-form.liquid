@@ -275,8 +275,7 @@
                     Add gift
             </button>
         </div>
-        {{ current_variant.id }}
-        {{  current_variant.inventory_quantity }}
+        
     <script>
         const SEARCHED_VARIANT_ID = 52249231294810;
         const giftButton = document.querySelector('.product-form__gift button');
@@ -298,7 +297,7 @@
             );
 
             if (existing) {
-                console.log('Produkt już w koszyku:', existing);
+                console.log('The product is already in the cart:', existing);
                 giftButton.disabled = false;
                 return;
             }
@@ -316,19 +315,24 @@
 
             if (!addResp.ok) {
                 const errText = await addResp.text();
-                throw new Error('Błąd dodawania do koszyka: ' + errText);
+                throw new Error('Error adding to cart: ' + errText);
             }
 
             const addResult = await addResp.json();
-            console.log('Dodano do koszyka:', addResult);
-
+            console.log('Added to cart:', addResult);
+            window.location.href = '/cart';
             } catch (err) {
-            console.error('Błąd podczas operacji na koszyku:', err);
+            console.error('Error during cart operation:', err);
             } finally {
             giftButton.disabled = false;
             }
         });
+
+        const SEARCHED_VARIANT_RAW = {{ product.metafields.custom.gift_variant_id | default: 0 | json }};
+
     </script>
+
+
 
       {% comment %}
         <div class="product-form__price-info">

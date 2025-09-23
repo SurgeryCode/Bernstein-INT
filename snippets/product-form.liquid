@@ -267,7 +267,68 @@
                 {% unless current_variant.available %}disabled{% endunless %}>
                     {{ 'product.add_to_cart' | t }}
             </button>
+
+            
         </div>
+        <div class="product-form__gift">
+            <button class="button button--outline button--large" aria-controls="drawer-quote-request">
+                    Add gift
+            </button>
+        </div>
+        {{ current_variant.id }}
+        {{  current_variant.inventory_quantity }}
+    <script>
+        const SEARCHED_VARIANT_ID = 52249231294810;
+        const giftButton = document.querySelector('.product-form__gift button');
+        const current_variant = {{ current_variant.id }}
+        const inventory_quantity = {{ current_variant.inventory_quantity }}
+
+        giftButton.addEventListener('click', async function onGiftClick(e) {
+            e.preventDefault();
+            giftButton.disabled = true;
+            try {
+            const cartResp = await fetch('/cart.js');
+            const cart = await cartResp.json();
+            const items = Array.isArray(cart.items) ? cart.items : [];
+
+            const existing = items.find(item =>
+                item.id == SEARCHED_VARIANT_ID ||
+                item.variant_id == SEARCHED_VARIANT_ID ||
+                item.product_id == SEARCHED_VARIANT_ID
+            );
+
+            if (existing) {
+                console.log('Produkt już w koszyku:', existing);
+                giftButton.disabled = false;
+                return;
+            }
+
+            const addResp = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    items: [
+                    { id: SEARCHED_VARIANT_ID, quantity: 1 },
+                    { id: current_variant, quantity: inventory_quantity }
+                    ]
+                })
+                });
+
+            if (!addResp.ok) {
+                const errText = await addResp.text();
+                throw new Error('Błąd dodawania do koszyka: ' + errText);
+            }
+
+            const addResult = await addResp.json();
+            console.log('Dodano do koszyka:', addResult);
+
+            } catch (err) {
+            console.error('Błąd podczas operacji na koszyku:', err);
+            } finally {
+            giftButton.disabled = false;
+            }
+        });
+    </script>
 
       {% comment %}
         <div class="product-form__price-info">

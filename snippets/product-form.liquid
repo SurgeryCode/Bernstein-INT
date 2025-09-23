@@ -270,69 +270,68 @@
 
             
         </div>
+        
         <div class="product-form__gift">
             <button class="button button--outline button--large" aria-controls="drawer-quote-request">
                     Add gift
             </button>
         </div>
         
-    <script>
-        const SEARCHED_VARIANT_ID = 52249231294810;
-        const giftButton = document.querySelector('.product-form__gift button');
-        const current_variant = {{ current_variant.id }}
-        const inventory_quantity = {{ current_variant.inventory_quantity }}
+        <script>
+            const SEARCHED_VARIANT_ID = 52249231294810;
+            const giftButton = document.querySelector('.product-form__gift button');
+            const current_variant = {{ current_variant.id }}
+            const inventory_quantity = {{ current_variant.inventory_quantity }}
 
-        giftButton.addEventListener('click', async function onGiftClick(e) {
-            e.preventDefault();
-            giftButton.disabled = true;
-            try {
-            const cartResp = await fetch('/cart.js');
-            const cart = await cartResp.json();
-            const items = Array.isArray(cart.items) ? cart.items : [];
+            giftButton.addEventListener('click', async function onGiftClick(e) {
+                e.preventDefault();
+                giftButton.disabled = true;
+                try {
+                const cartResp = await fetch('/cart.js');
+                const cart = await cartResp.json();
+                const items = Array.isArray(cart.items) ? cart.items : [];
 
-            const existing = items.find(item =>
-                item.id == SEARCHED_VARIANT_ID ||
-                item.variant_id == SEARCHED_VARIANT_ID ||
-                item.product_id == SEARCHED_VARIANT_ID
-            );
+                const existing = items.find(item =>
+                    item.id == SEARCHED_VARIANT_ID ||
+                    item.variant_id == SEARCHED_VARIANT_ID ||
+                    item.product_id == SEARCHED_VARIANT_ID
+                );
 
-            if (existing) {
-                console.log('The product is already in the cart:', existing);
+                if (existing) {
+                    console.log('The product is already in the cart:', existing);
+                    giftButton.disabled = false;
+                    return;
+                }
+
+                const addResp = await fetch('/cart/add.js', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        items: [
+                        { id: SEARCHED_VARIANT_ID, quantity: 1 },
+                        { id: current_variant, quantity: inventory_quantity }
+                        ]
+                    })
+                    });
+
+                if (!addResp.ok) {
+                    const errText = await addResp.text();
+                    throw new Error('Error adding to cart: ' + errText);
+                }
+
+                const addResult = await addResp.json();
+                console.log('Added to cart:', addResult);
+                window.location.href = '/cart';
+                } catch (err) {
+                console.error('Error during cart operation:', err);
+                } finally {
                 giftButton.disabled = false;
-                return;
-            }
+                }
+            });
 
-            const addResp = await fetch('/cart/add.js', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    items: [
-                    { id: SEARCHED_VARIANT_ID, quantity: 1 },
-                    { id: current_variant, quantity: inventory_quantity }
-                    ]
-                })
-                });
+            const SEARCHED_VARIANT_RAW = {{ product.metafields.custom.gift_variant_id | default: 0 | json }};
 
-            if (!addResp.ok) {
-                const errText = await addResp.text();
-                throw new Error('Error adding to cart: ' + errText);
-            }
-
-            const addResult = await addResp.json();
-            console.log('Added to cart:', addResult);
-            window.location.href = '/cart';
-            } catch (err) {
-            console.error('Error during cart operation:', err);
-            } finally {
-            giftButton.disabled = false;
-            }
-        });
-
-        const SEARCHED_VARIANT_RAW = {{ product.metafields.custom.gift_variant_id | default: 0 | json }};
-
-    </script>
-
-
+        </script>
 
       {% comment %}
         <div class="product-form__price-info">

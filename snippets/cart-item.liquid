@@ -129,9 +129,11 @@
         <div class="cart-item__actions__prices">
             {%- render 'line-item-price', line_item: line_item -%}
         </div>
-        <div class="cart-item__actions__qty">
-            {%- render 'quantity', value: line_item.quantity, min: 1, max: max_amount, product: line_item.product -%}
-        </div>
+        {% if line_item.variant.id != 52249231294810 %}
+            <div class="cart-item__actions__qty">
+                {%- render 'quantity', value: line_item.quantity, min: 1, max: max_amount, product: line_item.product -%}
+            </div>
+        {% endif %}
         <div class="cart-item__actions__remove">
             <a href="{{ line_item.url_to_remove }}">
                 {%- render 'svg-icon', name: 'trash' -%}
